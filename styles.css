@@ -230,3 +230,80 @@ p {
     padding-top: clamp(4.5rem, 12vw, 6rem);
   }
 }
+/* ---------- Case Study Page Styling ---------- */
+body.case-study {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Hero section for case study */
+body.case-study .hero {
+  background: #eaf2fb; /* subtle blue tint for differentiation */
+  padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
+  text-align: center;
+}
+
+body.case-study .hero .eyebrow {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+body.case-study .hero h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 0.8rem;
+}
+
+body.case-study .hero .tagline {
+  max-width: 60ch;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+/* Case study cards (Project Overview, Insights, Opportunities) */
+body.case-study .section.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.8rem;
+}
+
+body.case-study .section.card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+body.case-study .section.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* PDF link styling */
+body.case-study .text-link.pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+body.case-study .text-link.pdf-link:hover,
+body.case-study .text-link.pdf-link:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Make cards full-width on mobile */
+@media (max-width: 800px) {
+  body.case-study .section.card {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  body.case-study .hero {
+    padding-top: clamp(4.5rem, 12vw, 6rem);
+  }
+}
+
