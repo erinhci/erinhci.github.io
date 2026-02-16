@@ -135,6 +135,14 @@ p {
   color: var(--muted);
 }
 
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0.5rem 0 1rem;
+  line-height: 1.4;
+}
+
 .section-intro {
   margin-bottom: 1.8rem;
 }
