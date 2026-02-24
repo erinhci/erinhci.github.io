@@ -148,5 +148,26 @@
         <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      document.documentElement.classList.add("js");
+      const sections = document.querySelectorAll(".section");
+      sections.forEach((section, index) => {
+        if (index === 0) section.classList.add("is-visible");
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -10% 0px" }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    </script>
   </body>
 </html>
