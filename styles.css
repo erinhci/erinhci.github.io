@@ -131,22 +131,6 @@ a:focus-visible {
   margin: 0 0 0.8rem;
 }
 
-.hero .eyebrow,
-.hero h1,
-.hero .tagline {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeSlideUp 0.6s ease-out forwards;
-}
-
-.hero h1 {
-  animation-delay: 0.12s;
-}
-
-.hero .tagline {
-  animation-delay: 0.22s;
-}
-
 h1,
 h2,
 h3 {
@@ -340,11 +324,27 @@ html.js .section.is-visible {
   transform: translate3d(0, 0, 0);
 }
 
-@keyframes fadeSlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+html.js .hero .eyebrow,
+html.js .hero h1,
+html.js .hero .tagline {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+html.js .hero.is-visible .eyebrow,
+html.js .hero.is-visible h1,
+html.js .hero.is-visible .tagline {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+html.js .hero.is-visible h1 {
+  transition-delay: 0.1s;
+}
+
+html.js .hero.is-visible .tagline {
+  transition-delay: 0.2s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -357,7 +357,10 @@ html.js .section.is-visible {
     scroll-behavior: auto !important;
   }
 
-  .section {
+  .section,
+  .hero .eyebrow,
+  .hero h1,
+  .hero .tagline {
     opacity: 1;
     transform: none;
   }
