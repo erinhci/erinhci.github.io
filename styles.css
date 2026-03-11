@@ -40,7 +40,7 @@ a {
   color: var(--accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
-  transition: color 0.25s ease;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 a:hover,
@@ -72,19 +72,23 @@ main {
 
 .site-header {
   position: fixed;
-  top: 1.25rem;
-  right: min(4vw, 3rem);
+  top: 0;
+  right: min(2.8vw, 2rem);
+  height: 100vh;
   left: auto;
   z-index: 100;
+  display: grid;
+  align-items: center;
 }
 
 .nav-wrap {
   width: auto;
   min-height: auto;
-  padding: 0.6rem 0 0.6rem 1.4rem;
+  padding: 0.4rem 0 0.4rem 1.2rem;
   display: flex;
-  align-items: center;
-  gap: 1.3rem;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
   border-radius: 0;
   border-left: 0.5px solid var(--line);
   background: transparent;
@@ -104,14 +108,16 @@ main {
   padding: 0;
   list-style: none;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
 }
 
 .nav-links a {
   color: var(--text);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: none;
   padding: 0;
@@ -161,10 +167,11 @@ main {
 }
 
 .hero-about-snippet {
-  grid-column: 10 / 12;
+  grid-column: 2 / 6;
   align-self: end;
-  border-left: 0.5px solid var(--line);
-  padding-left: 1rem;
+  border-left: 0;
+  border-top: 0.5px solid var(--line);
+  padding-top: 1rem;
   color: var(--muted);
 }
 
@@ -195,10 +202,11 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(3.5rem, 10vw, 10rem);
+  font-size: clamp(3rem, 8vw, 6.5rem);
   letter-spacing: -0.04em;
   margin-bottom: 1rem;
   max-width: 11ch;
+  line-height: 0.95;
 }
 
 h2 {
@@ -289,7 +297,7 @@ body.case-study .section.card {
   background: transparent;
   border: 0;
   box-shadow: none;
-  transition: transform 0.45s ease, opacity 0.45s ease;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .project-image {
@@ -306,12 +314,13 @@ body.case-study .section.card {
 
 .project-card h3 {
   margin-top: -2.1rem;
-  margin-left: 1.1rem;
+  margin-left: 40px;
   position: relative;
   z-index: 3;
   width: fit-content;
-  padding: 0.25rem 0.6rem;
-  background: rgba(242, 242, 242, 0.9);
+  padding: 0;
+  background: transparent;
+  text-shadow: 0 0 20px rgba(242, 242, 242, 0.8);
 }
 
 img,
@@ -329,7 +338,15 @@ img,
 .project-thumbnail,
 .project-image img,
 .case-image img {
-  filter: none;
+  filter: grayscale(20%);
+  transform: scale(0.98);
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.project-card:hover .project-image img,
+.project-card:focus-within .project-image img {
+  filter: grayscale(0%);
+  transform: scale(1);
 }
 
 .project-grid .card:nth-child(odd) .project-image,
@@ -363,7 +380,7 @@ img,
   font-weight: 600;
   text-decoration: none;
   background: transparent;
-  transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .button-link:hover,
@@ -541,10 +558,7 @@ html.js .hero.is-visible .button-link {
 
   .hero-about-snippet {
     grid-column: 2 / 9;
-    border-left: 0;
     border-top: 0.5px solid var(--line);
-    padding-left: 0;
-    padding-top: 1rem;
   }
 
   .section-break-left .section-intro,
@@ -591,6 +605,8 @@ html.js .hero.is-visible .button-link {
   }
 
   .nav-links {
+    flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.6rem 1rem;
   }
@@ -598,10 +614,6 @@ html.js .hero.is-visible .button-link {
   .hero-copy,
   .hero-about-snippet {
     grid-column: 1 / -1;
-  }
-
-  h1 {
-    font-size: clamp(3rem, 16vw, 5.4rem);
   }
 
   .section-break-left .section-intro,
@@ -622,6 +634,6 @@ html.js .hero.is-visible .button-link {
   }
 
   .project-card h3 {
-    margin-left: 0.7rem;
+    margin-left: 0;
   }
 }
