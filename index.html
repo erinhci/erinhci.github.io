@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header" id="top">
+    <div id="top" aria-hidden="true"></div>
+    <header class="site-header">
       <div class="container nav-wrap">
         <div class="scroll-progress-track" aria-hidden="true">
           <span class="scroll-progress-indicator"></span>
@@ -41,7 +42,9 @@
             <div class="hero-copy">
               <div class="hero-copy-flow">
                 <p class="eyebrow">Behavior • Systems • Strategy</p>
-                <h1 id="hero-title">Human-centered UX strategy shaped by nature, rhythm, and clarity.</h1>
+                <div class="hero-title-fold">
+                  <h1 id="hero-title">Human-centered UX strategy shaped by nature, rhythm, and clarity.</h1>
+                </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
                 </p>
@@ -62,7 +65,7 @@
         </div>
       </section>
 
-      <section class="section section-break-right" id="work" aria-labelledby="work-title">
+      <section class="section section-break-right case-study-zone" id="work" aria-labelledby="work-title">
         <div class="container">
           <div class="section-intro">
             <p class="eyebrow">Featured Projects</p>
@@ -180,6 +183,7 @@
       const navLinks = document.querySelectorAll(".nav-links a");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
+      const caseStudyZones = document.querySelectorAll(".case-study-zone");
 
       if (heroTitle) {
         const words = heroTitle.textContent.trim().split(/\s+/);
@@ -305,20 +309,37 @@
         });
       };
 
+      const applyZoneShift = () => {
+        const triggerLine = window.innerHeight * 0.55;
+        let inZone = false;
+
+        caseStudyZones.forEach((zone) => {
+          const rect = zone.getBoundingClientRect();
+          if (rect.top <= triggerLine && rect.bottom >= triggerLine * 0.45) {
+            inZone = true;
+          }
+        });
+
+        document.body.classList.toggle("in-case-zone", inZone);
+      };
+
       window.addEventListener("scroll", () => {
         setActiveNavLink();
         updateScrollProgress();
         applyParallax();
+        applyZoneShift();
       });
 
       window.addEventListener("resize", () => {
         updateScrollProgress();
         applyParallax();
+        applyZoneShift();
       });
 
       setActiveNavLink();
       updateScrollProgress();
       applyParallax();
+      applyZoneShift();
     </script>
   </body>
 </html>
