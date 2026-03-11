@@ -18,12 +18,12 @@
   </head>
   <body>
     <div id="top" aria-hidden="true"></div>
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
+    </div>
     <header class="site-header">
       <div class="container nav-wrap">
-        <div class="scroll-progress-track" aria-hidden="true">
-          <span class="scroll-progress-indicator"></span>
-        </div>
-        <a class="brand" href="#top">Erin King</a>
+        <a class="brand return-top" href="#top">Erin King</a>
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
             <li><a href="#work">Projects</a></li>
@@ -181,9 +181,9 @@
       const magneticButtons = document.querySelectorAll(".button-primary");
       const heroTitle = document.querySelector("#hero-title");
       const navLinks = document.querySelectorAll(".nav-links a");
+      const returnTopLink = document.querySelector(".return-top");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
-      const caseStudyZones = document.querySelectorAll(".case-study-zone");
 
       if (heroTitle) {
         const words = heroTitle.textContent.trim().split(/\s+/);
@@ -295,7 +295,29 @@
         if (!progressIndicator) return;
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrolled = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
-        progressIndicator.style.height = `${Math.min(scrolled, 100)}%`;
+        progressIndicator.style.width = `${Math.min(scrolled, 100)}%`;
+      };
+
+      const syncBodyZoneColor = () => {
+        const midpoint = window.innerHeight * 0.5;
+        let activeSection = sections[0];
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= midpoint && rect.bottom >= midpoint) {
+            activeSection = section;
+          }
+        });
+
+        if (!activeSection) return;
+        const sectionIndex = Array.from(sections).indexOf(activeSection);
+        const isEven = (sectionIndex + 1) % 2 === 0;
+        document.body.style.backgroundColor = isEven ? "#1A1A1A" : "#F5F2ED";
+      };
+
+
+      const updateBrandAtTopState = () => {
+        document.body.classList.toggle("at-top", window.scrollY <= 8);
       };
 
       const applyParallax = () => {
@@ -309,37 +331,33 @@
         });
       };
 
-      const applyZoneShift = () => {
-        const triggerLine = window.innerHeight * 0.55;
-        let inZone = false;
-
-        caseStudyZones.forEach((zone) => {
-          const rect = zone.getBoundingClientRect();
-          if (rect.top <= triggerLine && rect.bottom >= triggerLine * 0.45) {
-            inZone = true;
-          }
-        });
-
-        document.body.classList.toggle("in-case-zone", inZone);
-      };
-
       window.addEventListener("scroll", () => {
         setActiveNavLink();
         updateScrollProgress();
         applyParallax();
-        applyZoneShift();
+        syncBodyZoneColor();
+        updateBrandAtTopState();
       });
 
       window.addEventListener("resize", () => {
         updateScrollProgress();
         applyParallax();
-        applyZoneShift();
+        syncBodyZoneColor();
+        updateBrandAtTopState();
       });
+
+      if (returnTopLink) {
+        returnTopLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
 
       setActiveNavLink();
       updateScrollProgress();
       applyParallax();
-      applyZoneShift();
+      syncBodyZoneColor();
+      updateBrandAtTopState();
     </script>
   </body>
 </html>
