@@ -1,9 +1,15 @@
 :root {
   --bg: #f5f2ed;
   --surface: #ebe7df;
-  --text: #1a1a1a;
-  --muted: #4a4a4d;
-  --accent: #601010;
+  --text: #3f0f17;
+  --muted: #654c52;
+  --accent: #ff4500;
+  --accent-strong: #e65100;
+  --project-tint-blend-mode: multiply;
+  --ivory: #f6f2e8;
+  --charcoal: #1a1a1a;
+  --bone: #f5f2ed;
+  --oxblood: #3f0f17;
   --line: rgba(26, 26, 27, 0.2);
   --header-height: 78px;
 }
@@ -24,7 +30,7 @@ body {
   color: var(--text);
   background: var(--bg);
   position: relative;
-  transition: background-color 0.75s ease;
+  transition: background-color 0.8s ease;
 }
 
 body::before {
@@ -33,14 +39,10 @@ body::before {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.12;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
 }
 
-
-body.in-case-zone {
-  background: #e0ddd7;
-}
 
 a {
   color: var(--accent);
@@ -49,16 +51,17 @@ a {
   transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
+
 a:hover,
 a:focus-visible {
-  color: #7f1717;
+  color: var(--accent-strong);
 }
 
 a:focus-visible,
 .button-link:focus-visible,
 .text-link:focus-visible,
 nav a:focus-visible {
-  outline: 2px solid rgba(96, 16, 16, 0.38);
+  outline: 2px solid color-mix(in srgb, var(--accent) 42%, transparent);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -102,34 +105,44 @@ main {
 }
 
 .brand {
+  transition: color 0.45s ease, transform 0.45s ease;
   font-family: "Fraunces", Georgia, serif;
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--text);
   text-decoration: none;
+  position: sticky;
+  top: 1rem;
+  z-index: 2;
 }
+
 
 .brand:hover,
 .brand:focus-visible {
   transform: scale(1.04);
 }
 
+body.at-top .brand {
+  color: var(--accent);
+}
+
 .scroll-progress-track {
-  position: absolute;
-  left: -14px;
+  position: fixed;
+  left: 0;
   top: 0;
-  width: 2px;
-  height: 100%;
-  background: rgba(96, 16, 16, 0.22);
+  width: 100%;
+  height: 3px;
+  z-index: 220;
+  background: rgba(26, 26, 26, 0.08);
 }
 
 .scroll-progress-indicator {
   display: block;
-  width: 100%;
-  height: 0;
+  width: 0;
+  height: 100%;
   background: var(--accent);
-  transition: height 0.2s ease-out;
+  transition: width 0.2s ease-out;
 }
 
 .nav-links {
@@ -155,6 +168,7 @@ main {
 
 .nav-links a.is-active {
   color: var(--accent);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--accent) 65%, transparent);
 }
 
 .section,
@@ -166,12 +180,38 @@ main {
   padding: clamp(4rem, 9vw, 7rem) 0;
 }
 
+.section:nth-of-type(odd) {
+  background: var(--bone);
+  color: var(--oxblood);
+}
+
+.section:nth-of-type(even) {
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.section:nth-of-type(even) h1,
+.section:nth-of-type(even) h2,
+.section:nth-of-type(even) h3,
+.section:nth-of-type(even) p,
+.section:nth-of-type(even) li,
+.section:nth-of-type(even) .tagline,
+.section:nth-of-type(even) .hero-about-snippet,
+.section:nth-of-type(even) .subtitle,
+.section:nth-of-type(even) .card p,
+.section:nth-of-type(even) .case-image figcaption,
+.section:nth-of-type(even) .site-footer {
+  color: var(--ivory);
+}
+
 .hero {
   position: relative;
   padding: clamp(6rem, 12vw, 9rem) 0 clamp(4rem, 8vw, 6rem);
 }
 
 .hero-shell {
+  box-sizing: border-box;
+  margin: 0;
   border-radius: 0;
   padding: 0;
 }
@@ -203,11 +243,13 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 .hero-title-fold {
-  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  max-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -215,12 +257,12 @@ main {
 }
 
 html.js .hero-title-fold {
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 1s cubic-bezier(0.2, 1, 0.3, 1);
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 html.js .hero.is-visible .hero-title-fold {
-  clip-path: inset(0 0 0 0);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .hero-about-snippet {
@@ -259,9 +301,9 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(3rem, 12vh, 8rem);
+  font-size: clamp(2.8rem, 16vh, 9rem);
   letter-spacing: -0.03em;
-  margin-bottom: 1rem;
+  margin: 0;
   max-width: 90vw;
   line-height: 0.85;
 }
@@ -334,6 +376,7 @@ li {
 }
 
 .project-grid {
+  counter-reset: project-card;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 2.5rem 0;
@@ -341,6 +384,21 @@ li {
 
 .project-grid .card {
   grid-column: 1 / -1;
+}
+
+
+.project-card {
+  counter-increment: project-card;
+}
+
+.project-card::before {
+  content: counter(project-card, decimal-leading-zero);
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
 }
 
 .card,
@@ -359,6 +417,7 @@ body.case-study .section.card {
 }
 
 .project-image {
+  position: relative;
   min-height: 210px;
   display: grid;
   place-items: center;
@@ -368,6 +427,18 @@ body.case-study .section.card {
   background: var(--surface);
   color: var(--muted);
   box-shadow: none;
+}
+
+
+.project-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  mix-blend-mode: var(--project-tint-blend-mode);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
 }
 
 .project-card h3 {
@@ -404,7 +475,13 @@ img,
 .project-card:hover .project-image img,
 .project-card:focus-within .project-image img {
   filter: grayscale(0%);
-  transform: scale(1);
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover .project-image::after,
+.project-card:focus-within .project-image::after {
+  opacity: 0.18;
 }
 
 .project-grid .card:nth-child(odd) .project-image,
@@ -456,8 +533,8 @@ img,
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: #7f1717;
-  color: var(--bg);
+  background: var(--accent-strong);
+  color: #f5f2ed;
 }
 
 .text-link {
@@ -625,7 +702,7 @@ html.js .hero.is-visible .hero-word {
   }
 
   .hero-title-fold {
-    clip-path: inset(0 0 0 0) !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
   }
 }
 
@@ -690,7 +767,7 @@ html.js .hero.is-visible .hero-word {
   }
 
   .scroll-progress-track {
-    display: none;
+    height: 3px;
   }
 
   .nav-links {
