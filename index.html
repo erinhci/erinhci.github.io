@@ -19,11 +19,14 @@
   <body>
     <header class="site-header" id="top">
       <div class="container nav-wrap">
+        <div class="scroll-progress-track" aria-hidden="true">
+          <span class="scroll-progress-indicator"></span>
+        </div>
         <a class="brand" href="#top">Erin King</a>
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
-            <li><a href="#about">About</a></li>
             <li><a href="#work">Projects</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -36,15 +39,17 @@
         <div class="container hero-shell glass-panel">
           <div class="hero-layout hero-editorial">
             <div class="hero-copy">
-              <p class="eyebrow">Behavior • Systems • Strategy</p>
-              <h1 id="hero-title">Human-centered UX strategy shaped by nature, rhythm, and clarity.</h1>
-              <p class="tagline">
-                I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
-              </p>
-              <p class="tagline">
-                My practice blends deep research with grounded design execution to create digital experiences that feel calm, useful, and deeply human.
-              </p>
-              <a class="button-link button-primary" href="#work">Explore Case Studies</a>
+              <div class="hero-copy-flow">
+                <p class="eyebrow">Behavior • Systems • Strategy</p>
+                <h1 id="hero-title">Human-centered UX strategy shaped by nature, rhythm, and clarity.</h1>
+                <p class="tagline">
+                  I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
+                </p>
+                <p class="tagline">
+                  My practice blends deep research with grounded design execution to create digital experiences that feel calm, useful, and deeply human.
+                </p>
+                <a class="button-link button-primary" href="#work">Explore Case Studies</a>
+              </div>
             </div>
             <aside class="hero-about-snippet" aria-label="About highlight">
               <p class="eyebrow">About</p>
@@ -171,6 +176,20 @@
       const sections = document.querySelectorAll(".section");
       const projectCards = document.querySelectorAll(".project-card");
       const magneticButtons = document.querySelectorAll(".button-primary");
+      const heroTitle = document.querySelector("#hero-title");
+      const navLinks = document.querySelectorAll(".nav-links a");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+      const parallaxImages = document.querySelectorAll(".project-image img");
+
+      if (heroTitle) {
+        const words = heroTitle.textContent.trim().split(/\s+/);
+        heroTitle.innerHTML = words
+          .map(
+            (word, index) =>
+              `<span class="hero-word" style="--stagger:${index}">${word}</span>`
+          )
+          .join(" ");
+      }
 
       const markInitiallyVisible = () => {
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -245,6 +264,61 @@
           });
         });
       }
+
+      const setActiveNavLink = () => {
+        const scrollOffset = window.scrollY + window.innerHeight * 0.3;
+        let currentId = "work";
+
+        sections.forEach((section) => {
+          const top = section.offsetTop;
+          if (scrollOffset >= top) {
+            currentId = section.id;
+          }
+        });
+
+        navLinks.forEach((link) => {
+          const isActive = link.getAttribute("href") === `#${currentId}`;
+          link.classList.toggle("is-active", isActive);
+          if (isActive) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
+        progressIndicator.style.height = `${Math.min(scrolled, 100)}%`;
+      };
+
+      const applyParallax = () => {
+        if (prefersReducedMotion.matches) return;
+
+        parallaxImages.forEach((image) => {
+          const rect = image.getBoundingClientRect();
+          const midpoint = rect.top + rect.height / 2;
+          const delta = (midpoint - window.innerHeight / 2) * -0.03;
+          image.style.transform = `translateY(${delta.toFixed(2)}px) scale(0.99)`;
+        });
+      };
+
+      window.addEventListener("scroll", () => {
+        setActiveNavLink();
+        updateScrollProgress();
+        applyParallax();
+      });
+
+      window.addEventListener("resize", () => {
+        updateScrollProgress();
+        applyParallax();
+      });
+
+      setActiveNavLink();
+      updateScrollProgress();
+      applyParallax();
     </script>
   </body>
 </html>
