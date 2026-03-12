@@ -71,7 +71,8 @@ nav a:focus-visible {
 }
 
 .container {
-  width: min(1200px, 92vw);
+  max-width: 1200px;
+  width: 92%;
   margin: 0 auto;
 }
 
@@ -81,7 +82,9 @@ main {
 }
 
 .narrow {
-  width: min(760px, 92vw);
+  max-width: 760px;
+  width: 92%;
+  margin: 0 auto;
 }
 
 .site-header {
@@ -226,11 +229,11 @@ body.at-top .brand {
 }
 
 .hero-editorial {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .hero-copy {
-  grid-column: 2 / 12;
+  grid-column: 2 / 11;
   max-width: none;
   padding: 0;
   text-align: left;
@@ -303,7 +306,7 @@ h1 {
   margin: 0;
   max-width: none;
   line-height: 0.93;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 h2 {
@@ -347,6 +350,7 @@ li {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   width: 100%;
+  box-sizing: border-box;
   max-width: 100%;
   overflow: hidden;
 }
@@ -694,7 +698,7 @@ html.js .hero.is-visible .hero-word {
   }
 
   .hero-editorial {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: repeat(12, 1fr);
   }
 
   .hero-copy {
@@ -797,9 +801,10 @@ html.js .hero.is-visible .hero-word {
   }
 
   .hero-copy,
-  .project-grid {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  .project-grid,
+  .container,
+  .narrow {
+    width: 100%;
     margin-right: 0;
   }
 
