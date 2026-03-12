@@ -22,8 +22,9 @@
       <span class="scroll-progress-indicator"></span>
     </div>
     <header class="site-header">
-      <div class="container nav-wrap">
+      <div class="nav-wrap">
         <a class="brand return-top" href="index.html">Erin King</a>
+        <div class="nav-spacer" aria-hidden="true"></div>
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
             <li><a href="#work">Projects</a></li>
@@ -312,7 +313,7 @@
         if (!activeSection) return;
         const sectionIndex = Array.from(sections).indexOf(activeSection);
         const isEven = (sectionIndex + 1) % 2 === 0;
-        document.body.style.backgroundColor = isEven ? "#EBE7DF" : "#F5F2ED";
+        document.body.style.backgroundColor = isEven ? "#f3f4f6" : "#F9F9F8";
       };
 
 
