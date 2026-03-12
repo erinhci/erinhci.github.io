@@ -1,5 +1,6 @@
 :root {
   --bg: #F9F9F8;
+  --text-primary: #1A1A24;
   --surface: #f3f4f6;
   --text: #1A1A24;
   --muted: #3d3d4d;
@@ -30,7 +31,7 @@ body {
   font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.02rem;
   line-height: 1.6;
-  color: var(--text);
+  color: var(--text-primary);
   background: var(--bg);
   position: relative;
   transition: background-color 0.8s ease;
@@ -560,10 +561,21 @@ blockquote,
 
 .insight-box {
   background: color-mix(in srgb, var(--surface) 72%, transparent);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(26, 26, 36, 0.2);
   padding: 1rem 1.1rem;
   margin: 1.1rem 0;
   border-radius: 8px;
+}
+
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 ul {
@@ -766,6 +778,8 @@ html.js .hero.is-visible .hero-word {
     width: 100%;
     border-left: 0;
     border-bottom: 1px solid var(--line);
+    background: rgba(249, 249, 248, 0.72);
+    backdrop-filter: blur(8px);
   }
 
   main {
@@ -790,9 +804,29 @@ html.js .hero.is-visible .hero-word {
 
   .nav-links {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 0.6rem 1rem;
+  }
+
+  .nav-links li {
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-links a {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible,
+  .nav-links a.is-active {
+    background: transparent;
+    border-color: transparent;
+    backdrop-filter: none;
   }
 
   .hero-copy,
