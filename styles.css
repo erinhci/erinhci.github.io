@@ -341,38 +341,6 @@ li {
   margin-bottom: 2.4rem;
 }
 
-.section-break-left .container,
-.section-break-left .narrow {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.section-break-left .section-intro,
-.section-break-left .project-grid,
-.section-break-left > .container > p,
-.section-break-left > .container > h2,
-.section-break-left > .narrow > p,
-.section-break-left > .narrow > h2,
-.section-break-left > .narrow > a {
-  grid-column: 2 / 8;
-}
-
-.section-break-right .container,
-.section-break-right .narrow {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
-.section-break-right .section-intro,
-.section-break-right .project-grid,
-.section-break-right > .container > p,
-.section-break-right > .container > h2,
-.section-break-right > .narrow > p,
-.section-break-right > .narrow > h2,
-.section-break-right > .narrow > a {
-  grid-column: 5 / 12;
-}
-
 .project-grid {
   counter-reset: project-card;
   display: grid;
@@ -738,22 +706,6 @@ html.js .hero.is-visible .hero-word {
     border-top: 0.5px solid var(--line);
   }
 
-  .section-break-left .section-intro,
-  .section-break-left .project-grid,
-  .section-break-left > .container > p,
-  .section-break-left > .container > h2,
-  .section-break-left > .narrow > p,
-  .section-break-left > .narrow > h2,
-  .section-break-left > .narrow > a,
-  .section-break-right .section-intro,
-  .section-break-right .project-grid,
-  .section-break-right > .container > p,
-  .section-break-right > .container > h2,
-  .section-break-right > .narrow > p,
-  .section-break-right > .narrow > h2,
-  .section-break-right > .narrow > a {
-    grid-column: 2 / 12;
-  }
 }
 
 @media (max-width: 800px) {
@@ -853,23 +805,6 @@ html.js .hero.is-visible .hero-word {
 
   .project-grid {
     grid-template-columns: 1fr;
-  }
-
-  .section-break-left .section-intro,
-  .section-break-left .project-grid,
-  .section-break-left > .container > p,
-  .section-break-left > .container > h2,
-  .section-break-left > .narrow > p,
-  .section-break-left > .narrow > h2,
-  .section-break-left > .narrow > a,
-  .section-break-right .section-intro,
-  .section-break-right .project-grid,
-  .section-break-right > .container > p,
-  .section-break-right > .container > h2,
-  .section-break-right > .narrow > p,
-  .section-break-right > .narrow > h2,
-  .section-break-right > .narrow > a {
-    grid-column: 1 / -1;
   }
 
   .project-card h3 {
