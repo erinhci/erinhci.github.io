@@ -1,19 +1,20 @@
 :root {
-  --bg: #f5f2ed;
-  --surface: #ebe7df;
-  --text: #2f1f1b;
-  --muted: #654c52;
-  --accent: #601010;
-  --accent-strong: #4a0b0b;
-  --secondary-accent: #a55d4e;
+  --bg: #f4f6ff;
+  --surface: #e8eefc;
+  --text: #11162a;
+  --muted: #3f4968;
+  --accent: #5b4dff;
+  --accent-strong: #3f31ea;
+  --secondary-accent: #00d4ff;
   --project-tint-blend-mode: normal;
-  --ivory: #f6f2e8;
-  --charcoal: #1a1a1a;
-  --bone: #f5f2ed;
-  --oxblood: #601010;
-  --line: rgba(26, 26, 27, 0.2);
+  --ivory: #f8fbff;
+  --charcoal: #131722;
+  --bone: #f4f6ff;
+  --oxblood: #11162a;
+  --line: rgba(19, 23, 34, 0.22);
   --header-height: 78px;
 }
+
 
 * {
   box-sizing: border-box;
@@ -82,27 +83,23 @@ main {
 
 .site-header {
   position: fixed;
-  right: 40px;
-  top: 50%;
-  height: auto;
-  left: auto;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  display: grid;
-  align-items: center;
-  transform: translateY(-50%);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, white 12%);
+  backdrop-filter: blur(10px);
 }
 
 .nav-wrap {
-  width: auto;
-  min-height: auto;
-  padding: 0.4rem 0 0.4rem 1.2rem;
+  min-height: var(--header-height);
+  padding: 0.65rem 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
-  border-radius: 0;
-  border-left: 0.5px solid var(--line);
-  background: transparent;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
 }
 
 .brand {
@@ -111,12 +108,8 @@ main {
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--accent);
+  color: var(--text);
   text-decoration: none;
-  position: fixed;
-  top: 1.2rem;
-  left: 2rem;
-  z-index: 240;
 }
 
 
@@ -143,7 +136,7 @@ body.at-top .brand {
   display: block;
   width: 0;
   height: 100%;
-  background: var(--secondary-accent);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
   transition: width 0.2s ease-out;
 }
 
@@ -152,9 +145,9 @@ body.at-top .brand {
   padding: 0;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.8rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
 }
 
 .nav-links a {
@@ -222,7 +215,7 @@ body.at-top .brand {
 }
 
 .hero-copy {
-  grid-column: 2 / 10;
+  grid-column: 2 / 12;
   max-width: none;
   padding: 0;
   text-align: left;
@@ -240,20 +233,18 @@ body.at-top .brand {
 .hero-title-fold {
   box-sizing: border-box;
   margin: 0;
-  max-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  max-height: none;
+  width: 100%;
+  display: block;
   overflow: visible;
 }
 
 html.js .hero-title-fold {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  transition: clip-path 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  clip-path: none;
 }
 
 html.js .hero.is-visible .hero-title-fold {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: none;
 }
 
 .hero-about-snippet {
@@ -295,8 +286,9 @@ h1 {
   font-size: clamp(2.5rem, 10vh, 7.5rem);
   letter-spacing: -0.03em;
   margin: 0;
-  max-width: 85%;
-  line-height: 0.85;
+  max-width: none;
+  line-height: 0.93;
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -493,7 +485,7 @@ img,
   align-self: flex-start;
   display: inline-block;
   border-radius: 999px;
-  border: 1px solid var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, #0c0f17 30%);
   padding: 0.58rem 1rem;
   color: var(--accent);
   font-weight: 600;
@@ -510,15 +502,17 @@ img,
 }
 
 .button-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+  background: #0c0f17;
+  border-color: #0c0f17;
+  color: var(--secondary-accent);
 }
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: var(--accent-strong);
-  color: #f5f2ed;
+  background: #171f33;
+  border-color: #171f33;
+  color: #72f0ff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--secondary-accent) 28%, transparent);
 }
 
 .text-link {
@@ -748,21 +742,13 @@ html.js .hero.is-visible .hero-word {
   }
 
   .site-header {
-    position: static;
-    top: auto;
-    right: auto;
-    transform: none;
-    padding: 0.8rem 0 0;
-  }
-
-  .brand {
-    position: static;
+    position: sticky;
+    top: 0;
   }
 
   .nav-wrap {
-    border-left: 0;
-    border-top: 0.5px solid var(--line);
-    padding: 0.8rem 0 0;
+    min-height: auto;
+    padding: 0.8rem 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
