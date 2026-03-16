@@ -372,6 +372,10 @@ li {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: transparent;
+  border-top: 1px solid rgba(58, 49, 42, 0.15);
+  box-shadow: none;
+  padding-top: 1.5rem;
 }
 
 .project-card::before {
@@ -431,7 +435,7 @@ img,
   border-radius: 6px;
   box-shadow: none;
   display: block;
-  filter: none;
+  filter: sepia(15%) contrast(1.05);
 }
 
 .project-thumbnail,
@@ -536,8 +540,9 @@ blockquote,
 }
 
 .insight-box {
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  background: transparent;
   border: 0;
+  box-shadow: none;
   padding: 1rem 1.1rem;
   margin: 1.1rem 0;
   border-radius: 8px;
@@ -547,9 +552,18 @@ blockquote,
 .insight-box .label {
   font-family: "Inter", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
-  font-weight: 500;
+  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(58, 49, 42, 0.85);
 }
 
 .reveal-element {
