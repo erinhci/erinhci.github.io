@@ -1,18 +1,18 @@
 :root {
-  --bg: #F9F9F8;
+  --bg: #f4efdf;
   --text-primary: #1A1A24;
-  --surface: #f3f4f6;
+  --surface: #efe7d4;
   --text: #1A1A24;
   --muted: #3d3d4d;
-  --accent: #1A1A24;
-  --accent-strong: #13131c;
-  --secondary-accent: #1A1A24;
+  --accent: #7e0200;
+  --accent-strong: #9e050d;
+  --secondary-accent: #7e0200;
   --project-tint-blend-mode: normal;
-  --ivory: #ffffff;
+  --ivory: #f2ebd7;
   --charcoal: #1A1A24;
-  --bone: #F9F9F8;
-  --oxblood: #1A1A24;
-  --line: rgba(0, 0, 0, 0.18);
+  --bone: #f7f2e3;
+  --oxblood: #2a1b1b;
+  --line: color-mix(in srgb, var(--accent) 26%, transparent);
   --header-height: 0px;
   --sidebar-width: 240px;
 }
@@ -43,8 +43,19 @@ body::before {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.02;
+  opacity: 0.08;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.24;
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--accent) 24%, transparent) 1.1px, transparent 0);
+  background-size: 6px 6px;
 }
 
 
@@ -171,7 +182,7 @@ body.at-top .brand {
   text-decoration: none;
   padding: 0.35rem 0.5rem;
   border-radius: 999px;
-  background: rgba(26, 26, 36, 0);
+  background: color-mix(in srgb, var(--accent) 0%, transparent);
   border: 1px solid transparent;
 }
 
@@ -179,8 +190,8 @@ body.at-top .brand {
 .nav-links a:focus-visible,
 .nav-links a.is-active {
   color: var(--accent-strong);
-  background: rgba(26, 26, 36, 0.08);
-  border-color: rgba(26, 26, 36, 0.18);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 24%, transparent);
   backdrop-filter: blur(8px);
 }
 
@@ -490,24 +501,24 @@ img,
 .button-link:hover,
 .button-link:focus-visible {
   transform: translateY(-2px);
-  background: rgba(26, 26, 36, 0.08);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   color: var(--accent-strong);
-  border-color: rgba(26, 26, 36, 0.18);
+  border-color: color-mix(in srgb, var(--accent) 24%, transparent);
   backdrop-filter: blur(8px);
 }
 
 .button-primary {
-  background: rgba(26, 26, 36, 0.05);
-  border: 1px solid rgba(26, 26, 36, 0.2);
-  color: #1A1A24;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--accent-strong);
 }
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: rgba(26, 26, 36, 0.1);
-  border-color: rgba(26, 26, 36, 0.32);
-  color: #1A1A24;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #1A1A24 20%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 36%, transparent);
+  color: var(--accent-strong);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
   backdrop-filter: blur(8px);
 }
 
@@ -539,7 +550,7 @@ blockquote,
 
 .insight-box {
   background: color-mix(in srgb, var(--surface) 72%, transparent);
-  border: 1px solid rgba(26, 26, 36, 0.2);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   padding: 1rem 1.1rem;
   margin: 1.1rem 0;
   border-radius: 8px;
@@ -731,7 +742,7 @@ html.js .hero.is-visible .hero-word {
     width: 100%;
     border-left: 0;
     border-bottom: 1px solid var(--line);
-    background: rgba(249, 249, 248, 0.72);
+    background: color-mix(in srgb, var(--bone) 70%, transparent);
     backdrop-filter: blur(8px);
     justify-content: center;
   }
