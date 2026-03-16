@@ -24,7 +24,6 @@
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand return-top" href="index.html">Erin King</a>
-        <div class="folio-text">Vol. I &mdash; Boise, ID<br>Field Research</div>
         <div class="nav-spacer" aria-hidden="true"></div>
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
@@ -45,7 +44,7 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">Behavior • Systems • Strategy</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title">Human-centered UX strategy shaped by nature, rhythm, and clarity.</h1>
+                  <h1 id="hero-title" class="hero-title">Human-centered UX <span class="punk-highlight">strategy</span> shaped by nature, rhythm, and clarity.</h1>
                 </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
@@ -187,7 +186,7 @@
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
 
-      if (heroTitle) {
+      if (heroTitle && !heroTitle.querySelector(".punk-highlight")) {
         const words = heroTitle.textContent.trim().split(/\s+/);
         heroTitle.innerHTML = words
           .map(
