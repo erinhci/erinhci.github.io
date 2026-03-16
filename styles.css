@@ -186,12 +186,12 @@ body.at-top .brand {
 }
 
 .section:nth-of-type(odd) {
-  background: var(--bone);
+  background: transparent;
   color: var(--oxblood);
 }
 
 .section:nth-of-type(even) {
-  background: var(--surface);
+  background: transparent;
   color: var(--oxblood);
 }
 
@@ -293,7 +293,7 @@ h3,
   color: #3A312A;
   font-family: "Fraunces", serif;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 h1 {
@@ -302,9 +302,14 @@ h1 {
   margin: 0;
   max-width: none;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: #3A312A;
   overflow-wrap: break-word;
+}
+
+.hero-title {
+  font-weight: 300;
+  letter-spacing: -0.03em;
 }
 
 h2 {
