@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -299,24 +299,6 @@
         progressIndicator.style.width = `${Math.min(scrolled, 100)}%`;
       };
 
-      const syncBodyZoneColor = () => {
-        const midpoint = window.innerHeight * 0.5;
-        let activeSection = sections[0];
-
-        sections.forEach((section) => {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= midpoint && rect.bottom >= midpoint) {
-            activeSection = section;
-          }
-        });
-
-        if (!activeSection) return;
-        const sectionIndex = Array.from(sections).indexOf(activeSection);
-        const isEven = (sectionIndex + 1) % 2 === 0;
-        document.body.style.backgroundColor = isEven ? "#f3f4f6" : "#F9F9F8";
-      };
-
-
       const updateBrandAtTopState = () => {
         document.body.classList.toggle("at-top", window.scrollY <= 8);
       };
@@ -359,14 +341,12 @@
         setActiveNavLink();
         updateScrollProgress();
         applyParallax();
-        syncBodyZoneColor();
         updateBrandAtTopState();
       });
 
       window.addEventListener("resize", () => {
         updateScrollProgress();
         applyParallax();
-        syncBodyZoneColor();
         updateBrandAtTopState();
       });
 
@@ -380,7 +360,6 @@
       setActiveNavLink();
       updateScrollProgress();
       applyParallax();
-      syncBodyZoneColor();
       updateBrandAtTopState();
     </script>
   </body>
