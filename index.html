@@ -44,7 +44,7 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">Behavior • Systems • Strategy</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title" class="hero-title">Human-centered UX <span class="punk-highlight">strategy</span> shaped by nature, rhythm, and clarity.</h1>
+                  <h1 id="hero-title" class="hero-title">Human-centered UX <span id="rotating-word" class="style-1">strategy</span> shaped by nature, rhythm, and clarity<span class="red-dot">.</span></h1>
                 </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
@@ -55,7 +55,7 @@
                 <a class="button-link button-primary" href="#work">Explore Case Studies</a>
               </div>
             </div>
-            <aside class="hero-about-snippet" aria-label="About highlight">
+            <aside class="hero-about-snippet" id="about" aria-label="About highlight">
               <p class="eyebrow">About</p>
               <p>
                 UX researcher and systems-minded designer translating behavior into product, service,
@@ -74,62 +74,32 @@
           </div>
           <div class="project-grid">
             <article class="card project-card reveal-element">
-              <div class="project-image" aria-hidden="true">Platform systems map + accessibility governance dashboard</div>
+              <p class="project-meta">Platform Systems</p>
               <h3>EduFlow: Accessibility-First Digital Infrastructure for Higher Education</h3>
-              <p>
-                Positioned accessibility as institutional infrastructure, aligning design standards, delivery workflows, and governance across teams to reduce friction and improve consistency at scale.
-              </p>
-              <p class="insight-box reveal-element"><strong>Impact snapshot:</strong> Streamlined cross-team delivery and created a repeatable model for accessible rollout across university platforms.</p>
-              <a class="button-link" href="eduflow-case-study.html" aria-label="View case study for EduFlow: Accessibility-First Digital Infrastructure for Higher Education"
-                >View Case Study</a
-              >
-            </article>
-
-            <article class="card project-card reveal-element">
-              <div class="project-image" aria-hidden="true">Research synthesis board + inclusive interaction journey</div>
-              <h3>Reddit Disability Study</h3>
-              <p>
-                Combined behavioral evidence and usability patterns to surface barriers in disability-focused workflows, then translated findings into prioritized product actions.
-              </p>
-              <p class="insight-box reveal-element"><strong>Impact snapshot:</strong> Recommendations informed updates that lifted task completion by 28% and strengthened inclusive experience quality.</p>
-              <a
-                class="button-link"
-                href="reddit-disability-study.html"
-                aria-label="View case study for Reddit Disability Study"
-                >View Case Study</a
-              >
-            </article>
-
-            <article class="card project-card reveal-element">
-              <div class="project-image" aria-label="Stonestown field photo from the Distracted Pedestrians project">
-                <img src="assets/projects/distracted-pedestrians/Stonestown.JPG" alt="Pedestrian area at Stonestown used for distracted walking field observations" />
+              <div class="project-endcap">
+                <span class="project-year">2025</span>
+                <a class="project-link" href="eduflow-case-study.html" aria-label="View case study for EduFlow: Accessibility-First Digital Infrastructure for Higher Education">Read</a>
               </div>
+            </article>
+
+            <article class="card project-card reveal-element">
+              <p class="project-meta">Inclusive UX</p>
+              <h3>Reddit Disability Study</h3>
+              <div class="project-endcap">
+                <span class="project-year">2024</span>
+                <a class="project-link" href="reddit-disability-study.html" aria-label="View case study for Reddit Disability Study">Read</a>
+              </div>
+            </article>
+
+            <article class="card project-card reveal-element">
+              <p class="project-meta">Urban Behavior</p>
               <h3>Distracted Pedestrians: Phone Walking Study</h3>
-              <p>
-                Documented how phone use reshapes movement, awareness, and social behavior in public spaces, revealing where routine habits create systemic safety risks.
-              </p>
-              <p class="insight-box reveal-element"><strong>Impact snapshot:</strong> Produced actionable insights to guide safer street interactions, behavior-informed design choices, and future mobility policy conversations.</p>
-              <a class="button-link" href="distracted-pedestrians.html" aria-label="View case study for Distracted Pedestrians: Phone Walking Study"
-                >View Case Study</a
-              >
+              <div class="project-endcap">
+                <span class="project-year">2023</span>
+                <a class="project-link" href="distracted-pedestrians.html" aria-label="View case study for Distracted Pedestrians: Phone Walking Study">Read</a>
+              </div>
             </article>
           </div>
-        </div>
-      </section>
-
-      <section class="section section-break-left" id="about" aria-labelledby="about-title">
-        <div class="container narrow">
-          <p class="eyebrow">About</p>
-          <h2 id="about-title">Turning insight into coordinated action</h2>
-          <p>
-            I work at the intersection of behavior, design, and systems—helping teams move from scattered signals to clear priorities and decisions.
-          </p>
-          <p>
-            My approach bridges research, product thinking, and operational structure so insights don’t stop at reports—they shape roadmaps, workflows, and outcomes.
-          </p>
-          <p class="insight-box reveal-element">
-            <strong>Homepage summary:</strong> I help organizations understand how people behave, where systems break down, and what to change first. The result is clearer strategy, stronger alignment, and measurable progress across product, service, and infrastructure work.
-          </p>
         </div>
       </section>
 
@@ -185,8 +155,9 @@
       const returnTopLink = document.querySelector(".return-top");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
+      const rotatingWord = document.querySelector("#rotating-word");
 
-      if (heroTitle && !heroTitle.querySelector(".punk-highlight")) {
+      if (heroTitle && !heroTitle.querySelector("#rotating-word")) {
         const words = heroTitle.textContent.trim().split(/\s+/);
         heroTitle.innerHTML = words
           .map(
@@ -194,6 +165,29 @@
               `<span class="hero-word" style="--stagger:${index}">${word}</span>`
           )
           .join(" ");
+      }
+
+      const rotatingWords = [
+        { word: "strategy", className: "style-1" },
+        { word: "research", className: "style-2" },
+        { word: "design", className: "style-3" },
+      ];
+
+      if (rotatingWord) {
+        let currentWordIndex = 0;
+
+        setInterval(() => {
+          currentWordIndex = (currentWordIndex + 1) % rotatingWords.length;
+          rotatingWord.style.opacity = "0";
+
+          setTimeout(() => {
+            const nextWord = rotatingWords[currentWordIndex];
+            rotatingWord.textContent = nextWord.word;
+            rotatingWord.className = nextWord.className;
+            rotatingWord.setAttribute("id", "rotating-word");
+            rotatingWord.style.opacity = "1";
+          }, 300);
+        }, 2500);
       }
 
       const markInitiallyVisible = () => {
