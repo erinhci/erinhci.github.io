@@ -344,7 +344,7 @@ h1 {
   font-size: clamp(4rem, 8vw, 7.5rem);
   font-weight: 700;
   margin: 0;
-  max-width: none;
+  max-width: 100%;
   line-height: 1.05;
   letter-spacing: -0.04em;
   color: var(--text-primary);
@@ -358,6 +358,7 @@ h1 {
 
 #rotating-word {
   display: inline-block;
+  white-space: nowrap;
   transition: opacity 0.3s ease;
   vertical-align: baseline;
   color: var(--accent);
@@ -381,7 +382,7 @@ h1 {
   font-weight: 300;
   font-style: italic;
   text-transform: lowercase;
-  letter-spacing: 0;
+  letter-spacing: -0.06em;
 }
 
 .style-design,
@@ -392,7 +393,7 @@ h1 {
   text-transform: lowercase;
   letter-spacing: -0.02em;
 }
-.red-dot { color: var(--accent); font-weight: 900; padding-left: 0.05em; }
+.red-dot { color: var(--accent); font-weight: 900; padding-left: 0.05em; display: inline-block; white-space: nowrap; }
 
 h2 {
   font-size: clamp(4rem, 8vw, 7.5rem);
