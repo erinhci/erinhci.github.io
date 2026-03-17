@@ -942,3 +942,20 @@ html.js .hero.is-visible .hero-word {
     margin-right: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .style-systems {
+    letter-spacing: 0;
+    padding: 0 0.1em;
+  }
+
+  h1,
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    line-height: 1;
+  }
+
+  .style-research {
+    letter-spacing: -0.02em;
+  }
+}
