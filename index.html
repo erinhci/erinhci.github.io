@@ -44,7 +44,7 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">Behavior • Systems • Strategy</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title" class="hero-title">Human-centered UX <span id="rotating-word" class="style-1">strategy</span> shaped by nature, rhythm, and clarity<span class="red-dot">.</span></h1>
+                  <h1 id="hero-title" class="hero-title">Human-centered UX <span id="rotating-word" class="style-systems">systems</span> shaped by nature, rhythm, and clarity<span class="red-dot">.</span></h1>
                 </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
@@ -167,23 +167,19 @@
           .join(" ");
       }
 
-      const rotatingWords = [
-        { word: "strategy", className: "style-1" },
-        { word: "research", className: "style-2" },
-        { word: "design", className: "style-3" },
-      ];
+      const words = ["systems", "research", "design"];
+      const styles = ["style-systems", "style-research", "style-design"];
 
       if (rotatingWord) {
         let currentWordIndex = 0;
 
         setInterval(() => {
-          currentWordIndex = (currentWordIndex + 1) % rotatingWords.length;
+          currentWordIndex = (currentWordIndex + 1) % words.length;
           rotatingWord.style.opacity = "0";
 
           setTimeout(() => {
-            const nextWord = rotatingWords[currentWordIndex];
-            rotatingWord.textContent = nextWord.word;
-            rotatingWord.className = nextWord.className;
+            rotatingWord.textContent = words[currentWordIndex];
+            rotatingWord.className = styles[currentWordIndex];
             rotatingWord.setAttribute("id", "rotating-word");
             rotatingWord.style.opacity = "1";
           }, 300);
