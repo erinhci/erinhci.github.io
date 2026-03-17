@@ -356,10 +356,42 @@ h1 {
   letter-spacing: -0.04em;
 }
 
-#rotating-word { display: inline-block; transition: opacity 0.3s ease; color: var(--accent); }
-.style-1 { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; text-transform: lowercase; }
-.style-2 { font-family: 'Inter', sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
-.style-3 { font-family: 'Inter', sans-serif; font-weight: 800; text-transform: uppercase; -webkit-text-stroke: 2px var(--accent); color: transparent; }
+#rotating-word {
+  display: inline-block;
+  transition: opacity 0.3s ease;
+  vertical-align: baseline;
+  color: var(--accent);
+  line-height: inherit;
+  font-size: inherit;
+  background: transparent;
+}
+
+.style-systems,
+.style-2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-style: normal;
+}
+
+.style-research,
+.style-1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  text-transform: lowercase;
+  letter-spacing: 0;
+}
+
+.style-design,
+.style-3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+  letter-spacing: -0.02em;
+}
 .red-dot { color: var(--accent); font-weight: 900; padding-left: 0.05em; }
 
 h2 {
