@@ -21,12 +21,6 @@
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
-    <div class="color-strip" aria-label="Accent color calibration strip">
-      <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson"></button>
-      <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
-      <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
-      <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
-    </div>
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand return-top" href="index.html">Erin King</a>
@@ -39,7 +33,13 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <button class="motion-toggle" type="button" aria-pressed="false">Motion_//_Off</button>
+        <div class="color-strip" aria-label="Accent color calibration strip">
+          <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson"></button>
+          <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
+          <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
+          <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
+        </div>
+        <button class="motion-toggle" type="button" aria-pressed="false">Motion // Off</button>
       </div>
     </header>
 
@@ -52,11 +52,11 @@
                 <p class="eyebrow">COGNITIVE SCIENCE / HCI / PSYCHOLOGY</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    <span class="static-text">Line UX</span>
+                    <span class="static-text">UX</span>
                     <div id="hero-words" class="dynamic-wrapper">
-                      <span class="hero-term style-systems is-current">systems</span>
-                      <span class="hero-term style-research">research</span>
-                      <span class="hero-term style-design">design</span>
+                      <span class="hero-term style-systems is-current">Systems</span>
+                      <span class="hero-term style-research">Research</span>
+                      <span class="hero-term style-design">Design</span>
                     </div>
                   </h1>
                 </div>
@@ -193,8 +193,26 @@
       const motionToggle = document.querySelector(".motion-toggle");
       const swatches = document.querySelectorAll(".swatch");
 
+      const accentPreferenceKey = "site-accent-color";
+      const motionPreferenceKey = "hero-motion-stacked";
+
       const setAccent = (color) => {
-        root.style.setProperty("--accent", color);
+        document.documentElement.style.setProperty("--accent", color);
+      };
+
+      const syncActiveSwatch = (color) => {
+        swatches.forEach((item) => item.classList.toggle("is-active", item.dataset.color === color));
+      };
+
+      const applyAccentPreference = () => {
+        const savedAccent = localStorage.getItem(accentPreferenceKey);
+        const defaultAccent = swatches[0]?.dataset.color;
+        const nextAccent = savedAccent || defaultAccent;
+
+        if (!nextAccent) return;
+
+        setAccent(nextAccent);
+        syncActiveSwatch(nextAccent);
       };
 
       swatches.forEach((swatch) => {
@@ -203,12 +221,10 @@
           if (!color) return;
 
           setAccent(color);
-          swatches.forEach((item) => item.classList.remove("is-active"));
-          swatch.classList.add("is-active");
+          localStorage.setItem(accentPreferenceKey, color);
+          syncActiveSwatch(color);
         });
       });
-
-      const motionPreferenceKey = "hero-motion-disabled";
 
       const setStackedState = (isStacked) => {
         if (heroSection) {
@@ -220,9 +236,14 @@
         }
       };
 
+      const getStoredMotionPreference = () => {
+        const savedPreference = localStorage.getItem(motionPreferenceKey);
+        return savedPreference === null ? null : savedPreference === "true";
+      };
+
       const applyMotionPreference = () => {
-        const savedPreference = localStorage.getItem(motionPreferenceKey) === "true";
-        const shouldStack = prefersReducedMotion.matches || savedPreference;
+        const storedPreference = getStoredMotionPreference();
+        const shouldStack = prefersReducedMotion.matches || storedPreference === true;
         setStackedState(shouldStack);
       };
 
@@ -241,6 +262,7 @@
         prefersReducedMotion.addListener(applyMotionPreference);
       }
 
+      applyAccentPreference();
       applyMotionPreference();
 
       const heroTerms = Array.from(document.querySelectorAll(".hero-term"));
