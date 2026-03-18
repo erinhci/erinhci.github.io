@@ -200,6 +200,43 @@ body.at-top .brand {
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
+.color-strip {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.swatch {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.swatch:nth-child(1) {
+  background: #A30000;
+}
+
+.swatch:nth-child(2) {
+  background: #0055FF;
+}
+
+.swatch:nth-child(3) {
+  background: #00CC66;
+}
+
+.swatch:nth-child(4) {
+  background: #E67E22;
+}
+
+.swatch.is-active {
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
 .section {
   padding: clamp(4rem, 9vw, 7rem) 0;
 }
