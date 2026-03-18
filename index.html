@@ -44,21 +44,7 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">COGNITIVE SCIENCE / HCI / PSYCHOLOGY</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    UX
-                    <span id="hero-words" aria-label="systems research design">
-                      <span class="hero-word style-systems">systems</span>
-                      <span class="hero-word style-research">research</span>
-                      <span class="hero-word style-design">design</span>
-                    </span>
-                    <br />
-                    HCI-informed<span class="red-dot">.</span>
-                  </h1>
-                </div>
-                <div class="utility-panel" aria-label="Hero motion controls">
-                  <button id="motion-toggle" class="utility-button" type="button" aria-pressed="false">
-                    Motion_//_Off
-                  </button>
+                  <h1 id="hero-title" class="hero-title">UX <span id="rotating-word" class="style-systems">systems</span> <br> HCI-informed<span class="red-dot">.</span></h1>
                 </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
@@ -189,14 +175,13 @@
       const sections = document.querySelectorAll(".section");
       const projectCards = document.querySelectorAll(".project-card");
       const magneticButtons = document.querySelectorAll(".button-primary");
-      const heroSection = document.querySelector(".hero");
+      const heroTitle = document.querySelector("#hero-title");
       const navLinks = document.querySelectorAll(".nav-links a");
       const returnTopLink = document.querySelector(".return-top");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
-      const motionToggle = document.querySelector("#motion-toggle");
+      const rotatingWord = document.querySelector("#rotating-word");
       const swatches = document.querySelectorAll(".swatch");
-      const motionPreferenceKey = "heroMotionStacked";
 
       const setAccent = (color) => {
         root.style.setProperty("--accent", color);
@@ -213,42 +198,34 @@
         });
       });
 
-      const updateMotionToggleLabel = (isStacked) => {
-        if (!motionToggle) return;
-        motionToggle.textContent = isStacked ? "Motion_//_On" : "Motion_//_Off";
-        motionToggle.setAttribute("aria-pressed", String(isStacked));
-      };
-
-      const applyMotionState = (isStacked) => {
-        if (!heroSection) return;
-        heroSection.classList.toggle("is-stacked", isStacked);
-        updateMotionToggleLabel(isStacked);
-      };
-
-      const toggleMotion = () => {
-        if (!heroSection) return;
-        if (prefersReducedMotion.matches) {
-          applyMotionState(true);
-          return;
-        }
-        const nextState = !heroSection.classList.contains("is-stacked");
-        applyMotionState(nextState);
-        localStorage.setItem(motionPreferenceKey, String(nextState));
-      };
-
-      const storedMotionPreference = localStorage.getItem(motionPreferenceKey);
-      const shouldStackFromPreference = storedMotionPreference === "true";
-      const shouldForceStacked = prefersReducedMotion.matches;
-      applyMotionState(shouldForceStacked || shouldStackFromPreference);
-
-      if (motionToggle) {
-        motionToggle.addEventListener("click", toggleMotion);
+      if (heroTitle && !heroTitle.querySelector("#rotating-word")) {
+        const words = heroTitle.textContent.trim().split(/\s+/);
+        heroTitle.innerHTML = words
+          .map(
+            (word, index) =>
+              `<span class="hero-word" style="--stagger:${index}">${word}</span>`
+          )
+          .join(" ");
       }
 
-      prefersReducedMotion.addEventListener("change", (event) => {
-        const savedPreference = localStorage.getItem(motionPreferenceKey) === "true";
-        applyMotionState(event.matches || savedPreference);
-      });
+      const words = ["systems", "research", "design"];
+      const styles = ["style-systems", "style-research", "style-design"];
+
+      if (rotatingWord) {
+        let currentWordIndex = 0;
+
+        setInterval(() => {
+          currentWordIndex = (currentWordIndex + 1) % words.length;
+          rotatingWord.style.opacity = "0";
+
+          setTimeout(() => {
+            rotatingWord.textContent = words[currentWordIndex];
+            rotatingWord.className = styles[currentWordIndex];
+            rotatingWord.setAttribute("id", "rotating-word");
+            rotatingWord.style.opacity = "1";
+          }, 300);
+        }, 2500);
+      }
 
       const markInitiallyVisible = () => {
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
