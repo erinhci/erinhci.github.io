@@ -208,6 +208,10 @@ body.at-top .brand {
   border-bottom: 1px solid var(--line);
 }
 
+.hero-shell > .color-strip {
+  margin-top: -2rem;
+}
+
 .swatch {
   width: 24px;
   height: 24px;
@@ -402,6 +406,16 @@ h1 {
   line-height: inherit;
   font-size: inherit;
   background: transparent;
+}
+
+#hero-words,
+#hero-words * {
+  animation-play-state: running;
+}
+
+#hero-words:hover,
+#hero-words:hover * {
+  animation-play-state: paused;
 }
 
 .style-systems,
