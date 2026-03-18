@@ -299,6 +299,34 @@ body.at-top .brand {
   margin-bottom: 20vh;
 }
 
+.utility-panel {
+  margin-top: 1.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.utility-button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.utility-button:hover,
+.utility-button:focus-visible {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
 .hero-title-fold {
   box-sizing: border-box;
   margin: 0;
@@ -393,15 +421,75 @@ h1 {
   letter-spacing: -0.04em;
 }
 
-#rotating-word {
-  display: inline-block;
-  white-space: nowrap;
-  transition: opacity 0.3s ease;
+#hero-words {
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 1.05em;
+  min-width: 6.5ch;
   vertical-align: baseline;
   color: var(--accent);
-  line-height: inherit;
-  font-size: inherit;
-  background: transparent;
+  border-bottom: 1px solid var(--line);
+  animation: hero-word-rotate 7.5s steps(1, end) infinite;
+}
+
+#hero-words .hero-word {
+  display: block;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+#hero-words:hover {
+  animation-play-state: paused;
+}
+
+@keyframes hero-word-rotate {
+  0%, 27% {
+    transform: translateY(0%);
+  }
+  33%, 60% {
+    transform: translateY(-100%);
+  }
+  66%, 93% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.hero.is-stacked #hero-words {
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+  gap: 0.08em;
+  min-width: 0;
+  border-bottom: 0;
+}
+
+.hero.is-stacked #hero-words .hero-word {
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero #hero-words {
+    animation: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.08em;
+    min-width: 0;
+    border-bottom: 0;
+  }
+
+  .hero #hero-words .hero-word {
+    line-height: 1.5;
+    font-weight: 500;
+  }
 }
 
 .style-systems,
