@@ -68,6 +68,12 @@
 
       <section class="section section-break-right case-study-zone" id="work" aria-labelledby="work-title">
         <div class="container">
+          <div class="color-strip" aria-label="Accent color calibration strip">
+            <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to current red"></button>
+            <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
+            <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
+            <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
+          </div>
           <div class="section-intro">
             <p class="eyebrow">Featured Projects</p>
             <h2 id="work-title">Selected Work</h2>
@@ -175,6 +181,22 @@
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
       const rotatingWord = document.querySelector("#rotating-word");
+      const swatches = document.querySelectorAll(".swatch");
+
+      const setAccent = (color) => {
+        root.style.setProperty("--accent", color);
+      };
+
+      swatches.forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          const color = swatch.dataset.color;
+          if (!color) return;
+
+          setAccent(color);
+          swatches.forEach((item) => item.classList.remove("is-active"));
+          swatch.classList.add("is-active");
+        });
+      });
 
       if (heroTitle && !heroTitle.querySelector("#rotating-word")) {
         const words = heroTitle.textContent.trim().split(/\s+/);
