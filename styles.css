@@ -152,6 +152,9 @@ body.at-top .brand {
 }
 
 .scroll-progress-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: block;
   width: 0;
   height: 4px;
@@ -218,7 +221,9 @@ body.at-top .brand {
 }
 
 .config-option.is-active {
-  color: var(--accent);
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .section {
@@ -278,9 +283,9 @@ body.at-top .brand {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 90vh;
+  min-height: min(72vh, 620px);
   align-items: flex-start;
-  margin-bottom: 20vh;
+  margin-bottom: 0;
 }
 
 .hero-title-fold {
@@ -292,26 +297,11 @@ body.at-top .brand {
   overflow: visible;
 }
 
-html.js .hero-title-fold {
-  clip-path: none;
-}
-
-html.js .hero.is-visible .hero-title-fold {
-  clip-path: none;
-}
-
 .hero-about-snippet {
-  grid-column: 1 / -1;
-  align-self: end;
-  border-left: 0;
   border-top: 0.5px solid var(--line);
-  padding-top: 1rem;
-  color: var(--muted);
-  max-width: 100%;
-}
-
-.hero-about-snippet p {
-  margin: 0;
+  padding-top: 0.9rem;
+  color: var(--text-primary);
+  max-width: 68ch;
 }
 
 .hero-copy p:not(.eyebrow),
@@ -322,27 +312,18 @@ html.js .hero.is-visible .hero-title-fold {
   line-height: 1.5;
   font-weight: 500;
   max-width: 80%;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .hero-about-snippet p:not(.eyebrow) {
   font-family: "Inter", sans-serif;
   color: var(--text-primary);
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 500;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   max-width: 65ch;
 }
-
-.hci-informed {
-  margin-top: 0.85rem !important;
-}
-
-.hci-informed strong {
-  color: var(--accent);
-}
-
 
 .hero-about-snippet .eyebrow {
   margin-bottom: 0.45rem;
@@ -369,7 +350,7 @@ h3,
 }
 
 h1 {
-  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 700;
   margin: 0;
   max-width: 100%;
@@ -385,21 +366,21 @@ h1 {
 }
 
 .style-systems {
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
   font-weight: 700;
   letter-spacing: 0.02em;
   font-style: normal;
 }
 
 .style-research {
-  font-family: 'Fraunces', serif;
+  font-family: inherit;
   font-weight: 300;
   font-style: italic;
   letter-spacing: -0.06em;
 }
 
 .style-design {
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.02em;
@@ -407,7 +388,7 @@ h1 {
 .red-dot { color: var(--text-primary); font-weight: 900; padding-left: 0.05em; display: inline-block; white-space: nowrap; }
 
 h2 {
-  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
   margin-bottom: 0.8rem;
   width: fit-content;
@@ -635,7 +616,7 @@ li {
 }
 
 .button-link {
-  margin-top: auto;
+  margin-top: 1.1rem;
   align-self: flex-start;
   display: inline-block;
   font-family: "Inter", sans-serif;
@@ -752,17 +733,6 @@ blockquote,
   margin-bottom: 1rem;
 }
 
-.reveal-element {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-element.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 ul {
   padding-left: 1.2rem;
 }
@@ -791,99 +761,6 @@ img {
   border-radius: 0;
 }
 
-html.js .section {
-  opacity: 0;
-  transform: translate3d(0, 16px, 0);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-
-html.js .section.is-visible {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-html.js .hero .eyebrow,
-html.js .hero h1,
-html.js .hero .tagline,
-html.js .hero .button-link {
-  opacity: 0;
-  transform: translate3d(0, 12px, 0);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-}
-
-html.js .hero.is-visible .eyebrow,
-html.js .hero.is-visible h1,
-html.js .hero.is-visible .tagline,
-html.js .hero.is-visible .button-link {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-
-.hero-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(18px);
-}
-
-html.js .hero.is-visible .hero-word {
-  animation: heroWordReveal 1.5s ease-out forwards;
-  animation-delay: calc(var(--stagger) * 0.08s + 0.12s);
-}
-
-@keyframes heroWordReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero .tagline-callout,
-.theme-card,
-.opportunity-list li {
-  background: var(--surface);
-  border-left: 0;
-  border-radius: 8px;
-  box-shadow: none;
-}
-
-.hero .tagline-callout {
-  margin-top: 1.1rem;
-  padding: 1rem 1.15rem;
-}
-
-.theme-card {
-  margin: 1.25rem 0;
-  padding: 1.2rem;
-  border: 0;
-}
-
-.theme-summary {
-  margin: 0.35rem 0 0.85rem;
-  font-weight: 600;
-}
-
-.subtheme {
-  margin: 0.8rem 0 0.25rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
-}
-
-.opportunity-list {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 0.88rem;
-}
-
-.opportunity-list li {
-  padding: 1rem 1.05rem;
-  border: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -892,16 +769,6 @@ html.js .hero.is-visible .hero-word {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .section,
-  .hero .eyebrow,
-  .hero h1,
-  .hero .tagline,
-  .hero .button-link,
-  .hero .hero-word {
-    opacity: 1;
-    transform: none;
   }
 
   .hero-title-fold {
@@ -1082,20 +949,29 @@ html.js .hero.is-visible .hero-word {
 
 
 .hero-title {
-  display: flex;
+  display: inline-flex;
   align-items: baseline;
+  vertical-align: baseline;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 0.55rem;
 }
 
 .static-text {
   white-space: nowrap;
+  font-family: "Fraunces", serif;
+  line-height: 1.05;
 }
 
 .dynamic-wrapper {
+  display: inline-flex;
+  align-items: baseline;
+  vertical-align: baseline;
   position: relative;
   width: 9.5ch;
-  height: 1.2em;
+  height: 1.05em;
+  line-height: 1.05;
+  font-family: "Fraunces", serif;
 }
 
 .hero-term {
@@ -1106,6 +982,8 @@ html.js .hero.is-visible .hero-word {
   color: var(--accent);
   animation: heroRotate 9s linear infinite;
   white-space: nowrap;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 .hero-term:nth-child(1) {
@@ -1133,11 +1011,11 @@ html.js .hero.is-visible .hero-word {
 }
 
 .hero-title:hover .dynamic-wrapper {
-  animation-play-state: paused !important;
+  animation-play-state: paused;
 }
 
 .hero-title:hover .dynamic-wrapper .hero-term {
-  animation-play-state: paused !important;
+  animation-play-state: paused;
 }
 
 
@@ -1208,6 +1086,23 @@ html.js .hero.is-visible .hero-word {
 
 .project-link {
   margin-top: 0;
+}
+
+.copy-email-button {
+  border: 1px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+}
+
+.copy-email-button:hover,
+.copy-email-button:focus-visible {
+  background: color-mix(in srgb, var(--text-primary) 10%, transparent);
 }
 
 @media (max-width: 800px) {
