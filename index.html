@@ -21,6 +21,12 @@
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
+    <div class="color-strip" aria-label="Accent color calibration strip">
+      <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson"></button>
+      <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
+      <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
+      <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
+    </div>
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand return-top" href="index.html">Erin King</a>
@@ -33,6 +39,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
+        <button class="motion-toggle" type="button" aria-pressed="false">Motion_//_Off</button>
       </div>
     </header>
 
@@ -44,7 +51,14 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">COGNITIVE SCIENCE / HCI / PSYCHOLOGY</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title" class="hero-title" aria-live="polite">UX <span id="hero-words"><span id="rotating-word" class="style-systems">systems</span></span> <br> HCI-informed<span class="red-dot">.</span></h1>
+                  <h1 id="hero-title" class="hero-title" aria-live="polite">
+                    <span class="static-text">Line UX</span>
+                    <div id="hero-words" class="dynamic-wrapper">
+                      <span class="hero-term style-systems is-current">systems</span>
+                      <span class="hero-term style-research">research</span>
+                      <span class="hero-term style-design">design</span>
+                    </div>
+                  </h1>
                 </div>
                 <p class="tagline">
                   I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works.
@@ -63,12 +77,6 @@
               </p>
             </aside>
           </div>
-          <div class="color-strip" aria-label="Accent color calibration strip">
-            <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to current red"></button>
-            <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
-            <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
-            <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
-          </div>
         </div>
       </section>
 
@@ -80,49 +88,51 @@
           </div>
           <div class="project-grid">
             <article class="project-card">
-              <span class="project-meta">Platform Systems</span>
-              <h3><a href="eduflow-case-study.html">EduFlow: Accessibility-First Digital Infrastructure for Higher Education</a></h3>
-              <p class="project-summary">A systems-level case study on improving accessibility, governance, and decision clarity across higher-education digital infrastructure.</p>
-            </article>
-
-            <article class="project-card">
-              <span class="project-meta">Inclusive UX</span>
-              <h3><a href="reddit-disability-study.html">Reddit Disability Study</a></h3>
-              <p class="project-summary">An applied research initiative examining disability-centered needs in social platforms to surface inclusive product opportunities.</p>
-            </article>
-
-            <article class="project-card">
-              <span class="project-meta">Urban Behavior</span>
-              <h3><a href="distracted-pedestrians.html">Distracted Pedestrians: Phone Walking Study</a></h3>
-              <p class="project-summary">A behavioral field study exploring attention, movement, and safety tradeoffs in mobile-mediated pedestrian environments.</p>
-            </article>
-
-            <article class="project-card placeholder-card">
               <div class="project-image">
-                <img src="https://placehold.co/800x460/f4f4f2/0a0a0a?text=Project+Preview" alt="Project preview placeholder" />
-                <div class="image-label">Preview_00</div>
+                <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=EduFlow" alt="EduFlow project preview" />
               </div>
               <div class="project-content">
-                <h3>Project title placeholder</h3>
-                <p>
-                  This is a two-sentence placeholder description of the research inquiry and the resulting system architecture.
-                </p>
+                <h3>EduFlow accessibility infrastructure</h3>
+                <p>This case study maps accessibility gaps across higher-education platforms and governance systems. The work turns fragmented findings into a decision-ready implementation roadmap.</p>
               </div>
               <div class="project-codex">
-                <div class="codex-row">
-                  <span class="codex-label">Methodology</span>
-                  <span class="codex-value">// Technical placeholder</span>
-                </div>
-                <div class="codex-row">
-                  <span class="codex-label">Logic</span>
-                  <span class="codex-value">// Systemic reasoning placeholder</span>
-                </div>
-                <div class="codex-row">
-                  <span class="codex-label">Outcome</span>
-                  <span class="codex-value">// Research delivery placeholder</span>
-                </div>
+                <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Higher education systems</span></div>
+                <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Accessibility and governance audit</span></div>
+                <div class="codex-row"><span class="codex-label">Outcome</span><span class="codex-value">// Operational design framework</span></div>
               </div>
-              <a class="project-link" href="#">View full project →</a>
+              <a class="project-link" href="eduflow-case-study.html">View full project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Reddit+Study" alt="Reddit disability study preview" />
+              </div>
+              <div class="project-content">
+                <h3>Reddit disability study</h3>
+                <p>This applied research study captures disability-centered needs in social platform participation. Findings translate lived experience into concrete product opportunities and policy guidance.</p>
+              </div>
+              <div class="project-codex">
+                <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Social platform experience</span></div>
+                <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Qualitative synthesis and pattern coding</span></div>
+                <div class="codex-row"><span class="codex-label">Outcome</span><span class="codex-value">// Inclusive product recommendations</span></div>
+              </div>
+              <a class="project-link" href="reddit-disability-study.html">View full project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Pedestrian+Study" alt="Distracted pedestrians study preview" />
+              </div>
+              <div class="project-content">
+                <h3>Distracted pedestrian field study</h3>
+                <p>This behavioral field study examines attention tradeoffs during phone-mediated walking. The analysis reframes street-level behavior into actionable safety and wayfinding signals.</p>
+              </div>
+              <div class="project-codex">
+                <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Urban mobility behavior</span></div>
+                <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Structured in-situ observation</span></div>
+                <div class="codex-row"><span class="codex-label">Outcome</span><span class="codex-value">// Attention risk model</span></div>
+              </div>
+              <a class="project-link" href="distracted-pedestrians.html">View full project →</a>
             </article>
           </div>
         </div>
@@ -175,12 +185,12 @@
       const sections = document.querySelectorAll(".section");
       const projectCards = document.querySelectorAll(".project-card");
       const magneticButtons = document.querySelectorAll(".button-primary");
-      const heroTitle = document.querySelector("#hero-title");
       const navLinks = document.querySelectorAll(".nav-links a");
       const returnTopLink = document.querySelector(".return-top");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
       const parallaxImages = document.querySelectorAll(".project-image img");
-      const rotatingWord = document.querySelector("#rotating-word");
+      const heroSection = document.querySelector(".hero");
+      const motionToggle = document.querySelector(".motion-toggle");
       const swatches = document.querySelectorAll(".swatch");
 
       const setAccent = (color) => {
@@ -198,34 +208,53 @@
         });
       });
 
-      if (heroTitle && !heroTitle.querySelector("#rotating-word")) {
-        const words = heroTitle.textContent.trim().split(/\s+/);
-        heroTitle.innerHTML = words
-          .map(
-            (word, index) =>
-              `<span class="hero-word" style="--stagger:${index}">${word}</span>`
-          )
-          .join(" ");
+      const motionPreferenceKey = "hero-motion-disabled";
+
+      const setStackedState = (isStacked) => {
+        if (heroSection) {
+          heroSection.classList.toggle("is-stacked", isStacked);
+        }
+
+        if (motionToggle) {
+          motionToggle.setAttribute("aria-pressed", String(isStacked));
+        }
+      };
+
+      const applyMotionPreference = () => {
+        const savedPreference = localStorage.getItem(motionPreferenceKey) === "true";
+        const shouldStack = prefersReducedMotion.matches || savedPreference;
+        setStackedState(shouldStack);
+      };
+
+      if (motionToggle) {
+        motionToggle.addEventListener("click", () => {
+          const currentlyStacked = heroSection?.classList.contains("is-stacked");
+          const nextPreference = !currentlyStacked;
+          localStorage.setItem(motionPreferenceKey, String(nextPreference));
+          applyMotionPreference();
+        });
       }
 
-      const words = ["systems", "research", "design"];
-      const styles = ["style-systems", "style-research", "style-design"];
-
-      if (rotatingWord) {
-        let currentWordIndex = 0;
-
-        setInterval(() => {
-          currentWordIndex = (currentWordIndex + 1) % words.length;
-          rotatingWord.style.opacity = "0";
-
-          setTimeout(() => {
-            rotatingWord.textContent = words[currentWordIndex];
-            rotatingWord.className = styles[currentWordIndex];
-            rotatingWord.setAttribute("id", "rotating-word");
-            rotatingWord.style.opacity = "1";
-          }, 300);
-        }, 2500);
+      if (prefersReducedMotion.addEventListener) {
+        prefersReducedMotion.addEventListener("change", applyMotionPreference);
+      } else if (prefersReducedMotion.addListener) {
+        prefersReducedMotion.addListener(applyMotionPreference);
       }
+
+      applyMotionPreference();
+
+      const heroTerms = Array.from(document.querySelectorAll(".hero-term"));
+      let heroTermIndex = 0;
+
+      const cycleHeroTerms = () => {
+        if (!heroTerms.length || heroSection?.classList.contains("is-stacked") || prefersReducedMotion.matches) return;
+
+        heroTerms[heroTermIndex].classList.remove("is-current");
+        heroTermIndex = (heroTermIndex + 1) % heroTerms.length;
+        heroTerms[heroTermIndex].classList.add("is-current");
+      };
+
+      setInterval(cycleHeroTerms, 2500);
 
       const markInitiallyVisible = () => {
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
