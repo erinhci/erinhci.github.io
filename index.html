@@ -28,13 +28,9 @@
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
             <li><a href="#work">Projects</a></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <button class="copy-email-button" type="button" data-email="erink415@gmail.com" aria-label="Copy email address">
-            Copy email
-          </button>
           <div class="config-menu" aria-label="Accent color configuration">
             <button class="config-option is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson">[ 01_Crimson ]</button>
             <button class="config-option" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt">[ 02_Cobalt ]</button>
@@ -66,7 +62,7 @@
                 </div>
                 <div class="hero-about-snippet" id="about" aria-label="About highlight">
                   <p>
-                    I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works through HCI-informed, evidence-led research and grounded design execution.
+                    I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works through HCI-informed, evidence-led research and grounded design execution. I also build and optimize Shopify experiences end-to-end, connecting research insights to implementation details that improve conversion, accessibility, and long-term maintainability.
                   </p>
                 </div>
                 <a class="button-link button-primary" href="#work">Explore Case Studies</a>
@@ -172,7 +168,6 @@
 
       const configOptions = document.querySelectorAll(".config-option");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
-      const copyEmailButton = document.querySelector(".copy-email-button");
 
       const setAccent = (color) => {
         root.style.setProperty("--accent", color);
@@ -209,23 +204,6 @@
       window.addEventListener("scroll", updateScrollProgress, { passive: true });
       window.addEventListener("resize", updateScrollProgress);
       updateScrollProgress();
-
-      if (copyEmailButton) {
-        copyEmailButton.addEventListener("click", async () => {
-          const email = copyEmailButton.dataset.email;
-          if (!email) return;
-
-          try {
-            await navigator.clipboard.writeText(email);
-            copyEmailButton.textContent = "Email copied";
-            window.setTimeout(() => {
-              copyEmailButton.textContent = "Copy email";
-            }, 1400);
-          } catch {
-            copyEmailButton.textContent = "Copy unavailable";
-          }
-        });
-      }
 
     </script>
   </body>
