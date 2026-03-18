@@ -21,12 +21,6 @@
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
-    <div class="color-strip" aria-label="Accent color calibration strip">
-      <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson"></button>
-      <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
-      <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
-      <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
-    </div>
     <header class="site-header">
       <div class="nav-wrap">
         <a class="brand return-top" href="index.html">Erin King</a>
@@ -38,8 +32,13 @@
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <div class="color-strip" aria-label="Accent color calibration strip">
+            <button class="swatch is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson"></button>
+            <button class="swatch" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt"></button>
+            <button class="swatch" type="button" data-color="#00CC66" aria-label="Set accent color to acid"></button>
+            <button class="swatch" type="button" data-color="#E67E22" aria-label="Set accent color to amber"></button>
+          </div>
         </nav>
-        <button class="motion-toggle" type="button" aria-pressed="false">Motion_//_Off</button>
       </div>
     </header>
 
@@ -54,9 +53,9 @@
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
                     <span class="static-text">UX</span>
                     <div id="hero-words" class="dynamic-wrapper">
-                      <span class="hero-term style-systems is-current">systems</span>
-                      <span class="hero-term style-research">research</span>
-                      <span class="hero-term style-design">design</span>
+                      <span class="hero-term style-systems is-current">Systems</span>
+                      <span class="hero-term style-research">Research</span>
+                      <span class="hero-term style-design">Design</span>
                     </div>
                   </h1>
                 </div>
@@ -75,6 +74,9 @@
                 UX researcher and systems-minded designer translating behavior into product, service,
                 and operational direction.
               </p>
+              <p class="hci-informed">
+                <strong>HCI-informed</strong> and evidence-led, I help teams convert insight into systems that scale.
+              </p>
             </aside>
           </div>
         </div>
@@ -84,17 +86,15 @@
         <div class="container">
           <div class="section-intro">
             <p class="eyebrow">Featured Projects</p>
-            <h2 id="work-title">Selected Work</h2>
+            <h2 id="work-title" class="section-title">Selected Work</h2>
           </div>
           <div class="project-grid">
             <article class="project-card">
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=EduFlow" alt="EduFlow project preview" />
               </div>
-              <div class="project-content">
-                <h3>EduFlow accessibility infrastructure</h3>
-                <p>This case study maps accessibility gaps across higher-education platforms and governance systems. The work turns fragmented findings into a decision-ready implementation roadmap.</p>
-              </div>
+              <h3>EduFlow accessibility infrastructure</h3>
+              <p>This case study maps accessibility gaps across higher-education platforms and governance systems. The work turns fragmented findings into a decision-ready implementation roadmap.</p>
               <div class="project-codex">
                 <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Higher education systems</span></div>
                 <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Accessibility and governance audit</span></div>
@@ -107,10 +107,8 @@
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Reddit+Study" alt="Reddit disability study preview" />
               </div>
-              <div class="project-content">
-                <h3>Reddit disability study</h3>
-                <p>This applied research study captures disability-centered needs in social platform participation. Findings translate lived experience into concrete product opportunities and policy guidance.</p>
-              </div>
+              <h3>Reddit disability study</h3>
+              <p>This applied research study captures disability-centered needs in social platform participation. Findings translate lived experience into concrete product opportunities and policy guidance.</p>
               <div class="project-codex">
                 <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Social platform experience</span></div>
                 <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Qualitative synthesis and pattern coding</span></div>
@@ -123,10 +121,8 @@
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Pedestrian+Study" alt="Distracted pedestrians study preview" />
               </div>
-              <div class="project-content">
-                <h3>Distracted pedestrian field study</h3>
-                <p>This behavioral field study examines attention tradeoffs during phone-mediated walking. The analysis reframes street-level behavior into actionable safety and wayfinding signals.</p>
-              </div>
+              <h3>Distracted pedestrian field study</h3>
+              <p>This behavioral field study examines attention tradeoffs during phone-mediated walking. The analysis reframes street-level behavior into actionable safety and wayfinding signals.</p>
               <div class="project-codex">
                 <div class="codex-row"><span class="codex-label">Domain</span><span class="codex-value">// Urban mobility behavior</span></div>
                 <div class="codex-row"><span class="codex-label">Method</span><span class="codex-value">// Structured in-situ observation</span></div>
@@ -141,7 +137,7 @@
       <section class="section section-break-right" id="resume" aria-labelledby="resume-title">
         <div class="container narrow">
           <p class="eyebrow">Resume</p>
-          <h2 id="resume-title">Experience at a glance</h2>
+          <h2 id="resume-title" class="section-title">Experience at a glance</h2>
           <p>
             Highlights include leading cross-functional discovery, shaping product and service strategy, building scalable research and decision frameworks, and aligning teams around evidence-backed priorities.
           </p>
@@ -152,7 +148,7 @@
       <section class="section section-break-left" id="contact" aria-labelledby="contact-title">
         <div class="container narrow">
           <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Let’s connect</h2>
+          <h2 id="contact-title" class="section-title">Let’s connect</h2>
           <p>
             Email: <a href="mailto:erink415@gmail.com">erink415@gmail.com</a>
           </p>
@@ -179,25 +175,30 @@
     <script>
       const root = document.documentElement;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const accentPreferenceKey = "site-accent";
 
       root.classList.add("js");
 
       const sections = document.querySelectorAll(".section");
       const projectCards = document.querySelectorAll(".project-card");
-      const magneticButtons = document.querySelectorAll(".button-primary");
-      const navLinks = document.querySelectorAll(".nav-links a");
-      const returnTopLink = document.querySelector(".return-top");
-      const progressIndicator = document.querySelector(".scroll-progress-indicator");
-      const parallaxImages = document.querySelectorAll(".project-image img");
-      const heroSection = document.querySelector(".hero");
-      const motionToggle = document.querySelector(".motion-toggle");
       const swatches = document.querySelectorAll(".swatch");
 
       const setAccent = (color) => {
         root.style.setProperty("--accent", color);
+        localStorage.setItem(accentPreferenceKey, color);
       };
 
+      const savedAccent = localStorage.getItem(accentPreferenceKey);
+      if (savedAccent) {
+        setAccent(savedAccent);
+      }
+
       swatches.forEach((swatch) => {
+        if (savedAccent && swatch.dataset.color === savedAccent) {
+          swatches.forEach((item) => item.classList.remove("is-active"));
+          swatch.classList.add("is-active");
+        }
+
         swatch.addEventListener("click", () => {
           const color = swatch.dataset.color;
           if (!color) return;
@@ -208,46 +209,11 @@
         });
       });
 
-      const motionPreferenceKey = "hero-motion-disabled";
-
-      const setStackedState = (isStacked) => {
-        if (heroSection) {
-          heroSection.classList.toggle("is-stacked", isStacked);
-        }
-
-        if (motionToggle) {
-          motionToggle.setAttribute("aria-pressed", String(isStacked));
-        }
-      };
-
-      const applyMotionPreference = () => {
-        const savedPreference = localStorage.getItem(motionPreferenceKey) === "true";
-        const shouldStack = prefersReducedMotion.matches || savedPreference;
-        setStackedState(shouldStack);
-      };
-
-      if (motionToggle) {
-        motionToggle.addEventListener("click", () => {
-          const currentlyStacked = heroSection?.classList.contains("is-stacked");
-          const nextPreference = !currentlyStacked;
-          localStorage.setItem(motionPreferenceKey, String(nextPreference));
-          applyMotionPreference();
-        });
-      }
-
-      if (prefersReducedMotion.addEventListener) {
-        prefersReducedMotion.addEventListener("change", applyMotionPreference);
-      } else if (prefersReducedMotion.addListener) {
-        prefersReducedMotion.addListener(applyMotionPreference);
-      }
-
-      applyMotionPreference();
-
       const heroTerms = Array.from(document.querySelectorAll(".hero-term"));
       let heroTermIndex = 0;
 
       const cycleHeroTerms = () => {
-        if (!heroTerms.length || heroSection?.classList.contains("is-stacked") || prefersReducedMotion.matches) return;
+        if (!heroTerms.length || prefersReducedMotion.matches) return;
 
         heroTerms[heroTermIndex].classList.remove("is-current");
         heroTermIndex = (heroTermIndex + 1) % heroTerms.length;
@@ -306,74 +272,7 @@
         );
 
         projectCards.forEach((card) => cardObserver.observe(card));
-
-        magneticButtons.forEach((button) => {
-          button.addEventListener("mousemove", (event) => {
-            const rect = button.getBoundingClientRect();
-            const offsetX = event.clientX - (rect.left + rect.width / 2);
-            const offsetY = event.clientY - (rect.top + rect.height / 2);
-            const radius = 20;
-            const distance = Math.hypot(offsetX, offsetY);
-
-            if (distance > radius) {
-              button.style.transform = "translate3d(0, 0, 0)";
-              return;
-            }
-
-            const strength = 0.35;
-            button.style.transform = `translate3d(${offsetX * strength}px, ${offsetY * strength}px, 0)`;
-          });
-
-          button.addEventListener("mouseleave", () => {
-            button.style.transform = "translate3d(0, 0, 0)";
-          });
-        });
       }
-
-      const setActiveNavLink = () => {
-        const scrollOffset = window.scrollY + window.innerHeight * 0.3;
-        let currentId = "work";
-
-        sections.forEach((section) => {
-          const top = section.offsetTop;
-          if (scrollOffset >= top) {
-            currentId = section.id;
-          }
-        });
-
-        navLinks.forEach((link) => {
-          const isActive = link.getAttribute("href") === `#${currentId}`;
-          link.classList.toggle("is-active", isActive);
-          if (isActive) {
-            link.setAttribute("aria-current", "page");
-          } else {
-            link.removeAttribute("aria-current");
-          }
-        });
-      };
-
-      const updateScrollProgress = () => {
-        if (!progressIndicator) return;
-        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
-        progressIndicator.style.width = `${Math.min(scrolled, 100)}%`;
-      };
-
-      const updateBrandAtTopState = () => {
-        document.body.classList.toggle("at-top", window.scrollY <= 8);
-      };
-
-      const applyParallax = () => {
-        if (prefersReducedMotion.matches) return;
-
-        parallaxImages.forEach((image) => {
-          const rect = image.getBoundingClientRect();
-          const midpoint = rect.top + rect.height / 2;
-          const delta = (midpoint - window.innerHeight / 2) * -0.03;
-          image.style.transform = `translateY(${delta.toFixed(2)}px) scale(0.99)`;
-        });
-      };
-
 
       const revealElements = document.querySelectorAll(".project-card, .insight-box");
       revealElements.forEach((element) => element.classList.add("reveal-element"));
@@ -397,30 +296,6 @@
       }
 
 
-      window.addEventListener("scroll", () => {
-        setActiveNavLink();
-        updateScrollProgress();
-        applyParallax();
-        updateBrandAtTopState();
-      });
-
-      window.addEventListener("resize", () => {
-        updateScrollProgress();
-        applyParallax();
-        updateBrandAtTopState();
-      });
-
-      if (returnTopLink) {
-        returnTopLink.addEventListener("click", (event) => {
-          event.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      }
-
-      setActiveNavLink();
-      updateScrollProgress();
-      applyParallax();
-      updateBrandAtTopState();
     </script>
   </body>
 </html>
