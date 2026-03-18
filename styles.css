@@ -242,7 +242,7 @@ body.at-top .brand {
 
 .hero {
   position: relative;
-  padding: clamp(6rem, 12vw, 9rem) 0 clamp(4rem, 8vw, 6rem);
+  padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(3rem, 7vw, 5rem);
 }
 
 .hero-shell {
@@ -283,7 +283,7 @@ body.at-top .brand {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: min(72vh, 620px);
+  min-height: min(64vh, 560px);
   align-items: flex-start;
   margin-bottom: 0;
 }
@@ -351,7 +351,7 @@ h3,
 }
 
 h1 {
-  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-size: clamp(3rem, 10vw, 5rem);
   font-weight: 700;
   margin: 0;
   max-width: 100%;
@@ -883,6 +883,21 @@ img {
     grid-column: 1 / -1;
   }
 
+  .hero {
+    padding: 1.25rem 0 2rem;
+  }
+
+  .hero-layout {
+    min-height: auto;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-copy-flow {
+    min-height: auto;
+    gap: 0.5rem;
+  }
+
   .hero-copy,
   .project-grid,
   .container,
@@ -934,7 +949,7 @@ img {
 
   h1,
   .hero-title {
-    font-size: clamp(2.5rem, 11vw, 4rem);
+    font-size: clamp(2.8rem, 12vw, 4.4rem);
   }
 
   h1 {
@@ -956,7 +971,7 @@ img {
   gap: 0;
   margin-bottom: 0.12rem;
   font-family: "Fraunces", serif;
-  line-height: 1.02;
+  line-height: 1.05;
 }
 
 .hero-line {
@@ -971,6 +986,7 @@ img {
   white-space: nowrap;
   font-family: inherit;
   line-height: inherit;
+  font-size: inherit;
 }
 
 .dynamic-wrapper {
@@ -982,6 +998,7 @@ img {
   height: 1.02em;
   line-height: inherit;
   font-family: inherit;
+  font-size: inherit;
 }
 
 .hero-term {
@@ -994,6 +1011,7 @@ img {
   white-space: nowrap;
   font-family: inherit;
   line-height: inherit;
+  font-size: inherit;
 }
 
 .hero-term:nth-child(1) {
@@ -1098,22 +1116,6 @@ img {
   margin-top: 0;
 }
 
-.copy-email-button {
-  border: 1px solid var(--text-primary);
-  background: transparent;
-  color: var(--text-primary);
-  font-family: "Inter", sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.35rem 0.55rem;
-  cursor: pointer;
-}
-
-.copy-email-button:hover,
-.copy-email-button:focus-visible {
-  background: color-mix(in srgb, var(--text-primary) 10%, transparent);
-}
 
 @media (max-width: 800px) {
   .hero-title {
