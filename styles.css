@@ -655,9 +655,9 @@ li {
 }
 
 .button-primary {
-  background: #0A0A0A;
-  border: 1px solid #0A0A0A;
-  color: #fff;
+  background: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  color: var(--bg);
   font-family: "Inter", monospace;
   letter-spacing: 0.1em;
   border-radius: 0;
@@ -668,7 +668,7 @@ li {
 .button-primary:focus-visible {
   background: var(--text-primary);
   border-color: var(--text-primary);
-  color: #fff;
+  color: var(--bg);
   box-shadow: none;
   backdrop-filter: blur(8px);
 }
@@ -977,9 +977,9 @@ img {
 
 
 .hero-title {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: baseline;
   gap: 0;
   margin-bottom: 0.12rem;
   font-family: "Fraunces", serif;
@@ -1001,8 +1001,9 @@ img {
 .static-text {
   white-space: nowrap;
   font-family: "Fraunces", serif;
-  line-height: 1.05;
+  line-height: inherit;
   font-size: 1em;
+  padding: 0;
 }
 
 .dynamic-wrapper {
@@ -1012,9 +1013,10 @@ img {
   position: relative;
   width: 9.5ch;
   height: 1.02em;
-  line-height: 1.05;
+  line-height: inherit;
   font-family: "Fraunces", serif;
   font-size: 1em;
+  padding: 0;
 }
 
 .hero-term {
@@ -1026,8 +1028,9 @@ img {
   animation: heroRotate 9s linear infinite;
   white-space: nowrap;
   font-family: "Fraunces", serif;
-  line-height: 1.05;
+  line-height: inherit;
   font-size: 1em;
+  padding: 0;
 }
 
 .hero-term:nth-child(1) {
