@@ -12,17 +12,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script>
-      (() => {
-        try {
-          if (localStorage.getItem("theme") === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          }
-        } catch (_) {}
+      // Block-level script to prevent theme/color flashing
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
+
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="case-study">
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
+    </div>
     <header class="site-header" id="top">
       <div class="nav-wrap">
         <a class="brand" href="index.html">Erin King</a>
@@ -30,6 +34,13 @@
           <ul class="nav-links">
             <li><a href="index.html">Back to Portfolio</a></li>
           </ul>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
+          </div>
         </nav>
       </div>
     </header>
@@ -173,5 +184,96 @@
         <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      const root = document.documentElement;
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
+      const accentOptions = {
+        red: { light: "#C20000", dark: "#FF453A" },
+        blue: { light: "#0056D6", dark: "#0A84FF" },
+        green: { light: "#00852E", dark: "#32D74B" },
+        amber: { light: "#8C6D00", dark: "#FFD60A" }
+      };
+
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return (
+          Object.keys(accentOptions).find(
+            (accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex
+          ) || null
+        );
+      };
+
+      const updateAccentState = (accentName) => {
+        accentButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.accentName === accentName);
+        });
+      };
+
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const theme = getTheme();
+        const accentHex = accentOptions[accentName][theme];
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+
+      const updateThemeToggleLabel = (theme) => {
+        if (!themeToggleButton) return;
+        themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT";
+      };
+
+      const toggleTheme = () => {
+        const nextTheme = getTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(themePreferenceKey, nextTheme);
+        updateThemeToggleLabel(nextTheme);
+        setAccent(localStorage.getItem(accentNamePreferenceKey) || "red");
+      };
+
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+
+      const savedAccentName =
+        localStorage.getItem(accentNamePreferenceKey) ||
+        getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) ||
+        "red";
+      setAccent(savedAccentName);
+
+      configOptions.forEach((option) => {
+        if (option.dataset.themeToggle !== undefined) {
+          option.addEventListener("click", toggleTheme);
+          return;
+        }
+        option.addEventListener("click", () => {
+          const colorName = option.dataset.accentName;
+          if (!colorName) return;
+          setAccent(colorName);
+        });
+      });
+
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
+        progressIndicator.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      };
+
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+      updateScrollProgress();
+    </script>
   </body>
 </html>

@@ -15,12 +15,13 @@
       rel="stylesheet"
     />
     <script>
-      (() => {
-        try {
-          if (localStorage.getItem("theme") === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          }
-        } catch (_) {}
+      // Block-level script to prevent theme/color flashing
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
+
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
@@ -61,7 +62,7 @@
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
                     <span class="hero-line hero-line-primary">HCI-informed</span>
-                    <span class="hero-line hero-line-dynamic">
+                    <span class="hero-line hero-line-dynamic hero-line-2">
                       <span class="static-text">UX</span>
                       <span id="hero-words" class="dynamic-wrapper">
                         <span class="hero-term style-systems">Systems</span>
@@ -76,7 +77,7 @@
                     I turn human signals into system-level clarity so teams can make smarter decisions, ship with confidence, and scale what works through HCI-informed, evidence-led research and grounded design execution. I also build and optimize Shopify experiences end-to-end, connecting research insights to implementation details that improve conversion, accessibility, and long-term maintainability.
                   </p>
                 </div>
-                <a class="button-link button-primary" href="#work">Explore Case Studies</a>
+                <a class="button-link button-primary explore-btn" href="#work">Explore Case Studies</a>
               </div>
             </div>
           </div>
@@ -175,8 +176,9 @@
     </footer>
     <script>
       const root = document.documentElement;
-      const accentPreferenceKey = "accentColor";
-      const themePreferenceKey = "theme";
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
       const accentOptions = {
         red: { light: "#C20000", dark: "#FF453A" },
         blue: { light: "#0056D6", dark: "#0A84FF" },
@@ -190,6 +192,15 @@
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
 
       const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return (
+          Object.keys(accentOptions).find(
+            (accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex
+          ) || null
+        );
+      };
 
       const updateAccentState = (accentName) => {
         accentButtons.forEach((button) => {
@@ -200,9 +211,11 @@
       const setAccent = (colorName) => {
         const accentName = accentOptions[colorName] ? colorName : "red";
         const theme = getTheme();
+        const accentHex = accentOptions[accentName][theme];
         root.setAttribute("data-accent-color", accentName);
-        root.style.setProperty("--accent", accentOptions[accentName][theme]);
-        localStorage.setItem(accentPreferenceKey, accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
         updateAccentState(accentName);
       };
 
@@ -216,15 +229,18 @@
         root.setAttribute("data-theme", nextTheme);
         localStorage.setItem(themePreferenceKey, nextTheme);
         updateThemeToggleLabel(nextTheme);
-        setAccent(localStorage.getItem(accentPreferenceKey) || "red");
+        setAccent(localStorage.getItem(accentNamePreferenceKey) || "red");
       };
 
       const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
       root.setAttribute("data-theme", savedTheme);
       updateThemeToggleLabel(savedTheme);
 
-      const savedAccent = localStorage.getItem(accentPreferenceKey) || "red";
-      setAccent(savedAccent);
+      const savedAccentName =
+        localStorage.getItem(accentNamePreferenceKey) ||
+        getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) ||
+        "red";
+      setAccent(savedAccentName);
 
       configOptions.forEach((option) => {
         if (option.dataset.themeToggle !== undefined) {

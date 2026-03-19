@@ -655,22 +655,29 @@ li {
 }
 
 .button-primary {
-  background: var(--text-primary);
+  background-color: var(--text-primary);
   border: 1px solid var(--text-primary);
   color: var(--bg);
   font-family: "Inter", monospace;
   letter-spacing: 0.1em;
   border-radius: 0;
-  transition: none;
+  transition: all 0.3s ease;
 }
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: var(--text-primary);
+  background: transparent;
   border-color: var(--text-primary);
-  color: var(--bg);
+  color: var(--text-primary);
   box-shadow: none;
   backdrop-filter: blur(8px);
+}
+
+.explore-btn {
+  background-color: var(--text-primary);
+  color: var(--bg);
+  border: 1px solid var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .text-link {
@@ -977,13 +984,12 @@ img {
 
 
 .hero-title {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  align-items: baseline;
   gap: 0;
   margin-bottom: 0.12rem;
   font-family: "Fraunces", serif;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 
 .hero-line {
@@ -992,7 +998,8 @@ img {
   line-height: inherit;
 }
 
-.hero-line-dynamic {
+.hero-line-dynamic,
+.hero-line-2 {
   display: inline-flex;
   align-items: baseline;
   gap: 0.5rem;
@@ -1030,6 +1037,7 @@ img {
   font-family: "Fraunces", serif;
   line-height: inherit;
   font-size: 1em;
+  margin: 0;
   padding: 0;
 }
 
