@@ -31,10 +31,12 @@
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <div class="config-menu" aria-label="Accent color configuration">
-            <button class="config-option is-active" type="button" data-color="#A30000" aria-label="Set accent color to crimson">[ 01_Crimson ]</button>
-            <button class="config-option" type="button" data-color="#0055FF" aria-label="Set accent color to cobalt">[ 02_Cobalt ]</button>
-            <button class="config-option" type="button" data-color="#00CC66" aria-label="Set accent color to acid">[ 03_Acid ]</button>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
           </div>
         </nav>
       </div>
@@ -49,8 +51,8 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    <span class="hero-line">HCI-informed</span>
-                    <span class="hero-line">
+                    <span class="hero-line hero-line-primary">HCI-informed</span>
+                    <span class="hero-line hero-line-dynamic">
                       <span class="static-text">UX</span>
                       <span id="hero-words" class="dynamic-wrapper">
                         <span class="hero-term style-systems">Systems</span>
@@ -164,40 +166,73 @@
     </footer>
     <script>
       const root = document.documentElement;
-      const accentPreferenceKey = "site-accent";
-
-      const configOptions = document.querySelectorAll(".config-option");
-      const progressIndicator = document.querySelector(".scroll-progress-indicator");
-
-      const setAccent = (color) => {
-        root.style.setProperty("--accent", color);
-        localStorage.setItem(accentPreferenceKey, color);
+      const accentPreferenceKey = "accentColor";
+      const themePreferenceKey = "theme";
+      const accentOptions = {
+        red: { light: "#C20000", dark: "#FF453A" },
+        blue: { light: "#0056D6", dark: "#0A84FF" },
+        green: { light: "#00852E", dark: "#32D74B" },
+        amber: { light: "#8C6D00", dark: "#FFD60A" }
       };
 
-      const savedAccent = localStorage.getItem(accentPreferenceKey);
-      if (savedAccent) {
-        setAccent(savedAccent);
-      }
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+
+      const updateAccentState = (accentName) => {
+        accentButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.accentName === accentName);
+        });
+      };
+
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const theme = getTheme();
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentOptions[accentName][theme]);
+        localStorage.setItem(accentPreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+
+      const updateThemeToggleLabel = (theme) => {
+        if (!themeToggleButton) return;
+        themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT";
+      };
+
+      const toggleTheme = () => {
+        const nextTheme = getTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(themePreferenceKey, nextTheme);
+        updateThemeToggleLabel(nextTheme);
+        setAccent(localStorage.getItem(accentPreferenceKey) || "red");
+      };
+
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+
+      const savedAccent = localStorage.getItem(accentPreferenceKey) || "red";
+      setAccent(savedAccent);
 
       configOptions.forEach((option) => {
-        if (savedAccent && option.dataset.color === savedAccent) {
-          configOptions.forEach((item) => item.classList.remove("is-active"));
-          option.classList.add("is-active");
+        if (option.dataset.themeToggle !== undefined) {
+          option.addEventListener("click", toggleTheme);
+          return;
         }
-
         option.addEventListener("click", () => {
-          const color = option.dataset.color;
-          if (!color) return;
-
-          setAccent(color);
-          configOptions.forEach((item) => item.classList.remove("is-active"));
-          option.classList.add("is-active");
+          const colorName = option.dataset.accentName;
+          if (!colorName) return;
+          setAccent(colorName);
         });
       });
 
       const updateScrollProgress = () => {
         if (!progressIndicator) return;
-        const progress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
         progressIndicator.style.width = `${Math.min(100, Math.max(0, progress))}%`;
       };
 
