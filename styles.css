@@ -1,6 +1,7 @@
 :root {
   --bg: #F4F4F2;
   --text-primary: #0A0A0A;
+  --line: #0A0A0A;
   --surface: #efe7d4;
   --text: #0A0A0A;
   --muted: #3d3d4d;
@@ -10,9 +11,17 @@
   --charcoal: #1A1A24;
   --bone: #f7f2e3;
   --oxblood: #2a1b1b;
-  --line: #0A0A0A;
   --header-height: 0px;
   --sidebar-width: 240px;
+}
+
+[data-theme="dark"] {
+  --bg: #0A0A0A;
+  --text-primary: #F4F4F2;
+  --line: #F4F4F2;
+  --surface: #1A1A1A;
+  --text: #F4F4F2;
+  --muted: #cfcfcb;
 }
 
 
@@ -86,8 +95,8 @@ main {
   width: var(--sidebar-width);
   z-index: 100;
   border-left: 0;
-  border-bottom: 1px solid var(--text-primary);
-  background: rgba(244, 244, 242, 0.92);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(12px);
 }
 
@@ -99,7 +108,7 @@ main {
   justify-content: center;
   align-items: flex-start;
   gap: 1.2rem;
-  background: rgba(244, 244, 242, 0.92);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
 }
 
 .nav-spacer {
@@ -152,7 +161,7 @@ body.at-top .brand {
 }
 
 .scroll-progress-indicator {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: block;
@@ -199,31 +208,34 @@ body.at-top .brand {
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
-.config-menu {
+.system-config {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: 0.35rem;
-  margin-top: 0.45rem;
+  gap: 8px;
+  margin-top: 0.5rem;
   width: fit-content;
 }
 
 .config-option {
-  border: 0;
+  border: 1px solid var(--line);
   background: transparent;
   color: var(--text-primary);
   font-family: "Courier New", Courier, monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   letter-spacing: 0.06em;
-  padding: 0;
+  padding: 6px 12px;
   text-align: left;
   cursor: pointer;
 }
 
 .config-option.is-active {
-  color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  background: var(--line);
+  color: var(--bg);
+}
+
+.config-theme-toggle {
+  min-width: 132px;
 }
 
 .section {
@@ -813,7 +825,7 @@ img {
     width: 100%;
     border-left: 0;
     border-bottom: 0;
-    background: rgba(244, 244, 242, 0.92);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
     backdrop-filter: blur(12px);
     justify-content: center;
   }
@@ -833,7 +845,7 @@ img {
     padding: 0.8rem min(4vw, 1rem);
     gap: 0.6rem;
     text-align: center;
-    background: rgba(244, 244, 242, 0.92);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
   }
 
   .nav-spacer {
@@ -965,7 +977,7 @@ img {
 
 
 .hero-title {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
@@ -975,18 +987,22 @@ img {
 }
 
 .hero-line {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.42ch;
+  display: inline-block;
   font-family: inherit;
   line-height: inherit;
 }
 
+.hero-line-dynamic {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .static-text {
   white-space: nowrap;
-  font-family: inherit;
-  line-height: inherit;
-  font-size: inherit;
+  font-family: "Fraunces", serif;
+  line-height: 1.05;
+  font-size: 1em;
 }
 
 .dynamic-wrapper {
@@ -996,9 +1012,9 @@ img {
   position: relative;
   width: 9.5ch;
   height: 1.02em;
-  line-height: inherit;
-  font-family: inherit;
-  font-size: inherit;
+  line-height: 1.05;
+  font-family: "Fraunces", serif;
+  font-size: 1em;
 }
 
 .hero-term {
@@ -1009,9 +1025,9 @@ img {
   color: var(--accent);
   animation: heroRotate 9s linear infinite;
   white-space: nowrap;
-  font-family: inherit;
-  line-height: inherit;
-  font-size: inherit;
+  font-family: "Fraunces", serif;
+  line-height: 1.05;
+  font-size: 1em;
 }
 
 .hero-term:nth-child(1) {
@@ -1043,7 +1059,7 @@ img {
 }
 
 .hero-title:hover .dynamic-wrapper .hero-term {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 
