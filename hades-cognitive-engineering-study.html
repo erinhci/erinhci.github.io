@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UX research case study applying the Human Data Processor model to high-speed decision-making in Hades gameplay."
+    />
+    <title>Case Study | Hades Cognitive Engineering Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#FFB84D';
+
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-study hades-case-study" style="--project-accent: #f3b34d;">
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
+    </div>
+
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">Erin King</a>
+        <nav aria-label="Case study navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">Back to Portfolio</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section hades-hero" aria-labelledby="hades-title">
+        <div class="container">
+          <p class="eyebrow">UX Research Case Study</p>
+          <h1 id="hades-title">The Science of the Underworld</h1>
+          <p class="hades-subtitle">Modeling Information Processing in Hades.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="objective-title">
+        <div class="container hades-layout">
+          <article class="hades-panel">
+            <h2 id="objective-title">The Objective</h2>
+            <p>
+              This study investigates how players manage cognitive load and attentional zones during fast-paced combat,
+              where survival and damage optimization depend on rapid filtering, prioritization, and action selection.
+              The goal was to identify where interface signals help or hinder tactical accuracy under time pressure.
+            </p>
+          </article>
+          <aside class="hades-panel hades-methodology">
+            <h2>Methodology</h2>
+            <ul>
+              <li>Literature Review</li>
+              <li>Heuristic Evaluation</li>
+              <li>Expert Strategy Analysis</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="framework-title">
+        <div class="container hades-panel">
+          <h2 id="framework-title">The Framework</h2>
+          <p>
+            The evaluation applies the Human Data Processor model to map how player cognition shifts during boon selection.
+            In high-threat encounters, working memory handles immediate constraints such as health, chamber hazards, and
+            enemy pressure. Long-term memory stores learned boon synergies, mirror upgrades, and route heuristics.
+            Expert performance emerges when players quickly offload known patterns to long-term memory and reserve
+            working memory for tactical adaptation.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="expert-novice-title">
+        <div class="container hades-panel">
+          <h2 id="expert-novice-title">Expert vs. Novice UX</h2>
+          <p>
+            A Fresh File speedrun baseline was used to compare cognitive strategy under limited build certainty.
+            Experts consistently favor <strong>Divine Dash</strong> because it provides immediate defensive reliability,
+            collision-safe repositioning, and higher damage uptime through consistent spacing control. With only
+            4 of 10 gods likely to appear, players cannot rely on broad synergy assumptions; this constrained pool
+            changes the mental model from "build toward ideal fantasy" to "optimize for dependable short-term value."
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="attention-title">
+        <div class="container hades-panel">
+          <h2 id="attention-title">Attentional Analysis</h2>
+          <p>
+            Player attention is distributed across three concurrent zones: the HUD (health, cast state, dash availability),
+            center-screen combat (enemy telegraphs and weapon timing), and peripheral enemy cues (spawn locations,
+            projectile trajectories, and environmental hazards). Under pressure, successful players reduce switching costs
+            by filtering low-value stimuli and preserving perception-action coupling on the most lethal threats first.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="findings-title">
+        <div class="container hades-panel">
+          <h2 id="findings-title">Key Insights</h2>
+          <h3>Key Findings</h3>
+          <ul class="hades-findings">
+            <li>Choice architecture is strongest when immediate affordance value is legible at a glance.</li>
+            <li>Fresh File constraints expose how uncertainty increases working-memory load during boon prioritization.</li>
+            <li>Experts exploit stable high-value options to preserve attention for combat execution.</li>
+            <li>Attentional zone management predicts consistency more reliably than raw reflex speed.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const progressIndicator = document.querySelector('.scroll-progress-indicator');
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
+        progressIndicator.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
+      };
+
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      window.addEventListener('resize', updateScrollProgress);
+      updateScrollProgress();
+
+      const year = document.getElementById('year');
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+    </script>
+  </body>
+</html>
