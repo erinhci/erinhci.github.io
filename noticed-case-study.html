@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Case study: Noticed, an adaptive symptom-tracking system designed around flexible visual logging."
+    />
+    <title>Case Study | Noticed: Adaptive Symptom Tracking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
+
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-study noticed-case-study">
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
+    </div>
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">Erin King</a>
+        <nav aria-label="Case study navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">Back to Portfolio</a></li>
+          </ul>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section noticed-hero constellation-bg" aria-labelledby="noticed-title">
+        <div class="container noticed-hero-inner">
+          <p class="eyebrow">Case Study</p>
+          <h1 id="noticed-title">Noticed</h1>
+          <img src="assets/projects/Noticed/Noticed.png" alt="Noticed logo" class="noticed-logo" />
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="intro-title">
+        <div class="container">
+          <h2 id="intro-title" class="sr-only">Introduction</h2>
+          <div class="noticed-two-col">
+            <article class="noticed-panel">
+              <h3>Overview</h3>
+              <p>Noticed is a self-directed project designed to solve tracking burnout through a flexible system of icons and printable templates.</p>
+            </article>
+            <article class="noticed-panel">
+              <h3>The Challenge</h3>
+              <p>Noticed is a self-directed project designed to solve tracking burnout through a flexible system of icons and printable templates.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="visual-system-title">
+        <div class="container noticed-visual-system">
+          <div>
+            <h2 id="visual-system-title">The Visual System</h2>
+            <p>
+              The visual identity centers on a constellation metaphor: each symptom signal is treated as one star in a larger pattern, helping users build clarity over time without pressure to log perfectly.
+            </p>
+          </div>
+          <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/NoticedTypography.png" alt="Noticed typography system" />
+            <figcaption>Typography and brand expression for the constellation-inspired interface language.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="feature-gallery-title">
+        <div class="container">
+          <h2 id="feature-gallery-title">Feature Gallery</h2>
+          <div class="noticed-gallery-grid">
+            <figure class="noticed-panel">
+              <img src="assets/projects/Noticed/NoticedApp-black.png" alt="Noticed app dark interface" />
+              <figcaption>Mobile app concept showing icon-first symptom logging.</figcaption>
+            </figure>
+            <figure class="noticed-panel">
+              <img src="assets/projects/Noticed/JournalNoticed.png" alt="Noticed printable journal" />
+              <figcaption>Printable journal templates for low-friction reflection.</figcaption>
+            </figure>
+            <figure class="noticed-panel">
+              <img src="assets/projects/Noticed/ToteNoticed.png" alt="Noticed branded tote" />
+              <figcaption>Brand extension showing the accessible visual system in physical touchpoints.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="technical-details-title">
+        <div class="container">
+          <h2 id="technical-details-title">Technical Details</h2>
+          <div class="noticed-panel noticed-glass-table-wrap">
+            <table class="noticed-deliverables" aria-label="Design deliverables">
+              <thead>
+                <tr>
+                  <th scope="col">Design Deliverables</th>
+                  <th scope="col">Output</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Brand Strategy</th>
+                  <td>Constellation metaphor, visual language, and naming system.</td>
+                </tr>
+                <tr>
+                  <th scope="row">UX Artifacts</th>
+                  <td>Icon library, adaptive symptom templates, and concept journey maps.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Interface Design</th>
+                  <td>High-fidelity dark mode screens with accessibility-focused contrast rules.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Print + Product</th>
+                  <td>Journal layouts and brand collateral for tactile, low-energy use cases.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const root = document.documentElement;
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
+      const accentOptions = {
+        red: { light: "#C20000", dark: "#FF453A" },
+        blue: { light: "#0056D6", dark: "#0A84FF" },
+        green: { light: "#00852E", dark: "#32D74B" },
+        amber: { light: "#8C6D00", dark: "#FFD60A" }
+      };
+
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return (
+          Object.keys(accentOptions).find(
+            (accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex
+          ) || null
+        );
+      };
+
+      const updateAccentState = (accentName) => {
+        accentButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.accentName === accentName);
+        });
+      };
+
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const theme = getTheme();
+        const accentHex = accentOptions[accentName][theme];
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+
+      const updateThemeToggleLabel = (theme) => {
+        if (!themeToggleButton) return;
+        themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT";
+      };
+
+      const toggleTheme = () => {
+        const nextTheme = getTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(themePreferenceKey, nextTheme);
+        updateThemeToggleLabel(nextTheme);
+        setAccent(localStorage.getItem(accentNamePreferenceKey) || "red");
+      };
+
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+
+      const savedAccentName =
+        localStorage.getItem(accentNamePreferenceKey) ||
+        getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) ||
+        "red";
+      setAccent(savedAccentName);
+
+      configOptions.forEach((option) => {
+        if (option.dataset.themeToggle !== undefined) {
+          option.addEventListener("click", toggleTheme);
+          return;
+        }
+        option.addEventListener("click", () => {
+          const colorName = option.dataset.accentName;
+          if (!colorName) return;
+          setAccent(colorName);
+        });
+      });
+
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
+        progressIndicator.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
+      };
+
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+      updateScrollProgress();
+
+      const year = document.getElementById("year");
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+    </script>
+  </body>
+</html>
