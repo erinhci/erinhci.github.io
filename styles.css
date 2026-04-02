@@ -104,6 +104,10 @@ h3 {
   font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
+.project-card h3 {
+  font-family: var(--font-heading);
+}
+
 p,
 li,
 figcaption,
@@ -267,6 +271,13 @@ main {
   overflow: hidden;
 }
 
+.project-card-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .project-image {
   aspect-ratio: 16 / 9;
   border-bottom: 1px solid var(--line);
@@ -300,6 +311,8 @@ main {
 }
 
 .project-tag {
+  position: relative;
+  z-index: 2;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.22rem 0.62rem;
@@ -310,6 +323,22 @@ main {
 .project-link {
   margin-top: auto;
   font-weight: 600;
+}
+
+.project-main-link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.project-main-link:focus-visible::after {
+  outline: 3px solid color-mix(in srgb, var(--accent) 80%, white 20%);
+  outline-offset: -3px;
+  border-radius: var(--radius-md);
 }
 
 

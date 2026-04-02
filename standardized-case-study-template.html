@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,9 +13,10 @@
     />
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        const savedAccent = localStorage.getItem("portfolio-accent") || "#8ea0ff";
-        if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+        const savedTheme = localStorage.getItem("portfolio-theme") || "light";
+        const savedAccent = localStorage.getItem("portfolio-accent") || "#C20000";
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
         document.documentElement.style.setProperty("--accent", savedAccent);
       })();
     </script>
