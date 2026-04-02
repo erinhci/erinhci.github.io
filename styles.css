@@ -40,6 +40,7 @@
   --text: #222222;
   --muted: #4f5563;
   --line: #c9ccd2;
+  --accent-contrast: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -49,6 +50,7 @@
   --text: #e7eaf2;
   --muted: #c8cfdd;
   --line: #3a4357;
+  --accent-contrast: #111111;
 }
 
 *,
@@ -232,6 +234,29 @@ main {
   max-width: 65ch;
 }
 
+#rotating-text {
+  display: inline-block;
+}
+
+.hero-term {
+  font-family: var(--font-heading);
+}
+
+.style-systems {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.style-research {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.style-design {
+  font-style: italic;
+  font-weight: 600;
+}
+
 .button-link {
   display: inline-block;
   border: 1px solid var(--line);
@@ -342,14 +367,6 @@ main {
 }
 
 
-.project-controls {
-  margin-top: 1rem;
-}
-
-#reset-filters {
-  margin-top: 0;
-}
-
 .project-card {
   cursor: pointer;
   transition: border-color 180ms ease, transform 180ms ease;
@@ -367,11 +384,15 @@ main {
 }
 
 .project-tag:hover,
-.project-tag:focus-visible,
+.project-tag:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  background: transparent;
+}
+
 .project-tag.is-active {
   border-color: var(--accent);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-contrast);
+  background: var(--accent);
 }
 
 .case-study {

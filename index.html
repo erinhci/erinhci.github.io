@@ -61,15 +61,7 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    <span class="hero-line hero-line-primary">HCI-informed</span>
-                    <span class="hero-line hero-line-dynamic hero-line-2">
-                      <span class="static-text">UX</span>
-                      <span id="rotating-text" class="dynamic-wrapper">
-                        <span class="hero-term style-systems">Systems</span>
-                        <span class="hero-term style-research">Research</span>
-                        <span class="hero-term style-design">Design</span>
-                      </span>
-                    </span>
+                    HCI-informed <span id="rotating-text" class="hero-term style-systems">UX</span>
                   </h1>
                 </div>
                 <div class="hero-about-snippet" id="about" aria-label="About highlight">
@@ -89,9 +81,6 @@
           <div class="section-intro">
             <p class="eyebrow">Featured Projects</p>
             <h2 id="work-title" class="section-title">Selected Work</h2>
-          </div>
-          <div class="project-controls" aria-live="polite">
-            <button id="reset-filters" class="button-link" type="button" hidden>Reset Filters</button>
           </div>
           <div class="project-grid">
 
@@ -357,9 +346,29 @@
         });
       });
 
+      const rotatingTextEl = document.querySelector("#rotating-text");
+      const rotatingWords = ["Systems", "Research", "Design"];
+      const rotatingClassMap = {
+        Systems: "style-systems",
+        Research: "style-research",
+        Design: "style-design"
+      };
+      let rotatingIndex = -1;
+
+      const updateRotatingText = () => {
+        if (!rotatingTextEl) return;
+        rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
+        const nextWord = rotatingWords[rotatingIndex];
+        rotatingTextEl.textContent = nextWord;
+        rotatingTextEl.classList.remove("style-systems", "style-research", "style-design");
+        rotatingTextEl.classList.add(rotatingClassMap[nextWord]);
+      };
+
+      updateRotatingText();
+      window.setInterval(updateRotatingText, 2600);
+
       const projectGrid = document.querySelector(".project-grid");
       const projectCards = projectGrid ? Array.from(projectGrid.querySelectorAll(".project-card")) : [];
-      const resetFiltersButton = document.querySelector("#reset-filters");
       const projectTags = projectGrid ? Array.from(projectGrid.querySelectorAll(".tag")) : [];
       const originalProjectOrder = [...projectCards];
       let activeTag = null;
@@ -394,9 +403,6 @@
         activeTag = null;
         setTagActiveState(null);
         restoreOriginalOrder();
-        if (resetFiltersButton) {
-          resetFiltersButton.hidden = true;
-        }
       };
 
       projectTags.forEach((tagElement) => {
@@ -405,18 +411,17 @@
           event.preventDefault();
 
           const selectedTag = tagElement.textContent.trim();
+          if (activeTag === selectedTag) {
+            resetTagFilter();
+            return;
+          }
+
           activeTag = selectedTag;
           setTagActiveState(selectedTag);
+          restoreOriginalOrder();
           moveTaggedCardsToTop(selectedTag);
-          if (resetFiltersButton) {
-            resetFiltersButton.hidden = false;
-          }
         });
       });
-
-      if (resetFiltersButton) {
-        resetFiltersButton.addEventListener("click", resetTagFilter);
-      }
 
       const updateScrollProgress = () => {
         if (!progressIndicator) return;
