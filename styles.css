@@ -18,9 +18,7 @@
   --radius-lg: 1rem;
 
   --font-heading: "Space Grotesk", "Inter", sans-serif;
-  --font-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-ui: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --tag-active-text: #111111;
+  --font-body: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,7 +48,6 @@
   --text: #e7eaf2;
   --muted: #c8cfdd;
   --line: #3a4357;
-  --tag-active-text: #ffffff;
 }
 
 *,
@@ -106,19 +103,6 @@ textarea,
 button {
   font-family: var(--font-body);
   color: var(--text);
-}
-
-.site-header,
-.nav-links a,
-.button-link,
-.project-link,
-.project-tag,
-.tag,
-button,
-input,
-textarea,
-label {
-  font-family: var(--font-ui);
 }
 
 a {
@@ -269,15 +253,6 @@ main {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.project-card:hover,
-.project-card:focus-within {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .project-image {
@@ -312,54 +287,17 @@ main {
   gap: 0.5rem;
 }
 
-.project-tag,
-.tag {
+.project-tag {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.22rem 0.62rem;
   font-size: 0.78rem;
   color: var(--text);
-  background: transparent;
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
-}
-
-.project-tag:hover,
-.project-tag:focus-visible,
-.project-tag.active,
-.project-tag.highlighted,
-.tag:hover,
-.tag:focus-visible,
-.tag.active,
-.tag.highlighted {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--tag-active-text);
 }
 
 .project-link {
   margin-top: auto;
   font-weight: 600;
-}
-
-.project-filter-controls {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 0.5rem;
-}
-
-.clear-filter {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.3rem 0.75rem;
-  background: var(--surface);
-  color: var(--text-primary);
-  cursor: pointer;
-}
-
-.clear-filter:hover,
-.clear-filter:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .case-study {

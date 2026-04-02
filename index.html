@@ -11,19 +11,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <script>
+      // Block-level script to prevent theme/color flashing
       (function() {
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        const savedAccent = localStorage.getItem('portfolio-accent');
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
 
-        document.documentElement.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : 'light');
-
-        if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(savedAccent || '')) {
-          document.documentElement.style.setProperty('--accent', savedAccent);
-        }
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
@@ -92,12 +90,9 @@
             <p class="eyebrow">Featured Projects</p>
             <h2 id="work-title" class="section-title">Selected Work</h2>
           </div>
-          <div class="project-filter-controls" aria-live="polite">
-            <button class="clear-filter" type="button" hidden>Clear Filter</button>
-          </div>
           <div class="project-grid">
 
-            <article class="project-card hades-project-card" style="--project-accent: #f3b34d;" data-project-link="hades-cognitive-engineering-study.html">
+            <article class="project-card hades-project-card" style="--project-accent: #f3b34d;">
               <div class="project-image">
                 <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/ss_b9755d44819b136cdec278f1c68f0996242d2f98.1920x1080.jpg" alt="Hades combat scene with boon and ability effects in a high-contrast encounter" />
                 <span class="project-image-overlay">UX Research</span>
@@ -106,16 +101,16 @@
                 <h3>Hades: Cognitive Load &amp; Expert Performance</h3>
                 <p>A formal heuristic evaluation applying the Human Data Processor model to analyze real-time decision-making and optimal strategy in high-stakes gameplay.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag project-tag--gameux">Game UX</span>
-                  <span class="project-tag tag">Cognitive Engineering</span>
-                  <span class="project-tag tag">Heuristic Evaluation</span>
+                  <span class="project-tag project-tag--gameux">Game UX</span>
+                  <span class="project-tag">Cognitive Engineering</span>
+                  <span class="project-tag">Heuristic Evaluation</span>
                 </div>
                 <a class="project-link" href="hades-cognitive-engineering-study.html">View full project →</a>
               </div>
             </article>
 
 
-            <article class="project-card ai-transparency-card" data-project-link="perceived-transparency-generative-ai.html">
+            <article class="project-card ai-transparency-card">
               <div class="project-image">
                 <img src="https://placehold.co/1280x720/121212/f4f4f2?text=Iterative+AI+Conversation" alt="Placeholder visual representing an iterative AI conversation and trust calibration" />
                 <span class="project-image-overlay">Qualitative Study</span>
@@ -125,14 +120,14 @@
                 <p class="project-subtitle">A Qualitative Study on ChatGPT &amp; Mental Models</p>
                 <p>Investigating how users co-construct trust through iterative prompting and why they often prioritize clarity over factual citations in AI-led explanations.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">AI / ML</span>
-                  <span class="project-tag tag">UX Research</span>
-                  <span class="project-tag tag">Thematic Analysis</span>
+                  <span class="project-tag">AI / ML</span>
+                  <span class="project-tag">UX Research</span>
+                  <span class="project-tag">Thematic Analysis</span>
                 </div>
                 <a class="project-link" href="perceived-transparency-generative-ai.html">View full project →</a>
               </div>
             </article>
-            <article class="project-card interaction-study-card" data-project-link="physical-therapy-interaction-study.html">
+            <article class="project-card interaction-study-card">
               <div class="project-image">
                 <img src="https://placehold.co/1280x720/101010/e5e5e5?text=Clinic+Floor+Plan" alt="Placeholder visual representing a clinic floor plan and efficiency graph" />
                 <span class="project-image-overlay">UX Case Study</span>
@@ -141,15 +136,15 @@
                 <h3>Team Interaction Efficiency Study</h3>
                 <p>A Cognitive Engineering field study measuring communication bottlenecks and operational performance in a high-traffic physical therapy clinic.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">UX Research</span>
-                  <span class="project-tag tag">Cognitive Engineering</span>
-                  <span class="project-tag tag">Service Design</span>
+                  <span class="project-tag">UX Research</span>
+                  <span class="project-tag">Cognitive Engineering</span>
+                  <span class="project-tag">Service Design</span>
                 </div>
                 <a class="project-link" href="physical-therapy-interaction-study.html">View full project →</a>
               </div>
             </article>
 
-            <article class="project-card" data-project-link="noticed-case-study.html">
+            <article class="project-card">
               <div class="project-image">
                 <img src="assets/projects/Noticed/Busadnoticed.png" alt="Noticed visual-first symptom tracking preview" />
                 <span class="project-image-overlay">Case Study</span>
@@ -158,15 +153,15 @@
                 <h3>Noticed: Adaptive Symptom Tracking</h3>
                 <p>A visual-first, guilt-free symptom tracker designed for neurodivergence and chronic illness.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">UX Research</span>
-                  <span class="project-tag tag">Product Branding</span>
-                  <span class="project-tag tag">Accessibility</span>
+                  <span class="project-tag">UX Research</span>
+                  <span class="project-tag">Product Branding</span>
+                  <span class="project-tag">Accessibility</span>
                 </div>
                 <a class="project-link" href="noticed-case-study.html">View full project →</a>
               </div>
             </article>
 
-            <article class="project-card" data-project-link="eduflow-case-study.html">
+            <article class="project-card">
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=EduFlow" alt="EduFlow project preview" />
                 <span class="project-image-overlay">Case Study</span>
@@ -175,15 +170,15 @@
                 <h3>EduFlow accessibility infrastructure</h3>
                 <p>This case study maps accessibility gaps across higher-education platforms and governance systems. The work turns fragmented findings into a decision-ready implementation roadmap.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">Web Development</span>
-                  <span class="project-tag tag">Accessibility</span>
-                  <span class="project-tag tag">UX Audit</span>
+                  <span class="project-tag">Web Development</span>
+                  <span class="project-tag">Accessibility</span>
+                  <span class="project-tag">UX Audit</span>
                 </div>
                 <a class="project-link" href="eduflow-case-study.html">View full project →</a>
               </div>
             </article>
 
-            <article class="project-card" data-project-link="reddit-disability-study.html">
+            <article class="project-card">
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Reddit+Study" alt="Reddit disability study preview" />
                 <span class="project-image-overlay">Research</span>
@@ -192,15 +187,15 @@
                 <h3>Reddit disability study</h3>
                 <p>This applied research study captures disability-centered needs in social platform participation. Findings translate lived experience into concrete product opportunities and policy guidance.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">UX Research</span>
-                  <span class="project-tag tag">Qualitative Analysis</span>
-                  <span class="project-tag tag">Policy</span>
+                  <span class="project-tag">UX Research</span>
+                  <span class="project-tag">Qualitative Analysis</span>
+                  <span class="project-tag">Policy</span>
                 </div>
                 <a class="project-link" href="reddit-disability-study.html">View full project →</a>
               </div>
             </article>
 
-            <article class="project-card" data-project-link="distracted-pedestrians.html">
+            <article class="project-card">
               <div class="project-image">
                 <img src="https://placehold.co/800x500/f4f4f2/0a0a0a?text=Pedestrian+Study" alt="Distracted pedestrians study preview" />
                 <span class="project-image-overlay">Field Study</span>
@@ -209,9 +204,9 @@
                 <h3>Distracted pedestrian field study</h3>
                 <p>This behavioral field study examines attention tradeoffs during phone-mediated walking. The analysis reframes street-level behavior into actionable safety and wayfinding signals.</p>
                 <div class="project-tags" aria-label="Project tags">
-                  <span class="project-tag tag">UX Research</span>
-                  <span class="project-tag tag">Field Observation</span>
-                  <span class="project-tag tag">Urban Safety</span>
+                  <span class="project-tag">UX Research</span>
+                  <span class="project-tag">Field Observation</span>
+                  <span class="project-tag">Urban Safety</span>
                 </div>
                 <a class="project-link" href="distracted-pedestrians.html">View full project →</a>
               </div>
@@ -274,8 +269,6 @@
       const accentButtons = document.querySelectorAll("[data-accent-name]");
       const themeToggleButton = document.querySelector("[data-theme-toggle]");
       const progressIndicator = document.querySelector(".scroll-progress-indicator");
-      const projectGrid = document.querySelector(".project-grid");
-      const clearFilterButton = document.querySelector(".clear-filter");
 
       const getTheme = () => root.getAttribute("data-theme") || "light";
       const getAccentNameFromHex = (hexValue, theme) => {
@@ -347,100 +340,9 @@
         progressIndicator.style.width = `${Math.min(100, Math.max(0, progress))}%`;
       };
 
-      const setupClickableProjectCards = () => {
-        const projectCards = document.querySelectorAll(".project-card[data-project-link]");
-        projectCards.forEach((card) => {
-          card.setAttribute("role", "link");
-          card.setAttribute("tabindex", "0");
-
-          card.addEventListener("click", (event) => {
-            const interactiveTarget = event.target.closest("a, button");
-            if (interactiveTarget) return;
-            window.location.href = card.dataset.projectLink;
-          });
-
-          card.addEventListener("keydown", (event) => {
-            if (event.key !== "Enter" && event.key !== " ") return;
-            event.preventDefault();
-            window.location.href = card.dataset.projectLink;
-          });
-        });
-      };
-
-      const setupTagFiltering = () => {
-        if (!projectGrid || !clearFilterButton) return;
-        const projectCards = Array.from(projectGrid.querySelectorAll(".project-card"));
-        const originalOrder = [...projectCards];
-        const tagElements = Array.from(projectGrid.querySelectorAll(".project-tag, .tag"));
-        let activeTag = null;
-
-        const clearActiveTags = () => {
-          tagElements.forEach((tag) => {
-            tag.classList.remove("active", "highlighted");
-          });
-        };
-
-        const resetCards = () => {
-          originalOrder.forEach((card) => projectGrid.appendChild(card));
-          clearActiveTags();
-          clearFilterButton.hidden = true;
-          activeTag = null;
-        };
-
-        const applyFilter = (selectedTagText) => {
-          const normalizedTag = selectedTagText.trim().toLowerCase();
-          const matchingCards = [];
-          const remainingCards = [];
-
-          projectCards.forEach((card) => {
-            const cardTags = Array.from(card.querySelectorAll(".project-tag, .tag")).map((tag) =>
-              tag.textContent.trim().toLowerCase()
-            );
-            if (cardTags.includes(normalizedTag)) {
-              matchingCards.push(card);
-            } else {
-              remainingCards.push(card);
-            }
-          });
-
-          [...matchingCards, ...remainingCards].forEach((card) => projectGrid.appendChild(card));
-          clearFilterButton.hidden = false;
-        };
-
-        tagElements.forEach((tag) => {
-          tag.setAttribute("role", "button");
-          tag.setAttribute("tabindex", "0");
-
-          const triggerFilter = () => {
-            const tagText = tag.textContent.trim();
-            if (!tagText) return;
-            if (activeTag === tagText) {
-              resetCards();
-              return;
-            }
-
-            clearActiveTags();
-            activeTag = tagText;
-            applyFilter(activeTag);
-            tag.classList.add("active", "highlighted");
-          };
-
-          tag.addEventListener("click", triggerFilter);
-          tag.addEventListener("keydown", (event) => {
-            if (event.key !== "Enter" && event.key !== " ") return;
-            event.preventDefault();
-            triggerFilter();
-          });
-        });
-
-        clearFilterButton.addEventListener("click", resetCards);
-      };
-
       window.addEventListener("scroll", updateScrollProgress, { passive: true });
       window.addEventListener("resize", updateScrollProgress);
       updateScrollProgress();
-      setupClickableProjectCards();
-      setupTagFiltering();
 
     </script>
   </body>
