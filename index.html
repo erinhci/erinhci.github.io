@@ -61,7 +61,7 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    HCI-informed <span id="rotating-text" class="rotating-word">UX</span>
+                    HCI-informed <span id="rotating-wrap">UX <span id="rotating-text" class="rotating-word">Systems</span></span>
                   </h1>
                 </div>
                 <div class="hero-about-snippet" id="about" aria-label="About highlight">
@@ -384,11 +384,13 @@
         rotatingTimerId = null;
       };
 
+      const rotatingWrapEl = document.querySelector("#rotating-wrap");
+
       if (rotatingTextEl) {
         setRotatingWord(rotatingWords[rotatingIndex]);
         startRotatingTimer();
-        rotatingTextEl.addEventListener("mouseenter", stopRotatingTimer);
-        rotatingTextEl.addEventListener("mouseleave", startRotatingTimer);
+        rotatingWrapEl?.addEventListener("mouseenter", stopRotatingTimer);
+        rotatingWrapEl?.addEventListener("mouseleave", startRotatingTimer);
       }
 
       const projectGrid = document.querySelector(".project-grid");
