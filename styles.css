@@ -9,7 +9,6 @@
   --accent: #c20000;
 
   --project-accent: #8ea0ff;
-  --project-bg: #ffffff;
 
   --header-height: 0px;
   --sidebar-width: 240px;
@@ -17,7 +16,7 @@
   --radius-md: 0.9rem;
   --radius-lg: 1rem;
 
-  --font-heading: "Space Grotesk", "Inter", sans-serif;
+  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -157,7 +156,7 @@ main {
 }
 
 .brand {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   color: var(--text-primary);
   text-decoration: none;
   font-size: clamp(1.05rem, 1.5vw, 1.3rem);
@@ -246,6 +245,7 @@ main {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -253,6 +253,16 @@ main {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  background: color-mix(in srgb, var(--surface) 92%, var(--accent) 8%);
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--line));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 48%, transparent);
+  transform: translateY(-2px);
 }
 
 .project-image {
@@ -295,24 +305,34 @@ main {
   color: var(--text);
 }
 
+.project-tag--primary {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--text-primary);
+}
+
 .project-link {
   margin-top: auto;
   font-weight: 600;
 }
 
 .case-study {
-  --project-bg: var(--bg);
+  --case-surface: color-mix(in srgb, var(--bg) 78%, var(--surface));
+  --case-border: color-mix(in srgb, var(--project-accent) 28%, var(--line));
+  --case-panel-bg: color-mix(in srgb, var(--bg) 75%, var(--surface));
+  --case-header-bg: color-mix(in srgb, var(--bg) 90%, transparent);
   --project-accent: var(--accent);
-  background: var(--project-bg);
+  background: var(--bg);
 }
 
 .case-study main {
   font-family: var(--font-body);
+  background: var(--bg);
 }
 
 .case-study .site-header,
 .case-study .nav-wrap {
-  background: color-mix(in srgb, var(--project-bg) 90%, transparent);
+  background: var(--case-header-bg);
 }
 
 .case-study .section {
@@ -320,42 +340,19 @@ main {
 }
 
 .hades-case-study {
-  --project-bg: #111216;
   --project-accent: #f3b34d;
 }
 
 .ai-transparency-study {
-  --project-bg: #0f1220;
   --project-accent: #96a6ff;
 }
 
 .interaction-case-study {
-  --project-bg: #101010;
   --project-accent: #69c4ff;
 }
 
 .noticed-case-study {
-  --project-bg: #101328;
   --project-accent: #d4b4ff;
-}
-
-.case-study,
-.case-study main {
-  background: var(--project-bg);
-}
-
-.case-study .brand,
-.case-study h1,
-.case-study h2,
-.case-study h3,
-.case-study p,
-.case-study li,
-.case-study .nav-links a,
-.case-study .eyebrow,
-.case-study figcaption,
-.case-study td,
-.case-study th {
-  color: var(--text-primary);
 }
 
 .hades-hero,
@@ -368,9 +365,9 @@ main {
 .noticed-panel,
 .ai-moon-callout,
 .case-media {
-  border: 1px solid color-mix(in srgb, var(--project-accent) 28%, var(--line));
+  border: 1px solid var(--case-border);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--project-bg) 75%, var(--surface));
+  background: var(--case-panel-bg);
 }
 
 .hades-layout,
