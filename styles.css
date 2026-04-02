@@ -1576,3 +1576,77 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+
+/* AI transparency case study */
+.ai-transparency-card {
+  background: #1a1a1a;
+}
+
+.project-subtitle {
+  margin: -0.45rem 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ai-transparency-study,
+.ai-transparency-study body {
+  background: #0f0f13;
+}
+
+.ai-transparency-study {
+  color: #f4f4f4;
+}
+
+.ai-transparency-study .site-header,
+.ai-transparency-study .nav-wrap {
+  background: color-mix(in srgb, #0f0f13 90%, transparent);
+}
+
+.ai-transparency-study h1,
+.ai-transparency-study h2,
+.ai-transparency-study h3,
+.ai-transparency-study p,
+.ai-transparency-study li,
+.ai-transparency-study .eyebrow,
+.ai-transparency-study .brand,
+.ai-transparency-study .nav-links a,
+.ai-transparency-study .text-link {
+  color: #f4f4f4;
+}
+
+.ai-transparency-hero {
+  border-radius: 16px;
+  background: radial-gradient(circle at 15% 15%, #262645 0%, #191926 45%, #101015 100%);
+}
+
+.ai-transparency-hero-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.ai-impact-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ai-findings-list {
+  padding-left: 1.2rem;
+}
+
+.ai-moon-callout {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: clamp(1.1rem, 2.5vw, 1.8rem);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+@media (max-width: 960px) {
+  .ai-transparency-hero-layout,
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+}
