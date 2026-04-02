@@ -234,25 +234,28 @@ main {
   max-width: 65ch;
 }
 
-#rotating-text {
+.rotating-word {
   display: inline-block;
-}
-
-.hero-term {
   font-family: var(--font-heading);
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.style-systems {
+.rotating-word.is-transitioning {
+  opacity: 0;
+  transform: translateY(0.2em);
+}
+
+.word-systems {
   font-style: italic;
   font-weight: 700;
 }
 
-.style-research {
+.word-research {
   font-style: normal;
   font-weight: 700;
 }
 
-.style-design {
+.word-design {
   font-style: italic;
   font-weight: 600;
 }
@@ -343,6 +346,7 @@ main {
   padding: 0.22rem 0.62rem;
   font-size: 0.78rem;
   color: var(--text);
+  font-family: var(--font-ui);
 }
 
 .project-link {
@@ -389,7 +393,7 @@ main {
   background: transparent;
 }
 
-.project-tag.is-active {
+.project-tag.active {
   border-color: var(--accent);
   color: var(--accent-contrast);
   background: var(--accent);

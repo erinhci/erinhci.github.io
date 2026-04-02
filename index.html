@@ -61,7 +61,7 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    HCI-informed <span id="rotating-text" class="hero-term style-systems">UX</span>
+                    HCI-informed <span id="rotating-text" class="rotating-word">UX</span>
                   </h1>
                 </div>
                 <div class="hero-about-snippet" id="about" aria-label="About highlight">
@@ -349,23 +349,47 @@
       const rotatingTextEl = document.querySelector("#rotating-text");
       const rotatingWords = ["Systems", "Research", "Design"];
       const rotatingClassMap = {
-        Systems: "style-systems",
-        Research: "style-research",
-        Design: "style-design"
+        Systems: "word-systems",
+        Research: "word-research",
+        Design: "word-design"
       };
-      let rotatingIndex = -1;
+      let rotatingIndex = 0;
+      let rotatingTimerId = null;
 
-      const updateRotatingText = () => {
+      const setRotatingWord = (word) => {
         if (!rotatingTextEl) return;
-        rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
-        const nextWord = rotatingWords[rotatingIndex];
-        rotatingTextEl.textContent = nextWord;
-        rotatingTextEl.classList.remove("style-systems", "style-research", "style-design");
-        rotatingTextEl.classList.add(rotatingClassMap[nextWord]);
+        rotatingTextEl.textContent = word;
+        rotatingTextEl.classList.remove("word-systems", "word-research", "word-design");
+        rotatingTextEl.classList.add(rotatingClassMap[word]);
       };
 
-      updateRotatingText();
-      window.setInterval(updateRotatingText, 2600);
+      const stepRotatingWord = () => {
+        if (!rotatingTextEl) return;
+        rotatingTextEl.classList.add("is-transitioning");
+        window.setTimeout(() => {
+          rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
+          setRotatingWord(rotatingWords[rotatingIndex]);
+          rotatingTextEl.classList.remove("is-transitioning");
+        }, 180);
+      };
+
+      const startRotatingTimer = () => {
+        if (rotatingTimerId !== null || !rotatingTextEl) return;
+        rotatingTimerId = window.setInterval(stepRotatingWord, 2000);
+      };
+
+      const stopRotatingTimer = () => {
+        if (rotatingTimerId === null) return;
+        window.clearInterval(rotatingTimerId);
+        rotatingTimerId = null;
+      };
+
+      if (rotatingTextEl) {
+        setRotatingWord(rotatingWords[rotatingIndex]);
+        startRotatingTimer();
+        rotatingTextEl.addEventListener("mouseenter", stopRotatingTimer);
+        rotatingTextEl.addEventListener("mouseleave", startRotatingTimer);
+      }
 
       const projectGrid = document.querySelector(".project-grid");
       const projectCards = projectGrid ? Array.from(projectGrid.querySelectorAll(".project-card")) : [];
@@ -376,7 +400,7 @@
       const setTagActiveState = (tagText) => {
         projectTags.forEach((tag) => {
           const isActive = tagText && tag.textContent.trim() === tagText;
-          tag.classList.toggle("is-active", Boolean(isActive));
+          tag.classList.toggle("active", Boolean(isActive));
         });
       };
 
