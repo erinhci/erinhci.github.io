@@ -17,8 +17,9 @@
   --radius-md: 0.9rem;
   --radius-lg: 1rem;
 
-  --font-heading: "Space Grotesk", "Inter", sans-serif;
-  --font-body: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Cormorant Garamond", Georgia, serif;
+  --font-ui: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,6 +69,17 @@ body {
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
+}
+
+.site-header,
+.site-header *,
+.button-link,
+.project-tag,
+.project-link,
+.project-image-overlay,
+.nav-links a,
+.system-config button {
+  font-family: var(--font-ui);
 }
 
 h1,
@@ -298,6 +310,39 @@ main {
 .project-link {
   margin-top: auto;
   font-weight: 600;
+}
+
+
+.project-controls {
+  margin-top: 1rem;
+}
+
+#reset-filters {
+  margin-top: 0;
+}
+
+.project-card {
+  cursor: pointer;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-tag {
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.project-tag:hover,
+.project-tag:focus-visible,
+.project-tag.is-active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .case-study {
