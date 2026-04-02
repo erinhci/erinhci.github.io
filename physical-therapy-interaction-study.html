@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Case study: Measuring Team Efficiency in a physical therapy clinic through a cognitive engineering approach."
+    />
+    <title>Case Study | Measuring Team Efficiency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#FF453A';
+
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-study interaction-case-study" data-theme="dark">
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
+    </div>
+
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">Erin King</a>
+        <nav aria-label="Case study navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">Back to Home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section interaction-hero" aria-labelledby="interaction-title">
+        <div class="container">
+          <p class="eyebrow">Physical Therapy Interaction Study</p>
+          <h1 id="interaction-title">Measuring Team Efficiency</h1>
+          <p class="interaction-subtitle">A Cognitive Engineering Approach.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="objective-title">
+        <div class="container interaction-layout">
+          <article>
+            <h2 id="objective-title">The Objective</h2>
+            <p>
+              This study evaluated how communication among physical therapists, assistants, and receptionists impacts
+              throughput, care continuity, and clinic workflow reliability across high-traffic treatment periods.
+            </p>
+          </article>
+          <aside class="impact-glass-box" aria-labelledby="impact-title">
+            <h3 id="impact-title">Project Impact</h3>
+            <p>
+              The framework translated interaction friction into measurable workflow outcomes and produced reusable
+              metrics for service-level improvement in high-demand healthcare operations.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="methodology-title">
+        <div class="container">
+          <h2 id="methodology-title">Methodology</h2>
+          <div class="method-grid" role="list" aria-label="Methodology methods">
+            <article class="method-card" role="listitem">
+              <h3>Contextual Inquiry</h3>
+              <p>Shadowed live interactions to map real-time collaboration decisions and environmental constraints.</p>
+            </article>
+            <article class="method-card" role="listitem">
+              <h3>Event Logging</h3>
+              <p>Captured workflow disruptions, handoff timing, and coordination latency during clinic peaks.</p>
+            </article>
+            <article class="method-card" role="listitem">
+              <h3>Thematic Analysis</h3>
+              <p>Synthesized recurring communication patterns using OSI markers and Rasmussen’s Human Data Processor model.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="interactions-title">
+        <div class="container">
+          <h2 id="interactions-title">Key Interactions</h2>
+          <ul class="interaction-list">
+            <li><strong>Direct Verbal Communication:</strong> Rapid in-clinic updates between therapists and assistants.</li>
+            <li><strong>Phone Coordination:</strong> Incoming calls for scheduling changes and treatment confirmations.</li>
+            <li><strong>Scheduling System Usage:</strong> Shared software touchpoints for room assignment and appointment flow.</li>
+            <li><strong>Space Management:</strong> Real-time physical navigation of treatment rooms, equipment, and handoffs.</li>
+          </ul>
+          <figure class="case-media">
+            <img src="https://placehold.co/1280x720/0f0f0f/e9e9e9?text=Efficiency+Graph" alt="Placeholder efficiency graph for communication bottlenecks" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="insights-title">
+        <div class="container">
+          <h2 id="insights-title">Insights &amp; Findings</h2>
+          <p>
+            Communication efficiency and “Vibe” emerged as critical metrics for day-to-day performance. Teams reported
+            that ambient coordination quality directly affected focus and patient confidence, while phone-based
+            scheduling frequently interrupted active patient care and fragmented treatment continuity.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="conclusion-title">
+        <div class="container">
+          <h2 id="conclusion-title">Conclusions</h2>
+          <p>
+            The resulting measurement model extends beyond physical therapy clinics and generalizes to other
+            expert-level healthcare environments where multidisciplinary teams must coordinate under time pressure,
+            shared resource constraints, and frequent context switching.
+          </p>
+          <a class="text-link" href="index.html">← Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const root = document.documentElement;
+      const progressIndicator = document.querySelector('.scroll-progress-indicator');
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
+        progressIndicator.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
+      };
+
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      window.addEventListener('resize', updateScrollProgress);
+      updateScrollProgress();
+
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
