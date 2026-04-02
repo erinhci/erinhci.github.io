@@ -10,15 +10,17 @@
     <title>Case Study | EduFlow: Accessibility-First Digital Infrastructure for Higher Education</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script>
-      // Block-level script to prevent theme/color flashing
       (function() {
-        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        const savedAccent = localStorage.getItem('portfolio-accent');
 
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        document.documentElement.style.setProperty('--accent', savedAccent);
+        document.documentElement.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : 'light');
+
+        if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(savedAccent || '')) {
+          document.documentElement.style.setProperty('--accent', savedAccent);
+        }
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
