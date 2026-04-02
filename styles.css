@@ -3,6 +3,7 @@
   --bg: #f4f4f2;
   --surface: #ffffff;
   --text-primary: #151515;
+  --text-secondary: #222222;
   --text: #222222;
   --muted: #4f5563;
   --line: #c9ccd2;
@@ -27,6 +28,7 @@
     --bg: #0d1016;
     --surface: #131926;
     --text-primary: #f4f6fb;
+    --text-secondary: #e7eaf2;
     --text: #e7eaf2;
     --muted: #c8cfdd;
     --line: #3a4357;
@@ -37,6 +39,7 @@
   --bg: #f4f4f2;
   --surface: #ffffff;
   --text-primary: #151515;
+  --text-secondary: #222222;
   --text: #222222;
   --muted: #4f5563;
   --line: #c9ccd2;
@@ -47,6 +50,7 @@
   --bg: #0d1016;
   --surface: #131926;
   --text-primary: #f4f6fb;
+  --text-secondary: #e7eaf2;
   --text: #e7eaf2;
   --muted: #c8cfdd;
   --line: #3a4357;
@@ -307,8 +311,27 @@ main {
 }
 
 .project-image {
+  position: relative;
   aspect-ratio: 16 / 9;
   border-bottom: 1px solid var(--line);
+}
+
+.project-image-overlay {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f8f8f8;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
 }
 
 .project-image img,
@@ -447,14 +470,17 @@ main {
 .case-study h1,
 .case-study h2,
 .case-study h3,
-.case-study p,
-.case-study li,
 .case-study .nav-links a,
 .case-study .eyebrow,
-.case-study figcaption,
-.case-study td,
 .case-study th {
   color: var(--text-primary);
+}
+
+.case-study p,
+.case-study li,
+.case-study figcaption,
+.case-study td {
+  color: var(--text-secondary);
 }
 
 .hades-hero,

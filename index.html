@@ -375,7 +375,7 @@
 
       const startRotatingTimer = () => {
         if (rotatingTimerId !== null || !rotatingTextEl) return;
-        rotatingTimerId = window.setInterval(stepRotatingWord, 2000);
+        rotatingTimerId = window.setInterval(stepRotatingWord, 2500);
       };
 
       const stopRotatingTimer = () => {
@@ -397,11 +397,8 @@
       const originalProjectOrder = [...projectCards];
       let activeTag = null;
 
-      const setTagActiveState = (tagText) => {
-        projectTags.forEach((tag) => {
-          const isActive = tagText && tag.textContent.trim() === tagText;
-          tag.classList.toggle("active", Boolean(isActive));
-        });
+      const clearActiveTags = () => {
+        projectTags.forEach((tag) => tag.classList.remove("active"));
       };
 
       const restoreOriginalOrder = () => {
@@ -425,7 +422,7 @@
 
       const resetTagFilter = () => {
         activeTag = null;
-        setTagActiveState(null);
+        clearActiveTags();
         restoreOriginalOrder();
       };
 
@@ -435,13 +432,16 @@
           event.preventDefault();
 
           const selectedTag = tagElement.textContent.trim();
-          if (activeTag === selectedTag) {
+          const isAlreadyActive = tagElement.classList.contains("active") && activeTag === selectedTag;
+
+          if (isAlreadyActive) {
             resetTagFilter();
             return;
           }
 
           activeTag = selectedTag;
-          setTagActiveState(selectedTag);
+          clearActiveTags();
+          tagElement.classList.add("active");
           restoreOriginalOrder();
           moveTaggedCardsToTop(selectedTag);
         });
