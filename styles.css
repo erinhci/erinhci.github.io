@@ -6,6 +6,7 @@
   --text: #0A0A0A;
   --muted: #3d3d4d;
   --accent: #A30000;
+  --project-accent-default: #f5f5f5;
   --project-tint-blend-mode: normal;
   --ivory: #f2ebd7;
   --charcoal: #1A1A24;
@@ -1088,6 +1089,7 @@ img {
 }
 
 .project-card {
+  --project-accent: var(--project-accent-default);
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -1100,7 +1102,7 @@ img {
 }
 
 .project-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-4px);
   border-color: rgba(255, 255, 255, 0.28);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
 }
@@ -1185,6 +1187,12 @@ img {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.95);
   background: rgba(255, 255, 255, 0.08);
+}
+
+.project-tag--gameux {
+  border-color: color-mix(in srgb, var(--project-accent) 70%, #ffffff 30%);
+  color: var(--project-accent);
+  background: color-mix(in srgb, var(--project-accent) 18%, transparent);
 }
 
 
@@ -1470,6 +1478,96 @@ h2 {
 .interaction-study-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Hades case study */
+.hades-case-study,
+.hades-case-study body,
+.hades-case-study main {
+  background: #1a1a1a;
+  color: #f3f0e8;
+}
+
+.hades-case-study .site-header,
+.hades-case-study .nav-wrap {
+  background: color-mix(in srgb, #1a1a1a 92%, transparent);
+}
+
+.hades-case-study .brand,
+.hades-case-study .nav-links a,
+.hades-case-study .eyebrow,
+.hades-case-study h1,
+.hades-case-study h2,
+.hades-case-study h3,
+.hades-case-study p,
+.hades-case-study li {
+  color: #f3f0e8;
+}
+
+.hades-hero {
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(243, 179, 77, 0.18) 0%, rgba(26, 26, 26, 0.92) 40%, rgba(26, 26, 26, 0.96) 100%),
+    url("https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/ss_5bd58f326ecf7ac2d8ff66f59914b6f65df7f35b.1920x1080.jpg")
+      center / cover no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hades-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 1.08rem;
+  color: rgba(243, 240, 232, 0.84);
+}
+
+.hades-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.hades-panel {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.25rem;
+}
+
+.hades-panel h2 {
+  margin-top: 0;
+  position: relative;
+  padding-bottom: 0.45rem;
+}
+
+.hades-panel h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3.25rem;
+  height: 2px;
+  background: var(--project-accent);
+}
+
+.hades-methodology {
+  background: rgba(243, 179, 77, 0.09);
+  backdrop-filter: blur(12px);
+}
+
+.hades-methodology ul,
+.hades-findings {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.hades-findings li + li {
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 960px) {
+  .hades-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 960px) {
