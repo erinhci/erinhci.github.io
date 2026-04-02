@@ -16,7 +16,7 @@
     />
     <script>
       (function() {
-        const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
         const savedAccent = localStorage.getItem('portfolio-accent') || '#FF453A';
 
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -25,7 +25,7 @@
     </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="case-study interaction-case-study" data-theme="dark">
+  <body class="case-study interaction-case-study">
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
