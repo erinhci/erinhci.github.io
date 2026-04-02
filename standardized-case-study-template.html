@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Standardized case-study template." />
+    <title>Case Study | Project Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        const savedAccent = localStorage.getItem("portfolio-accent") || "#8ea0ff";
+        if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+        document.documentElement.style.setProperty("--accent", savedAccent);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-study" style="--project-accent:#8ea0ff; --project-bg:#111827;">
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">Erin King</a>
+        <nav aria-label="Case study navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">Back to Portfolio</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section hero" aria-labelledby="project-title">
+        <div class="container content-container">
+          <p class="eyebrow">Case Study</p>
+          <h1 id="project-title">Project Title</h1>
+          <p class="tagline">One-sentence summary of problem, method, and outcome.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="overview-title">
+        <div class="container content-container">
+          <h2 id="overview-title">Overview</h2>
+          <p>Context, constraints, and why this work mattered.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="methods-title">
+        <div class="container content-container">
+          <h2 id="methods-title">Methods</h2>
+          <div class="method-grid">
+            <article class="method-card"><h3>Method 1</h3><p>Short description.</p></article>
+            <article class="method-card"><h3>Method 2</h3><p>Short description.</p></article>
+            <article class="method-card"><h3>Method 3</h3><p>Short description.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="findings-title">
+        <div class="container content-container">
+          <h2 id="findings-title">Findings</h2>
+          <div class="table-scroll">
+            <table class="table-stack" aria-label="Findings summary">
+              <thead>
+                <tr><th>Theme</th><th>Evidence</th><th>Design Direction</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Theme A</th><td>Observation details.</td><td>Actionable recommendation.</td></tr>
+                <tr><th scope="row">Theme B</th><td>Observation details.</td><td>Actionable recommendation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
