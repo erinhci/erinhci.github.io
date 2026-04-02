@@ -73,7 +73,7 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
-  color: var(--text);
+  color: var(--text-primary);
   background: var(--bg);
 }
 
@@ -124,7 +124,7 @@ input,
 textarea,
 button {
   font-family: var(--font-body);
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 a {
@@ -241,6 +241,7 @@ main {
 .rotating-word {
   display: inline-block;
   font-family: var(--font-heading);
+  color: var(--accent);
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
@@ -250,18 +251,18 @@ main {
 }
 
 .word-systems {
-  font-style: italic;
-  font-weight: 700;
-}
-
-.word-research {
   font-style: normal;
   font-weight: 700;
 }
 
-.word-design {
+.word-research {
   font-style: italic;
   font-weight: 600;
+}
+
+.word-design {
+  font-style: normal;
+  font-weight: 500;
 }
 
 .button-link {
@@ -327,11 +328,21 @@ main {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #f8f8f8;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
   font-size: 0.72rem;
   letter-spacing: 0.03em;
+}
+
+[data-theme="light"] .project-image-overlay {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .project-image-overlay {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .project-image img,
@@ -420,6 +431,7 @@ main {
   border-color: var(--accent);
   color: var(--accent-contrast);
   background: var(--accent);
+  font-weight: 700;
 }
 
 .case-study {
@@ -480,7 +492,7 @@ main {
 .case-study li,
 .case-study figcaption,
 .case-study td {
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .hades-hero,
