@@ -1362,3 +1362,119 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+/* Harmonization variables + typography */
+:root {
+  --brand-main: #f7f7f2;
+  --bg-dark: #121212;
+  --accent-glass: rgba(255, 255, 255, 0.05);
+}
+
+h1,
+h2 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+}
+
+.project-image,
+.case-media {
+  aspect-ratio: 16 / 9;
+}
+
+.project-image img,
+.case-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Physical Therapy Interaction case study */
+.interaction-case-study,
+.interaction-case-study body {
+  background: var(--bg-dark);
+}
+
+.interaction-case-study {
+  color: #f2f2f2;
+}
+
+.interaction-case-study .site-header,
+.interaction-case-study .nav-wrap {
+  background: color-mix(in srgb, var(--bg-dark) 92%, transparent);
+}
+
+.interaction-case-study .brand,
+.interaction-case-study .nav-links a,
+.interaction-case-study .eyebrow,
+.interaction-case-study h1,
+.interaction-case-study h2,
+.interaction-case-study h3,
+.interaction-case-study p,
+.interaction-case-study li,
+.interaction-case-study .text-link {
+  color: #f2f2f2;
+}
+
+.interaction-hero {
+  border-radius: 16px;
+  background: linear-gradient(145deg, #171717 0%, #212121 60%, #292929 100%);
+}
+
+.interaction-subtitle {
+  margin: 0;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.interaction-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.impact-glass-box,
+.method-card {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--accent-glass);
+  backdrop-filter: blur(12px);
+  padding: 1.1rem;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.interaction-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.case-media {
+  margin: 1rem 0 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.interaction-study-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.interaction-study-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 960px) {
+  .interaction-layout,
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+}
