@@ -17,7 +17,7 @@
     <script>
       (function() {
         const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-        const savedAccent = localStorage.getItem('portfolio-accent') || '#FF453A';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
 
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.documentElement.style.setProperty('--accent', savedAccent);
@@ -25,7 +25,7 @@
     </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="case-study ai-transparency-study">
+  <body class="case-study">
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
@@ -35,113 +35,55 @@
         <a class="brand" href="index.html">Erin King</a>
         <nav aria-label="Case study navigation">
           <ul class="nav-links">
-            <li><a href="index.html">Back to Home</a></li>
+            <li><a href="index.html">Back to Portfolio</a></li>
           </ul>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
+          </div>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="section ai-transparency-hero" aria-labelledby="ai-transparency-title">
-        <div class="container ai-transparency-hero-layout">
-          <article>
-            <p class="eyebrow">AI Transparency &amp; User Trust</p>
-            <h1 id="ai-transparency-title">Perceived Transparency in Generative AI</h1>
-            <p class="interaction-subtitle">
-              A qualitative study on how users evaluate ChatGPT credibility during complex explanatory tasks.
-            </p>
-          </article>
-          <aside class="impact-glass-box ai-impact-box" aria-labelledby="impact-title">
-            <h2 id="impact-title">Project Impact</h2>
-            <p>
-              The research reframes AI transparency as a conversational outcome, not a static interface feature,
-              identifying practical design actions that improve trust calibration before high-stakes use cases.
-            </p>
-          </aside>
+      <section class="hero section" aria-labelledby="ai-transparency-title">
+        <div class="container content-container">
+          <p class="eyebrow">AI Transparency &amp; User Trust</p>
+          <h1 id="ai-transparency-title">Perceived Transparency in Generative AI</h1>
+          <p class="tagline insight-box">A qualitative study on how users evaluate ChatGPT credibility during complex explanatory tasks.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="goal-title">
         <div class="container content-container">
           <h2 id="goal-title">Goal &amp; Study Design</h2>
-          <p>
-            <strong>The goal</strong> was to understand how users evaluate ChatGPT’s credibility during complex explanatory
-            tasks, including science concepts such as why the moon appears to change size over time.
-          </p>
-          <p>
-            <strong>Methodology:</strong> Qualitative study (<em>n=4</em>) using 5-minute live contextual inquiry sessions,
-            followed by semi-structured interviews and thematic analysis.
-          </p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="process-title">
-        <div class="container content-container">
-          <h2 id="process-title">Process</h2>
-          <div class="method-grid" role="list" aria-label="Research process methods">
-            <article class="method-card" role="listitem">
-              <h3>Contextual Inquiry</h3>
-              <p>Observed live explanatory sessions to capture trust judgments as they formed in real time.</p>
-            </article>
-            <article class="method-card" role="listitem">
-              <h3>Think-Aloud Protocol</h3>
-              <p>Prompted participants to narrate why specific response patterns increased or reduced credibility.</p>
-            </article>
-            <article class="method-card" role="listitem">
-              <h3>Thematic Analysis</h3>
-              <p>Coded interview and session data into recurrent trust heuristics and transparency behaviors.</p>
-            </article>
-          </div>
+          <p><strong>The goal</strong> was to understand how users evaluate ChatGPT credibility during complex explanatory tasks.</p>
+          <p><strong>Methodology:</strong> Qualitative study (<em>n=4</em>) using 5-minute live contextual inquiry sessions, followed by semi-structured interviews and thematic analysis.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="findings-title">
         <div class="container content-container">
           <h2 id="findings-title">Key Findings</h2>
-          <ol class="interaction-list ai-findings-list">
-            <li>
-              <strong>Heuristic Cues over Citations:</strong> Participants rarely searched for external references. They
-              trusted responses that sounded professional, used clear step-by-step structure, and maintained logical flow.
-            </li>
-            <li>
-              <strong>Co-Constructed Transparency:</strong> Transparency emerged when users could ask follow-up questions and
-              probe the model’s logic, rather than from one final answer alone.
-            </li>
-            <li>
-              <strong>Over-Reliance Risk:</strong> Confident, polished language encouraged misplaced trust in low-stakes
-              tasks—a pattern that could become dangerous in medical or legal contexts.
-            </li>
+          <ol>
+            <li><strong>Heuristic Cues over Citations:</strong> participants trusted clear structure and coherent flow more than references.</li>
+            <li><strong>Co-Constructed Transparency:</strong> transparency emerged through iterative follow-up and probing.</li>
+            <li><strong>Over-Reliance Risk:</strong> confident tone increased misplaced trust in low-stakes tasks.</li>
           </ol>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="moon-phase-title">
-        <div class="container content-container">
-          <article class="ai-moon-callout">
-            <h2 id="moon-phase-title">The “Moon Phase” Example</h2>
-            <p>
-              One participant began with confusion about whether the moon physically changes size. Through iterative
-              prompting, they asked the model to restate the answer, break down orbital position, and explain apparent
-              size changes from Earth’s perspective.
-            </p>
-            <p>
-              Trust increased only after this back-and-forth clarified that lunar phases are about illumination angle
-              and orbital geometry, not the moon expanding or shrinking. The interaction showed that understanding was
-              built through dialogue, not delivered in a single response.
-            </p>
-          </article>
         </div>
       </section>
 
       <section class="section" aria-labelledby="recommendations-title">
         <div class="container content-container">
           <h2 id="recommendations-title">Design Recommendations</h2>
-          <ul class="interaction-list">
-            <li><strong>Optimize for structural clarity:</strong> Prioritize progressive, well-signposted explanations.</li>
-            <li><strong>Encourage conversational probing:</strong> Prompt users with follow-up paths that test assumptions.</li>
-            <li><strong>Balance polish with uncertainty signals:</strong> Surface confidence limits when claims may be incomplete.</li>
+          <ul>
+            <li><strong>Optimize for structural clarity:</strong> prioritize progressive, well-signposted explanations.</li>
+            <li><strong>Encourage conversational probing:</strong> prompt users with follow-up paths that test assumptions.</li>
+            <li><strong>Balance polish with uncertainty signals:</strong> surface confidence limits when claims may be incomplete.</li>
           </ul>
-          <a class="text-link" href="index.html">← Back to Home</a>
         </div>
       </section>
     </main>
@@ -153,19 +95,52 @@
     </footer>
 
     <script>
-      const progressIndicator = document.querySelector('.scroll-progress-indicator');
-      const updateScrollProgress = () => {
-        if (!progressIndicator) return;
-        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
-        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
-        progressIndicator.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
+      const root = document.documentElement;
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
+      const accentOptions = {
+        red: { light: "#C20000", dark: "#FF453A" },
+        blue: { light: "#0056D6", dark: "#0A84FF" },
+        green: { light: "#00852E", dark: "#32D74B" },
+        amber: { light: "#8C6D00", dark: "#FFD60A" }
       };
-
-      window.addEventListener('scroll', updateScrollProgress, { passive: true });
-      window.addEventListener('resize', updateScrollProgress);
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return Object.keys(accentOptions).find((accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex) || null;
+      };
+      const updateAccentState = (accentName) => accentButtons.forEach((button) => button.classList.toggle("is-active", button.dataset.accentName === accentName));
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const accentHex = accentOptions[accentName][getTheme()];
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+      const updateThemeToggleLabel = (theme) => { if (themeToggleButton) themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT"; };
+      const toggleTheme = () => { const nextTheme = getTheme() === "dark" ? "light" : "dark"; root.setAttribute("data-theme", nextTheme); localStorage.setItem(themePreferenceKey, nextTheme); updateThemeToggleLabel(nextTheme); setAccent(localStorage.getItem(accentNamePreferenceKey) || "red"); };
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+      const savedAccentName = localStorage.getItem(accentNamePreferenceKey) || getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) || "red";
+      setAccent(savedAccentName);
+      configOptions.forEach((option) => {
+        if (option.dataset.themeToggle !== undefined) return option.addEventListener("click", toggleTheme);
+        option.addEventListener("click", () => option.dataset.accentName && setAccent(option.dataset.accentName));
+      });
+      const updateScrollProgress = () => { if (!progressIndicator) return; const d = document.body.scrollHeight - window.innerHeight; const p = d > 0 ? (window.scrollY / d) * 100 : 0; progressIndicator.style.width = `${Math.min(Math.max(p, 0), 100)}%`; };
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
       updateScrollProgress();
-
-      const year = document.getElementById('year');
+      const year = document.getElementById("year");
       if (year) year.textContent = new Date().getFullYear();
     </script>
   </body>

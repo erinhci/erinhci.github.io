@@ -61,7 +61,7 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    HCI-informed <span id="rotating-wrap">UX <span id="rotating-text" class="rotating-word">Systems</span></span>
+                    HCI-informed <span id="rotating-wrap" class="nowrap-ux">UX <span id="rotating-text" class="rotating-word">Systems</span></span>
                   </h1>
                 </div>
                 <div class="hero-about-snippet" id="about" aria-label="About highlight">
@@ -347,11 +347,12 @@
       });
 
       const rotatingTextEl = document.querySelector("#rotating-text");
-      const rotatingWords = ["Systems", "Research", "Design"];
+      const rotatingWords = ["Systems", "Research", "Design", "Interaction"];
       const rotatingClassMap = {
         Systems: "word-systems",
         Research: "word-research",
-        Design: "word-design"
+        Design: "word-design",
+        Interaction: "word-interaction"
       };
       let rotatingIndex = 0;
       let rotatingTimerId = null;
@@ -359,7 +360,7 @@
       const setRotatingWord = (word) => {
         if (!rotatingTextEl) return;
         rotatingTextEl.textContent = word;
-        rotatingTextEl.classList.remove("word-systems", "word-research", "word-design");
+        rotatingTextEl.classList.remove("word-systems", "word-research", "word-design", "word-interaction");
         rotatingTextEl.classList.add(rotatingClassMap[word]);
       };
 
@@ -370,12 +371,12 @@
           rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
           setRotatingWord(rotatingWords[rotatingIndex]);
           rotatingTextEl.classList.remove("is-transitioning");
-        }, 180);
+        }, 500);
       };
 
       const startRotatingTimer = () => {
         if (rotatingTimerId !== null || !rotatingTextEl) return;
-        rotatingTimerId = window.setInterval(stepRotatingWord, 2500);
+        rotatingTimerId = window.setInterval(stepRotatingWord, 3000);
       };
 
       const stopRotatingTimer = () => {
@@ -399,32 +400,30 @@
       const originalProjectOrder = [...projectCards];
       let activeTag = null;
 
-      const clearActiveTags = () => {
-        projectTags.forEach((tag) => tag.classList.remove("active"));
-      };
-
       const restoreOriginalOrder = () => {
         if (!projectGrid) return;
         originalProjectOrder.forEach((card) => projectGrid.appendChild(card));
       };
 
+      const setTagHighlights = (tagText) => {
+        projectTags.forEach((tag) => {
+          const matches = tag.textContent.trim() === tagText;
+          tag.classList.toggle("active", matches);
+        });
+      };
+
       const moveTaggedCardsToTop = (tagText) => {
         if (!projectGrid) return;
         const matchingCards = originalProjectOrder.filter((card) =>
-          Array.from(card.querySelectorAll(".tag")).some(
-            (tag) => tag.textContent.trim() === tagText
-          )
+          Array.from(card.querySelectorAll(".tag")).some((tag) => tag.textContent.trim() === tagText)
         );
-
-        matchingCards
-          .slice()
-          .reverse()
-          .forEach((card) => projectGrid.prepend(card));
+        const nonMatchingCards = originalProjectOrder.filter((card) => !matchingCards.includes(card));
+        [...matchingCards, ...nonMatchingCards].forEach((card) => projectGrid.appendChild(card));
       };
 
       const resetTagFilter = () => {
         activeTag = null;
-        clearActiveTags();
+        projectTags.forEach((tag) => tag.classList.remove("active"));
         restoreOriginalOrder();
       };
 
@@ -434,17 +433,13 @@
           event.preventDefault();
 
           const selectedTag = tagElement.textContent.trim();
-          const isAlreadyActive = tagElement.classList.contains("active") && activeTag === selectedTag;
-
-          if (isAlreadyActive) {
+          if (activeTag === selectedTag) {
             resetTagFilter();
             return;
           }
 
           activeTag = selectedTag;
-          clearActiveTags();
-          tagElement.classList.add("active");
-          restoreOriginalOrder();
+          setTagHighlights(selectedTag);
           moveTaggedCardsToTop(selectedTag);
         });
       });
