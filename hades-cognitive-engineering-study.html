@@ -17,7 +17,7 @@
     <script>
       (function() {
         const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-        const savedAccent = localStorage.getItem('portfolio-accent') || '#FFB84D';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
 
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.documentElement.style.setProperty('--accent', savedAccent);
@@ -25,7 +25,7 @@
     </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="case-study hades-case-study" style="--project-accent: #f3b34d;">
+  <body class="case-study">
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
     </div>
@@ -37,22 +37,29 @@
           <ul class="nav-links">
             <li><a href="index.html">Back to Portfolio</a></li>
           </ul>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
+          </div>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="section hades-hero" aria-labelledby="hades-title">
+      <section class="hero section" aria-labelledby="hades-title">
         <div class="container content-container">
           <p class="eyebrow">UX Research Case Study</p>
           <h1 id="hades-title">The Science of the Underworld</h1>
-          <p class="hades-subtitle">Modeling Information Processing in Hades.</p>
+          <p class="tagline insight-box">Modeling information processing and expert decision strategy in Hades.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="objective-title">
-        <div class="container hades-layout">
-          <article class="hades-panel">
+        <div class="container content-container">
+          <article class="section-intro">
             <h2 id="objective-title">The Objective</h2>
             <p>
               This study investigates how players manage cognitive load and attentional zones during fast-paced combat,
@@ -60,19 +67,19 @@
               The goal was to identify where interface signals help or hinder tactical accuracy under time pressure.
             </p>
           </article>
-          <aside class="hades-panel hades-methodology">
-            <h2>Methodology</h2>
+          <article class="section-intro">
+            <h3>Methodology</h3>
             <ul>
               <li>Literature Review</li>
               <li>Heuristic Evaluation</li>
               <li>Expert Strategy Analysis</li>
             </ul>
-          </aside>
+          </article>
         </div>
       </section>
 
       <section class="section" aria-labelledby="framework-title">
-        <div class="container hades-panel">
+        <div class="container content-container">
           <h2 id="framework-title">The Framework</h2>
           <p>
             The evaluation applies the Human Data Processor model to map how player cognition shifts during boon selection.
@@ -85,35 +92,20 @@
       </section>
 
       <section class="section" aria-labelledby="expert-novice-title">
-        <div class="container hades-panel">
+        <div class="container content-container">
           <h2 id="expert-novice-title">Expert vs. Novice UX</h2>
           <p>
             A Fresh File speedrun baseline was used to compare cognitive strategy under limited build certainty.
             Experts consistently favor <strong>Divine Dash</strong> because it provides immediate defensive reliability,
-            collision-safe repositioning, and higher damage uptime through consistent spacing control. With only
-            4 of 10 gods likely to appear, players cannot rely on broad synergy assumptions; this constrained pool
-            changes the mental model from "build toward ideal fantasy" to "optimize for dependable short-term value."
-          </p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="attention-title">
-        <div class="container hades-panel">
-          <h2 id="attention-title">Attentional Analysis</h2>
-          <p>
-            Player attention is distributed across three concurrent zones: the HUD (health, cast state, dash availability),
-            center-screen combat (enemy telegraphs and weapon timing), and peripheral enemy cues (spawn locations,
-            projectile trajectories, and environmental hazards). Under pressure, successful players reduce switching costs
-            by filtering low-value stimuli and preserving perception-action coupling on the most lethal threats first.
+            collision-safe repositioning, and higher damage uptime through consistent spacing control.
           </p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="findings-title">
-        <div class="container hades-panel">
+        <div class="container content-container">
           <h2 id="findings-title">Key Insights</h2>
-          <h3>Key Findings</h3>
-          <ul class="hades-findings">
+          <ul>
             <li>Choice architecture is strongest when immediate affordance value is legible at a glance.</li>
             <li>Fresh File constraints expose how uncertainty increases working-memory load during boon prioritization.</li>
             <li>Experts exploit stable high-value options to preserve attention for combat execution.</li>
@@ -130,7 +122,81 @@
     </footer>
 
     <script>
-      const progressIndicator = document.querySelector('.scroll-progress-indicator');
+      const root = document.documentElement;
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
+      const accentOptions = {
+        red: { light: "#C20000", dark: "#FF453A" },
+        blue: { light: "#0056D6", dark: "#0A84FF" },
+        green: { light: "#00852E", dark: "#32D74B" },
+        amber: { light: "#8C6D00", dark: "#FFD60A" }
+      };
+
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
+
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return Object.keys(accentOptions).find((accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex) || null;
+      };
+
+      const updateAccentState = (accentName) => {
+        accentButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.accentName === accentName);
+        });
+      };
+
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const theme = getTheme();
+        const accentHex = accentOptions[accentName][theme];
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+
+      const updateThemeToggleLabel = (theme) => {
+        if (!themeToggleButton) return;
+        themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT";
+      };
+
+      const toggleTheme = () => {
+        const nextTheme = getTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(themePreferenceKey, nextTheme);
+        updateThemeToggleLabel(nextTheme);
+        setAccent(localStorage.getItem(accentNamePreferenceKey) || "red");
+      };
+
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+
+      const savedAccentName =
+        localStorage.getItem(accentNamePreferenceKey) ||
+        getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) ||
+        "red";
+      setAccent(savedAccentName);
+
+      configOptions.forEach((option) => {
+        if (option.dataset.themeToggle !== undefined) {
+          option.addEventListener("click", toggleTheme);
+          return;
+        }
+        option.addEventListener("click", () => {
+          const colorName = option.dataset.accentName;
+          if (!colorName) return;
+          setAccent(colorName);
+        });
+      });
+
       const updateScrollProgress = () => {
         if (!progressIndicator) return;
         const scrollableDistance = document.body.scrollHeight - window.innerHeight;
@@ -138,14 +204,12 @@
         progressIndicator.style.width = `${Math.min(Math.max(progress, 0), 100)}%`;
       };
 
-      window.addEventListener('scroll', updateScrollProgress, { passive: true });
-      window.addEventListener('resize', updateScrollProgress);
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
       updateScrollProgress();
 
-      const year = document.getElementById('year');
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
+      const year = document.getElementById("year");
+      if (year) year.textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
