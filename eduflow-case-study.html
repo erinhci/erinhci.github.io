@@ -50,59 +50,137 @@
     <main id="main">
       <section class="hero section" aria-labelledby="case-study-title">
         <div class="container content-container">
-          <p class="eyebrow">Case Study</p>
-          <h1 id="case-study-title">EduFlow</h1>
-          <h2>Digital Transformation for Education</h2>
+          <p class="eyebrow">Hero</p>
+          <h1 id="case-study-title">A design system built for the complexity of higher ed</h1>
           <p class="tagline insight-box">
-            As lead developer and UX strategist, I designed and prototyped a responsive education platform using
-            design systems thinking, explainable AI patterns, and AI-assisted coding workflows.
+            EduFlow is a component library and design language for university registration platforms. Built for environments where accessibility isn't optional, consistency is hard to maintain, and dozens of teams are all building at once.
+          </p>
+          <p>
+            <a class="button-link button-primary" href="#what-is-eduflow">Explore the system</a>
+            <span aria-hidden="true"> · </span>
+            <a class="button-link" href="#design-tokens">Browse components</a>
           </p>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="design-system-title">
+      <section class="section" id="what-is-eduflow" aria-labelledby="what-is-eduflow-title">
         <div class="container content-container">
-          <h2 id="design-system-title">1. The Design System</h2>
+          <h2 id="what-is-eduflow-title">What is EduFlow</h2>
           <p>
-            EduFlow's interface was structured using an Atomic Design approach to improve consistency, speed, and
-            scalability. Atoms established visual and interaction foundations (type, buttons, fields), while larger
-            patterns composed these into reusable modules that could be deployed across learning workflows.
+            University registration platforms serve students on phones between classes, advisors on tablets during office hours, and registrars managing batch workflows on desktop. All at once, all with different needs.
           </p>
+          <p>
+            EduFlow gives teams a shared visual language, accessible-by-default components, and a governance model that scales across departments without falling apart. Pick it up and build faster without reinventing the wheel every time.
+          </p>
+        </div>
+      </section>
 
+      <section class="section" id="design-tokens" aria-labelledby="design-tokens-title">
+        <div class="container content-container">
+          <h2 id="design-tokens-title">Design tokens</h2>
+          <p>
+            Design tokens are where the system starts. Instead of hardcoding values, tokens give decisions a name and push them everywhere automatically. Update one token and every button, badge, and header that references it updates too.
+          </p>
+          <p>
+            The biggest problem in large organizations isn't bad design decisions. It's different teams solving the same problem differently. Tokens make the right choice the easy choice.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="atomic-design-title">
+        <div class="container content-container">
+          <h2 id="atomic-design-title">Atomic design</h2>
           <article class="card">
             <h3>Atoms</h3>
-            <p>[Screenshot Placeholder: Atomic UI elements library]</p>
+            <p>
+              The smallest building blocks: buttons, inputs, icons, badges. When atoms are accessible by default, everything built on top of them inherits those qualities automatically.
+            </p>
           </article>
-
           <article class="card">
-            <h3>Innovative Components</h3>
-            <p>[Screenshot Placeholder: Advanced modular components for educational workflows]</p>
+            <h3>Molecules</h3>
+            <p>
+              Atoms combined into single-purpose units. A search bar, a course card, a labeled input with an error state. One job each, reusable anywhere.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Organisms</h3>
+            <p>
+              Substantial enough to accomplish something meaningful, modular enough for multiple teams to share across different products. Navigation sidebars, content grids, form sections.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Templates</h3>
+            <p>
+              Layout blueprints that define structure without prescribing content. Teams start from a template and spend their energy on the actual product problem instead of rebuilding the same page layout from scratch.
+            </p>
           </article>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="ai-title">
+      <section class="section" aria-labelledby="ai-components-title">
         <div class="container content-container">
-          <h2 id="ai-title">2. AI Integration</h2>
+          <h2 id="ai-components-title">AI-powered components</h2>
           <p>
-            The platform included AI-powered UI patterns that assisted users while preserving autonomy in decision
-            making. Recommendations and content guidance were paired with explainability cues so users could understand
-            why outputs appeared, what data informed them, and how to adjust behavior confidently.
+            These components explore what registration looks like when AI is actually useful. AI serves as a layer that supports students in decision-making and helps advisors focus their efforts.
           </p>
           <ul>
-            <li><strong>AI-Powered UI:</strong> Context-aware support integrated directly into the learning and planning experience.</li>
-            <li><strong>Explainable AI:</strong> Transparency patterns emphasized confidence, rationale, and trust for both educators and students.</li>
+            <li>
+              <strong>Course Recommendations:</strong> Surfaces suggestions based on academic history, major requirements, and peer patterns. An explainability layer tells you why each course was recommended and lets you dismiss or give feedback. AI as a helpful nudge, not a black box.
+            </li>
+            <li>
+              <strong>Dynamic Schedule Planner:</strong> Integrates with wearables for haptic reminders, estimated walk times between buildings, and conflict detection before problems come up.
+            </li>
+            <li>
+              <strong>Advisor Analytics Dashboard:</strong> Surfaces at-risk signals like a declining GPA, missed appointments, or no contact in 30 days so advisors can triage their caseload and take action without jumping between tools.
+            </li>
           </ul>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="process-tech-title">
+      <section class="section" aria-labelledby="accessibility-title">
         <div class="container content-container">
-          <h2 id="process-tech-title">3. Process &amp; Tech</h2>
+          <h2 id="accessibility-title">Accessibility</h2>
           <p>
-            This case study prototype was built with AI-assisted coding to accelerate delivery from concept to
-            implementation. As lead developer, I translated product direction into a functional, responsive experience
-            that demonstrates technical feasibility and interaction quality across screen sizes.
+            Accessibility in EduFlow isn't a checklist you run at the end. It's built into every layer. Tokens enforce color contrast. Components ship with keyboard navigation and ARIA support. Patterns are validated against real assistive technologies.
+          </p>
+          <p>
+            WCAG 2.2 AA+ is the baseline, not the ceiling. University platforms serve a genuinely diverse population and getting this right matters in ways that are easy to underestimate elsewhere.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ai-patterns-title">
+        <div class="container content-container">
+          <h2 id="ai-patterns-title">AI patterns</h2>
+          <p>
+            The question wasn't "how do we add AI features?" It was "how do we add AI features users actually trust?" Three principles drove every decision: transparency (users always know when AI is involved), control (AI suggests, users decide), and explainability (recommendations come with reasons).
+          </p>
+          <p>
+            The best AI features are ones users barely notice because they just work. When they don't, the system says so and hands control back.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="governance-title">
+        <div class="container content-container">
+          <h2 id="governance-title">Governance</h2>
+          <p>
+            A design system without governance is just a Figma file that gets ignored. EduFlow defines four groups: core team, platform teams, delivery squads, and external contributors. Each has a clear lane. Changes flow from proposal to stable release through a defined process, and token updates propagate automatically to every product that consumes them.
+          </p>
+          <p>
+            Nothing ships without documentation. Nothing gets deprecated without 90 days notice and a migration path. That predictability is what lets teams build on the system with confidence.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="about-project-title">
+        <div class="container content-container">
+          <h2 id="about-project-title">About this project</h2>
+          <p>
+            EduFlow was a semester-long project for a Managing UX Teams graduate course. The brief was to design and document a design system for a university navigating digital transformation across registration, advising, and student engagement. Not just components, but a full system with foundations, governance, AI patterns, accessibility guidelines, and a contribution model. Feel free to explore the interactive demos and documentation site.
+          </p>
+          <p>
+            <a href="https://eduflow-design-map.lovable.app/" target="_blank" rel="noopener noreferrer">Visit the live EduFlow site</a>
           </p>
         </div>
       </section>
