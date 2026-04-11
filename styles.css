@@ -710,9 +710,31 @@ figure img {
 
 .vacp-horizontal-fill {
   height: 100%;
-  width: calc((var(--value) / 28) * 100%);
-  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 86%, black), var(--accent));
+  width: calc((var(--total) / 28) * 100%);
+  display: flex;
   border-radius: inherit;
+  overflow: hidden;
+}
+
+.vacp-segment {
+  width: calc((var(--segment) / var(--total)) * 100%);
+  min-width: 0;
+}
+
+.vacp-segment-v {
+  background: color-mix(in srgb, var(--accent) 84%, white);
+}
+
+.vacp-segment-a {
+  background: color-mix(in srgb, var(--accent) 68%, var(--text));
+}
+
+.vacp-segment-c {
+  background: var(--accent);
+}
+
+.vacp-segment-p {
+  background: color-mix(in srgb, var(--accent) 72%, black);
 }
 
 .vacp-horizontal-value {
