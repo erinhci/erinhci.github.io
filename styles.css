@@ -390,6 +390,8 @@ figure img {
 .project-image {
   position: relative;
   aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
 
@@ -438,12 +440,6 @@ figure img {
 .project-image--contain img {
   object-fit: contain;
   padding: 0.4rem;
-}
-
-.project-image--distracted img {
-  object-position: center 42%;
-  transform: scale(1.06);
-  transform-origin: center;
 }
 
 .project-content {
