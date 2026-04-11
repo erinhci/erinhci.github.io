@@ -423,6 +423,15 @@ figure img {
   display: block;
 }
 
+.project-image--contain {
+  background: color-mix(in srgb, var(--surface) 78%, black 22%);
+}
+
+.project-image--contain img {
+  object-fit: contain;
+  padding: 0.4rem;
+}
+
 .project-content {
   display: flex;
   flex-direction: column;
@@ -657,6 +666,123 @@ figure img {
   display: block;
   margin: 0 auto;
   max-height: 80vh;
+}
+
+.vacp-workload-chart figcaption {
+  margin-bottom: 1rem;
+}
+
+.vacp-chart {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.vacp-legend {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.vacp-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.vacp-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 2px;
+}
+
+.vacp-swatch--v,
+.vacp-segment--v {
+  background: #0255d5;
+}
+
+.vacp-swatch--a,
+.vacp-segment--a {
+  background: #c20000;
+}
+
+.vacp-swatch--c,
+.vacp-segment--c {
+  background: #8c6d00;
+}
+
+.vacp-swatch--p,
+.vacp-segment--p {
+  background: #03852e;
+}
+
+.vacp-plot {
+  overflow-x: auto;
+}
+
+.vacp-bars {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(60px, 1fr));
+  gap: 0.7rem;
+  min-width: 860px;
+  padding: 0.5rem 0 0;
+}
+
+.vacp-y-grid {
+  height: 300px;
+  min-width: 860px;
+  background:
+    repeating-linear-gradient(
+      to top,
+      color-mix(in srgb, var(--line) 60%, transparent) 0 1px,
+      transparent 1px 50px
+    ),
+    repeating-linear-gradient(
+      to top,
+      color-mix(in srgb, var(--line) 25%, transparent) 0 1px,
+      transparent 1px 25px
+    );
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: -300px;
+  pointer-events: none;
+}
+
+.vacp-task {
+  display: grid;
+  grid-template-rows: 1.1rem 300px auto;
+  align-items: end;
+  justify-items: center;
+}
+
+.vacp-total {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.vacp-stack {
+  width: 100%;
+  max-width: 42px;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.vacp-segment--p { height: calc((var(--p) / 30) * 100%); }
+.vacp-segment--c { height: calc((var(--c) / 30) * 100%); }
+.vacp-segment--a { height: calc((var(--a) / 30) * 100%); }
+.vacp-segment--v { height: calc((var(--v) / 30) * 100%); }
+
+.vacp-label {
+  margin-top: 0.5rem;
+  font-size: 0.73rem;
+  color: var(--muted);
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  white-space: nowrap;
 }
 
 .table-scroll,
