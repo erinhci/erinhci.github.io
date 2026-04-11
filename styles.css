@@ -74,7 +74,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--bg);
 }
 
@@ -153,6 +152,24 @@ a:hover {
   outline: 3px solid color-mix(in srgb, var(--accent) 80%, white 20%);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  z-index: 2000;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-primary);
+  text-decoration: none;
+  transform: translateY(-180%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 .container,
@@ -289,7 +306,6 @@ figure img {
   font-family: var(--font-heading);
   color: var(--accent);
   opacity: 1;
-  transition: opacity 500ms ease-in-out;
 }
 
 .rotating-word.is-transitioning {
@@ -461,7 +477,6 @@ figure img {
 
 .project-card {
   cursor: pointer;
-  transition: border-color 180ms ease, transform 180ms ease;
 }
 
 .project-card:hover {
@@ -472,7 +487,24 @@ figure img {
 .project-tag {
   background: transparent;
   cursor: pointer;
-  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .rotating-word {
+    transition: opacity 500ms ease-in-out;
+  }
+
+  .project-card {
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .project-tag {
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
 }
 
 .project-tag:hover,
