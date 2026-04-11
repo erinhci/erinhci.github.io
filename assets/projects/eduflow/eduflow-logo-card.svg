@@ -1,0 +1,21 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">EduFlow logo card</title>
+  <desc id="desc">EduFlow wordmark with a rounded navy square icon featuring a white minimalist graduation cap.</desc>
+
+  <rect width="800" height="500" fill="#F8FAFC"/>
+
+  <g transform="translate(184 197)">
+    <rect x="0" y="0" width="106" height="106" rx="30" fill="#2D3748"/>
+
+    <g transform="translate(22 28)" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 27L31 14L53 27L31 40L9 27Z"/>
+      <path d="M15 30.5H47"/>
+      <path d="M53 27V39"/>
+      <circle cx="53" cy="42" r="2" fill="#FFFFFF" stroke="none"/>
+    </g>
+  </g>
+
+  <text x="322" y="265" fill="#2D3748" font-family="Inter, Montserrat, Roboto, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="0.2">
+    EduFlow
+  </text>
+</svg>
