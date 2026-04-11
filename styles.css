@@ -340,9 +340,10 @@ figure img {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .project-card {
@@ -410,7 +411,7 @@ figure img {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  padding: 2rem;
+  padding: 1.6rem;
   height: 100%;
 }
 
@@ -676,6 +677,11 @@ td {
 }
 
 @media (max-width: 960px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
   .hades-layout,
   .ai-transparency-hero-layout,
   .interaction-layout,
@@ -712,6 +718,15 @@ td {
 }
 
 @media (max-width: 600px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-content {
+    padding: 1.25rem;
+  }
+
   table,
   .noticed-deliverables {
     min-width: 0;
