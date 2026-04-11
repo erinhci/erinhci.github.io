@@ -8,6 +8,10 @@
   --muted: #4f5563;
   --line: #c9ccd2;
   --accent: #c20000;
+  --theme-01-red: #c20000;
+  --theme-02-blue: #0056d6;
+  --theme-03-green: #00852e;
+  --theme-04-amber: #8c6d00;
 
   --project-accent: #8ea0ff;
   --project-bg: #ffffff;
@@ -65,6 +69,10 @@
   --muted: #c8cfdd;
   --line: #3a4357;
   --accent-contrast: #111111;
+  --theme-01-red: #ff453a;
+  --theme-02-blue: #0a84ff;
+  --theme-03-green: #32d74b;
+  --theme-04-amber: #ffd60a;
 }
 
 *,
@@ -684,6 +692,22 @@ figure img {
   font-size: 0.9rem;
 }
 
+.vacp-key-v {
+  color: var(--theme-01-red);
+}
+
+.vacp-key-a {
+  color: var(--theme-02-blue);
+}
+
+.vacp-key-c {
+  color: var(--theme-03-green);
+}
+
+.vacp-key-p {
+  color: var(--theme-04-amber);
+}
+
 .vacp-horizontal-bars {
   display: grid;
   gap: 0.55rem;
@@ -722,19 +746,19 @@ figure img {
 }
 
 .vacp-segment-v {
-  background: color-mix(in srgb, var(--accent) 84%, white);
+  background: var(--theme-01-red);
 }
 
 .vacp-segment-a {
-  background: color-mix(in srgb, var(--accent) 68%, var(--text));
+  background: var(--theme-02-blue);
 }
 
 .vacp-segment-c {
-  background: var(--accent);
+  background: var(--theme-03-green);
 }
 
 .vacp-segment-p {
-  background: color-mix(in srgb, var(--accent) 72%, black);
+  background: var(--theme-04-amber);
 }
 
 .vacp-horizontal-value {
