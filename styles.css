@@ -440,6 +440,12 @@ figure img {
   padding: 0.4rem;
 }
 
+.project-image--distracted img {
+  object-position: center 42%;
+  transform: scale(1.06);
+  transform-origin: center;
+}
+
 .project-content {
   display: flex;
   flex-direction: column;
