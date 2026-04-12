@@ -22,20 +22,11 @@
   --radius-md: 0.9rem;
   --radius-lg: 1rem;
 
-  --font-heading: "Nohemi", "Space Grotesk", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-body: "Space Grotesk", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-ui: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Fraunces", "Georgia", "Times New Roman", serif;
+  --font-body: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-ui: "IBM Plex Mono", "Courier New", monospace;
 }
 
-@font-face {
-  font-family: "Nohemi";
-  src: local("Nohemi"),
-    url("assets/fonts/Nohemi-Regular.woff2") format("woff2"),
-    url("assets/fonts/Nohemi-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -114,8 +105,9 @@ h6 {
   margin: 0 0 0.85rem;
   color: var(--text-primary);
   font-family: var(--font-heading);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
 h1 {
@@ -219,11 +211,12 @@ main {
 }
 
 .brand {
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   color: var(--text-primary);
   text-decoration: none;
-  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
 .nav-links {
@@ -279,10 +272,11 @@ figure img {
 
 .eyebrow {
   color: var(--accent);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-size: 0.76rem;
+  font-size: 0.65rem;
   margin: 0 0 0.75rem;
 }
 
@@ -299,6 +293,8 @@ figure img {
 
 .hero-copy {
   max-width: 72ch;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-copy .tagline {
@@ -431,6 +427,7 @@ figure img {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-image--contain {
@@ -500,7 +497,12 @@ figure img {
 
 .project-card:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
+  transform: translateY(-8px) scale(1.02) rotate(-0.25deg);
+  box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--accent) 18%, rgba(0, 0, 0, 0.14));
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.07);
 }
 
 .project-tag {
@@ -518,12 +520,49 @@ figure img {
   }
 
   .project-card {
-    transition: border-color 180ms ease, transform 180ms ease;
+    transition: border-color 200ms ease, transform 360ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 360ms ease;
   }
 
   .project-tag {
     transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   }
+
+  @keyframes revealUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hero staggered reveal */
+  .hero-copy-flow > *:nth-child(1) {
+    animation: revealUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+  }
+  .hero-copy-flow > *:nth-child(2) {
+    animation: revealUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+  .hero-copy-flow > *:nth-child(3) {
+    animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both;
+  }
+  .hero-copy-flow > *:nth-child(4) {
+    animation: revealUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+  }
+
+  /* Project card staggered cascade */
+  .project-card {
+    animation: revealUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .project-card:nth-child(1) { animation-delay: 0.7s; }
+  .project-card:nth-child(2) { animation-delay: 0.85s; }
+  .project-card:nth-child(3) { animation-delay: 1.0s; }
+  .project-card:nth-child(4) { animation-delay: 1.15s; }
+  .project-card:nth-child(5) { animation-delay: 1.3s; }
+  .project-card:nth-child(6) { animation-delay: 1.45s; }
+  .project-card:nth-child(7) { animation-delay: 1.6s; }
 }
 
 .project-tag:hover,
@@ -816,6 +855,172 @@ td {
   padding: 1.4rem 0;
   border-top: 1px solid var(--line);
   text-align: center;
+}
+
+/* ─────────────────────────────────────────────────────
+   GRAIN OVERLAY — subtle film-grain atmospheric texture
+   ───────────────────────────────────────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.048;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+[data-theme="dark"] .grain-overlay {
+  mix-blend-mode: screen;
+  opacity: 0.04;
+}
+
+/* ─────────────────────────────────────────────────────
+   HERO — visual depth and editorial atmosphere
+   ───────────────────────────────────────────────────── */
+.hero {
+  background: radial-gradient(
+    ellipse at 78% 30%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+.glass-panel {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.hero-editorial {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-editorial::after {
+  content: "01";
+  position: absolute;
+  bottom: -0.75rem;
+  right: 1rem;
+  font-family: var(--font-ui);
+  font-size: clamp(5rem, 16vw, 11rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: color-mix(in srgb, var(--line) 50%, transparent);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* ─────────────────────────────────────────────────────
+   SYSTEM CONFIG NAV — terminal / engineering feel
+   ───────────────────────────────────────────────────── */
+.system-config {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.config-option {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.18rem 0.52rem;
+  font-size: 0.6rem;
+  font-family: var(--font-ui);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1.7;
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.config-option:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.config-option.is-active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+/* ─────────────────────────────────────────────────────
+   SECTION BREAKS — directional accent lines
+   ───────────────────────────────────────────────────── */
+.section-break-left,
+.section-break-right {
+  position: relative;
+}
+
+.section-break-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 30%, transparent) 35%,
+    transparent 65%
+  );
+}
+
+.section-break-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to left,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 30%, transparent) 35%,
+    transparent 65%
+  );
+}
+
+/* ─────────────────────────────────────────────────────
+   FEATURED CARD — editorial first-card treatment
+   ───────────────────────────────────────────────────── */
+.project-card--featured {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--accent) 5%, var(--surface)) 0%,
+    var(--surface) 40%
+  );
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+}
+
+.project-card--featured .project-content::before {
+  content: "FEATURED";
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: -0.2rem;
+}
+
+/* ─────────────────────────────────────────────────────
+   BUTTON — sharper editorial feel
+   ───────────────────────────────────────────────────── */
+.button-primary {
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
 }
 
 @media (max-width: 960px) {
