@@ -18,14 +18,301 @@
       (function() {
         const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
         const savedAccent = localStorage.getItem('portfolio-accent') || '#C20000';
-
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.documentElement.style.setProperty('--accent', savedAccent);
       })();
     </script>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .pt-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .pt-stat-box {
+        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 30%, var(--line));
+        border-radius: var(--radius-md);
+        padding: 1.25rem;
+        background: color-mix(in srgb, var(--surface) 85%, var(--bg));
+        text-align: center;
+      }
+
+      .pt-stat-number {
+        display: block;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--project-accent, var(--accent));
+        line-height: 1.1;
+        margin-bottom: 0.3rem;
+      }
+
+      .pt-stat-label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
+
+      .finding-card {
+        border-left: 3px solid var(--project-accent, var(--accent));
+        padding: 1.1rem 1.25rem;
+        margin: 1.25rem 0;
+        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      }
+
+      .finding-card h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: var(--project-accent, var(--accent));
+      }
+
+      .finding-card p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .comm-bar-wrap {
+        display: grid;
+        gap: 0.6rem;
+        margin: 1.25rem 0;
+      }
+
+      .comm-bar-row {
+        display: grid;
+        grid-template-columns: 200px 1fr 3rem;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .comm-bar-label {
+        font-size: 0.82rem;
+        color: var(--text-primary);
+      }
+
+      .comm-bar-track {
+        height: 0.75rem;
+        background: color-mix(in srgb, var(--line) 60%, transparent);
+        border-radius: 999px;
+        overflow: hidden;
+        display: flex;
+      }
+
+      .comm-bar-efficient {
+        background: var(--theme-03-green, #00852e);
+        height: 100%;
+      }
+
+      .comm-bar-inefficient {
+        background: var(--theme-01-red, #c20000);
+        height: 100%;
+      }
+
+      .comm-bar-telephone {
+        background: var(--theme-04-amber, #8c6d00);
+        height: 100%;
+      }
+
+      .comm-bar-value {
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-align: right;
+      }
+
+      .comm-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .comm-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .comm-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .telephone-example {
+        font-family: var(--font-ui);
+        font-size: 0.88rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 1.1rem 1.25rem;
+        margin: 1rem 0;
+        background: color-mix(in srgb, var(--bg) 60%, var(--surface));
+      }
+
+      .telephone-example .exchange {
+        display: flex;
+        gap: 0.6rem;
+        margin: 0.3rem 0;
+        align-items: baseline;
+      }
+
+      .telephone-example .speaker {
+        font-weight: 600;
+        color: var(--project-accent, var(--accent));
+        white-space: nowrap;
+        font-size: 0.8rem;
+        min-width: 120px;
+      }
+
+      .telephone-example .message {
+        color: var(--text-primary);
+      }
+
+      .insight-box {
+        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 30%, var(--line));
+        border-radius: var(--radius-md);
+        padding: 1rem 1.25rem;
+        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
+        margin: 1.25rem 0;
+        font-size: 0.95rem;
+      }
+
+      .method-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .method-pill {
+        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 40%, var(--line));
+        border-radius: 999px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+        font-family: var(--font-ui);
+        color: var(--text-primary);
+        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
+      }
+
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .role-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 1.1rem;
+        background: color-mix(in srgb, var(--surface) 85%, var(--bg));
+      }
+
+      .role-card h3 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--project-accent, var(--accent));
+        margin-bottom: 0.5rem;
+        font-family: var(--font-ui);
+        font-weight: 600;
+      }
+
+      .role-card p {
+        font-size: 0.88rem;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .osi-bar-wrap {
+        display: grid;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .osi-bar-row {
+        display: grid;
+        grid-template-columns: 140px 1fr 3rem;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .osi-bar-label {
+        font-size: 0.82rem;
+      }
+
+      .osi-bar-track {
+        height: 0.65rem;
+        background: color-mix(in srgb, var(--line) 60%, transparent);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .osi-bar-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: var(--project-accent, var(--accent));
+      }
+
+      .osi-bar-value {
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-align: right;
+      }
+
+      .limitation-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+      }
+
+      .limitation-list li {
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.93rem;
+        padding-left: 1.25rem;
+        position: relative;
+      }
+
+      .limitation-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+      }
+
+      .limitation-list li:last-child {
+        border-bottom: none;
+      }
+
+      .text-link {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+
+      @media (max-width: 700px) {
+        .pt-stat-grid,
+        .role-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .comm-bar-row,
+        .osi-bar-row {
+          grid-template-columns: 1fr 3rem;
+        }
+
+        .comm-bar-label,
+        .osi-bar-label {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
   </head>
-  <body class="case-study">
+  <body class="case-study interaction-case-study">
     <a class="skip-link" href="#main">Skip to Main Content</a>
     <div class="scroll-progress-track" aria-hidden="true">
       <span class="scroll-progress-indicator"></span>
@@ -50,46 +337,272 @@
     </header>
 
     <main id="main">
+
       <section class="hero section" aria-labelledby="interaction-title">
         <div class="container content-container">
-          <p class="eyebrow">Physical Therapy Interaction Study</p>
-          <h1 id="interaction-title">Measuring Team Efficiency</h1>
-          <p class="tagline insight-box">A systems-thinking study focused on communication flow, cognitive load, and operational bottlenecks in a physical service environment.</p>
+          <p class="eyebrow">Cognitive Engineering Field Study</p>
+          <h1 id="interaction-title">Measuring Team Efficiency at a Physical Therapy Clinic</h1>
+          <p class="tagline insight-box">A systems-level field study of communication flow, cognitive load, and operational bottlenecks in a high-traffic physical therapy clinic — observed across contrasting high-stress and low-stress days using content analysis, a Rasmussen decision ladder, and the Occupational Stress Index.</p>
+          <p class="tagline" style="color: var(--muted); font-size: 0.88rem; margin-top: 0.5rem;"><em>Collaborative research with Nada Elgeziry, Sage Fuentes, and Erin King — Iowa State University, IE/HCI 6810: Cognitive Engineering</em></p>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="systems-title">
+      <section class="section" aria-labelledby="overview-title">
         <div class="container content-container">
-          <h2 id="systems-title">System Overview</h2>
-          <p>This project intentionally moved beyond digital screens. The core UX challenge was a human-service system: therapists, assistants, and front-desk staff coordinating under time pressure while patient needs changed minute-to-minute.</p>
+          <h2 id="overview-title">Overview</h2>
+          <p>This project moved deliberately beyond digital screens. The UX challenge here was a human-service system: a three-person clinical team — therapist, assistant, and receptionist — coordinating patient care in real time while juggling scheduling, equipment, space allocation, and constant communication interruptions. The question wasn't what interface to improve. It was how information moved through the team, where it broke down, and what that cost under pressure.</p>
+          <p>We observed two full clinic sessions at a physical therapy practice in Egypt — one on a high-patient-volume day, one on a slower day — logging 219 discrete events and coding them across three custom metrics: stress, clinic vibe, and communication efficiency.</p>
+
+          <div class="pt-stat-grid" aria-label="Study at a glance">
+            <div class="pt-stat-box">
+              <span class="pt-stat-number">219</span>
+              <span class="pt-stat-label">total coded events</span>
+            </div>
+            <div class="pt-stat-box">
+              <span class="pt-stat-number">6h 41m</span>
+              <span class="pt-stat-label">observation time across 2 sessions</span>
+            </div>
+            <div class="pt-stat-box">
+              <span class="pt-stat-number">3</span>
+              <span class="pt-stat-label">custom metrics developed</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="framework-title">
+      <section class="section" aria-labelledby="team-title">
         <div class="container content-container">
-          <h2 id="framework-title">Analytical Framework</h2>
-          <p>I used the Rasmussen Human Data Processor model to map perception, interpretation, and response points across handoffs, and used Occupational Stress Index indicators to tag where interruptions and ambiguity increased cognitive strain.</p>
+          <h2 id="team-title">The System and Its People</h2>
+          <p>The clinic operated with three interdependent roles, each with defined responsibilities that regularly overlapped under real conditions. Flexibility was a feature, not a bug — on high-volume days, therapists picked up assistant tasks and vice versa. Patients were present throughout but were treated as external to the team system for the purposes of this study.</p>
+
+          <div class="role-grid">
+            <div class="role-card">
+              <h3>Therapist</h3>
+              <p>Develops and delivers treatment plans; oversees patient exercises. Absorbs assistant duties on busy days.</p>
+            </div>
+            <div class="role-card">
+              <h3>Assistant</h3>
+              <p>Prepares equipment, manages patient transitions, monitors the scheduling system, and serves as the hub between roles.</p>
+            </div>
+            <div class="role-card">
+              <h3>Receptionist</h3>
+              <p>Handles scheduling, relays patient information, and coordinates patient flow — primarily through verbal and phone communication.</p>
+            </div>
+          </div>
+
+          <p>The team worked together regularly, knew each other's roles well, and maintained a positive professional dynamic even under strain. That baseline competence made the inefficiencies we identified more notable — they weren't caused by poor teamwork, but by structural gaps in how information was routed.</p>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="decision-title">
+      <section class="section" aria-labelledby="methods-title">
         <div class="container content-container">
-          <h2 id="decision-title">Communication Mapping Findings</h2>
-          <p>Verbal exchanges, call interruptions, and patient-status updates were treated as "data bits" moving through the clinic network. This made it possible to identify bottlenecks where critical information was delayed, duplicated, or dropped between roles.</p>
+          <h2 id="methods-title">Methods</h2>
+          <p>We used a multi-method approach grounded in exploratory qualitative research, chosen because existing literature on physical therapy teams was sparse and largely focused on patient outcomes rather than team dynamics.</p>
+
+          <div class="method-pill-row" aria-label="Methods used">
+            <span class="method-pill">Direct observation</span>
+            <span class="method-pill">Event logging with timestamps</span>
+            <span class="method-pill">Content analysis</span>
+            <span class="method-pill">Rasmussen decision ladder</span>
+            <span class="method-pill">OSI survey (modified)</span>
+            <span class="method-pill">Clinic photography</span>
+          </div>
+
+          <p><strong>Two observation sessions:</strong> Day 1 was a high-stress (HS) day with elevated patient volume and increased urgency. Day 2 was a low-stress (LS) day with fewer patients and a more relaxed pace. Sessions ran 3 hours 15 minutes and 3 hours 26 minutes respectively. All interactions were timestamped in real time.</p>
+
+          <p><strong>Three custom metrics</strong> were developed after Day 1 observations, based on themes that emerged in the data:</p>
           <ul>
-            <li><strong>Bottleneck pattern:</strong> Phone calls regularly interrupted active care coordination.</li>
-            <li><strong>System implication:</strong> Informal communication channels increased rework and response latency.</li>
-            <li><strong>Opportunity:</strong> Structured handoff cues and routing protocols improved reliability.</li>
+            <li><strong>Stress</strong> — discrete count of high- and low-stress events, triggered by verbal expression, body language, or environmental context</li>
+            <li><strong>Clinic vibe</strong> — positive/negative events categorized as space-related or professional, limited to patient-observable moments</li>
+            <li><strong>Communication efficiency</strong> — efficient vs. inefficient exchanges between staff, further coded as logistical or informational</li>
           </ul>
+
+          <p><strong>Occupational Stress Index (OSI):</strong> A modified 7-item version of the Srivastava &amp; Singh (1981) OSI was verbally administered to the therapist and assistant, drawing from subscales for role overload, strenuous working conditions, and responsibility for persons.</p>
+
+          <p><strong>Decision ladder:</strong> Following Rasmussen (1974), we modeled the full patient-arrival workflow — from scheduling detection through therapy execution — to map where stress and inefficiency were structurally embedded in the process.</p>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="manager-value-title">
+      <section class="section" aria-labelledby="findings-title">
         <div class="container content-container">
-          <h2 id="manager-value-title">Why this matters</h2>
-          <p class="insight-box">This work demonstrates strategic systems thinking: I can diagnose and optimize complex service environments where UX outcomes depend on operations, communication architecture, and human factors.</p>
+          <h2 id="findings-title">Key Findings</h2>
+
+          <div class="finding-card">
+            <h3>Stress spiked 19x on the high-volume day</h3>
+            <p>Day 1 produced 19 times as many high-stress events as Day 2. Two event types — patient check-ins and buzzer calls — drove a disproportionate share of this: they were entirely neutral on the low-stress day, but became sources of frustration and visible strain on the high-stress day. The same sounds, same interactions, same workflow — but under load, they became stressors. This suggests patient volume may function as a moderating variable on otherwise manageable events.</p>
+          </div>
+
+          <div class="finding-card">
+            <h3>High stress compressed communication and raised inefficiency rates</h3>
+            <p>There were fewer total communication events on the high-stress day (34 vs. 51), but a higher proportion of them were inefficient. Inefficient communication accounted for 44.1% of exchanges on Day 1 versus 29.4% on Day 2. Under load, the team communicated less and communicated worse — a pattern consistent with cognitive overload literature.</p>
+          </div>
+
+          <div class="finding-card">
+            <h3>"Games of telephone" were the most visible structural inefficiency</h3>
+            <p>We identified a recurring pattern where messages passed through all three team members in sequence when direct routing was available. These chains were concentrated on the high-stress day. Individually, each exchange was minor. At volume, during an already fragmented shift, they were the most consistently disruptive form of inefficiency in the dataset.</p>
+          </div>
+
+          <div class="telephone-example" aria-label="Example games of telephone exchange">
+            <p style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.75rem;">Observed exchange — high-stress day</p>
+            <div class="exchange">
+              <span class="speaker">Assistant → Therapist:</span>
+              <span class="message">"I will let [patient] in."</span>
+            </div>
+            <div class="exchange">
+              <span class="speaker">Therapist:</span>
+              <span class="message">"Okay."</span>
+            </div>
+            <div class="exchange">
+              <span class="speaker">Assistant → Receptionist:</span>
+              <span class="message">"Yes, let [patient] in."</span>
+            </div>
+            <p style="margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--muted);">The therapist's acknowledgment added no information and introduced an unnecessary relay step that interrupted both parties.</p>
+          </div>
+
+          <h3 style="margin-top: 2rem;">Communication by day</h3>
+          <p style="font-size: 0.88rem; color: var(--muted);">Breakdown of efficient, inefficient, and "games of telephone" events by day and communication type.</p>
+
+          <div class="comm-legend" aria-hidden="true">
+            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-03-green, #00852e);"></span> Efficient</span>
+            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-01-red, #c20000);"></span> Inefficient</span>
+            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-04-amber, #8c6d00);"></span> Games of telephone</span>
+          </div>
+
+          <div class="comm-bar-wrap" role="img" aria-label="Communication efficiency chart by day and type">
+            <div class="comm-bar-row">
+              <span class="comm-bar-label">Day 1 HS — Informational</span>
+              <div class="comm-bar-track">
+                <div class="comm-bar-efficient" style="width: calc(10/34*100%)"></div>
+                <div class="comm-bar-inefficient" style="width: calc(3/34*100%)"></div>
+                <div class="comm-bar-telephone" style="width: calc(13/34*100%)"></div>
+              </div>
+              <span class="comm-bar-value">26 events</span>
+            </div>
+            <div class="comm-bar-row">
+              <span class="comm-bar-label">Day 1 HS — Logistical</span>
+              <div class="comm-bar-track">
+                <div class="comm-bar-efficient" style="width: calc(9/34*100%)"></div>
+                <div class="comm-bar-inefficient" style="width: calc(5/34*100%)"></div>
+                <div class="comm-bar-telephone" style="width: calc(7/34*100%)"></div>
+              </div>
+              <span class="comm-bar-value">21 events</span>
+            </div>
+            <div class="comm-bar-row">
+              <span class="comm-bar-label">Day 2 LS — Informational</span>
+              <div class="comm-bar-track">
+                <div class="comm-bar-efficient" style="width: calc(17/51*100%)"></div>
+                <div class="comm-bar-inefficient" style="width: calc(5/51*100%)"></div>
+              </div>
+              <span class="comm-bar-value">22 events</span>
+            </div>
+            <div class="comm-bar-row">
+              <span class="comm-bar-label">Day 2 LS — Logistical</span>
+              <div class="comm-bar-track">
+                <div class="comm-bar-efficient" style="width: calc(19/51*100%)"></div>
+                <div class="comm-bar-inefficient" style="width: calc(8/51*100%)"></div>
+                <div class="comm-bar-telephone" style="width: calc(2/51*100%)"></div>
+              </div>
+              <span class="comm-bar-value">29 events</span>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 2rem;">OSI scores confirmed moderate occupational stress</h3>
+          <p>Both the therapist and assistant scored as moderately stressed on the modified OSI. The assistant scored highest on responsibility for persons (4.0); the doctor scored highest on role overload (3.67). These scores provided quantitative support that aligned with the qualitative observation data — the team wasn't in crisis, but was operating under real and sustained pressure.</p>
+
+          <div class="osi-bar-wrap" role="img" aria-label="OSI scores for assistant and doctor across three subscales">
+            <p style="font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem;">Scale: 1 (strongly disagree) → 5 (strongly agree)</p>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Assistant — Role Overload</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(2.34/5*100%)"></div></div>
+              <span class="osi-bar-value">2.34</span>
+            </div>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Assistant — Strenuous Work</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(1.67/5*100%)"></div></div>
+              <span class="osi-bar-value">1.67</span>
+            </div>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Assistant — Responsibility</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(4.0/5*100%)"></div></div>
+              <span class="osi-bar-value">4.00</span>
+            </div>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Doctor — Role Overload</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(3.67/5*100%)"></div></div>
+              <span class="osi-bar-value">3.67</span>
+            </div>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Doctor — Strenuous Work</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(2.67/5*100%)"></div></div>
+              <span class="osi-bar-value">2.67</span>
+            </div>
+            <div class="osi-bar-row">
+              <span class="osi-bar-label">Doctor — Responsibility</span>
+              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(4.0/5*100%)"></div></div>
+              <span class="osi-bar-value">4.00</span>
+            </div>
+          </div>
         </div>
       </section>
+
+      <section class="section" aria-labelledby="decision-ladder-title">
+        <div class="container content-container">
+          <h2 id="decision-ladder-title">Decision Ladder: Where Shortcuts Appeared</h2>
+          <p>Using a Rasmussen (1974) decision ladder, we mapped the full sequence of steps staff take when a patient arrives — from scheduling notification through therapy execution. The model made it possible to identify two recurring shortcuts:</p>
+          <ul>
+            <li><strong>Skipping equipment planning:</strong> Staff frequently moved directly into patient care without confirming equipment availability, which caused delays when a machine a patient needed was already in use by another patient.</li>
+            <li><strong>Skipping file review:</strong> Staff routinely bypassed chart review and moved straight to treatment plan execution. No errors attributable to this were observed — suggesting this may reflect genuine clinical expertise rather than negligence, but it represents a latent risk that would be harder to manage on less experienced shifts.</li>
+          </ul>
+          <div class="case-study-image">
+            <img src="assets/projects/PT-Clinic/Partition3.png" alt="Physical therapy clinic workspace showing treatment partition environment where interactions were observed" width="1280" height="720" loading="lazy" />
+            <figcaption>Treatment partition environment where team interactions were observed. Partitions, equipment placement, and scheduling visibility all influenced how information moved through the team.</figcaption>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="implications-title">
+        <div class="container content-container">
+          <h2 id="implications-title">Design Implications</h2>
+          <p>The findings point toward two concrete directions for intervention:</p>
+
+          <div class="finding-card">
+            <h3>Restructure communication routing</h3>
+            <p>The "games of telephone" pattern is a direct indicator that the current communication architecture is too hub-dependent. The assistant is being used as a relay rather than a direct channel in many cases where direct communication would be faster and less disruptive. Structured handoff protocols or direct-to-receptionist routing for patient-flow notifications could reduce this significantly. Any change would need to account for the scheduling software, which appears to be a key coordination artifact worth a dedicated assessment.</p>
+          </div>
+
+          <div class="finding-card">
+            <h3>Design for load-variable conditions</h3>
+            <p>The team performed well under low-stress conditions. The problem was how performance degraded under high patient volume — specifically the compression of communication and the spike in inefficiency. Interventions should be designed for the hard days, not the easy ones. That might mean visual status displays visible to all three roles, asynchronous notification systems that reduce interruption-driven check-ins, or clearer partition assignment cues that don't require verbal confirmation.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="limitations-title">
+        <div class="container content-container">
+          <h2 id="limitations-title">Limitations</h2>
+          <p>This study had real constraints and I want to be direct about them. The findings are not generalizable — they describe one team, in one clinic, observed on two days.</p>
+
+          <ul class="limitation-list">
+            <li><strong>Single observer data collection:</strong> Only one researcher could be on-site, limiting what could be tracked simultaneously. The full patient count at any given moment wasn't reliably capturable.</li>
+            <li><strong>Cross-cultural and translation factors:</strong> The clinic was in Egypt; two of three researchers were not familiar with the cultural context. Translation between Arabic and English introduced potential for interpretation shifts, though fewer than 5% of coded events changed through the collaborative reconciliation process.</li>
+            <li><strong>Limited shift coverage:</strong> All sessions were conducted during late-evening shifts (6–10 pm). How the team operates at other times of day is unknown.</li>
+            <li><strong>No patient outcome data:</strong> Existing literature in this domain typically anchors team efficiency to patient outcomes. We didn't have access to that data, which limits how our findings connect to the broader research base.</li>
+            <li><strong>OSI instrument fit:</strong> The full OSI-R would have been a better fit than the modified OSI we used, but it wasn't accessible through the university library in time.</li>
+            <li><strong>Rapport and prior relationship:</strong> The on-site researcher had a prior familial relationship with the therapist, which may have influenced how team members behaved during observation.</li>
+          </ul>
+
+          <p>What would be needed to strengthen this study: longitudinal observation across multiple days and shifts, patient outcome data, more interview time with all three roles including the receptionist, and ideally a second on-site observer.</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="reflection-title">
+        <div class="container content-container">
+          <h2 id="reflection-title">Reflection</h2>
+          <p class="insight-box">What I found most valuable about this study was how clearly a physical service environment reveals the same cognitive engineering dynamics you'd look for in a software system — bottlenecks, redundant handoffs, load-dependent performance degradation. The "games of telephone" pattern in particular maps cleanly onto concepts from distributed systems design: unnecessary message passing, lack of direct routing, hub dependency. The vocabulary transfers even when the medium is entirely different.</p>
+          <p>My specific contributions were coding, developing the decision ladder, and writing the metrics and conclusion sections of the final report.</p>
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
