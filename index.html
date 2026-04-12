@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -39,6 +39,7 @@
         <div class="nav-spacer" aria-hidden="true"></div>
         <nav aria-label="Primary navigation">
           <ul class="nav-links">
+            <li><a href="#about">About</a></li>
             <li><a href="#work">Projects</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -63,18 +64,23 @@
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
                   <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    HCI-informed <span id="rotating-wrap" class="nowrap-ux">UX <span id="rotating-text" class="rotating-word">Systems</span></span>
+                    HCI-informed <span id="rotating-wrap" class="nowrap-ux">UX <span id="rotating-text" class="rotating-word" role="button" tabindex="0" aria-label="UX Systems — tap to cycle" title="Tap to cycle">Systems</span></span>
                   </h1>
-                </div>
-                <div class="hero-about-snippet" id="about" aria-label="About highlight">
-                  <p>
-                    I'm a UX researcher and designer based in the San Francisco Bay Area with a Master's in Human-Computer Interaction and a background in cognitive science and psychology. My interest in accessibility isn't a specialty I arrived at; it's been the foundation of how I think about design from the start. Good design should work for people as they actually are, not as we assume they'll be. I move across research, design, and systems thinking, and I stay close to where the field is heading: new interaction patterns, emerging tools, and shifting expectations around what technology should do for people. At the end of the day, what pulls me into this work is the problem solving. Untangling complexity, finding what's actually going on, and building something better because of it.
-                  </p>
                 </div>
                 <a class="button-link button-primary explore-btn" href="#work">Explore Case Studies</a>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section about-section section-break-right" id="about" aria-labelledby="about-title">
+        <div class="container narrow">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title" class="section-title">Hi, I'm Erin</h2>
+          <p>
+            I'm a UX researcher and designer based in the San Francisco Bay Area with a Master's in Human-Computer Interaction and a background in cognitive science and psychology. My interest in accessibility isn't a specialty I arrived at; it's been the foundation of how I think about design from the start. Good design should work for people as they actually are, not as we assume they'll be. I move across research, design, and systems thinking, and I stay close to where the field is heading: new interaction patterns, emerging tools, and shifting expectations around what technology should do for people. At the end of the day, what pulls me into this work is the problem solving. Untangling complexity, finding what's actually going on, and building something better because of it.
+          </p>
         </div>
       </section>
 
@@ -93,7 +99,7 @@
               </div>
               <div class="project-content">
                 <h3>EduFlow accessibility infrastructure</h3>
-                <p>EduFlow is a full design system built for university registration platforms, covering everything from design tokens and atomic components to AI interaction patterns and governance.</p>
+                <p>An accessible-by-default design system for university registration, spanning design tokens, component libraries, AI interaction patterns, and cross-team governance.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">Web Development</button>
                   <button class="project-tag tag" type="button">Accessibility</button>
@@ -112,8 +118,8 @@
                 <span class="project-image-overlay">Research</span>
               </div>
               <div class="project-content">
-                <h3>Reddit disability study</h3>
-                <p>A qualitative research study exploring how disabled people use personal storytelling in Reddit communities to find connection, process hard experiences, and feel less alone. Five interviews, two themes, and a few design ideas worth building on.</p>
+                <h3>Storytelling in Disability Spaces on Reddit</h3>
+                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to build connection, process difficult experiences, and navigate belonging.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">UX Research</button>
                   <button class="project-tag tag" type="button">Qualitative Analysis</button>
@@ -133,7 +139,7 @@
               </div>
               <div class="project-content">
                 <h3>Distracted pedestrian field study</h3>
-                <p>A three-city ethnographic study examining why people use their phones while walking — and how that behavior ripples through the people around them. Conducted across Chicago, San Francisco, and Minneapolis using field observation and contextual inquiry.</p>
+                <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">UX Research</button>
                   <button class="project-tag tag" type="button">Field Observation</button>
@@ -145,7 +151,7 @@
               </div>
             </article>
 
-            <article class="project-card hades-project-card" style="--project-accent: #f3b34d;">
+            <article class="project-card hades-project-card">
               <div class="project-card-shell">
               <div class="project-image project-image--contain">
                 <img src="assets/projects/Hades/HadesAttentionalZones2.png" alt="Hades attentional zones diagram showing layered cognitive demands in combat" width="1794" height="937" loading="lazy" />
@@ -153,7 +159,7 @@
               </div>
               <div class="project-content">
                 <h3>Hades: Cognitive Load &amp; Expert Performance</h3>
-                <p>A cognitive engineering deep-dive into the roguelite action RPG Hades, exploring how attentional load affects player performance. We compared expert and novice players across controlled and demand conditions to see if cognitive overload could close the skill gap.</p>
+                <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag project-tag--gameux" type="button">Game UX</button>
                   <button class="project-tag tag" type="button">Cognitive Engineering</button>
@@ -174,8 +180,7 @@
               </div>
               <div class="project-content">
                 <h3>AI Transparency &amp; User Trust</h3>
-                <p class="project-subtitle">A Qualitative Study on ChatGPT &amp; Mental Models</p>
-                <p>Investigating how users co-construct trust through iterative prompting and why they often prioritize clarity over factual citations in AI-led explanations.</p>
+                <p>A qualitative study examining how users evaluate ChatGPT's credibility through iterative prompting and why they prioritize structure and tone over citations.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">AI / ML</button>
                   <button class="project-tag tag" type="button">UX Research</button>
@@ -194,7 +199,7 @@
               </div>
               <div class="project-content">
                 <h3>Team Interaction Efficiency Study</h3>
-                <p>A Cognitive Engineering field study measuring communication bottlenecks and operational performance in a high-traffic physical therapy clinic.</p>
+                <p>A cognitive engineering field study measuring communication bottlenecks and operational efficiency across contrasting high- and low-stress days at a physical therapy clinic.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">UX Research</button>
                   <button class="project-tag tag" type="button">Cognitive Engineering</button>
@@ -214,7 +219,7 @@
               </div>
               <div class="project-content">
                 <h3>Noticed: Adaptive Symptom Tracking</h3>
-                <p>A visual-first, guilt-free symptom tracker designed for neurodivergence and chronic illness.</p>
+                <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
                 <div class="project-tags" aria-label="Project tags">
                   <button class="project-tag tag" type="button">UX Research</button>
                   <button class="project-tag tag" type="button">Product Branding</button>
@@ -357,13 +362,13 @@
         Interaction: "word-interaction"
       };
       let rotatingIndex = 0;
-      let rotatingTimerId = null;
 
       const setRotatingWord = (word) => {
         if (!rotatingTextEl) return;
         rotatingTextEl.textContent = word;
         rotatingTextEl.classList.remove("word-systems", "word-research", "word-design", "word-interaction");
         rotatingTextEl.classList.add(rotatingClassMap[word]);
+        rotatingTextEl.setAttribute("aria-label", `UX ${word} — tap to cycle`);
       };
 
       const stepRotatingWord = () => {
@@ -373,27 +378,18 @@
           rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
           setRotatingWord(rotatingWords[rotatingIndex]);
           rotatingTextEl.classList.remove("is-transitioning");
-        }, 500);
+        }, 300);
       };
-
-      const startRotatingTimer = () => {
-        if (rotatingTimerId !== null || !rotatingTextEl) return;
-        rotatingTimerId = window.setInterval(stepRotatingWord, 3000);
-      };
-
-      const stopRotatingTimer = () => {
-        if (rotatingTimerId === null) return;
-        window.clearInterval(rotatingTimerId);
-        rotatingTimerId = null;
-      };
-
-      const rotatingWrapEl = document.querySelector("#rotating-wrap");
 
       if (rotatingTextEl) {
         setRotatingWord(rotatingWords[rotatingIndex]);
-        startRotatingTimer();
-        rotatingWrapEl?.addEventListener("mouseenter", stopRotatingTimer);
-        rotatingWrapEl?.addEventListener("mouseleave", startRotatingTimer);
+        rotatingTextEl.addEventListener("click", stepRotatingWord);
+        rotatingTextEl.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            stepRotatingWord();
+          }
+        });
       }
 
       const projectGrid = document.querySelector(".project-grid");

@@ -22,8 +22,8 @@
   --radius-md: 0.9rem;
   --radius-lg: 1rem;
 
-  --font-heading: "Fraunces", "Georgia", "Times New Roman", serif;
-  --font-body: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Literata", "Georgia", "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-ui: "IBM Plex Mono", "Courier New", monospace;
 }
 
@@ -310,6 +310,15 @@ figure img {
   font-family: var(--font-heading);
   color: var(--accent);
   opacity: 1;
+  min-width: 5.5em;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding-bottom: 0.04em;
+}
+
+.rotating-word:hover {
+  border-bottom-color: var(--accent);
 }
 
 .rotating-word.is-transitioning {
@@ -323,17 +332,17 @@ figure img {
 
 .word-research {
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 .word-design {
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .word-interaction {
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .button-link {
@@ -472,6 +481,26 @@ figure img {
 .project-link {
   margin-top: auto;
   font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.narrow {
+  max-width: 720px;
+}
+
+.about-section p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 68ch;
+  color: var(--text-secondary);
+}
+
+.project-content > p:not(.project-link):not(.project-subtitle) {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
 }
 
 .project-main-link::after {
@@ -598,25 +627,6 @@ figure img {
   background: transparent;
 }
 
-.hades-case-study {
-  --project-bg: #111216;
-  --project-accent: #f3b34d;
-}
-
-.ai-transparency-study {
-  --project-bg: #0f1220;
-  --project-accent: #96a6ff;
-}
-
-.interaction-case-study {
-  --project-bg: #101010;
-  --project-accent: #69c4ff;
-}
-
-.noticed-case-study {
-  --project-bg: #101328;
-  --project-accent: #d4b4ff;
-}
 
 .case-study,
 .case-study main {
@@ -836,9 +846,9 @@ td {
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: color-mix(in srgb, var(--line) 60%, transparent);
-  z-index: 260;
+  height: 3px;
+  background: transparent;
+  z-index: 1100;
 }
 
 .scroll-progress-indicator {
@@ -899,22 +909,6 @@ td {
 .hero-editorial {
   position: relative;
   overflow: hidden;
-}
-
-.hero-editorial::after {
-  content: "01";
-  position: absolute;
-  bottom: -0.75rem;
-  right: 1rem;
-  font-family: var(--font-ui);
-  font-size: clamp(5rem, 16vw, 11rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: color-mix(in srgb, var(--line) 50%, transparent);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
 }
 
 /* ─────────────────────────────────────────────────────
