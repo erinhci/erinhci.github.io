@@ -43,7 +43,7 @@ A static HTML/CSS portfolio site showcasing UX research, cognitive engineering, 
 - **Tag filtering** — Project cards on the index can be filtered and sorted by methodology tag
 - **Rotating hero headline** — Cycles through "Systems / Research / Design / Interaction" with a CSS transition
 - **Accessible by default** — Skip link, ARIA labels, focus-visible outlines, reduced-motion support throughout
-- **Self-hosted typography** — Nohemi loaded via `@font-face` with `font-display: swap`; Space Grotesk via Google Fonts
+- **Space Grotesk via Google Fonts
 
 ---
 
