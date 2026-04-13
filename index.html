@@ -79,7 +79,13 @@
           <p class="eyebrow">About</p>
           <h2 id="about-title" class="section-title">Hi, I'm Erin</h2>
           <p>
-            I'm a UX researcher and designer based in the San Francisco Bay Area with a Master's in Human-Computer Interaction and a background in cognitive science and psychology. My interest in accessibility isn't a specialty I arrived at; it's been the foundation of how I think about design from the start. Good design should work for people as they actually are, not as we assume they'll be. I move across research, design, and systems thinking, and I stay close to where the field is heading: new interaction patterns, emerging tools, and shifting expectations around what technology should do for people. At the end of the day, what pulls me into this work is the problem solving. Untangling complexity, finding what's actually going on, and building something better because of it.
+            I'm a UX researcher and designer based in the San Francisco Bay Area, with a Master's in Human-Computer Interaction and a background in cognitive science and psychology.
+          </p>
+          <p>
+            Accessibility has been part of how I think about design from the beginning — not as a compliance requirement, but as a lens for building things that work for people across a wide range of contexts, abilities, and needs.
+          </p>
+          <p>
+            I work across research, design, and systems thinking. What draws me to this field is the problem-solving: figuring out what's actually happening, why, and building something better as a result.
           </p>
         </div>
       </section>
@@ -398,9 +404,18 @@
       const originalProjectOrder = [...projectCards];
       let activeTag = null;
 
+      const suppressAnimationsDuring = (fn) => {
+        if (!projectGrid) return;
+        projectGrid.classList.add("is-sorting");
+        fn();
+        requestAnimationFrame(() => projectGrid.classList.remove("is-sorting"));
+      };
+
       const restoreOriginalOrder = () => {
         if (!projectGrid) return;
-        originalProjectOrder.forEach((card) => projectGrid.appendChild(card));
+        suppressAnimationsDuring(() =>
+          originalProjectOrder.forEach((card) => projectGrid.appendChild(card))
+        );
       };
 
       const setTagHighlights = (tagText) => {
@@ -416,7 +431,9 @@
           Array.from(card.querySelectorAll(".tag")).some((tag) => tag.textContent.trim() === tagText)
         );
         const nonMatchingCards = originalProjectOrder.filter((card) => !matchingCards.includes(card));
-        [...matchingCards, ...nonMatchingCards].forEach((card) => projectGrid.appendChild(card));
+        suppressAnimationsDuring(() =>
+          [...matchingCards, ...nonMatchingCards].forEach((card) => projectGrid.appendChild(card))
+        );
       };
 
       const resetTagFilter = () => {
