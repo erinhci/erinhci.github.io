@@ -1,121 +1,140 @@
 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" width="800" height="500">
   <defs>
     <style>
-      .bg { fill: #0d1016; }
-      .user-bubble { fill: #1e2535; stroke: #2e3a52; stroke-width: 1; }
-      .ai-bubble { fill: #131926; stroke: #263047; stroke-width: 1; }
-      .user-text { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #c8cfdd; font-size: 11.5px; }
-      .ai-text { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #e2e7f4; font-size: 11.5px; }
-      .label { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #4a566e; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
-      .muted { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #3d4d66; font-size: 9px; letter-spacing: 0.06em; }
-      .trust-high { fill: #1a3a2e; stroke: #2d6b53; stroke-width: 1; }
-      .trust-mid { fill: #3a2e10; stroke: #7a6020; stroke-width: 1; }
-      .trust-low { fill: #3a1a1a; stroke: #7a3030; stroke-width: 1; }
-      .trust-text-high { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #4dc98a; font-size: 9px; letter-spacing: 0.08em; }
-      .trust-text-mid { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #f0b429; font-size: 9px; letter-spacing: 0.08em; }
-      .trust-text-low { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #f06060; font-size: 9px; letter-spacing: 0.08em; }
-      .icon-user { fill: #3d4d66; }
-      .icon-ai { fill: #2e3a52; }
-      .iteration-dot { fill: #2e3a52; }
-      .iteration-dot-active { fill: #4a7cdc; }
-      .bar-track { fill: #1e2535; rx: 3; }
-      .bar-fill { fill: #4a7cdc; rx: 3; }
-      .section-label { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #3d4d66; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
-      .title-text { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #e2e7f4; font-size: 12.5px; font-weight: 600; }
-      .highlight { fill: #4a7cdc; }
+      /* Light mode (default) */
+      .bg         { fill: #fafaf9; }
+      .bubble-user  { fill: #f0ede8; stroke: #d4d0cb; stroke-width: 1; }
+      .bubble-ai    { fill: #ffffff; stroke: #d4d0cb; stroke-width: 1; }
+      .panel      { fill: #f5f3f0; stroke: #d4d0cb; stroke-width: 1.5; }
+      .signal-box { fill: #eceae6; stroke: #d4d0cb; stroke-width: 1; }
+      .txt-user   { font-family: system-ui, sans-serif; fill: #222222; font-size: 11.5px; }
+      .txt-ai     { font-family: system-ui, sans-serif; fill: #151515; font-size: 11.5px; }
+      .txt-label  { font-family: monospace; fill: #9c9790; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+      .txt-muted  { font-family: monospace; fill: #b0a8a0; font-size: 9px; letter-spacing: 0.06em; }
+      .txt-section { font-family: monospace; fill: #b0a8a0; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+      .trust-high { fill: #f0f9f4; stroke: #34a36e; stroke-width: 1; }
+      .trust-mid  { fill: #fffbf0; stroke: #d4a017; stroke-width: 1; }
+      .ttxt-high  { font-family: monospace; fill: #1a7a4a; font-size: 9px; letter-spacing: 0.08em; }
+      .ttxt-mid   { font-family: monospace; fill: #8c6d00; font-size: 9px; letter-spacing: 0.08em; }
+      .bar-track  { fill: #e8e4df; }
+      .bar-fill   { fill: #2a5abf; }
+      .bar-low    { fill: #c8c2bc; }
+      .dot-active { fill: #2a5abf; }
+      .dot-off    { fill: #d4d0cb; }
+
+      @media (prefers-color-scheme: dark) {
+        .bg         { fill: #121110; }
+        .bubble-user  { fill: #1e1c1a; stroke: #2c2a28; stroke-width: 1; }
+        .bubble-ai    { fill: #1a1817; stroke: #2c2a28; stroke-width: 1; }
+        .panel      { fill: #1a1817; stroke: #2c2a28; stroke-width: 1.5; }
+        .signal-box { fill: #1e1c1a; stroke: #2c2a28; stroke-width: 1; }
+        .txt-user   { fill: #d8d4cd; }
+        .txt-ai     { fill: #f0ede8; }
+        .txt-label  { fill: #6b6560; }
+        .txt-muted  { fill: #5a5450; }
+        .txt-section { fill: #5a5450; }
+        .trust-high { fill: #1a3a2e; stroke: #2d6b53; stroke-width: 1; }
+        .trust-mid  { fill: #3a2e10; stroke: #7a6020; stroke-width: 1; }
+        .ttxt-high  { fill: #4dc98a; }
+        .ttxt-mid   { fill: #f0b429; }
+        .bar-track  { fill: #2a2825; }
+        .bar-fill   { fill: #4a7cdc; }
+        .bar-low    { fill: #3d3b38; }
+        .dot-active { fill: #4a7cdc; }
+        .dot-off    { fill: #2c2a28; }
+      }
     </style>
   </defs>
 
   <!-- Background -->
   <rect width="800" height="500" class="bg"/>
 
-  <!-- Subtle grid -->
-  <line x1="0" y1="0" x2="800" y2="0" stroke="#1a2030" stroke-width="0.5"/>
-
   <!-- Header -->
-  <text x="48" y="46" class="section-label">AI Transparency Study  ·  Iterative Prompting  ·  Trust Calibration</text>
+  <text x="48" y="46" class="txt-section">AI Transparency Study  ·  Iterative Prompting  ·  Trust Calibration</text>
 
-  <!-- Conversation thread — iteration 1 -->
-  <text x="48" y="72" class="label">Prompt iteration 01</text>
+  <!-- Iteration 01 label -->
+  <text x="48" y="72" class="txt-label">Prompt iteration 01</text>
 
   <!-- User bubble 1 -->
-  <rect x="48" y="80" width="340" height="44" rx="7" class="user-bubble"/>
-  <text x="66" y="99" class="user-text">How does photosynthesis work?</text>
-  <text x="66" y="115" class="muted">USER  ·  INITIAL QUERY</text>
+  <rect x="48" y="80" width="340" height="44" rx="7" class="bubble-user"/>
+  <text x="66" y="99" class="txt-user">How does photosynthesis work?</text>
+  <text x="66" y="115" class="txt-muted">USER  ·  INITIAL QUERY</text>
 
   <!-- AI bubble 1 -->
-  <rect x="48" y="132" width="340" height="58" rx="7" class="ai-bubble"/>
-  <text x="66" y="150" class="ai-text">Plants use sunlight, water, and CO₂ to</text>
-  <text x="66" y="166" class="ai-text">produce glucose and oxygen via chlorophyll.</text>
-  <text x="66" y="183" class="muted">MODEL  ·  BRIEF RESPONSE</text>
+  <rect x="48" y="132" width="340" height="58" rx="7" class="bubble-ai"/>
+  <text x="66" y="150" class="txt-ai">Plants use sunlight, water, and CO₂ to</text>
+  <text x="66" y="166" class="txt-ai">produce glucose and oxygen via chlorophyll.</text>
+  <text x="66" y="183" class="txt-muted">MODEL  ·  BRIEF RESPONSE</text>
 
-  <!-- Trust score pill 1 -->
+  <!-- Trust pill 1 -->
   <rect x="398" y="136" width="120" height="22" rx="11" class="trust-mid"/>
-  <text x="458" y="151" text-anchor="middle" class="trust-text-mid">TRUST  ·  MODERATE</text>
+  <text x="458" y="151" text-anchor="middle" class="ttxt-mid">TRUST  ·  MODERATE</text>
 
-  <!-- Iteration 2 -->
-  <text x="48" y="216" class="label">Prompt iteration 02 — follow-up</text>
+  <!-- Iteration 02 label -->
+  <text x="48" y="216" class="txt-label">Prompt iteration 02 — follow-up</text>
 
-  <rect x="48" y="224" width="340" height="44" rx="7" class="user-bubble"/>
-  <text x="66" y="243" class="user-text">Can you break that down step by step</text>
-  <text x="66" y="258" class="user-text">with the light and dark reactions?</text>
+  <!-- User bubble 2 -->
+  <rect x="48" y="224" width="340" height="44" rx="7" class="bubble-user"/>
+  <text x="66" y="243" class="txt-user">Can you break that down step by step</text>
+  <text x="66" y="258" class="txt-user">with the light and dark reactions?</text>
 
-  <rect x="48" y="276" width="340" height="72" rx="7" class="ai-bubble"/>
-  <text x="66" y="295" class="ai-text">Step 1: Light reactions in thylakoid membranes</text>
-  <text x="66" y="311" class="ai-text">capture solar energy → ATP + NADPH.</text>
-  <text x="66" y="327" class="ai-text">Step 2: Calvin cycle fixes CO₂ → glucose.</text>
-  <text x="66" y="342" class="muted">MODEL  ·  STRUCTURED RESPONSE</text>
+  <!-- AI bubble 2 -->
+  <rect x="48" y="276" width="340" height="72" rx="7" class="bubble-ai"/>
+  <text x="66" y="295" class="txt-ai">Step 1: Light reactions in thylakoid membranes</text>
+  <text x="66" y="311" class="txt-ai">capture solar energy → ATP + NADPH.</text>
+  <text x="66" y="327" class="txt-ai">Step 2: Calvin cycle fixes CO₂ → glucose.</text>
+  <text x="66" y="342" class="txt-muted">MODEL  ·  STRUCTURED RESPONSE</text>
 
-  <!-- Trust score pill 2 -->
+  <!-- Trust pill 2 -->
   <rect x="398" y="280" width="110" height="22" rx="11" class="trust-high"/>
-  <text x="453" y="295" text-anchor="middle" class="trust-text-high">TRUST  ·  HIGH</text>
+  <text x="453" y="295" text-anchor="middle" class="ttxt-high">TRUST  ·  HIGH</text>
 
-  <!-- Right panel — trust calibration analysis -->
-  <rect x="536" y="68" width="216" height="320" rx="10" fill="#131926" stroke="#263047" stroke-width="1.5"/>
-  <text x="644" y="92" text-anchor="middle" class="section-label">Trust Signals</text>
+  <!-- Right panel -->
+  <rect x="536" y="68" width="216" height="320" rx="10" class="panel"/>
+  <text x="644" y="92" text-anchor="middle" class="txt-section">Trust Signals</text>
 
   <!-- Signal: Structure -->
-  <rect x="556" y="104" width="176" height="52" rx="6" fill="#1a2030" stroke="#263047" stroke-width="1"/>
-  <text x="572" y="122" class="label">Structure</text>
+  <rect x="556" y="104" width="176" height="52" rx="6" class="signal-box"/>
+  <text x="572" y="122" class="txt-label">Structure</text>
   <rect x="572" y="130" width="100" height="6" rx="3" class="bar-track"/>
   <rect x="572" y="130" width="88" height="6" rx="3" class="bar-fill"/>
-  <text x="680" y="137" class="trust-text-high">88%</text>
-  <text x="572" y="148" class="muted">Numbered lists, clear headers</text>
+  <text x="680" y="137" class="ttxt-high">88%</text>
+  <text x="572" y="148" class="txt-muted">Numbered lists, clear headers</text>
 
   <!-- Signal: Tone -->
-  <rect x="556" y="164" width="176" height="52" rx="6" fill="#1a2030" stroke="#263047" stroke-width="1"/>
-  <text x="572" y="182" class="label">Tone</text>
+  <rect x="556" y="164" width="176" height="52" rx="6" class="signal-box"/>
+  <text x="572" y="182" class="txt-label">Tone</text>
   <rect x="572" y="190" width="100" height="6" rx="3" class="bar-track"/>
   <rect x="572" y="190" width="74" height="6" rx="3" class="bar-fill"/>
-  <text x="680" y="197" class="trust-text-high">74%</text>
-  <text x="572" y="208" class="muted">Confident, not hedging</text>
+  <text x="680" y="197" class="ttxt-high">74%</text>
+  <text x="572" y="208" class="txt-muted">Confident, not hedging</text>
 
   <!-- Signal: Citations -->
-  <rect x="556" y="224" width="176" height="52" rx="6" fill="#1a2030" stroke="#263047" stroke-width="1"/>
-  <text x="572" y="242" class="label">Citations</text>
+  <rect x="556" y="224" width="176" height="52" rx="6" class="signal-box"/>
+  <text x="572" y="242" class="txt-label">Citations</text>
   <rect x="572" y="250" width="100" height="6" rx="3" class="bar-track"/>
-  <rect x="572" y="250" width="28" height="6" rx="3" fill="#3d4d66" rx="3"/>
-  <text x="680" y="257" class="muted">28%</text>
-  <text x="572" y="268" class="muted">Low weight in credibility</text>
+  <rect x="572" y="250" width="28" height="6" rx="3" class="bar-low"/>
+  <text x="680" y="257" class="txt-muted">28%</text>
+  <text x="572" y="268" class="txt-muted">Low weight in credibility</text>
 
   <!-- Signal: Interactivity -->
-  <rect x="556" y="284" width="176" height="52" rx="6" fill="#1a2030" stroke="#263047" stroke-width="1"/>
-  <text x="572" y="302" class="label">Interactivity</text>
+  <rect x="556" y="284" width="176" height="52" rx="6" class="signal-box"/>
+  <text x="572" y="302" class="txt-label">Interactivity</text>
   <rect x="572" y="310" width="100" height="6" rx="3" class="bar-track"/>
   <rect x="572" y="310" width="82" height="6" rx="3" class="bar-fill"/>
-  <text x="680" y="317" class="trust-text-high">82%</text>
-  <text x="572" y="328" class="muted">Follow-up clarifies trust</text>
+  <text x="680" y="317" class="ttxt-high">82%</text>
+  <text x="572" y="328" class="txt-muted">Follow-up clarifies trust</text>
 
-  <!-- n= -->
-  <text x="556" y="364" class="section-label">n=12  ·  thematic coding</text>
+  <!-- Study metadata -->
+  <text x="556" y="364" class="txt-section">n=12  ·  thematic coding</text>
 
   <!-- Bottom label -->
-  <text x="48" y="430" class="label">Perceived Transparency in Generative AI  ·  Qualitative Study</text>
+  <text x="48" y="430" class="txt-label">Perceived Transparency in Generative AI  ·  Qualitative Study</text>
 
-  <!-- Iteration dots -->
-  <circle cx="48" cy="460" r="5" class="iteration-dot-active"/>
-  <circle cx="62" cy="460" r="5" class="iteration-dot-active"/>
-  <circle cx="76" cy="460" r="5" class="iteration-dot"/>
-  <circle cx="90" cy="460" r="5" class="iteration-dot"/>
-  <text x="104" y="464" class="muted">Avg 2.4 iterations to high-trust response</text>
+  <!-- Iteration progress dots -->
+  <circle cx="48" cy="460" r="5" class="dot-active"/>
+  <circle cx="62" cy="460" r="5" class="dot-active"/>
+  <circle cx="76" cy="460" r="5" class="dot-off"/>
+  <circle cx="90" cy="460" r="5" class="dot-off"/>
+  <text x="104" y="464" class="txt-muted">Avg 2.4 iterations to high-trust response</text>
 </svg>
