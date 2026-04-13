@@ -50,7 +50,7 @@
     <main id="main">
       <section class="hero section" aria-labelledby="case-study-title">
         <div class="container content-container">
-          <p class="eyebrow">Hero</p>
+          <p class="eyebrow">Case Study</p>
           <h1 id="case-study-title">A design system built for the complexity of higher ed</h1>
           <p class="tagline insight-box">
             EduFlow is a component library and design language for university registration platforms. Built for environments where accessibility isn't optional, consistency is hard to maintain, and dozens of teams are all building at once.
@@ -112,6 +112,113 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="atoms-showcase-title">
+        <div class="container content-container">
+          <h2 id="atoms-showcase-title">Atoms in practice</h2>
+          <p>Below is a sample of the foundational atoms that underpin the EduFlow component library — color, typography, interactive controls, and status indicators — all accessible by default and built to compose.</p>
+
+          <div class="eduflow-showcase">
+
+            <!-- Color Swatches -->
+            <div class="eduflow-showcase-group">
+              <p class="eduflow-showcase-label">Color Tokens</p>
+              <div class="eduflow-swatches">
+                <div class="eduflow-swatch">
+                  <div class="eduflow-swatch-block" style="background:#25344F;"></div>
+                  <span class="eduflow-swatch-name">Primary</span>
+                  <span class="eduflow-swatch-hex">#25344F</span>
+                </div>
+                <div class="eduflow-swatch">
+                  <div class="eduflow-swatch-block" style="background:#617891;"></div>
+                  <span class="eduflow-swatch-name">Secondary</span>
+                  <span class="eduflow-swatch-hex">#617891</span>
+                </div>
+                <div class="eduflow-swatch">
+                  <div class="eduflow-swatch-block" style="background:#632024;"></div>
+                  <span class="eduflow-swatch-name">Error</span>
+                  <span class="eduflow-swatch-hex">#632024</span>
+                </div>
+                <div class="eduflow-swatch">
+                  <div class="eduflow-swatch-block" style="background:#E5E5E5; border: 1px solid #ccc;"></div>
+                  <span class="eduflow-swatch-name">Neutral</span>
+                  <span class="eduflow-swatch-hex">#E5E5E5</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Typography Scale -->
+            <div class="eduflow-showcase-group">
+              <p class="eduflow-showcase-label">Typography Scale</p>
+              <div class="eduflow-type-stack">
+                <div class="eduflow-type-row">
+                  <span class="eduflow-type-meta">H1 · 36px · 700</span>
+                  <span class="eduflow-type-sample" style="font-size:1.6rem; font-weight:700; color:#25344F;">Register for Spring 2025</span>
+                </div>
+                <div class="eduflow-type-row">
+                  <span class="eduflow-type-meta">H2 · 24px · 600</span>
+                  <span class="eduflow-type-sample" style="font-size:1.2rem; font-weight:600; color:#25344F;">Course Catalog</span>
+                </div>
+                <div class="eduflow-type-row">
+                  <span class="eduflow-type-meta">Body · 16px · 400</span>
+                  <span class="eduflow-type-sample" style="font-size:0.95rem;">BIOL 201 — Cell Biology (4 credits)</span>
+                </div>
+                <div class="eduflow-type-row">
+                  <span class="eduflow-type-meta">Caption · 12px · 500 · uppercase</span>
+                  <span class="eduflow-type-sample" style="font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#617891;">Required · Fall/Spring</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="eduflow-showcase-group">
+              <p class="eduflow-showcase-label">Button Variants</p>
+              <div class="eduflow-atoms-row">
+                <button class="ef-btn ef-btn-primary" type="button">Add to Schedule</button>
+                <button class="ef-btn ef-btn-primary ef-btn-sm" type="button">Register</button>
+                <button class="ef-btn ef-btn-secondary" type="button">View Details</button>
+                <button class="ef-btn ef-btn-ghost" type="button">Dismiss</button>
+                <button class="ef-btn ef-btn-primary" type="button" disabled aria-disabled="true">Closed</button>
+              </div>
+            </div>
+
+            <!-- Status Badges -->
+            <div class="eduflow-showcase-group">
+              <p class="eduflow-showcase-label">Status &amp; Category Badges</p>
+              <div class="eduflow-atoms-row">
+                <span class="ef-badge ef-badge-open">Open</span>
+                <span class="ef-badge ef-badge-waitlist">Waitlist</span>
+                <span class="ef-badge ef-badge-closed">Closed</span>
+                <span class="ef-badge ef-badge-outline">Required</span>
+                <span class="ef-badge ef-badge-outline">Elective</span>
+                <span class="ef-badge ef-badge-outline">Lab</span>
+                <span class="ef-badge ef-badge-outline">Online</span>
+              </div>
+            </div>
+
+            <!-- Input Examples -->
+            <div class="eduflow-showcase-group">
+              <p class="eduflow-showcase-label">Input Fields</p>
+              <div class="eduflow-inputs-row">
+                <div class="ef-input-wrap">
+                  <label class="ef-label" for="ef-search">Course Search</label>
+                  <input class="ef-input" type="text" id="ef-search" placeholder="Search by title, code, or instructor" />
+                </div>
+                <div class="ef-input-wrap">
+                  <label class="ef-label" for="ef-disabled">Semester</label>
+                  <input class="ef-input ef-input-disabled" type="text" id="ef-disabled" value="Spring 2025" disabled />
+                </div>
+                <div class="ef-input-wrap">
+                  <label class="ef-label ef-label-error" for="ef-error">Credit Hours</label>
+                  <input class="ef-input ef-input-error" type="text" id="ef-error" value="25" aria-describedby="ef-error-msg" />
+                  <span class="ef-error-msg" id="ef-error-msg">Exceeds maximum credit load (18 credits).</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <section class="section" aria-labelledby="ai-components-title">
         <div class="container content-container">
           <h2 id="ai-components-title">AI-powered components</h2>
@@ -129,6 +236,160 @@
               <strong>Advisor Analytics Dashboard:</strong> Surfaces at-risk signals like a declining GPA, missed appointments, or no contact in 30 days so advisors can triage their caseload and take action without jumping between tools.
             </li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="ai-demos-title">
+        <div class="container content-container">
+          <h2 id="ai-demos-title">AI components, demonstrated</h2>
+          <p>Two of EduFlow's three AI-powered components are shown below as static mockups. Each surfaces a different dimension of the design challenge: making AI assistance feel trustworthy and legible in a high-stakes academic context.</p>
+
+          <div class="eduflow-component-demos">
+
+            <!-- Course Recommendation Widget -->
+            <div class="ef-demo-card">
+              <div class="ef-demo-header">
+                <span class="ef-demo-icon" aria-hidden="true">✦</span>
+                <span class="ef-demo-title">AI Course Recommendations</span>
+                <span class="ef-badge ef-badge-ai">AI-Powered</span>
+              </div>
+              <p class="ef-demo-desc">Surfaces course suggestions based on academic history, major requirements, and peer patterns. An explainability layer shows why each course was recommended.</p>
+
+              <div class="ef-course-list">
+                <!-- Course 1 -->
+                <div class="ef-course-item">
+                  <div class="ef-course-score ef-score-high">94%</div>
+                  <div class="ef-course-info">
+                    <div class="ef-course-top">
+                      <span class="ef-course-code">BIOL 301</span>
+                      <span class="ef-course-name">Molecular Biology</span>
+                    </div>
+                    <div class="ef-course-meta">
+                      <span>4 credits</span>
+                      <span>★★★★☆ 4.2</span>
+                      <span>MWF 10–11am</span>
+                    </div>
+                    <div class="ef-course-tags">
+                      <span class="ef-badge ef-badge-outline">Required</span>
+                      <span class="ef-badge ef-badge-outline">Lab</span>
+                    </div>
+                    <div class="ef-why-box">
+                      <span class="ef-why-icon" aria-hidden="true">ⓘ</span>
+                      Satisfies BIOL major requirement. 87% of students with your GPA rated this course positively.
+                    </div>
+                    <div class="ef-course-actions">
+                      <button class="ef-btn ef-btn-primary ef-btn-sm" type="button">Add to Schedule</button>
+                      <button class="ef-btn ef-btn-ghost ef-btn-sm" type="button">Not interested</button>
+                      <span class="ef-feedback-btns">
+                        <button class="ef-btn ef-btn-ghost ef-btn-sm" type="button" aria-label="Helpful suggestion">👍</button>
+                        <button class="ef-btn ef-btn-ghost ef-btn-sm" type="button" aria-label="Not helpful">👎</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="ef-course-item">
+                  <div class="ef-course-score ef-score-mid">81%</div>
+                  <div class="ef-course-info">
+                    <div class="ef-course-top">
+                      <span class="ef-course-code">CHEM 220</span>
+                      <span class="ef-course-name">Organic Chemistry I</span>
+                    </div>
+                    <div class="ef-course-meta">
+                      <span>3 credits</span>
+                      <span>★★★☆☆ 3.5</span>
+                      <span>TTh 2–3:30pm</span>
+                    </div>
+                    <div class="ef-course-tags">
+                      <span class="ef-badge ef-badge-waitlist">Waitlist</span>
+                      <span class="ef-badge ef-badge-outline">Elective</span>
+                    </div>
+                    <div class="ef-why-box">
+                      <span class="ef-why-icon" aria-hidden="true">ⓘ</span>
+                      Common prerequisite path for BIOL majors. You have no schedule conflicts this slot.
+                    </div>
+                    <div class="ef-course-actions">
+                      <button class="ef-btn ef-btn-secondary ef-btn-sm" type="button">Join Waitlist</button>
+                      <button class="ef-btn ef-btn-ghost ef-btn-sm" type="button">Not interested</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advisor Analytics Dashboard -->
+            <div class="ef-demo-card">
+              <div class="ef-demo-header">
+                <span class="ef-demo-icon" aria-hidden="true">▦</span>
+                <span class="ef-demo-title">Advisor Analytics Dashboard</span>
+                <span class="ef-badge ef-badge-ai">AI Insights</span>
+              </div>
+              <p class="ef-demo-desc">Surfaces at-risk signals so advisors can triage their caseload without jumping between tools. Flags declining GPA, missed appointments, and extended silence.</p>
+
+              <!-- Metrics grid -->
+              <div class="ef-metrics-grid">
+                <div class="ef-metric">
+                  <span class="ef-metric-value">47</span>
+                  <span class="ef-metric-label">Active Advisees</span>
+                  <span class="ef-metric-delta ef-delta-up">+3%</span>
+                </div>
+                <div class="ef-metric">
+                  <span class="ef-metric-value ef-metric-alert">8</span>
+                  <span class="ef-metric-label">At-Risk Students</span>
+                  <span class="ef-metric-delta ef-delta-down">−2%</span>
+                </div>
+                <div class="ef-metric">
+                  <span class="ef-metric-value">12</span>
+                  <span class="ef-metric-label">Meetings This Week</span>
+                  <span class="ef-metric-delta ef-delta-up">+5%</span>
+                </div>
+                <div class="ef-metric">
+                  <span class="ef-metric-value">4.2h</span>
+                  <span class="ef-metric-label">Avg Response Time</span>
+                  <span class="ef-metric-delta ef-delta-down">−15%</span>
+                </div>
+              </div>
+
+              <!-- Student cards -->
+              <div class="ef-student-list">
+                <div class="ef-student ef-risk-high">
+                  <div class="ef-student-avatar" aria-hidden="true">JD</div>
+                  <div class="ef-student-info">
+                    <span class="ef-student-name">Jordan D.</span>
+                    <span class="ef-student-major">Biology · 2.1 GPA</span>
+                    <div class="ef-student-progress" title="74 / 120 credits completed">
+                      <div class="ef-progress-bar" style="width:62%;" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="120" aria-label="74 of 120 credits completed"></div>
+                    </div>
+                  </div>
+                  <span class="ef-risk-badge ef-risk-high-badge">High Risk</span>
+                </div>
+                <div class="ef-student ef-risk-mid">
+                  <div class="ef-student-avatar" aria-hidden="true">AB</div>
+                  <div class="ef-student-info">
+                    <span class="ef-student-name">Amara B.</span>
+                    <span class="ef-student-major">Psychology · 3.1 GPA</span>
+                    <div class="ef-student-progress" title="56 / 120 credits completed">
+                      <div class="ef-progress-bar" style="width:47%;" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="120" aria-label="56 of 120 credits completed"></div>
+                    </div>
+                  </div>
+                  <span class="ef-risk-badge ef-risk-mid-badge">Medium</span>
+                </div>
+                <div class="ef-student ef-risk-low">
+                  <div class="ef-student-avatar" aria-hidden="true">MK</div>
+                  <div class="ef-student-info">
+                    <span class="ef-student-name">Marcus K.</span>
+                    <span class="ef-student-major">Chemistry · 3.8 GPA</span>
+                    <div class="ef-student-progress" title="102 / 120 credits completed">
+                      <div class="ef-progress-bar" style="width:85%;" role="progressbar" aria-valuenow="102" aria-valuemin="0" aria-valuemax="120" aria-label="102 of 120 credits completed"></div>
+                    </div>
+                  </div>
+                  <span class="ef-risk-badge ef-risk-low-badge">On Track</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 

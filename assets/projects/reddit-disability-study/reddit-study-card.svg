@@ -1,0 +1,110 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+  <defs>
+    <style>
+      .bg { fill: #f7f4f0; }
+      .bubble { fill: #fff; stroke: #d9d2cc; stroke-width: 1.5; rx: 8; }
+      .bubble-alt { fill: #faf7f5; stroke: #d9d2cc; stroke-width: 1.5; }
+      .avatar { fill: #e8e0d8; }
+      .avatar-sm { fill: #d9d2cc; }
+      .label { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #7a7068; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #2a2420; font-size: 12px; line-height: 1.5; }
+      .muted { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #9c928a; font-size: 10.5px; }
+      .tag { fill: #f0ebe6; stroke: #c9bfb8; stroke-width: 1; }
+      .tag-text { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #6b6059; font-size: 9.5px; }
+      .connector { stroke: #d9d2cc; stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+      .upvote { fill: #c9bfb8; }
+      .title-text { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; fill: #1a1512; font-size: 13px; font-weight: 600; }
+      .section-label { font-family: 'IBM Plex Mono', monospace, sans-serif; fill: #a8a09a; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" class="bg"/>
+
+  <!-- Subtle grid texture -->
+  <rect x="0" y="0" width="800" height="500" fill="none" stroke="#ede8e3" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Header label -->
+  <text x="48" y="52" class="section-label">Qualitative Research  ·  r/disability  ·  Online Communities</text>
+
+  <!-- Thread 1 — main post -->
+  <rect x="48" y="68" width="420" height="118" rx="8" class="bubble"/>
+  <!-- Avatar -->
+  <circle cx="72" cy="92" r="12" class="avatar"/>
+  <text x="72" y="96" text-anchor="middle" font-family="system-ui" font-size="10" fill="#9c928a">u/</text>
+  <!-- Username + subreddit -->
+  <text x="92" y="87" class="muted">u/throwaway_ehlersdanlos  ·  r/ChronicPain</text>
+  <!-- Post title -->
+  <text x="92" y="106" class="title-text">Does anyone else feel like their diagnosis</text>
+  <text x="92" y="122" class="title-text">is their whole identity now?</text>
+  <!-- Excerpt -->
+  <text x="92" y="142" class="body">I used to be an artist. Now I'm just a sick person who</text>
+  <text x="92" y="157" class="body">used to make art. Reddit is the only place I feel seen.</text>
+  <!-- Upvote + comments -->
+  <text x="68" y="176" class="muted">▲ 847</text>
+  <text x="110" y="176" class="muted">💬 312 comments</text>
+
+  <!-- Thread 2 — reply -->
+  <line x1="108" y1="186" x2="108" y2="215" class="connector"/>
+  <rect x="120" y="198" width="348" height="80" rx="8" class="bubble-alt"/>
+  <circle cx="144" cy="218" r="10" class="avatar-sm"/>
+  <text x="162" y="213" class="muted">u/spoonie.solidarity</text>
+  <text x="162" y="232" class="body">This is exactly why I come here. My neurologist has</text>
+  <text x="162" y="247" class="body">15 minutes for me. This community has hours.</text>
+  <text x="140" y="270" class="muted">▲ 234</text>
+
+  <!-- Thread 3 — another reply -->
+  <line x1="108" y1="278" x2="108" y2="305" class="connector"/>
+  <rect x="120" y="292" width="348" height="64" rx="8" class="bubble-alt"/>
+  <circle cx="144" cy="312" r="10" class="avatar-sm"/>
+  <text x="162" y="307" class="muted">u/neurodivergent.nest</text>
+  <text x="162" y="326" class="body">Storytelling here is how I process things my therapist</text>
+  <text x="162" y="341" class="body">doesn't understand yet.</text>
+  <text x="140" y="348" class="muted">▲ 189</text>
+
+  <!-- Tags row -->
+  <rect x="48" y="374" width="88" height="20" rx="10" class="tag"/>
+  <text x="92" y="388" text-anchor="middle" class="tag-text">Community</text>
+
+  <rect x="144" y="374" width="100" height="20" rx="10" class="tag"/>
+  <text x="194" y="388" text-anchor="middle" class="tag-text">Storytelling</text>
+
+  <rect x="252" y="374" width="82" height="20" rx="10" class="tag"/>
+  <text x="293" y="388" text-anchor="middle" class="tag-text">Disability</text>
+
+  <rect x="342" y="374" width="80" height="20" rx="10" class="tag"/>
+  <text x="382" y="388" text-anchor="middle" class="tag-text">Belonging</text>
+
+  <!-- Right panel — research lens -->
+  <rect x="496" y="68" width="256" height="326" rx="10" fill="#fff" stroke="#d9d2cc" stroke-width="1.5"/>
+  <rect x="496" y="68" width="256" height="40" rx="10" fill="#f0ebe6" stroke="#d9d2cc" stroke-width="1.5"/>
+  <rect x="496" y="88" width="256" height="20" fill="#f0ebe6"/>
+  <text x="624" y="93" text-anchor="middle" class="section-label">Research Lens</text>
+
+  <!-- Finding 1 -->
+  <rect x="516" y="122" width="216" height="70" rx="6" fill="#faf7f5" stroke="#e8e0d8" stroke-width="1"/>
+  <text x="532" y="140" class="label">Theme 01</text>
+  <text x="532" y="158" class="body">Narrative as identity</text>
+  <text x="532" y="174" class="body">reclamation</text>
+  <text x="532" y="186" class="muted">Stories reframe lived experience</text>
+
+  <!-- Finding 2 -->
+  <rect x="516" y="204" width="216" height="70" rx="6" fill="#faf7f5" stroke="#e8e0d8" stroke-width="1"/>
+  <text x="532" y="222" class="label">Theme 02</text>
+  <text x="532" y="240" class="body">Community validation</text>
+  <text x="532" y="256" class="body">over clinical legitimacy</text>
+  <text x="532" y="268" class="muted">Peers > professionals for belonging</text>
+
+  <!-- Finding 3 -->
+  <rect x="516" y="286" width="216" height="70" rx="6" fill="#faf7f5" stroke="#e8e0d8" stroke-width="1"/>
+  <text x="532" y="304" class="label">Theme 03</text>
+  <text x="532" y="322" class="body">Anonymity enables</text>
+  <text x="532" y="338" class="body">authentic disclosure</text>
+  <text x="532" y="350" class="muted">Throwaway accounts, real stories</text>
+
+  <!-- n= -->
+  <text x="516" y="378" class="section-label">n = 47 posts  ·  thematic analysis</text>
+
+  <!-- Bottom label -->
+  <text x="48" y="430" class="label">Storytelling in Disability Spaces on Reddit  ·  Qualitative Research</text>
+</svg>
