@@ -22,7 +22,7 @@
   --radius-md: 8px;
   --radius-lg: 10px;
 
-  --font-heading: "Syne", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-ui: "IBM Plex Mono", "Courier New", monospace;
 }
@@ -80,7 +80,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.72;
   color: var(--text-primary);
   background: var(--bg);
 }
@@ -105,21 +105,24 @@ h6 {
   margin: 0 0 0.85rem;
   color: var(--text-primary);
   font-family: var(--font-heading);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  font-weight: 800;
+  font-optical-sizing: auto;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-size: clamp(3rem, 7.5vw, 5.5rem);
+  font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
 }
 
 h3 {
   font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 600;
 }
 
 .project-card h3 {
@@ -212,12 +215,13 @@ main {
 
 .brand {
   font-family: var(--font-heading);
+  font-optical-sizing: auto;
   color: var(--text-primary);
   text-decoration: none;
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
 .nav-links {
@@ -235,18 +239,18 @@ main {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   padding: 0.3rem 0.5rem;
 }
 
 .section,
 .hero {
   scroll-margin-top: calc(var(--header-height) + 1rem);
-  padding: clamp(2.6rem, 5.5vw, 5rem) 0;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .hero {
-  padding: clamp(2.8rem, 6vw, 5.5rem) 0;
+  padding: clamp(5rem, 10vw, 9rem) 0;
 }
 
 .content-container img,
@@ -302,7 +306,15 @@ figcaption {
 
 .hero-layout {
   border-bottom: 1px solid var(--line);
-  padding-bottom: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.hero-title {
+  font-style: italic;
+}
+
+.nowrap-ux {
+  font-style: normal;
 }
 
 .hero-copy {
@@ -322,6 +334,7 @@ figcaption {
 .rotating-word {
   display: inline-block;
   font-family: var(--font-heading);
+  font-style: normal;
   color: var(--accent);
   opacity: 1;
   min-width: 5.5em;
@@ -364,10 +377,10 @@ figcaption {
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   text-decoration: none;
-  padding: 0.62rem 1rem;
+  padding: 0.75rem 1.4rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-top: 0.75rem;
+  letter-spacing: 0.06em;
+  margin-top: 1rem;
 }
 
 .button-primary {
@@ -384,8 +397,8 @@ figcaption {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
   align-items: stretch;
 }
 
@@ -395,8 +408,25 @@ figcaption {
   min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.project-card--featured {
+  grid-column: span 2;
+}
+
+.project-card--featured .project-image {
+  aspect-ratio: 16 / 9;
+}
+
+.project-card--featured .project-content {
+  padding: 2rem;
+}
+
+.project-card--featured h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
 }
 
 .project-card-shell {
@@ -423,26 +453,27 @@ figcaption {
   align-items: center;
   padding: 0.3rem 0.55rem;
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(16, 20, 30, 0.5);
+  background: rgba(20, 24, 34, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #ffffff;
+  color: #f0ede7;
   font-size: 0.72rem;
   letter-spacing: 0.03em;
 }
 
 [data-theme="light"] .project-image-overlay {
-  background: rgba(20, 24, 34, 0.38);
-  color: #ffffff;
+  background: rgba(20, 24, 34, 0.72);
+  color: #f0ede7;
   border-color: rgba(16, 20, 30, 0.5);
 }
 
 [data-theme="dark"] .project-image-overlay {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(8, 8, 8, 0.75);
+  color: #f0ede7;
+  border-color: rgba(255, 255, 255, 0.12);
 }
+
 
 .project-image img,
 .case-media img {
@@ -460,8 +491,8 @@ figcaption {
 .project-content {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.6rem;
+  gap: 0.85rem;
+  padding: 1.75rem;
   height: 100%;
 }
 
@@ -535,8 +566,8 @@ figcaption {
 
 .project-card:hover {
   border-color: var(--accent);
-  transform: translateY(-6px) scale(1.015);
-  box-shadow: 0 24px 48px -12px color-mix(in srgb, var(--accent) 18%, rgba(0, 0, 0, 0.14));
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--accent) 16%, rgba(0, 0, 0, 0.12));
 }
 
 .project-card:hover .project-image img {
@@ -558,7 +589,7 @@ figcaption {
   }
 
   .project-card {
-    transition: border-color 200ms ease, transform 360ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 360ms ease;
+    transition: border-color 200ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms ease;
   }
 
   .project-tag {
@@ -896,7 +927,7 @@ td {
   z-index: 9998;
   pointer-events: none;
   mix-blend-mode: overlay;
-  opacity: 0.06;
+  opacity: 0.09;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
@@ -904,6 +935,10 @@ td {
 [data-theme="dark"] .grain-overlay {
   mix-blend-mode: screen;
   opacity: 0.055;
+}
+
+[data-theme="dark"] .project-card {
+  box-shadow: none;
 }
 
 /* ─────────────────────────────────────────────────────
@@ -1080,6 +1115,10 @@ td {
   .project-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+
+  .project-card--featured .project-image {
+    aspect-ratio: 4 / 3;
   }
 
   .project-content {
