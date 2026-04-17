@@ -22,8 +22,8 @@
   --radius-md: 8px;
   --radius-lg: 10px;
 
-  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Bricolage Grotesque", "Helvetica Neue", Helvetica, sans-serif;
+  --font-body: "General Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-ui: "IBM Plex Mono", "Courier New", monospace;
 }
 
@@ -106,23 +106,27 @@ h6 {
   color: var(--text-primary);
   font-family: var(--font-heading);
   font-optical-sizing: auto;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   font-weight: 700;
 }
 
 h1 {
   font-size: clamp(3rem, 7.5vw, 5.5rem);
   font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.97;
 }
 
 h2 {
   font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: -0.04em;
 }
 
 h3 {
   font-size: clamp(1.25rem, 3vw, 1.6rem);
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .project-card h3 {
@@ -214,14 +218,14 @@ main {
 }
 
 .brand {
-  font-family: var(--font-heading);
-  font-optical-sizing: auto;
+  font-family: var(--font-body);
   color: var(--text-primary);
   text-decoration: none;
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-  font-weight: 700;
-  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  font-style: normal;
   letter-spacing: -0.01em;
+  text-transform: lowercase;
 }
 
 .nav-links {
@@ -237,9 +241,9 @@ main {
 .nav-links a {
   display: inline-block;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.82rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   padding: 0.3rem 0.5rem;
 }
 
@@ -310,7 +314,7 @@ figcaption {
 }
 
 .hero-title {
-  font-style: italic;
+  font-style: normal;
 }
 
 .nowrap-ux {
