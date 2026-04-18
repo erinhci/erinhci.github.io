@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link href="https://api.fontshare.com/v2/css?f[]=neue-montreal@300,400,500,700,800&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet" />
     <script>
       // Block-level script to prevent theme/color flashing
       (function() {
@@ -62,8 +62,8 @@
               <div class="hero-copy-flow">
                 <p class="eyebrow">Cognitive Science / HCI / Psychology</p>
                 <div class="hero-title-fold">
-                  <h1 id="hero-title" class="hero-title" aria-live="polite">
-                    HCI-informed <span id="rotating-wrap" class="nowrap-ux">UX <span id="rotating-text" class="rotating-word" role="button" tabindex="0" aria-label="UX Systems — tap to cycle" title="Tap to cycle">Systems</span></span>
+                  <h1 id="hero-title" class="hero-title">
+                    UX researcher <span class="rotating-word" style="color: var(--accent);">/</span> designer.
                   </h1>
                 </div>
                 <a class="button-link button-primary explore-btn" href="#work">Explore Case Studies</a>
@@ -427,45 +427,6 @@
           setAccent(colorName);
         });
       });
-
-      const rotatingTextEl = document.querySelector("#rotating-text");
-      const rotatingWords = ["Systems", "Research", "Design", "Interaction"];
-      const rotatingClassMap = {
-        Systems: "word-systems",
-        Research: "word-research",
-        Design: "word-design",
-        Interaction: "word-interaction"
-      };
-      let rotatingIndex = 0;
-
-      const setRotatingWord = (word) => {
-        if (!rotatingTextEl) return;
-        rotatingTextEl.textContent = word;
-        rotatingTextEl.classList.remove("word-systems", "word-research", "word-design", "word-interaction");
-        rotatingTextEl.classList.add(rotatingClassMap[word]);
-        rotatingTextEl.setAttribute("aria-label", `UX ${word} — tap to cycle`);
-      };
-
-      const stepRotatingWord = () => {
-        if (!rotatingTextEl) return;
-        rotatingTextEl.classList.add("is-transitioning");
-        window.setTimeout(() => {
-          rotatingIndex = (rotatingIndex + 1) % rotatingWords.length;
-          setRotatingWord(rotatingWords[rotatingIndex]);
-          rotatingTextEl.classList.remove("is-transitioning");
-        }, 300);
-      };
-
-      if (rotatingTextEl) {
-        setRotatingWord(rotatingWords[rotatingIndex]);
-        rotatingTextEl.addEventListener("click", stepRotatingWord);
-        rotatingTextEl.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            stepRotatingWord();
-          }
-        });
-      }
 
       const projectGrid = document.querySelector(".project-grid");
       const projectCards = projectGrid ? Array.from(projectGrid.querySelectorAll(".project-card")) : [];
