@@ -1074,6 +1074,16 @@ td {
   }
 }
 
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card--featured {
+    grid-column: auto;
+  }
+}
+
 @media (max-width: 600px) {
   .project-grid {
     grid-template-columns: 1fr;

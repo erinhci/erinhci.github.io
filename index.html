@@ -432,6 +432,7 @@
       const projectCards = projectGrid ? Array.from(projectGrid.querySelectorAll(".project-card")) : [];
       const projectTags = projectGrid ? Array.from(projectGrid.querySelectorAll(".tag")) : [];
       const originalProjectOrder = [...projectCards];
+      const featuredCard = projectGrid ? projectGrid.querySelector(".project-card--featured") : null;
       let activeTag = null;
 
       // After all cascade animations finish, lock out re-triggering on sort
@@ -462,6 +463,7 @@
 
       const moveTaggedCardsToTop = (tagText) => {
         if (!projectGrid) return;
+        if (featuredCard) featuredCard.style.gridColumn = "auto";
         const matchingCards = originalProjectOrder.filter((card) =>
           Array.from(card.querySelectorAll(".tag")).some((tag) => tag.textContent.trim() === tagText)
         );
@@ -474,6 +476,7 @@
       const resetTagFilter = () => {
         activeTag = null;
         projectTags.forEach((tag) => tag.classList.remove("active"));
+        if (featuredCard) featuredCard.style.gridColumn = "";
         restoreOriginalOrder();
       };
 
@@ -491,6 +494,13 @@
           activeTag = selectedTag;
           setTagHighlights(selectedTag);
           moveTaggedCardsToTop(selectedTag);
+
+          requestAnimationFrame(() => {
+            const workSection = document.getElementById("work");
+            if (workSection) {
+              workSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
         });
       });
 
