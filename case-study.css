@@ -1311,3 +1311,20 @@ ul {
   border-radius: 2px !important;
   margin-bottom: 0 !important;
 }
+
+/* Typography sample color override — fixes contrast on dark background */
+.eduflow-type-row .eduflow-type-sample {
+  color: var(--text-primary) !important;
+}
+
+/* Typography row alignment */
+.eduflow-type-row {
+  align-items: center !important;
+  padding: 4px 0 !important;
+  border-bottom: 0.5px solid var(--border) !important;
+}
+
+.eduflow-type-meta {
+  min-width: 160px !important;
+  flex-shrink: 0 !important;
+}
