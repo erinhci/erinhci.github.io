@@ -77,10 +77,8 @@ sections.forEach(section => observer.observe(section));
         updateTagHighlights();
         reorderCards();
 
-        // Mobile: scroll to top of work section
-        if (window.innerWidth < 768) {
-          document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // Scroll to top of work section on filter
+        document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
