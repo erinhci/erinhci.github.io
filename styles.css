@@ -397,6 +397,7 @@ section p:last-child {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-md);
+  align-items: start;
 }
 
 .project-card {
@@ -497,7 +498,16 @@ section p:last-child {
 
 .skill-tag.active {
   background: var(--accent);
-  color: #fff;
+  color: #ffffff !important;
+  border-color: var(--accent);
+  /* Prevent size change on activation */
+  padding: 4px 12px;
+  min-height: 28px;
+}
+
+[data-theme="dark"] .skill-tag.active {
+  color: #ffffff !important;
+  background: var(--accent);
   border-color: var(--accent);
 }
 
