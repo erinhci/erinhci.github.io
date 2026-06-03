@@ -61,8 +61,11 @@ sections.forEach(section => observer.observe(section));
   const allTags = document.querySelectorAll('.skill-tag');
   let activeFilter = null;
 
-  // Store original DOM order
-  cards.forEach((card, i) => { card.dataset.order = i; });
+  // Store original DOM order on the wrapper element
+  cards.forEach((card, i) => {
+    const wrapper = card.closest('.project-card-link') || card;
+    wrapper.dataset.order = i;
+  });
 
   allTags.forEach(tag => {
     tag.addEventListener('click', (e) => {
@@ -71,15 +74,11 @@ sections.forEach(section => observer.observe(section));
       const clicked = tag.textContent.trim();
 
       if (activeFilter === clicked) {
-        // Reset — same tag clicked again anywhere
         reset();
       } else {
-        // Activate filter
         activeFilter = clicked;
         updateTagHighlights();
         reorderCards();
-
-        // Scroll to top of work section on filter
         document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
@@ -101,6 +100,10 @@ sections.forEach(section => observer.observe(section));
     });
   }
 
+  function getWrapper(card) {
+    return card.closest('.project-card-link') || card;
+  }
+
   function reorderCards() {
     const matching = cards.filter(card => {
       const tags = card.querySelector('.skill-tags').dataset.tags || '';
@@ -108,13 +111,15 @@ sections.forEach(section => observer.observe(section));
     });
     const rest = cards.filter(card => !matching.includes(card));
 
-    matching.forEach(card => grid.appendChild(card));
-    rest.forEach(card => grid.appendChild(card));
+    // Move wrapper elements, not just the article cards
+    matching.forEach(card => grid.appendChild(getWrapper(card)));
+    rest.forEach(card => grid.appendChild(getWrapper(card)));
   }
 
   function restoreOrder() {
-    [...cards]
-      .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
-      .forEach(card => grid.appendChild(card));
+    cards
+      .slice()
+      .sort((a, b) => Number(getWrapper(a).dataset.order) - Number(getWrapper(b).dataset.order))
+      .forEach(card => grid.appendChild(getWrapper(card)));
   }
 })();
