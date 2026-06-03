@@ -1440,3 +1440,59 @@ ul {
 .ef-metric-value {
   font-family: var(--font-body) !important;
 }
+
+/* ============================================================
+   EDUFLOW REMAINING ISSUES — FINAL OVERRIDES
+   (These supersede all previous rounds — cascade order wins)
+   ============================================================ */
+
+/* 1. Course score numbers — use Inter not Fraunces */
+.ef-course-score {
+  font-family: var(--font-body) !important;
+}
+
+/* 2. Type row alignment — override the :last-child baseline rule with
+      higher-specificity selector that forces center on all rows */
+.eduflow-type-stack .eduflow-type-row,
+.eduflow-type-stack .eduflow-type-row:last-child {
+  align-items: center !important;
+}
+
+/* 3 & 5. ef-btn-secondary (View Details, Join Waitlist) — token-based
+      colors so it works in both light and dark mode */
+.ef-btn-secondary {
+  background: transparent !important;
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* 4. Dismiss (ghost) vs Closed (disabled primary) — clear distinction */
+.ef-btn-ghost {
+  background: transparent !important;
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
+  opacity: 1 !important;
+}
+
+.ef-btn-primary[disabled],
+.ef-btn-primary[aria-disabled="true"] {
+  background: var(--surface) !important;
+  border-color: var(--text-muted) !important;
+  color: var(--text-muted) !important;
+  opacity: 0.5 !important;
+  cursor: default !important;
+}
+
+/* 6. Credit Hours error — bright red readable on both light and dark */
+.ef-label-error {
+  color: #e05555 !important;
+}
+
+.ef-input-error {
+  border-color: #e05555 !important;
+  color: var(--text-primary) !important;
+}
+
+.ef-error-msg {
+  color: #e05555 !important;
+}
