@@ -260,10 +260,10 @@ nav {
    ============================================================ */
 
 #hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: var(--nav-height);
+  padding-top: calc(var(--nav-height) + var(--space-xl));
+  padding-bottom: var(--space-xl);
 }
 
 .hero-headline {
@@ -288,7 +288,7 @@ nav {
 .hero-qualifier {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.7;
   max-width: 560px;
@@ -351,7 +351,7 @@ section h2 {
 
 section p {
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   font-weight: 300;
   margin-bottom: var(--space-sm);
@@ -448,7 +448,7 @@ section p:last-child {
 .project-card-body p {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: var(--space-sm);
@@ -464,18 +464,20 @@ section p:last-child {
 .skill-tag {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   background: transparent;
   border: 0.5px solid var(--border);
   border-radius: 100px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   cursor: pointer;
   transition: background-color 150ms, color 150ms, border-color 150ms;
   min-height: 28px;
   display: inline-flex;
   align-items: center;
   line-height: 1;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .skill-tag:hover {
@@ -485,14 +487,20 @@ section p:last-child {
 
 .skill-tag.active {
   background: var(--accent);
-  color: #fff;
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+[data-theme="dark"] .skill-tag.active {
+  color: #ffffff;
+  background: var(--accent);
   border-color: var(--accent);
 }
 
 .view-project-link {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
   text-decoration: none;
   margin-top: auto;
@@ -711,7 +719,3 @@ section p:last-child {
   }
 }
 
-
-.project-card {
-  transition: transform 200ms, border-color 200ms;
-}
