@@ -260,10 +260,10 @@ nav {
    ============================================================ */
 
 #hero {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: calc(var(--nav-height) + var(--space-lg));
-  padding-bottom: var(--space-lg);
+  padding-top: var(--nav-height);
 }
 
 .hero-headline {
@@ -288,7 +288,7 @@ nav {
 .hero-qualifier {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
   max-width: 560px;
@@ -351,7 +351,7 @@ section h2 {
 
 section p {
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
   font-weight: 300;
   margin-bottom: var(--space-sm);
@@ -381,12 +381,6 @@ section p:last-child {
   margin-bottom: var(--space-md);
 }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-md);
-}
-
 .project-card-link {
   display: block;
   text-decoration: none;
@@ -397,6 +391,12 @@ section p:last-child {
 .project-card-link:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
 }
 
 .project-card {
@@ -460,7 +460,7 @@ section p:last-child {
 .project-card-body p {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: var(--space-sm);
@@ -476,20 +476,18 @@ section p:last-child {
 .skill-tag {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-secondary);
   background: transparent;
   border: 0.5px solid var(--border);
   border-radius: 100px;
-  padding: 4px 12px;
+  padding: 3px 10px;
   cursor: pointer;
   transition: background-color 150ms, color 150ms, border-color 150ms;
   min-height: 28px;
   display: inline-flex;
   align-items: center;
   line-height: 1;
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .skill-tag:hover {
@@ -499,20 +497,14 @@ section p:last-child {
 
 .skill-tag.active {
   background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-}
-
-[data-theme="dark"] .skill-tag.active {
-  color: #ffffff;
-  background: var(--accent);
+  color: #fff;
   border-color: var(--accent);
 }
 
 .view-project-link {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--accent);
   text-decoration: none;
   margin-top: auto;
@@ -730,4 +722,3 @@ section p:last-child {
     grid-template-columns: 1fr;
   }
 }
-
