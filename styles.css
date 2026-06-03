@@ -457,7 +457,7 @@ section p:last-child {
 .project-card-body h3 {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -466,7 +466,7 @@ section p:last-child {
 .project-card-body p {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: var(--space-sm);
@@ -482,10 +482,10 @@ section p:last-child {
 .skill-tag {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-secondary);
   background: transparent;
-  border: 0.5px solid var(--border);
+  border: 1.5px solid var(--text-muted);
   border-radius: 100px;
   padding: 3px 10px;
   cursor: pointer;
