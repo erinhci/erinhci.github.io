@@ -387,6 +387,18 @@ section p:last-child {
   gap: var(--space-md);
 }
 
+.project-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+}
+
+.project-card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .project-card {
   background: var(--surface);
   border: 0.5px solid var(--border);
