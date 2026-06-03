@@ -1343,3 +1343,41 @@ ul {
   border-color: var(--text-muted) !important;
   color: var(--text-secondary) !important;
 }
+
+/* ============================================================
+   EDUFLOW COMPONENT POLISH FIXES
+   ============================================================ */
+
+/* Static cursor on all mockup elements — nothing is interactive */
+.eduflow-showcase *,
+.eduflow-component-demos * {
+  cursor: default !important;
+}
+
+/* Caption row alignment — center all rows consistently */
+.eduflow-type-stack .eduflow-type-row {
+  align-items: center !important;
+}
+
+/* View Details button — fix contrast */
+.ef-btn-ghost {
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary) !important;
+  background: transparent !important;
+}
+
+/* Closed button (disabled state) — fix contrast, remove opacity fade */
+.ef-btn[disabled],
+.ef-btn[aria-disabled="true"] {
+  cursor: default !important;
+  background: var(--surface) !important;
+  border-color: var(--text-muted) !important;
+  color: var(--text-secondary) !important;
+  opacity: 1 !important;
+}
+
+/* Closed badge — fix contrast on dark background */
+.ef-badge-closed {
+  background: #fcebeb !important;
+  color: #5a0f0f !important;
+}
