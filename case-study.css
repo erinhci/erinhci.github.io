@@ -1,0 +1,463 @@
+/* ============================================================
+   CASE STUDY PAGES — inherits design tokens from styles.css
+   ============================================================ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;1,300&display=swap');
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --bg: #faf9f7;
+  --text-primary: #1a1a1a;
+  --text-secondary: #444444;
+  --text-muted: #666666;
+  --accent: #ff443a;
+  --border: rgba(0, 0, 0, 0.1);
+  --surface: #f0eeeb;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  --max-width: 1100px;
+  --content-width: 720px;
+  --nav-height: 56px;
+}
+
+[data-theme="dark"] {
+  --bg: #141414;
+  --text-primary: #f0eeeb;
+  --text-secondary: #e0dedb;
+  --text-muted: #e0dedb;
+  --accent: #ff443a;
+  --border: rgba(255, 255, 255, 0.1);
+  --surface: #1e1e1e;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+  transition: background-color 200ms, color 200ms;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================================
+   FOCUS STATES
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  background: var(--accent);
+  color: var(--bg);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  z-index: 9999;
+  transition: top 150ms;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--border);
+  transition: background-color 200ms, border-color 200ms;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.brand {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--accent);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.back-link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-left: auto;
+  transition: color 150ms;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+}
+
+/* Theme toggle */
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  transition: color 150ms;
+  margin-left: var(--space-sm);
+}
+
+#theme-toggle:hover {
+  color: var(--text-primary);
+}
+
+.icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+
+/* ============================================================
+   CASE STUDY LAYOUT
+   ============================================================ */
+
+.case-study-wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + var(--space-lg)) var(--space-md) var(--space-lg);
+}
+
+/* ============================================================
+   CASE STUDY HEADER
+   ============================================================ */
+
+.case-study-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-wrap h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-intro {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  max-width: 640px;
+}
+
+/* ============================================================
+   CASE STUDY CONTENT
+   ============================================================ */
+
+.case-study-wrap h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--text-primary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-wrap h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+.case-study-wrap p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-wrap p:last-child {
+  margin-bottom: 0;
+}
+
+.case-study-wrap ul,
+.case-study-wrap ol {
+  padding-left: 1.4rem;
+  margin-bottom: var(--space-sm);
+}
+
+.case-study-wrap ul {
+  list-style: disc;
+}
+
+.case-study-wrap ol {
+  list-style: decimal;
+}
+
+.case-study-wrap li {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+
+.case-study-wrap strong {
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+/* Blockquotes */
+
+.case-study-wrap blockquote {
+  border-left: 2px solid var(--accent);
+  padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.case-study-wrap blockquote p {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.case-study-wrap blockquote p:last-child {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: normal;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Images */
+
+.case-study-wrap img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: var(--space-md) 0;
+  border: 0.5px solid var(--border);
+}
+
+/* Image captions */
+
+.case-study-wrap em {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--text-muted);
+  margin-top: calc(var(--space-xs) * -1);
+  margin-bottom: var(--space-md);
+}
+
+/* Tables */
+
+.case-study-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-size: 14px;
+}
+
+.case-study-wrap th {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.case-study-wrap td {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 10px 12px;
+  border-bottom: 0.5px solid var(--border);
+  line-height: 1.5;
+}
+
+/* Links */
+
+.case-study-wrap a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.case-study-wrap a:hover {
+  text-decoration: underline;
+}
+
+/* Note / scope callout */
+
+.case-study-note {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: 4px;
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+}
+
+.case-study-note p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Stat row */
+
+.case-study-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+  padding: var(--space-md) 0;
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.case-study-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.case-study-stat-value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.case-study-stat-label {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.site-footer {
+  border-top: 0.5px solid var(--border);
+  padding: var(--space-md) 0;
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.site-footer p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .case-study-wrap {
+    padding-top: calc(var(--nav-height) + var(--space-md));
+  }
+
+  .case-study-stats {
+    gap: var(--space-sm);
+  }
+}
