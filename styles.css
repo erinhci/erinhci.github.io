@@ -441,6 +441,14 @@ section p:last-child {
   display: flex;
   flex-direction: column;
   flex: 1;
+  justify-content: space-between;
+}
+
+.project-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--space-sm);
 }
 
 .project-tag-label {
@@ -522,8 +530,8 @@ section p:last-child {
   font-size: 13px;
   color: var(--accent);
   text-decoration: none;
-  margin-top: auto;
   display: inline-block;
+  padding-top: var(--space-xs);
 }
 
 .view-project-link:hover {
