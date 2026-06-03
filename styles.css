@@ -260,10 +260,10 @@ nav {
    ============================================================ */
 
 #hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: var(--nav-height);
+  padding-top: calc(var(--nav-height) + var(--space-lg));
+  padding-bottom: var(--space-lg);
 }
 
 .hero-headline {
