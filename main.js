@@ -53,3 +53,57 @@ const observer = new IntersectionObserver(entries => {
 }, { rootMargin: '-40% 0px -55% 0px' });
 
 sections.forEach(section => observer.observe(section));
+
+// Tag filter
+const filterBtns = document.querySelectorAll('.tag-filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+
+    // Update active button state
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show/hide cards
+    projectCards.forEach(card => {
+      if (filter === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const tags = card.querySelector('.skill-tags').dataset.tags || '';
+        const matches = tags.split(',').map(t => t.trim()).includes(filter);
+        card.classList.toggle('hidden', !matches);
+      }
+    });
+
+    // Reorder: move matching cards to top
+    const grid = document.querySelector('.project-grid');
+    if (filter !== 'all') {
+      const matching = [...projectCards].filter(card => {
+        const tags = card.querySelector('.skill-tags').dataset.tags || '';
+        return tags.split(',').map(t => t.trim()).includes(filter);
+      });
+      const nonMatching = [...projectCards].filter(card => {
+        const tags = card.querySelector('.skill-tags').dataset.tags || '';
+        return !tags.split(',').map(t => t.trim()).includes(filter);
+      });
+      matching.forEach(card => grid.appendChild(card));
+      nonMatching.forEach(card => grid.appendChild(card));
+    } else {
+      // Restore original order via data-order attribute
+      [...projectCards]
+        .sort((a, b) => (a.dataset.order || 0) - (b.dataset.order || 0))
+        .forEach(card => grid.appendChild(card));
+    }
+
+    // Scroll to work section (mobile UX)
+    const workSection = document.getElementById('work');
+    workSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Set original order on cards for restoration
+projectCards.forEach((card, i) => {
+  card.dataset.order = i;
+});

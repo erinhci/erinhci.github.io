@@ -10,7 +10,7 @@
   --text-primary: #1a1a1a;
   --text-secondary: #444444;
   --text-muted: #666666;
-  --accent: #7D2E2E;
+  --accent: #ff443a;
   --border: rgba(0, 0, 0, 0.1);
   --surface: #f0eeeb;
 
@@ -31,7 +31,7 @@
   --text-primary: #f0eeeb;
   --text-secondary: #e0dedb;
   --text-muted: #e0dedb;
-  --accent: #A63D3D;
+  --accent: #ff443a;
   --border: rgba(255, 255, 255, 0.1);
   --surface: #1e1e1e;
 }
@@ -54,7 +54,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text-primary);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   font-weight: 300;
   transition: background-color 200ms, color 200ms;
@@ -269,7 +269,7 @@ nav {
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: clamp(32px, 5vw, 52px);
   line-height: 1.15;
   color: var(--text-primary);
   max-width: 760px;
@@ -338,13 +338,13 @@ nav {
    ============================================================ */
 
 section {
-  padding: var(--space-xl) 0;
+  padding: var(--space-lg) 0;
 }
 
 section h2 {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(22px, 3vw, 32px);
+  font-size: clamp(24px, 3vw, 36px);
   color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
@@ -685,10 +685,56 @@ section p:last-child {
 
 @media (max-width: 479px) {
   section {
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0;
   }
 
   .project-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ============================================================
+   TAG FILTER
+   ============================================================ */
+
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--space-md);
+}
+
+.tag-filter-btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0.5px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms, border-color 150ms;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tag-filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.tag-filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.project-card {
+  transition: transform 200ms, border-color 200ms, opacity 200ms;
+}
+
+.project-card.hidden {
+  display: none;
 }
