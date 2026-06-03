@@ -65,7 +65,9 @@ sections.forEach(section => observer.observe(section));
   cards.forEach((card, i) => { card.dataset.order = i; });
 
   allTags.forEach(tag => {
-    tag.addEventListener('click', () => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
       const clicked = tag.textContent.trim();
 
       if (activeFilter === clicked) {
