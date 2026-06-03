@@ -382,10 +382,15 @@ section p:last-child {
 }
 
 .project-card-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
   border-radius: 8px;
+}
+
+.project-card-link .project-card {
+  flex: 1;
 }
 
 .project-card-link:focus-visible {
@@ -397,7 +402,7 @@ section p:last-child {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-md);
-  align-items: start;
+  align-items: stretch;
 }
 
 .project-card {
