@@ -463,6 +463,538 @@ ul {
 }
 
 /* ============================================================
+   EDUFLOW INLINE COMPONENTS
+   ============================================================ */
+
+/* Showcase wrapper */
+.eduflow-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: var(--space-md) 0;
+}
+
+.eduflow-showcase-group {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.eduflow-showcase-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm) !important;
+}
+
+/* Color swatches */
+.eduflow-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.eduflow-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 64px;
+}
+
+.eduflow-swatch-block {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+}
+
+.eduflow-swatch-name {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.eduflow-swatch-hex {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+/* Typography scale */
+.eduflow-type-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eduflow-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.eduflow-type-meta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+/* Atoms row (buttons, badges) */
+.eduflow-atoms-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Inputs row */
+.eduflow-inputs-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ef-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ef-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.ef-label-error {
+  color: #632024;
+}
+
+.ef-input {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-primary);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 7px 10px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.ef-input-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ef-input-error {
+  border-color: #632024;
+}
+
+.ef-error-msg {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #632024;
+}
+
+/* Buttons */
+.ef-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 1;
+  transition: opacity 150ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ef-btn-sm {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.ef-btn-primary {
+  background: #25344F;
+  color: #fff;
+  border-color: #25344F;
+}
+
+.ef-btn-secondary {
+  background: transparent;
+  border-color: #25344F;
+  color: #25344F;
+}
+
+.ef-btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+.ef-btn:disabled,
+.ef-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Badges */
+.ef-badge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+  display: inline-block;
+}
+
+.ef-badge-open { background: #e1f5ee; color: #085041; }
+.ef-badge-waitlist { background: #faeeda; color: #633806; }
+.ef-badge-closed { background: #fcebeb; color: #791f1f; }
+.ef-badge-outline {
+  background: transparent;
+  border: 0.5px solid var(--border);
+  color: var(--text-secondary);
+}
+.ef-badge-ai {
+  background: #eeedfe;
+  color: #3c3489;
+}
+
+/* ============================================================
+   AI COMPONENT DEMOS
+   ============================================================ */
+
+.eduflow-component-demos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.ef-demo-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-md);
+}
+
+.ef-demo-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--space-xs);
+  padding-bottom: var(--space-xs);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.ef-demo-icon {
+  font-size: 14px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.ef-demo-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.ef-demo-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm) !important;
+}
+
+/* Course recommendation items */
+.ef-course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ef-course-item {
+  display: flex;
+  gap: 12px;
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.ef-course-score {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  min-width: 44px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.ef-score-high { color: #085041; }
+.ef-score-mid { color: #633806; }
+
+.ef-course-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ef-course-top {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ef-course-code {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.ef-course-name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.ef-course-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.ef-course-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ef-why-box {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ef-why-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.ef-course-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ef-feedback-btns {
+  display: flex;
+  gap: 4px;
+}
+
+/* Advisor analytics */
+.ef-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.ef-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+}
+
+.ef-metric-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ef-metric-alert {
+  color: #791f1f;
+}
+
+.ef-metric-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.ef-metric-delta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.ef-delta-up { color: #085041; }
+.ef-delta-down { color: #791f1f; }
+
+/* Student list */
+.ef-student-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ef-student {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 6px;
+}
+
+.ef-risk-high { border-left-color: #632024; }
+.ef-risk-mid { border-left-color: #b45309; }
+.ef-risk-low { border-left-color: #085041; }
+
+.ef-student-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.ef-student-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ef-student-name {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.ef-student-major {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.ef-student-progress {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.ef-progress-bar {
+  height: 100%;
+  background: #25344F;
+  border-radius: 2px;
+}
+
+.ef-risk-badge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  padding: 3px 8px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.ef-risk-high-badge { background: #fcebeb; color: #791f1f; }
+.ef-risk-mid-badge { background: #faeeda; color: #633806; }
+.ef-risk-low-badge { background: #e1f5ee; color: #085041; }
+
+/* Atomic design cards */
+.card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.card h3 {
+  margin-top: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .ef-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .eduflow-type-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .eduflow-type-meta {
+    min-width: unset;
+  }
+}
+
+/* ============================================================
    CASE STUDY NAVIGATION
    ============================================================ */
 
