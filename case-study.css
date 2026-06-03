@@ -1381,3 +1381,62 @@ ul {
   background: #fcebeb !important;
   color: #5a0f0f !important;
 }
+
+/* ============================================================
+   EDUFLOW DIAGNOSTIC FIXES
+   ============================================================ */
+
+/* 1. Dismiss (ghost) vs Closed (disabled) — differentiate clearly */
+.ef-btn-ghost {
+  border-color: var(--text-secondary) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+.ef-btn[disabled],
+.ef-btn[aria-disabled="true"] {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+  opacity: 0.6 !important;
+  cursor: default !important;
+}
+
+/* 2. View Details (ef-btn-secondary) — fix contrast */
+.ef-btn-secondary {
+  background: transparent !important;
+  border-color: #25344F !important;
+  color: #25344F !important;
+}
+
+/* 3. Caption row — fix vertical alignment */
+.eduflow-type-stack .eduflow-type-row {
+  align-items: center !important;
+}
+
+/* 4. Credit Hours error state — fix contrast */
+.ef-label-error {
+  color: #7a1a1a !important;
+}
+
+.ef-input-error {
+  border-color: #7a1a1a !important;
+  color: var(--text-primary) !important;
+}
+
+.ef-error-msg {
+  color: #7a1a1a !important;
+}
+
+/* 5. Orange match score — fix contrast */
+.ef-score-mid {
+  color: #7a3800 !important;
+}
+
+/* 6. Join Waitlist (ef-btn-secondary ef-btn-sm) — already covered by #2 above */
+
+/* 7. Metric value numbers — use Inter not Fraunces */
+.ef-metric-value {
+  font-family: var(--font-body) !important;
+}
