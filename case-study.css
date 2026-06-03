@@ -1328,3 +1328,18 @@ ul {
   min-width: 160px !important;
   flex-shrink: 0 !important;
 }
+
+/* Fix caption row alignment — prevent uppercase label from pushing sample out of line */
+.eduflow-type-row:last-child {
+  align-items: baseline !important;
+}
+
+.eduflow-type-row .eduflow-type-meta {
+  align-self: center !important;
+}
+
+/* Fix View Details button contrast */
+.ef-btn-ghost {
+  border-color: var(--text-muted) !important;
+  color: var(--text-secondary) !important;
+}
