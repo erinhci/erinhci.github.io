@@ -133,6 +133,11 @@ ul {
   color: var(--accent);
   text-decoration: none;
   flex-shrink: 0;
+  transition: opacity 150ms;
+}
+
+.brand:hover {
+  opacity: 0.75;
 }
 
 nav {
@@ -151,11 +156,15 @@ nav {
   font-size: 14px;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 150ms;
+  transition: color 150ms, opacity 150ms;
+  cursor: pointer;
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .nav-links a.active {
@@ -238,7 +247,10 @@ nav {
 }
 
 .mobile-nav a:hover {
-  color: var(--text-primary);
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 /* ============================================================
@@ -305,11 +317,18 @@ nav {
   font-weight: 400;
   font-size: 14px;
   text-decoration: none;
-  transition: opacity 150ms;
+  transition: opacity 150ms, transform 150ms;
 }
 
 .cta-button:hover {
   opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-button:hover {
+    transform: none;
+  }
 }
 
 /* Hero entrance animation */
@@ -351,7 +370,7 @@ section h2 {
 
 section p {
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   font-weight: 300;
   margin-bottom: var(--space-sm);
@@ -609,7 +628,7 @@ section p:last-child {
 .resume-entry-date {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -617,7 +636,7 @@ section p:last-child {
 .resume-entry-meta {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
   margin-bottom: var(--space-xs);
 }
@@ -630,7 +649,7 @@ section p:last-child {
 .resume-entry-list li {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 6px;
@@ -639,7 +658,7 @@ section p:last-child {
 .resume-skills {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 0;
