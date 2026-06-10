@@ -129,7 +129,7 @@ ul {
 .brand {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--accent);
   text-decoration: none;
   flex-shrink: 0;
@@ -137,7 +137,7 @@ ul {
 }
 
 .brand:hover {
-  opacity: 0.75;
+  opacity: 0.55;
 }
 
 nav {
@@ -153,18 +153,15 @@ nav {
 .nav-links a {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color 150ms, opacity 150ms;
+  transition: color 150ms;
   cursor: pointer;
 }
 
 .nav-links a:hover {
   color: var(--accent) !important;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
 }
 
 .nav-links a.active {
@@ -248,9 +245,6 @@ nav {
 
 .mobile-nav a:hover {
   color: var(--accent) !important;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
 }
 
 /* ============================================================
@@ -281,7 +275,7 @@ nav {
 .hero-headline {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(38px, 5.5vw, 62px);
   line-height: 1.15;
   color: var(--text-primary);
   max-width: 760px;
@@ -292,7 +286,7 @@ nav {
   font-family: var(--font-body);
   font-style: italic;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 21px;
   color: var(--text-secondary);
   margin-bottom: var(--space-sm);
 }
@@ -300,7 +294,7 @@ nav {
 .hero-qualifier {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--text-muted);
   line-height: 1.7;
   max-width: 560px;
@@ -363,14 +357,14 @@ section {
 section h2 {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(28px, 3.5vw, 44px);
   color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
 
 section p {
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.7;
   font-weight: 300;
   margin-bottom: var(--space-sm);
@@ -465,7 +459,7 @@ section p:last-child {
 .project-tag-label {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
@@ -476,7 +470,7 @@ section p:last-child {
 .project-card-body h3 {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 19px;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -501,7 +495,7 @@ section p:last-child {
 .skill-tag {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
   background: transparent;
   border: 1.5px solid var(--text-muted);
@@ -538,7 +532,7 @@ section p:last-child {
 .view-project-link {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--accent);
   text-decoration: none;
   margin-top: auto;
@@ -620,7 +614,7 @@ section p:last-child {
 .resume-entry-title {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-primary);
   margin-bottom: 2px;
 }
@@ -628,7 +622,7 @@ section p:last-child {
 .resume-entry-date {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted);
   white-space: nowrap;
 }
@@ -636,7 +630,7 @@ section p:last-child {
 .resume-entry-meta {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted);
   margin-bottom: var(--space-xs);
 }
@@ -649,7 +643,7 @@ section p:last-child {
 .resume-entry-list li {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 6px;
@@ -658,7 +652,7 @@ section p:last-child {
 .resume-skills {
   font-family: var(--font-body);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 0;
@@ -676,7 +670,7 @@ section p:last-child {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-secondary);
   margin-bottom: var(--space-md);
 }
