@@ -54,7 +54,12 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-// Tag filter — card tags are interactive, no separate filter bar
+// Remove animation class after entrance so hover transitions aren't blocked by fill mode
+document.querySelectorAll('.animate-fade-up').forEach(el => {
+  el.addEventListener('animationend', () => el.classList.remove('animate-fade-up'), { once: true });
+});
+
+
 (function () {
   const grid = document.querySelector('.project-grid');
   const cards = Array.from(document.querySelectorAll('.project-card'));
