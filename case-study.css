@@ -183,7 +183,7 @@ ul {
 .icon-sun,
 .icon-moon {
   position: absolute;
-  transition: opacity 150ms;
+  transition: opacity 250ms;
 }
 
 .icon-sun { opacity: 1; }
