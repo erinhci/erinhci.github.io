@@ -133,11 +133,11 @@ ul {
   color: var(--accent);
   text-decoration: none;
   flex-shrink: 0;
-  transition: opacity 150ms;
+  transition: color 150ms;
 }
 
 .brand:hover {
-  opacity: 0.55;
+  color: #ff6b63;
 }
 
 nav {
@@ -181,18 +181,26 @@ nav {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
-  transition: color 150ms;
+  position: relative;
   margin-left: var(--space-sm);
 }
 
-#theme-toggle:hover {
-  color: var(--text-primary);
+.icon-sun,
+.icon-moon {
+  position: absolute;
+  transition: opacity 150ms;
 }
 
-.icon-moon { display: none; }
+.icon-sun { opacity: 1; }
+.icon-moon { opacity: 0; }
 
-[data-theme="dark"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: block; }
+[data-theme="dark"] .icon-sun { opacity: 0; }
+[data-theme="dark"] .icon-moon { opacity: 1; }
+
+#theme-toggle:hover .icon-sun { opacity: 0; }
+#theme-toggle:hover .icon-moon { opacity: 1; }
+[data-theme="dark"] #theme-toggle:hover .icon-moon { opacity: 0; }
+[data-theme="dark"] #theme-toggle:hover .icon-sun { opacity: 1; }
 
 /* Hamburger */
 
@@ -540,7 +548,7 @@ section p:last-child {
 }
 
 .view-project-link:hover {
-  text-decoration: underline;
+  color: #ff6b63;
 }
 
 /* ============================================================
