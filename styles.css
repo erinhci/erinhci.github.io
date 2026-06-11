@@ -10,7 +10,7 @@
   --text-primary: #1a1a1a;
   --text-secondary: #444444;
   --text-muted: #666666;
-  --accent: #d74875;
+  --accent: #c2185b;
   --border: rgba(0, 0, 0, 0.1);
   --surface: #f0eeeb;
 
@@ -31,7 +31,7 @@
   --text-primary: #f0eeeb;
   --text-secondary: #e0dedb;
   --text-muted: #e0dedb;
-  --accent: #d74875;
+  --accent: #f5457f;
   --border: rgba(255, 255, 255, 0.1);
   --surface: #1e1e1e;
 }
@@ -137,7 +137,7 @@ ul {
 }
 
 .brand:hover {
-  color: #e2708f;
+  color: #d44a7a;
 }
 
 nav {
@@ -548,7 +548,7 @@ section p:last-child {
 }
 
 .view-project-link:hover {
-  color: #e2708f;
+  color: #d44a7a;
 }
 
 /* ============================================================
