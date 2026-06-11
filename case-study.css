@@ -17,7 +17,7 @@
   --text-primary: #1a1a1a;
   --text-secondary: #444444;
   --text-muted: #666666;
-  --accent: #ff443a;
+  --accent: #309673;
   --border: rgba(0, 0, 0, 0.1);
   --surface: #f0eeeb;
 
@@ -37,7 +37,7 @@
   --text-primary: #f0eeeb;
   --text-secondary: #e0dedb;
   --text-muted: #e0dedb;
-  --accent: #ff443a;
+  --accent: #309673;
   --border: rgba(255, 255, 255, 0.1);
   --surface: #1e1e1e;
 }
@@ -134,7 +134,7 @@ ul {
 
 .brand {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 600;
   font-size: 15px;
   color: var(--accent);
   text-decoration: none;
@@ -143,7 +143,7 @@ ul {
 }
 
 .brand:hover {
-  color: #ff6b63;
+  color: #3db888;
 }
 
 .back-link {
