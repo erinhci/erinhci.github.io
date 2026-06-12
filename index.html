@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Erin King — UX researcher and designer. HCI and cognitive science background. Portfolio of selected work." />
+    <meta name="description" content="Erin King. UX research grounded in HCI and cognitive science. Bay Area, open to remote. Portfolio of selected work." />
     <title>Portfolio | Erin King</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -58,9 +58,9 @@
 
       <section id="hero" aria-labelledby="hero-title">
         <div class="section-wrap">
-          <h1 id="hero-title" class="hero-headline animate-fade-up">Exploring the relationship between people and technology.</h1>
+          <h1 id="hero-title" class="hero-headline animate-fade-up">I study what people actually do with technology.</h1>
           <p class="hero-subline animate-fade-up delay-1">Designing from what I find.</p>
-          <p class="hero-qualifier animate-fade-up delay-2">HCI and cognitive science background. Drawn to AI, accessibility, and the hard questions about how complex systems actually get used.</p>
+          <p class="hero-qualifier animate-fade-up delay-2">UX research grounded in HCI and cognitive science. Drawn to AI and accessibility. Bay Area, open to remote.</p>
           <a href="#work" class="cta-button animate-fade-up delay-3">View my work</a>
         </div>
       </section>
@@ -68,133 +68,269 @@
       <section id="about" aria-labelledby="about-title">
         <div class="section-wrap content-wrap">
           <h2 id="about-title">Hi, I'm Erin</h2>
-          <p>I'm based in the Bay Area with a Master's in Human-Computer Interaction and a background in cognitive science and psychology.</p>
-          <p>Technology is everywhere and getting more capable fast, and I find that genuinely exciting. It's also why I think design matters: making things worth people's time and trust, understanding what they actually need, keeping things from going sideways. Those are the problems that motivate me.</p>
+          <p>I'm a UX researcher and designer based in the San Francisco Bay Area, with a Master's in Human-Computer Interaction and a background in cognitive science and psychology.</p>
+          <p>Accessibility has been part of how I think about design from the beginning — I see it as a lens for building things that genuinely work for people across a wide range of contexts, abilities, and needs.</p>
+          <p>Right now I'm especially interested in how people make sense of, trust, and collaborate with AI systems — and what that means for the people designing them.</p>
         </div>
       </section>
 
       <section id="work" aria-labelledby="work-title">
         <div class="section-wrap">
           <h2 id="work-title">Selected work</h2>
-          <p id="filter-status" class="visually-hidden" role="status" aria-live="polite"></p>
           <div class="project-grid">
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">R</span>
+                <!-- Card 1: AI Transparency — conversational exchange loop -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Left message -->
+                  <rect x="40" y="30" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Right reply -->
+                  <rect x="180" y="82" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Left message 2 -->
+                  <rect x="40" y="134" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Right reply 2 -->
+                  <rect x="180" y="186" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Down arrow left side -->
+                  <line x1="130" y1="64" x2="130" y2="82" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="270" y1="116" x2="270" y2="134" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="130" y1="168" x2="130" y2="186" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+                  <!-- Return arrow (accent) looping from bottom-right back to top-left -->
+                  <path d="M360 203 Q390 230 390 47 Q390 20 370 20 L220 20" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <polygon points="220,15 208,20 220,25" fill="var(--accent)"/>
+                </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Research</span>
-                <h3><a href="reddit-disability-study.html" class="project-card-link">Storytelling in Disability Spaces on Reddit</a></h3>
-                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to find connection and make sense of difficult experiences.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,Accessibility,Human-Computer Interaction">
-                  <button class="skill-tag" type="button">Qualitative Research</button>
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">A</span>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Research</span>
-                <h3><a href="perceived-transparency-generative-ai.html" class="project-card-link">AI Transparency &amp; User Trust</a></h3>
+                <span class="project-tag-label">Qualitative Study</span>
+                <h3>AI Transparency &amp; User Trust</h3>
                 <p>A qualitative study examining how users evaluate ChatGPT's credibility through iterative prompting and why they prioritize structure and tone over citations.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,AI,Human-Computer Interaction">
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Qualitative Research,AI,Human-Computer Interaction">
                   <button class="skill-tag" type="button">Qualitative Research</button>
                   <button class="skill-tag" type="button">AI</button>
                   <button class="skill-tag" type="button">Human-Computer Interaction</button>
                 </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
+                <a href="perceived-transparency-generative-ai.html" class="view-project-link">View project →</a>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">E</span>
+                <!-- Card 2: PT Clinic — routing nodes with relay and direct path -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Three nodes -->
+                  <circle cx="80" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <circle cx="200" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <circle cx="320" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Node labels -->
+                  <text x="80" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Therapist</text>
+                  <text x="200" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Assistant</text>
+                  <text x="320" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Receptionist</text>
+                  <!-- Multi-hop relay: A→T (arc above) -->
+                  <path d="M178 113 Q140 72 102 113" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="104,113 96,107 99,118" fill="var(--text-secondary)"/>
+                  <!-- T→A arc back -->
+                  <path d="M102 127 Q140 168 178 127" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="176,127 184,121 183,132" fill="var(--text-secondary)"/>
+                  <!-- A→R -->
+                  <line x1="222" y1="120" x2="296" y2="120" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <polygon points="296,115 307,120 296,125" fill="var(--text-secondary)"/>
+                  <!-- Direct path A→R (accent, below) -->
+                  <path d="M80 142 Q200 195 320 142" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 3"/>
+                  <polygon points="318,141 328,137 326,148" fill="var(--accent)"/>
+                </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Design Systems</span>
-                <h3><a href="eduflow-case-study.html" class="project-card-link">EduFlow Design System</a></h3>
-                <p>A design system for university digital transformation: atomic design, AI interaction patterns, governance, and accessibility built in from the start. The real story is how the AI tooling was directed.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,AI,Design Systems">
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">AI</button>
-                  <button class="skill-tag" type="button">Design Systems</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">H</span>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Cognitive Engineering</span>
-                <h3><a href="hades-cognitive-engineering-study.html" class="project-card-link">Hades: Cognitive Load &amp; Expert Performance</a></h3>
-                <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Human-Computer Interaction,Behavior">
-                  <button class="skill-tag" type="button">Cognitive Engineering</button>
-                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
-                  <button class="skill-tag" type="button">Behavior</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">D</span>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Field Research</span>
-                <h3><a href="distracted-pedestrians.html" class="project-card-link">Distracted Pedestrian Field Study</a></h3>
-                <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Field Research,Qualitative Research,Behavior">
-                  <button class="skill-tag" type="button">Field Research</button>
-                  <button class="skill-tag" type="button">Qualitative Research</button>
-                  <button class="skill-tag" type="button">Behavior</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">N</span>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">UX &amp; Brand Design</span>
-                <h3><a href="noticed-case-study.html" class="project-card-link">Noticed: Adaptive Symptom Tracking</a></h3>
-                <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,Design Systems,Visual Design">
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">Design Systems</button>
-                  <button class="skill-tag" type="button">Visual Design</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <span class="project-initial">T</span>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Cognitive Engineering</span>
-                <h3><a href="physical-therapy-interaction-study.html" class="project-card-link">Team Efficiency at a Physical Therapy Clinic</a></h3>
+                <span class="project-tag-label">UX Case Study</span>
+                <h3>Team Efficiency at a Physical Therapy Clinic</h3>
                 <p>A cognitive engineering field study measuring communication bottlenecks and operational efficiency across contrasting high- and low-stress days at a physical therapy clinic.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Field Research,Service Design">
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Cognitive Engineering,Field Research,Service Design">
                   <button class="skill-tag" type="button">Cognitive Engineering</button>
                   <button class="skill-tag" type="button">Field Research</button>
                   <button class="skill-tag" type="button">Service Design</button>
                 </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
+                <a href="physical-therapy-interaction-study.html" class="view-project-link">View project →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image" aria-hidden="true">
+                <!-- Card 3: Reddit — threaded comment structure -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Top post -->
+                  <rect x="30" y="24" width="340" height="38" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="2"/>
+                  <!-- Vertical thread line -->
+                  <line x1="60" y1="62" x2="60" y2="210" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
+                  <!-- Reply 1 -->
+                  <line x1="60" y1="90" x2="82" y2="90" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="82" y="78" width="278" height="28" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Reply 2 -->
+                  <line x1="60" y1="130" x2="82" y2="130" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="82" y="118" width="250" height="28" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Nested thread line under reply 2 -->
+                  <line x1="104" y1="146" x2="104" y2="210" stroke="var(--border)" stroke-width="1.5"/>
+                  <!-- Nested reply -->
+                  <line x1="104" y1="170" x2="124" y2="170" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="124" y="158" width="220" height="26" rx="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <!-- Reply 3 -->
+                  <line x1="60" y1="205" x2="82" y2="205" stroke="var(--border)" stroke-width="1.5"/>
+                  <rect x="82" y="193" width="220" height="26" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="project-card-body">
+                <span class="project-tag-label">Qualitative Study</span>
+                <h3>Storytelling in Disability Spaces on Reddit</h3>
+                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to build connection, process difficult experiences, and navigate belonging.</p>
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Qualitative Research,Accessibility,Human-Computer Interaction">
+                  <button class="skill-tag" type="button">Qualitative Research</button>
+                  <button class="skill-tag" type="button">Accessibility</button>
+                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
+                </div>
+                <a href="reddit-disability-study.html" class="view-project-link">View project →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image" aria-hidden="true">
+                <!-- Card 4: EduFlow — atomic composition grid -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Bottom row: small atoms -->
+                  <rect x="50" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="96" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <rect x="142" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="188" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="234" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="280" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <!-- Mid row: composed components -->
+                  <rect x="72" y="110" width="80" height="44" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="166" y="110" width="80" height="44" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                  <rect x="260" y="110" width="56" height="44" rx="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <!-- Top row: large component -->
+                  <rect x="100" y="38" width="200" height="60" rx="4" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+                  <!-- Connecting lines -->
+                  <line x1="112" y1="154" x2="112" y2="166" stroke="var(--border)" stroke-width="1.5"/>
+                  <line x1="206" y1="154" x2="206" y2="166" stroke="var(--border)" stroke-width="1.5"/>
+                  <line x1="200" y1="110" x2="200" y2="98" stroke="var(--border)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="project-card-body">
+                <span class="project-tag-label">Case Study</span>
+                <h3>EduFlow Accessibility Infrastructure</h3>
+                <p>An accessible-by-default design system for university registration, spanning design tokens, component libraries, AI interaction patterns, and cross-team governance.</p>
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Accessibility,AI,Design Systems">
+                  <button class="skill-tag" type="button">Accessibility</button>
+                  <button class="skill-tag" type="button">AI</button>
+                  <button class="skill-tag" type="button">Design Systems</button>
+                </div>
+                <a href="eduflow-case-study.html" class="view-project-link">View project →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image" aria-hidden="true">
+                <!-- Card 5: Hades — rhythm strip with overload cluster -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Timeline baseline -->
+                  <line x1="30" y1="120" x2="370" y2="120" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <!-- Evenly spaced tick marks -->
+                  <line x1="60" y1="105" x2="60" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="100" y1="108" x2="100" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="140" y1="105" x2="140" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="180" y1="108" x2="180" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <!-- Overload cluster (accent) -->
+                  <line x1="220" y1="88" x2="220" y2="152" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="232" y1="92" x2="232" y2="148" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="244" y1="88" x2="244" y2="152" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="256" y1="94" x2="256" y2="146" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="268" y1="90" x2="268" y2="150" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="280" y1="86" x2="280" y2="154" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Resume normal ticks -->
+                  <line x1="320" y1="108" x2="320" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                  <line x1="360" y1="105" x2="360" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="project-card-body">
+                <span class="project-tag-label">UX Research</span>
+                <h3>Hades: Cognitive Load &amp; Expert Performance</h3>
+                <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Cognitive Engineering,Human-Computer Interaction,Behavior">
+                  <button class="skill-tag" type="button">Cognitive Engineering</button>
+                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
+                  <button class="skill-tag" type="button">Behavior</button>
+                </div>
+                <a href="hades-cognitive-engineering-study.html" class="view-project-link">View project →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image" aria-hidden="true">
+                <!-- Card 6: Noticed — constellation of dots with accent star -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Connecting lines -->
+                  <line x1="200" y1="120" x2="100" y2="60" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="200" y1="120" x2="310" y2="70" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="200" y1="120" x2="80" y2="165" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="200" y1="120" x2="320" y2="170" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="200" y1="120" x2="160" y2="185" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="200" y1="120" x2="270" y2="40" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="100" y1="60" x2="270" y2="40" stroke="var(--border)" stroke-width="1"/>
+                  <line x1="80" y1="165" x2="160" y2="185" stroke="var(--border)" stroke-width="1"/>
+                  <!-- Outer dots -->
+                  <circle cx="100" cy="60" r="5" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="310" cy="70" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="270" cy="40" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="80" cy="165" r="5" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="320" cy="170" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="160" cy="185" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="350" cy="120" r="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <circle cx="60" cy="100" r="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+                  <!-- Accent star (center) -->
+                  <circle cx="200" cy="120" r="8" fill="var(--accent)" opacity="0.85"/>
+                  <circle cx="200" cy="120" r="14" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.35"/>
+                </svg>
+              </div>
+              <div class="project-card-body">
+                <span class="project-tag-label">Case Study</span>
+                <h3>Noticed: Adaptive Symptom Tracking</h3>
+                <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Accessibility,Design Systems,Visual Design">
+                  <button class="skill-tag" type="button">Accessibility</button>
+                  <button class="skill-tag" type="button">Design Systems</button>
+                  <button class="skill-tag" type="button">Visual Design</button>
+                </div>
+                <a href="noticed-case-study.html" class="view-project-link">View project →</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-image" aria-hidden="true">
+                <!-- Card 7: Distracted Pedestrians — crosswalk grid with wandering path -->
+                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Crosswalk stripes (horizontal bands) -->
+                  <rect x="60" y="50" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
+                  <rect x="60" y="85" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
+                  <rect x="60" y="120" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
+                  <rect x="60" y="155" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
+                  <!-- Vertical lane guides -->
+                  <line x1="60" y1="45" x2="60" y2="182" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
+                  <line x1="340" y1="45" x2="340" y2="182" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
+                  <!-- Wandering accent path through the grid -->
+                  <path d="M80 165 Q120 155 145 97 Q170 55 210 62 Q250 68 265 128 Q278 175 320 163" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Endpoint dot -->
+                  <circle cx="320" cy="163" r="4" fill="var(--accent)"/>
+                  <!-- Start dot -->
+                  <circle cx="80" cy="165" r="4" fill="var(--text-secondary)"/>
+                </svg>
+              </div>
+              <div class="project-card-body">
+                <span class="project-tag-label">Field Study</span>
+                <h3>Distracted Pedestrian Field Study</h3>
+                <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
+                <div class="skill-tags" aria-label="Filter by tag" data-tags="Field Research,Qualitative Research,Behavior">
+                  <button class="skill-tag" type="button">Field Research</button>
+                  <button class="skill-tag" type="button">Qualitative Research</button>
+                  <button class="skill-tag" type="button">Behavior</button>
+                </div>
+                <a href="distracted-pedestrians.html" class="view-project-link">View project →</a>
               </div>
             </article>
 
@@ -205,7 +341,7 @@
       <section id="resume" aria-labelledby="resume-title">
         <div class="section-wrap content-wrap">
           <h2 id="resume-title">Experience at a glance</h2>
-          <p>Recent HCI graduate with research experience from my master's program and practical UX and development work as an independent contractor.</p>
+          <p>UX researcher trained in qualitative and cognitive engineering methods, with independent consulting experience in web development and accessibility.</p>
           <a href="assets/ErinN.King%20Resume.pdf" class="resume-download-btn">Download resume (PDF)</a>
 
           <div class="resume-columns">
@@ -224,12 +360,12 @@
 
               <div class="resume-block">
                 <h3 class="resume-block-label">Research Methods</h3>
-                <p class="resume-skills">Qualitative Research · Thematic Analysis · Contextual Inquiry · Cognitive Engineering · Field Studies · Semi-Structured Interviews · Think-Aloud Protocol · Usability Testing</p>
+                <p class="resume-skills">Qualitative Research · Thematic Analysis · Qualitative Coding (Taguette) · Content Analysis · Contextual Inquiry · Cognitive Engineering · Field Studies · Semi-Structured Interviews · Think-Aloud Protocol · Usability Testing</p>
               </div>
 
               <div class="resume-block">
                 <h3 class="resume-block-label">Tools &amp; Skills</h3>
-                <p class="resume-skills">Figma · Design Systems · Accessibility (WCAG 2.2) · AI Interaction Patterns · UX Writing · Information Architecture</p>
+                <p class="resume-skills">Figma · HTML/CSS/JavaScript · Shopify (Liquid) · Design Systems · Accessibility (WCAG 2.2) · UX Writing · Information Architecture</p>
               </div>
             </div>
 
@@ -238,14 +374,16 @@
                 <h3 class="resume-block-label">Experience</h3>
                 <div class="resume-entry">
                   <div class="resume-entry-header">
-                    <p class="resume-entry-title">User Experience Consultant</p>
+                    <p class="resume-entry-title">Web Development &amp; UX Consultant</p>
                     <p class="resume-entry-date">Mar 2024 – Present</p>
                   </div>
                   <p class="resume-entry-meta">Independent Contractor</p>
                   <ul class="resume-entry-list">
-                    <li>Led theme migration for a retail client, translating legacy styling into Shopify Liquid and resolving high-priority technical debt.</li>
-                    <li>Engineered dynamic product linking via Shopify Metaobjects to improve cross-franchise discoverability and navigation.</li>
-                    <li>Executed SEO strategy for a festival landing page and authored instructional documentation for long-term stakeholder maintenance.</li>
+                    <li>Took over an active Shopify storefront from a previous developer, led its migration to the current theme version, and preserved custom functionality while resolving post-migration bugs.</li>
+                    <li>Built dynamic product linking with Shopify Metaobjects and trained the client team to maintain the feature independently.</li>
+                    <li>Applied accessibility standards within client constraints, including a promotional banner that pauses on hover (WCAG 2.2.2) and decluttered copy across key pages.</li>
+                    <li>Designed and built an event landing site on a platform chosen so the client could self-maintain after handoff, and set up SEO that keeps the site at or near the top of Google results for its primary event queries.</li>
+                    <li>Supported event cycles drawing 3,000+ sessions and 100+ ticket orders in a 30-day window, with poster-based short links emerging as the leading traffic source.</li>
                   </ul>
                 </div>
                 <div class="resume-entry">
@@ -280,6 +418,7 @@
     </main>
 
     <footer class="site-footer">
+      <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
       <p>&copy; 2026 Erin King. All rights reserved.</p>
     </footer>
 

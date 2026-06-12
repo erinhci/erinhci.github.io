@@ -54,40 +54,33 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-// Remove animation class after entrance so hover transitions aren't blocked by fill mode
-document.querySelectorAll('.animate-fade-up').forEach(el => {
-  el.addEventListener('animationend', () => el.classList.remove('animate-fade-up'), { once: true });
-});
-
-
+// Tag filter — card tags are interactive, no separate filter bar
 (function () {
   const grid = document.querySelector('.project-grid');
   const cards = Array.from(document.querySelectorAll('.project-card'));
   const allTags = document.querySelectorAll('.skill-tag');
   let activeFilter = null;
 
-  // Store original DOM order on the wrapper element
-  cards.forEach((card, i) => {
-    card.dataset.order = i;
-  });
-
-  allTags.forEach(tag => tag.setAttribute('aria-pressed', 'false'));
-
-  const status = document.getElementById('filter-status');
+  // Store original DOM order
+  cards.forEach((card, i) => { card.dataset.order = i; });
 
   allTags.forEach(tag => {
-    tag.addEventListener('click', (e) => {
+    tag.addEventListener('click', () => {
       const clicked = tag.textContent.trim();
 
       if (activeFilter === clicked) {
+        // Reset — same tag clicked again anywhere
         reset();
       } else {
+        // Activate filter
         activeFilter = clicked;
         updateTagHighlights();
-        const matchCount = reorderCards();
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        document.getElementById('work').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        status.textContent = matchCount + ' projects tagged ' + activeFilter + ' moved to the top of the list.';
+        reorderCards();
+
+        // Mobile: scroll to top of work section
+        if (window.innerWidth < 768) {
+          document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     });
   });
@@ -96,7 +89,6 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
     activeFilter = null;
     updateTagHighlights();
     restoreOrder();
-    status.textContent = 'Filter cleared. Original project order restored.';
   }
 
   function updateTagHighlights() {
@@ -106,7 +98,6 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
       } else {
         tag.classList.remove('active');
       }
-      tag.setAttribute('aria-pressed', String(activeFilter !== null && tag.textContent.trim() === activeFilter));
     });
   }
 
@@ -119,12 +110,10 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
 
     matching.forEach(card => grid.appendChild(card));
     rest.forEach(card => grid.appendChild(card));
-    return matching.length;
   }
 
   function restoreOrder() {
-    cards
-      .slice()
+    [...cards]
       .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
       .forEach(card => grid.appendChild(card));
   }

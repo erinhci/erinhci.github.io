@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study | EduFlow Design System</title>
-  <meta name="description" content="Case study: EduFlow digital transformation for education, including design systems, AI patterns, and AI-assisted development." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="case-study.css" />
-</head>
-  <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Case study: EduFlow digital transformation for education, including design systems, AI patterns, and AI-assisted development."
+    />
+    <title>Case Study | EduFlow: Digital Transformation for Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet" />
+    <script>
+      // Block-level script to prevent theme/color flashing
+      (function() {
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        const savedAccent = localStorage.getItem('portfolio-accent') || '#D40000';
 
-  <header class="site-header">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">Erin King</a>
-      <a href="index.html#work" class="back-link">&#8592; Back to portfolio</a>
-      <button id="theme-toggle" type="button" aria-label="Switch to dark mode">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-sun">
-          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="9" y1="1" x2="9" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="9" y1="15" x2="9" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="1" y1="9" x2="3" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="15" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="3.22" y1="3.22" x2="4.64" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="13.36" y1="13.36" x2="14.78" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14.78" y1="3.22" x2="13.36" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4.64" y1="13.36" x2="3.22" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-moon">
-          <path d="M15 9.75A6.75 6.75 0 0 1 8.25 3c0-.34.026-.675.076-1A7.5 7.5 0 1 0 16 10.674 6.774 6.774 0 0 1 15 9.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.style.setProperty('--accent', savedAccent);
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="case-study">
+    <a class="skip-link" href="#main">Skip to Main Content</a>
+    <div class="scroll-progress-track" aria-hidden="true">
+      <span class="scroll-progress-indicator"></span>
     </div>
-  </header>
+    <header class="site-header" id="top">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">Erin King</a>
+        <nav aria-label="Case study navigation">
+          <ul class="nav-links">
+            <li><a href="index.html">Back to Home</a></li>
+            <li><a href="https://eduflow-design-map.lovable.app/" target="_blank" rel="noopener noreferrer">Visit Live EduFlow Site</a></li>
+          </ul>
+          <div class="system-config" aria-label="Typographic configuration menu">
+            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
+            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
+            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
+            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
+            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
+          </div>
+        </nav>
+      </div>
+    </header>
 
-  <main id="main">
-    <div class="case-study-wrap">
+    <main id="main">
       <section class="hero section" aria-labelledby="case-study-title">
         <div class="container content-container">
-          <span class="case-study-label">Design Systems</span>
-          <h1 id="case-study-title">EduFlow: directing AI to build a design system</h1>
+          <p class="eyebrow">Case Study</p>
+          <h1 id="case-study-title">A design system built for the complexity of higher ed</h1>
           <p class="tagline insight-box">
-            EduFlow is a component library and design language for university registration platforms. The architecture, methodology, and constraints were defined upfront. AI executed from those decisions — not the other way around.
+            EduFlow is a component library and design language for university registration platforms. Built for environments where accessibility isn't optional, consistency is hard to maintain, and dozens of teams are all building at once.
           </p>
         </div>
       </section>
@@ -57,9 +69,6 @@
           <p>
             EduFlow gives teams a shared visual language, accessible-by-default components, and a governance model that scales across departments without falling apart. Pick it up and build faster without reinventing the wheel every time.
           </p>
-          <div class="case-study-note">
-            <p><strong>Note on process:</strong> The documentation site was built using Lovable, an AI development tool, directed by detailed prompt engineering. The design decisions — atomic methodology, token architecture, XAI principles, governance model, accessibility-first stance — were all defined before a single line was generated. This project was about learning to use AI as an execution layer, not a replacement for design thinking.</p>
-          </div>
         </div>
       </section>
 
@@ -108,7 +117,7 @@
       <section class="section" aria-labelledby="atoms-showcase-title">
         <div class="container content-container">
           <h2 id="atoms-showcase-title">Atoms in practice</h2>
-          <p>Below is a sample of the foundational atoms that underpin the EduFlow component library — color, typography, interactive controls, and status indicators — all accessible by default and built to compose.</p>
+          <p>Below is a sample of the foundational atoms that underpin the EduFlow component library (color, typography, interactive controls, and status indicators), all accessible by default and built to compose.</p>
 
           <div class="eduflow-showcase">
 
@@ -153,7 +162,7 @@
                 </div>
                 <div class="eduflow-type-row">
                   <span class="eduflow-type-meta">Body · 16px · 400</span>
-                  <span class="eduflow-type-sample" style="font-size:0.95rem;">BIOL 201 — Cell Biology (4 credits)</span>
+                  <span class="eduflow-type-sample" style="font-size:0.95rem;">BIOL 201: Cell Biology (4 credits)</span>
                 </div>
                 <div class="eduflow-type-row">
                   <span class="eduflow-type-meta">Caption · 12px · 500 · uppercase</span>
@@ -201,9 +210,9 @@
                   <input class="ef-input ef-input-disabled" type="text" id="ef-disabled" value="Spring 2025" disabled />
                 </div>
                 <div class="ef-input-wrap">
-                  <span class="ef-label ef-label-error">Credit Hours</span>
-                  <div class="ef-input ef-input-error" aria-describedby="ef-error-static" style="pointer-events: none; user-select: none;">25</div>
-                  <span class="ef-error-msg" id="ef-error-static">Exceeds maximum credit load (18 credits).</span>
+                  <label class="ef-label ef-label-error" for="ef-error">Credit Hours</label>
+                  <input class="ef-input ef-input-error" type="text" id="ef-error" value="25" aria-describedby="ef-error-msg" />
+                  <span class="ef-error-msg" id="ef-error-msg">Exceeds maximum credit load (18 credits).</span>
                 </div>
               </div>
             </div>
@@ -220,7 +229,7 @@
           </p>
           <ul>
             <li>
-              <strong>Course Recommendations:</strong> Surfaces suggestions based on academic history, major requirements, and peer patterns. An explainability layer tells you why each course was recommended and lets you dismiss or give feedback. AI as a helpful nudge, not a black box.
+              <strong>Course Recommendations:</strong> Surfaces suggestions based on academic history, major requirements, and peer patterns. An explainability layer tells you why each course was recommended and lets you dismiss or give feedback.
             </li>
             <li>
               <strong>Dynamic Schedule Planner:</strong> Integrates with wearables for haptic reminders, estimated walk times between buildings, and conflict detection before problems come up.
@@ -393,7 +402,7 @@
             Accessibility in EduFlow isn't a checklist you run at the end. It's built into every layer. Tokens enforce color contrast. Components ship with keyboard navigation and ARIA support. Patterns are validated against real assistive technologies.
           </p>
           <p>
-            WCAG 2.2 AA+ is the baseline, not the ceiling. University platforms serve a genuinely diverse population and getting this right matters in ways that are easy to underestimate elsewhere.
+            WCAG 2.2 AA+ is treated as a floor. University platforms serve a genuinely diverse population and getting this right matters in ways that are easy to underestimate elsewhere.
           </p>
         </div>
       </section>
@@ -402,7 +411,7 @@
         <div class="container content-container">
           <h2 id="ai-patterns-title">AI patterns</h2>
           <p>
-            Every AI feature had to clear one bar: would users actually trust it? Three principles drove every decision: transparency (users always know when AI is involved), control (AI suggests, users decide), and explainability (recommendations come with reasons).
+            The question wasn't "how do we add AI features?" It was "how do we add AI features users actually trust?" Three principles drove every decision: transparency (users always know when AI is involved), control (AI suggests, users decide), and explainability (recommendations come with reasons).
           </p>
           <p>
             The best AI features are ones users barely notice because they just work. When they don't, the system says so and hands control back.
@@ -426,53 +435,120 @@
         <div class="container content-container">
           <h2 id="about-project-title">About this project</h2>
           <p>
-            EduFlow was developed for a Managing UX Teams graduate course. The brief called for a complete design system — not just components, but foundations, governance, AI patterns, accessibility guidelines, and a contribution model for a university navigating digital transformation.
+            EduFlow was a semester-long project for a Managing UX Teams graduate course. The brief was to design and document a design system for a university navigating digital transformation across registration, advising, and student engagement. Not just components, but a full system with foundations, governance, AI patterns, accessibility guidelines, and a contribution model. Feel free to explore the interactive demos and documentation site.
           </p>
           <p>
-            The most deliberate choice was how to use AI. Rather than treating Lovable as a tool that generates design systems, I treated it as an execution layer. I defined the atomic design hierarchy, wrote the token specifications, established the XAI principles, and outlined the governance model first — then engineered the prompts to bring those decisions to life. The difference between AI-assisted and AI-directed is what this project is really about.
+            <a href="https://eduflow-design-map.lovable.app/" target="_blank" rel="noopener noreferrer">Visit the live EduFlow site</a>
           </p>
-          <p>
-            <a href="https://eduflow-design-map.lovable.app/" target="_blank" rel="noopener noreferrer">Explore the live EduFlow documentation site</a>
-          </p>
+          <p>The system was presented as the capstone of the course.</p>
         </div>
       </section>
       <nav class="case-study-nav" aria-label="Case study navigation">
-        <a href="perceived-transparency-generative-ai.html" class="case-study-nav-link prev">
-          <span class="case-study-nav-direction">← Previous</span>
-          <span class="case-study-nav-title">AI Transparency &amp; User Trust</span>
-        </a>
-        <a href="hades-cognitive-engineering-study.html" class="case-study-nav-link next">
-          <span class="case-study-nav-direction">Next →</span>
-          <span class="case-study-nav-title">Hades: Cognitive Load &amp; Expert Performance</span>
-        </a>
+        <div class="container content-container">
+          <div class="case-study-nav-inner">
+            <a href="reddit-disability-study.html" class="case-study-nav-prev">← Storytelling in Disability Spaces on Reddit</a>
+            <a href="hades-cognitive-engineering-study.html" class="case-study-nav-next">Hades: Cognitive Load &amp; Expert Performance →</a>
+          </div>
+        </div>
       </nav>
-    </div><!-- end case-study-wrap -->
-  </main>
+    </main>
 
-  <footer class="site-footer">
-    <p>&copy; 2026 Erin King. All rights reserved.</p>
-  </footer>
+    <footer class="site-footer">
+      <div class="container content-container">
+        <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
+        <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      const root = document.documentElement;
+      const accentPreferenceKey = "portfolio-accent";
+      const accentNamePreferenceKey = "portfolio-accent-name";
+      const themePreferenceKey = "portfolio-theme";
+      const accentOptions = {
+        red: { light: "#D40000", dark: "#FF453A" },
+        blue: { light: "#0050E0", dark: "#0A84FF" },
+        green: { light: "#008A30", dark: "#32D74B" },
+        amber: { light: "#967300", dark: "#FFD60A" }
+      };
 
-  <script>
-    // Theme toggle
-    const html = document.documentElement;
-    const toggle = document.getElementById('theme-toggle');
-    const saved = localStorage.getItem('theme');
-    const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    html.dataset.theme = saved || system;
-    updateLabel();
+      const configOptions = document.querySelectorAll(".config-option");
+      const accentButtons = document.querySelectorAll("[data-accent-name]");
+      const themeToggleButton = document.querySelector("[data-theme-toggle]");
+      const progressIndicator = document.querySelector(".scroll-progress-indicator");
 
-    toggle.addEventListener('click', () => {
-      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = next;
-      localStorage.setItem('theme', next);
-      updateLabel();
-    });
+      const getTheme = () => root.getAttribute("data-theme") || "light";
+      const getAccentNameFromHex = (hexValue, theme) => {
+        if (!hexValue) return null;
+        const normalizedHex = hexValue.trim().toLowerCase();
+        return (
+          Object.keys(accentOptions).find(
+            (accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex
+          ) || null
+        );
+      };
 
-    function updateLabel() {
-      const isDark = html.dataset.theme === 'dark';
-      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-  </script>
-</body>
+      const updateAccentState = (accentName) => {
+        accentButtons.forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.accentName === accentName);
+        });
+      };
+
+      const setAccent = (colorName) => {
+        const accentName = accentOptions[colorName] ? colorName : "red";
+        const theme = getTheme();
+        const accentHex = accentOptions[accentName][theme];
+        root.setAttribute("data-accent-color", accentName);
+        root.style.setProperty("--accent", accentHex);
+        localStorage.setItem(accentPreferenceKey, accentHex);
+        localStorage.setItem(accentNamePreferenceKey, accentName);
+        updateAccentState(accentName);
+      };
+
+      const updateThemeToggleLabel = (theme) => {
+        if (!themeToggleButton) return;
+        themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT";
+      };
+
+      const toggleTheme = () => {
+        const nextTheme = getTheme() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", nextTheme);
+        localStorage.setItem(themePreferenceKey, nextTheme);
+        updateThemeToggleLabel(nextTheme);
+        setAccent(localStorage.getItem(accentNamePreferenceKey) || "red");
+      };
+
+      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
+      root.setAttribute("data-theme", savedTheme);
+      updateThemeToggleLabel(savedTheme);
+
+      const savedAccentName =
+        localStorage.getItem(accentNamePreferenceKey) ||
+        getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) ||
+        "red";
+      setAccent(savedAccentName);
+
+      configOptions.forEach((option) => {
+        if (option.dataset.themeToggle !== undefined) {
+          option.addEventListener("click", toggleTheme);
+          return;
+        }
+        option.addEventListener("click", () => {
+          const colorName = option.dataset.accentName;
+          if (!colorName) return;
+          setAccent(colorName);
+        });
+      });
+
+      const updateScrollProgress = () => {
+        if (!progressIndicator) return;
+        const scrollableDistance = document.body.scrollHeight - window.innerHeight;
+        const progress = scrollableDistance > 0 ? (window.scrollY / scrollableDistance) * 100 : 0;
+        progressIndicator.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      };
+
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", updateScrollProgress);
+      updateScrollProgress();
+    </script>
+  </body>
 </html>
