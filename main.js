@@ -54,33 +54,40 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-// Tag filter — card tags are interactive, no separate filter bar
+// Remove animation class after entrance so hover transitions aren't blocked by fill mode
+document.querySelectorAll('.animate-fade-up').forEach(el => {
+  el.addEventListener('animationend', () => el.classList.remove('animate-fade-up'), { once: true });
+});
+
+
 (function () {
   const grid = document.querySelector('.project-grid');
   const cards = Array.from(document.querySelectorAll('.project-card'));
   const allTags = document.querySelectorAll('.skill-tag');
   let activeFilter = null;
 
-  // Store original DOM order
-  cards.forEach((card, i) => { card.dataset.order = i; });
+  // Store original DOM order on the wrapper element
+  cards.forEach((card, i) => {
+    card.dataset.order = i;
+  });
+
+  allTags.forEach(tag => tag.setAttribute('aria-pressed', 'false'));
+
+  const status = document.getElementById('filter-status');
 
   allTags.forEach(tag => {
-    tag.addEventListener('click', () => {
+    tag.addEventListener('click', (e) => {
       const clicked = tag.textContent.trim();
 
       if (activeFilter === clicked) {
-        // Reset — same tag clicked again anywhere
         reset();
       } else {
-        // Activate filter
         activeFilter = clicked;
         updateTagHighlights();
-        reorderCards();
-
-        // Mobile: scroll to top of work section
-        if (window.innerWidth < 768) {
-          document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const matchCount = reorderCards();
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.getElementById('work').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        status.textContent = matchCount + ' projects tagged ' + activeFilter + ' moved to the top of the list.';
       }
     });
   });
@@ -89,6 +96,7 @@ sections.forEach(section => observer.observe(section));
     activeFilter = null;
     updateTagHighlights();
     restoreOrder();
+    status.textContent = 'Filter cleared. Original project order restored.';
   }
 
   function updateTagHighlights() {
@@ -98,6 +106,7 @@ sections.forEach(section => observer.observe(section));
       } else {
         tag.classList.remove('active');
       }
+      tag.setAttribute('aria-pressed', String(activeFilter !== null && tag.textContent.trim() === activeFilter));
     });
   }
 
@@ -110,10 +119,12 @@ sections.forEach(section => observer.observe(section));
 
     matching.forEach(card => grid.appendChild(card));
     rest.forEach(card => grid.appendChild(card));
+    return matching.length;
   }
 
   function restoreOrder() {
-    [...cards]
+    cards
+      .slice()
       .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
       .forEach(card => grid.appendChild(card));
   }

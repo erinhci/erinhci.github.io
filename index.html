@@ -7,7 +7,7 @@
     <title>Portfolio | Erin King</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -68,20 +68,20 @@
       <section id="about" aria-labelledby="about-title">
         <div class="section-wrap content-wrap">
           <h2 id="about-title">Hi, I'm Erin</h2>
-          <p>I'm a UX researcher and designer based in the San Francisco Bay Area, with a Master's in Human-Computer Interaction and a background in cognitive science and psychology.</p>
-          <p>Accessibility has been part of how I think about design from the beginning — I see it as a lens for building things that genuinely work for people across a wide range of contexts, abilities, and needs.</p>
-          <p>Right now I'm especially interested in how people make sense of, trust, and collaborate with AI systems — and what that means for the people designing them.</p>
+          <p>I'm based in the Bay Area with a Master's in Human-Computer Interaction and a background in cognitive science and psychology.</p>
+          <p>Technology is everywhere and getting more capable fast, and I find that genuinely exciting. It's also why I think design matters: making things worth people's time and trust, understanding what they actually need, keeping things from going sideways. Those are the problems that motivate me.</p>
         </div>
       </section>
 
       <section id="work" aria-labelledby="work-title">
         <div class="section-wrap">
           <h2 id="work-title">Selected work</h2>
+          <p id="filter-status" class="visually-hidden" role="status" aria-live="polite"></p>
           <div class="project-grid">
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 1: AI Transparency — conversational exchange loop -->
+                <!-- Card 1: AI Transparency : conversational exchange loop -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Left message -->
                   <rect x="40" y="30" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
@@ -101,21 +101,21 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Study</span>
-                <h3>AI Transparency &amp; User Trust</h3>
+                <span class="project-tag-label">Qualitative Research</span>
+                <h3><a href="perceived-transparency-generative-ai.html" class="project-card-link">AI Transparency &amp; User Trust</a></h3>
                 <p>A qualitative study examining how users evaluate ChatGPT's credibility through iterative prompting and why they prioritize structure and tone over citations.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Qualitative Research,AI,Human-Computer Interaction">
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,AI,Human-Computer Interaction">
                   <button class="skill-tag" type="button">Qualitative Research</button>
                   <button class="skill-tag" type="button">AI</button>
                   <button class="skill-tag" type="button">Human-Computer Interaction</button>
                 </div>
-                <a href="perceived-transparency-generative-ai.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 2: PT Clinic — routing nodes with relay and direct path -->
+                <!-- Card 2: PT Clinic : routing nodes with relay and direct path -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Three nodes -->
                   <circle cx="80" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
@@ -140,21 +140,21 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">UX Case Study</span>
-                <h3>Team Efficiency at a Physical Therapy Clinic</h3>
+                <span class="project-tag-label">Cognitive Engineering</span>
+                <h3><a href="physical-therapy-interaction-study.html" class="project-card-link">Team Efficiency at a Physical Therapy Clinic</a></h3>
                 <p>A cognitive engineering field study measuring communication bottlenecks and operational efficiency across contrasting high- and low-stress days at a physical therapy clinic.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Cognitive Engineering,Field Research,Service Design">
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Field Research,Service Design">
                   <button class="skill-tag" type="button">Cognitive Engineering</button>
                   <button class="skill-tag" type="button">Field Research</button>
                   <button class="skill-tag" type="button">Service Design</button>
                 </div>
-                <a href="physical-therapy-interaction-study.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 3: Reddit — threaded comment structure -->
+                <!-- Card 3: Reddit : threaded comment structure -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Top post -->
                   <rect x="30" y="24" width="340" height="38" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="2"/>
@@ -177,21 +177,21 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Study</span>
-                <h3>Storytelling in Disability Spaces on Reddit</h3>
-                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to build connection, process difficult experiences, and navigate belonging.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Qualitative Research,Accessibility,Human-Computer Interaction">
+                <span class="project-tag-label">Qualitative Research</span>
+                <h3><a href="reddit-disability-study.html" class="project-card-link">Storytelling in Disability Spaces on Reddit</a></h3>
+                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to find connection and make sense of difficult experiences.</p>
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,Accessibility,Human-Computer Interaction">
                   <button class="skill-tag" type="button">Qualitative Research</button>
                   <button class="skill-tag" type="button">Accessibility</button>
                   <button class="skill-tag" type="button">Human-Computer Interaction</button>
                 </div>
-                <a href="reddit-disability-study.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 4: EduFlow — atomic composition grid -->
+                <!-- Card 4: EduFlow : atomic composition grid -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Bottom row: small atoms -->
                   <rect x="50" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
@@ -213,21 +213,21 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Case Study</span>
-                <h3>EduFlow Accessibility Infrastructure</h3>
-                <p>An accessible-by-default design system for university registration, spanning design tokens, component libraries, AI interaction patterns, and cross-team governance.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Accessibility,AI,Design Systems">
+                <span class="project-tag-label">Design Systems</span>
+                <h3><a href="eduflow-case-study.html" class="project-card-link">EduFlow Design System</a></h3>
+                <p>A design system for university digital transformation: atomic design, AI interaction patterns, governance, and accessibility built in from the start. The real story is how the AI tooling was directed.</p>
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,AI,Design Systems">
                   <button class="skill-tag" type="button">Accessibility</button>
                   <button class="skill-tag" type="button">AI</button>
                   <button class="skill-tag" type="button">Design Systems</button>
                 </div>
-                <a href="eduflow-case-study.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 5: Hades — rhythm strip with overload cluster -->
+                <!-- Card 5: Hades : rhythm strip with overload cluster -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Timeline baseline -->
                   <line x1="30" y1="120" x2="370" y2="120" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
@@ -249,21 +249,21 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">UX Research</span>
-                <h3>Hades: Cognitive Load &amp; Expert Performance</h3>
+                <span class="project-tag-label">Cognitive Engineering</span>
+                <h3><a href="hades-cognitive-engineering-study.html" class="project-card-link">Hades: Cognitive Load &amp; Expert Performance</a></h3>
                 <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Cognitive Engineering,Human-Computer Interaction,Behavior">
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Human-Computer Interaction,Behavior">
                   <button class="skill-tag" type="button">Cognitive Engineering</button>
                   <button class="skill-tag" type="button">Human-Computer Interaction</button>
                   <button class="skill-tag" type="button">Behavior</button>
                 </div>
-                <a href="hades-cognitive-engineering-study.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 6: Noticed — constellation of dots with accent star -->
+                <!-- Card 6: Noticed : constellation of dots with accent star -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Connecting lines -->
                   <line x1="200" y1="120" x2="100" y2="60" stroke="var(--border)" stroke-width="1"/>
@@ -289,21 +289,20 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Case Study</span>
-                <h3>Noticed: Adaptive Symptom Tracking</h3>
+                <span class="project-tag-label">UX &amp; Brand Design</span>
+                <h3><a href="noticed-case-study.html" class="project-card-link">Noticed: Adaptive Symptom Tracking</a></h3>
                 <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Accessibility,Design Systems,Visual Design">
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,Design Systems,Visual Design">
                   <button class="skill-tag" type="button">Accessibility</button>
                   <button class="skill-tag" type="button">Design Systems</button>
                   <button class="skill-tag" type="button">Visual Design</button>
                 </div>
-                <a href="noticed-case-study.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-card-image" aria-hidden="true">
-                <!-- Card 7: Distracted Pedestrians — crosswalk grid with wandering path -->
                 <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
                   <!-- Crosswalk stripes (horizontal bands) -->
                   <rect x="60" y="50" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
@@ -322,15 +321,15 @@
                 </svg>
               </div>
               <div class="project-card-body">
-                <span class="project-tag-label">Field Study</span>
-                <h3>Distracted Pedestrian Field Study</h3>
+                <span class="project-tag-label">Field Research</span>
+                <h3><a href="distracted-pedestrians.html" class="project-card-link">Distracted Pedestrian Field Study</a></h3>
                 <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
-                <div class="skill-tags" aria-label="Filter by tag" data-tags="Field Research,Qualitative Research,Behavior">
+                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Field Research,Qualitative Research,Behavior">
                   <button class="skill-tag" type="button">Field Research</button>
                   <button class="skill-tag" type="button">Qualitative Research</button>
                   <button class="skill-tag" type="button">Behavior</button>
                 </div>
-                <a href="distracted-pedestrians.html" class="view-project-link">View project →</a>
+                <span class="view-project-link" aria-hidden="true">View project →</span>
               </div>
             </article>
 
