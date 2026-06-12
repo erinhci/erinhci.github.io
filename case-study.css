@@ -1510,3 +1510,12 @@ ul {
 .ef-error-msg {
   color: #e05555 !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  [class*="animate-"] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

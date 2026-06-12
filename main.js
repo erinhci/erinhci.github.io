@@ -68,14 +68,15 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
 
   // Store original DOM order on the wrapper element
   cards.forEach((card, i) => {
-    const wrapper = card.closest('.project-card-link') || card;
-    wrapper.dataset.order = i;
+    card.dataset.order = i;
   });
+
+  allTags.forEach(tag => tag.setAttribute('aria-pressed', 'false'));
+
+  const status = document.getElementById('filter-status');
 
   allTags.forEach(tag => {
     tag.addEventListener('click', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
       const clicked = tag.textContent.trim();
 
       if (activeFilter === clicked) {
@@ -83,8 +84,10 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
       } else {
         activeFilter = clicked;
         updateTagHighlights();
-        reorderCards();
-        document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const matchCount = reorderCards();
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.getElementById('work').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        status.textContent = matchCount + ' projects tagged ' + activeFilter + ' moved to the top of the list.';
       }
     });
   });
@@ -93,6 +96,7 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
     activeFilter = null;
     updateTagHighlights();
     restoreOrder();
+    status.textContent = 'Filter cleared. Original project order restored.';
   }
 
   function updateTagHighlights() {
@@ -102,11 +106,8 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
       } else {
         tag.classList.remove('active');
       }
+      tag.setAttribute('aria-pressed', String(activeFilter !== null && tag.textContent.trim() === activeFilter));
     });
-  }
-
-  function getWrapper(card) {
-    return card.closest('.project-card-link') || card;
   }
 
   function reorderCards() {
@@ -116,15 +117,15 @@ document.querySelectorAll('.animate-fade-up').forEach(el => {
     });
     const rest = cards.filter(card => !matching.includes(card));
 
-    // Move wrapper elements, not just the article cards
-    matching.forEach(card => grid.appendChild(getWrapper(card)));
-    rest.forEach(card => grid.appendChild(getWrapper(card)));
+    matching.forEach(card => grid.appendChild(card));
+    rest.forEach(card => grid.appendChild(card));
+    return matching.length;
   }
 
   function restoreOrder() {
     cards
       .slice()
-      .sort((a, b) => Number(getWrapper(a).dataset.order) - Number(getWrapper(b).dataset.order))
-      .forEach(card => grid.appendChild(getWrapper(card)));
+      .sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
+      .forEach(card => grid.appendChild(card));
   }
 })();
