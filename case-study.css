@@ -1012,6 +1012,24 @@ ul {
    CASE STUDY NAVIGATION
    ============================================================ */
 
+/* Case study figures */
+.case-figure {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: var(--space-md) 0;
+  overflow: hidden;
+}
+
+.case-figure figcaption {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
 .case-study-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;

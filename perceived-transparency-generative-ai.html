@@ -1,250 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Case study on perceived transparency in generative AI and how users build trust through iterative prompting."
-    />
-    <title>Case Study | Perceived Transparency in Generative AI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet" />
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-        const savedAccent = localStorage.getItem('portfolio-accent') || '#D40000';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        document.documentElement.style.setProperty('--accent', savedAccent);
-      })();
-    </script>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      .ai-stat-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin: 1.5rem 0;
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Perceived Transparency in Generative AI</title>
+  <meta name="description" content="Case study on perceived transparency in generative AI and how users build trust through iterative prompting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="case-study.css" />
+</head>
+  <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-      .ai-stat-box {
-        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 30%, var(--line));
-        border-radius: var(--radius-md);
-        padding: 1.25rem;
-        background: color-mix(in srgb, var(--surface) 85%, var(--bg));
-        text-align: center;
-      }
-
-      .ai-stat-number {
-        display: block;
-        font-size: clamp(1.8rem, 4vw, 2.6rem);
-        font-family: var(--font-heading);
-        font-weight: 700;
-        color: var(--project-accent, var(--accent));
-        line-height: 1.1;
-        margin-bottom: 0.3rem;
-      }
-
-      .ai-stat-label {
-        font-size: 0.8rem;
-        color: var(--muted);
-        letter-spacing: 0.04em;
-      }
-
-      .insight-box {
-        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 30%, var(--line));
-        border-radius: var(--radius-md);
-        padding: 1rem 1.25rem;
-        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
-        margin: 1.25rem 0;
-        font-size: 0.95rem;
-      }
-
-      .finding-card {
-        border-left: 3px solid var(--project-accent, var(--accent));
-        padding: 1.1rem 1.25rem;
-        margin: 1.25rem 0;
-        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
-        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      }
-
-      .finding-card h3 {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        color: var(--project-accent, var(--accent));
-      }
-
-      .finding-card p {
-        margin: 0;
-        font-size: 0.95rem;
-      }
-
-      .participant-quote {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 1.25rem 1.5rem;
-        margin: 1.25rem 0;
-        position: relative;
-        background: color-mix(in srgb, var(--bg) 60%, var(--surface));
-      }
-
-      .participant-quote::before {
-        content: """;
-        position: absolute;
-        top: -0.1rem;
-        left: 1rem;
-        font-size: 3rem;
-        font-family: var(--font-heading);
-        color: var(--project-accent, var(--accent));
-        opacity: 0.4;
-        line-height: 1;
-      }
-
-      .participant-quote p {
-        margin: 0 0 0.5rem;
-        font-style: italic;
-        padding-top: 0.5rem;
-        font-size: 0.95rem;
-      }
-
-      .participant-quote cite {
-        font-size: 0.78rem;
-        color: var(--muted);
-        font-style: normal;
-        letter-spacing: 0.04em;
-      }
-
-      .theme-block {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-        background: color-mix(in srgb, var(--surface) 85%, var(--bg));
-      }
-
-      .theme-block h3 {
-        margin-bottom: 0.75rem;
-      }
-
-      .theme-label {
-        display: inline-block;
-        font-size: 0.72rem;
-        font-family: var(--font-ui);
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--project-accent, var(--accent));
-        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 40%, var(--line));
-        border-radius: 999px;
-        padding: 0.2rem 0.65rem;
-        margin-bottom: 0.6rem;
-      }
-
-      .method-pill-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin: 1rem 0;
-      }
-
-      .method-pill {
-        border: 1px solid color-mix(in srgb, var(--project-accent, var(--accent)) 40%, var(--line));
-        border-radius: 999px;
-        padding: 0.3rem 0.8rem;
-        font-size: 0.8rem;
-        font-family: var(--font-ui);
-        color: var(--text-primary);
-        background: color-mix(in srgb, var(--surface) 80%, var(--bg));
-      }
-
-      .implication-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin: 1.25rem 0;
-      }
-
-      .implication-card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 1.1rem;
-        background: color-mix(in srgb, var(--surface) 85%, var(--bg));
-      }
-
-      .implication-card h3 {
-        font-size: 0.88rem;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        color: var(--project-accent, var(--accent));
-        margin-bottom: 0.5rem;
-        font-family: var(--font-ui);
-        font-weight: 600;
-      }
-
-      .implication-card p {
-        font-size: 0.88rem;
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .caveat-box {
-        background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        padding: 1rem 1.25rem;
-        margin: 1.25rem 0;
-        font-size: 0.88rem;
-        color: var(--muted);
-      }
-
-      .caveat-box strong {
-        color: var(--text-primary);
-      }
-
-      @media (max-width: 700px) {
-        .ai-stat-grid,
-        .implication-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body class="case-study">
-    <a class="skip-link" href="#main">Skip to Main Content</a>
-    <div class="scroll-progress-track" aria-hidden="true">
-      <span class="scroll-progress-indicator"></span>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">Erin King</a>
+      <a href="index.html#work" class="back-link">&#8592; Back to portfolio</a>
+      <button id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-sun">
+          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9" y1="1" x2="9" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9" y1="15" x2="9" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="1" y1="9" x2="3" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="15" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3.22" y1="3.22" x2="4.64" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="13.36" y1="13.36" x2="14.78" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14.78" y1="3.22" x2="13.36" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4.64" y1="13.36" x2="3.22" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-moon">
+          <path d="M15 9.75A6.75 6.75 0 0 1 8.25 3c0-.34.026-.675.076-1A7.5 7.5 0 1 0 16 10.674 6.774 6.774 0 0 1 15 9.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
+  </header>
 
-    <header class="site-header" id="top">
-      <div class="nav-wrap">
-        <a class="brand" href="index.html">Erin King</a>
-        <nav aria-label="Case study navigation">
-          <ul class="nav-links">
-            <li><a href="index.html">Back to Portfolio</a></li>
-          </ul>
-          <div class="system-config" aria-label="Typographic configuration menu">
-            <button class="config-option is-active" type="button" data-accent-name="red" aria-label="Set accent color to red">[ 01_RED ]</button>
-            <button class="config-option" type="button" data-accent-name="blue" aria-label="Set accent color to blue">[ 02_BLUE ]</button>
-            <button class="config-option" type="button" data-accent-name="green" aria-label="Set accent color to green">[ 03_GREEN ]</button>
-            <button class="config-option" type="button" data-accent-name="amber" aria-label="Set accent color to amber">[ 04_AMBER ]</button>
-            <button class="config-option config-theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">MODE // LIGHT</button>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main">
+  <main id="main">
+    <div class="case-study-wrap">
 
       <section class="hero section" aria-labelledby="ai-transparency-title">
         <div class="container content-container">
-          <p class="eyebrow">Qualitative Study</p>
+          <span class="case-study-label">Qualitative Research</span>
           <h1 id="ai-transparency-title">Perceived Transparency in Generative AI</h1>
-          <p class="tagline insight-box">A qualitative study examining how users evaluate ChatGPT's credibility during explanatory tasks, and why structure and tone carry more weight than citations.</p>
+          <p class="tagline insight-box">A qualitative study examining how users evaluate ChatGPT's credibility during explanatory tasks — and why citations matter less than structure, tone, and the ability to ask a follow-up question.</p>
           <div class="caveat-box">
-            <strong>Note on scope:</strong> This is a small, illustrative study (n=4) using brief, low-stakes tasks and convenience sampling. The findings are not intended to be generalizable. The value is in the conceptual direction they open up, particularly around how transparency in AI is experienced through interaction rather than built into individual responses.
+            <strong>Note on scope:</strong> This is a small, illustrative study (n=4) using brief, low-stakes tasks and convenience sampling. The findings are not intended to be generalizable. The value is in the conceptual direction they open up, particularly in how transparency in AI is experienced through interaction rather than built into individual responses.
           </div>
         </div>
       </section>
@@ -254,7 +55,7 @@
           <h2 id="context-title">The Question</h2>
           <p>ChatGPT and similar large language models are non-deterministic: the same input can produce meaningfully different outputs across interactions. This creates a genuine challenge for users trying to assess whether a response is accurate, and for researchers trying to understand how trust in these systems actually forms.</p>
           <p>Unlike a search engine, which returns links users can verify, LLMs produce synthesized responses that feel authoritative but often come without visible citations or traceable reasoning. How do users decide whether to trust them? What signals are they actually reading?</p>
-          <p>This study used ChatGPT as a case example to explore those questions, specifically looking at how perceived transparency shapes user trust during brief, task-based interactions.</p>
+          <p>This study used ChatGPT as a case example to explore those questions — specifically looking at how perceived transparency shapes user trust during brief, task-based interactions.</p>
 
           <div class="ai-stat-grid" aria-label="Study at a glance">
             <div class="ai-stat-box">
@@ -286,55 +87,20 @@
             <span class="method-pill">Convenience sampling</span>
           </div>
 
-          <p>During the contextual inquiry, participants were asked to prompt ChatGPT to explain a topic of their own choosing: something they were genuinely curious about or didn't fully understand. They were encouraged to think aloud while interacting naturally. The goal was to surface the mental models and trust signals participants were actually using in the moment.</p>
-          <p>Topics chosen by participants included: how to draw a dragon, how to construct a high-quality paper airplane, why the moon appears larger at certain times, and how to play Dungeons &amp; Dragons. The variety mattered: it produced different response structures from the AI and exposed how users read those structural differences.</p>
-
-          <figure class="case-figure">
-            <svg viewBox="0 0 600 300" role="img" aria-labelledby="trust-loop-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <title id="trust-loop-title">A four-station trust calibration loop: Prompt, Response, Read presentation cues, Follow-up question back to Prompt</title>
-              <!-- Station nodes -->
-              <rect x="40" y="110" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="240" y="40" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="440" y="110" width="120" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="240" y="220" width="130" height="40" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
-              <!-- Station labels -->
-              <text x="95" y="135" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Prompt</text>
-              <text x="295" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Response</text>
-              <text x="500" y="128" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Read structure,</text>
-              <text x="500" y="143" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">tone, detail</text>
-              <text x="305" y="245" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--accent)">Follow-up question</text>
-              <!-- Arrows: Prompt → Response -->
-              <path d="M150 125 Q200 60 240 60" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Response → Read cues -->
-              <path d="M350 60 Q410 60 440 120" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Read cues → Follow-up -->
-              <path d="M460 150 Q440 210 370 230" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Follow-up → Prompt (accent) -->
-              <path d="M240 240 Q160 260 95 170 Q80 155 95 150" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" marker-end="url(#arr-accent)"/>
-              <!-- Arrowhead markers -->
-              <defs>
-                <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--text-secondary)" stroke-width="1.2"/>
-                </marker>
-                <marker id="arr-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-                </marker>
-              </defs>
-            </svg>
-            <figcaption>Trust was calibrated through the conversational loop itself. The follow-up question (accented) was the most consistent trust signal across participants.</figcaption>
-          </figure>
+          <p>During the contextual inquiry, participants were asked to prompt ChatGPT to explain a topic of their own choosing — something they were genuinely curious about or didn't fully understand. They were encouraged to think aloud while interacting naturally. The goal was to surface what mental models and trust signals they were actually using, not what they said they would use in the abstract.</p>
+          <p>Topics chosen by participants included: how to draw a dragon, how to construct a high-quality paper airplane, why the moon appears larger at certain times, and how to play Dungeons &amp; Dragons. The variety mattered — it produced different response structures from the AI and exposed how users read those structural differences.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="findings-title">
         <div class="container content-container">
-          <h2 id="findings-title">What We Found</h2>
-          <p>Two themes emerged clearly from the data.</p>
+          <h2 id="findings-title">What I Found</h2>
+          <p>Analysis surfaced two consistent themes.</p>
 
           <div class="theme-block">
             <span class="theme-label">Theme 01</span>
             <h3>Users infer accuracy from presentation cues, not citations</h3>
-            <p>Participants consistently used stylistic and structural features (clarity, logical sequencing, level of detail, appropriate use of technical language) as proxies for accuracy. Not one participant mentioned wanting citations as a trust signal, and the absence of citations didn't measurably reduce confidence.</p>
+            <p>Participants consistently used stylistic and structural features — clarity, logical sequencing, level of detail, appropriate use of technical language — as proxies for accuracy. Not one participant mentioned wanting citations as a trust signal, and the absence of citations didn't measurably reduce confidence.</p>
             <p style="margin-top: 0.75rem;">This happened even when participants acknowledged they couldn't personally verify the content. The response felt credible, so it was treated as credible.</p>
 
             <div class="participant-quote">
@@ -352,21 +118,21 @@
               <cite>— Participant who asked about why the moon appears larger at certain times</cite>
             </div>
 
-            <p style="margin-top: 0.75rem;">The phrase "it just logically seemed to make sense" appeared in similar form across multiple sessions. Coherence and sequential structure were functioning as a heuristic for truth, which works adequately for low-stakes tasks, but raises real concerns for higher-stakes use cases where confident presentation could mask inaccurate content.</p>
+            <p style="margin-top: 0.75rem;">The phrase "it just logically seemed to make sense" appeared in similar form across multiple sessions. Coherence and sequential structure were functioning as a heuristic for truth — which works adequately for low-stakes tasks, but raises real concerns for higher-stakes use cases where confident presentation could mask inaccurate content.</p>
           </div>
 
           <div class="theme-block">
             <span class="theme-label">Theme 02</span>
             <h3>Transparency is co-constructed through interaction, not built into responses</h3>
-            <p>None of the participants began with a stable, fixed mental model of how ChatGPT worked. Instead, their sense of what the system could and couldn't do, and how much to trust it, evolved through the interaction itself. Participants used follow-up questions to probe limitations, correct misalignments, and calibrate expectations.</p>
+            <p>None of the participants began with a stable, fixed mental model of how ChatGPT worked. Instead, their sense of what the system could and couldn't do — and how much to trust it — evolved through the interaction itself. Participants used follow-up questions to probe limitations, correct misalignments, and calibrate expectations.</p>
 
             <div class="participant-quote">
               <p>"It was general enough, and the game itself is popular enough that I felt confident in its accuracy because there's so much available information about it."</p>
               <cite>— D&amp;D participant, explaining why they trusted the overview despite needing follow-ups for specifics</cite>
             </div>
 
-            <p style="margin-top: 0.75rem;">One participant explicitly noted that the D&amp;D response simplified things helpfully but that additional detail would require further prompting, and described already planning which follow-up questions to ask. Another said they would try the paper airplane instructions first and return to ChatGPT if the results weren't satisfactory. Both treated the conversation as an ongoing process of verification rather than a one-time lookup.</p>
-            <p style="margin-top: 0.75rem;">Tone was also a factor in trust calibration. One participant critiqued the "chaos gremlins" framing in ChatGPT's D&amp;D explanation as distracting and tonally off for an instructional context, a signal that users are assessing reliability based on how things are said, not just what is said.</p>
+            <p style="margin-top: 0.75rem;">One participant explicitly noted that the D&amp;D response simplified things helpfully but that additional detail would require further prompting — and described already planning which follow-up questions to ask. Another said they would try the paper airplane instructions first and return to ChatGPT if the results weren't satisfactory. Both were treating the conversation as an ongoing process of verification, not a single-point lookup.</p>
+            <p style="margin-top: 0.75rem;">Tone was also a factor in trust calibration. One participant critiqued the "chaos gremlins" framing in ChatGPT's D&amp;D explanation as distracting and tonally off for an instructional context — a signal that users are assessing reliability based on how things are said, not just what is said.</p>
 
             <div class="participant-quote">
               <p>"I didn't expect the big info dump... I had hoped for a more straightforward answer."</p>
@@ -379,7 +145,7 @@
       <section class="section" aria-labelledby="implications-title">
         <div class="container content-container">
           <h2 id="implications-title">Design Implications</h2>
-          <p>The findings suggest that transparency in AI explanatory contexts is experienced through clarity and interactivity rather than through explicit disclosure of model reasoning. Three directions follow from this:</p>
+          <p>The findings suggest that transparency in AI explanatory contexts is experienced through clarity and interactivity — not through explicit disclosure of model reasoning. Three directions follow from this:</p>
 
           <div class="implication-grid">
             <div class="implication-card">
@@ -397,7 +163,7 @@
           </div>
 
           <div class="insight-box" style="margin-top: 1.5rem;">
-            <strong>The deeper concern:</strong> When presentation quality alone drives trust, users may accept inaccurate information without flagging it, especially in low-stakes contexts where they feel no pressure to verify externally. This behavior is unlikely to be safe at scale in higher-stakes domains like health or legal contexts, where a confident, well-organized wrong answer carries real consequences. The design question is how to make AI behave differently when the stakes change.
+            <strong>The deeper concern:</strong> When presentation quality alone drives trust, users may accept inaccurate information without flagging it — especially in low-stakes contexts where they feel no pressure to verify externally. This behavior is unlikely to be safe at scale in higher-stakes domains like health or legal contexts, where a confident, well-organized wrong answer carries real consequences. The design question isn't just how to make AI feel transparent — it's how to make it behave differently when the stakes change.
           </div>
         </div>
       </section>
@@ -405,25 +171,25 @@
       <section class="section" aria-labelledby="advisory-title">
         <div class="container content-container">
           <h2 id="advisory-title">If I Were Advising the Product Team</h2>
-          <p>These findings point to a reframe: transparency in AI is an interaction design problem, not merely a disclosure problem. Users don't need more footnotes. They need responses that feel like the beginning of a conversation, not the end of one.</p>
+          <p>These findings point to a reframe: transparency in AI isn't a disclosure problem — it's an interaction design problem. Users don't need more footnotes. They need responses that feel like the beginning of a conversation, not the end of one.</p>
           <p>For a team building a product like ChatGPT, three starting points:</p>
 
           <div class="finding-card">
             <span class="theme-label">01</span>
             <h3>Audit for structural clarity, not just accuracy</h3>
-            <p>Users are making trust decisions based on presentation before they evaluate content. Response format is a UX problem in its own right.</p>
+            <p>Users are making trust decisions based on presentation before they evaluate content. Response format is a UX problem, not just a content problem.</p>
           </div>
 
           <div class="finding-card">
             <span class="theme-label">02</span>
             <h3>Design follow-up affordances as a trust feature</h3>
-            <p>The ability to ask a follow-up question was the single most consistent trust signal across participants, and it deserves treatment as a core interaction.</p>
+            <p>The ability to ask a follow-up question was the single most consistent trust signal across participants — treat it as a core interaction, not a convenience.</p>
           </div>
 
           <div class="finding-card">
             <span class="theme-label">03</span>
             <h3>Test tone calibration by domain</h3>
-            <p>Users expected different registers for scientific vs. creative tasks; a mismatch broke confidence even when the content was correct.</p>
+            <p>Users expected different registers for scientific vs. creative tasks — a mismatch broke confidence even when the content was correct.</p>
           </div>
         </div>
       </section>
@@ -431,76 +197,47 @@
       <section class="section" aria-labelledby="reflection-title">
         <div class="container content-container">
           <h2 id="reflection-title">Reflection</h2>
-          <p>The finding I keep returning to is how actively users were working to construct transparency for themselves rather than receiving it passively from the system. The follow-up question as a trust mechanism is something I hadn't anticipated going in. It reframes how you'd think about designing for transparency: rather than building more disclosure into individual responses, you'd invest in making the conversational loop faster, more accessible, and better at surfacing what users actually need to probe.</p>
-          <p>What this study can't tell you is whether these patterns hold at scale, with higher-stakes tasks, or with more diverse populations. The conceptual direction is worth pursuing with a properly powered study. The specific numbers here are illustrative, not conclusive.</p>
+          <p>The finding I keep returning to is how actively users were working to construct transparency for themselves — not receiving it passively from the system. The follow-up question as a trust mechanism is something I hadn't anticipated going in. It reframes how you'd think about designing for transparency: rather than building more disclosure into individual responses, you'd invest in making the conversational loop faster, more accessible, and better at surfacing what users actually need to probe.</p>
+          <p>What this study can't tell you is whether these patterns hold at scale or in higher-stakes tasks. Those are questions for a properly powered follow-up.</p>
         </div>
       </section>
-
       <nav class="case-study-nav" aria-label="Case study navigation">
-        <div class="container content-container">
-          <div class="case-study-nav-inner">
-            <span></span>
-            <a href="physical-therapy-interaction-study.html" class="case-study-nav-next">Team Efficiency at a Physical Therapy Clinic →</a>
-          </div>
-        </div>
+        <a href="reddit-disability-study.html" class="case-study-nav-link prev">
+          <span class="case-study-nav-direction">← Previous</span>
+          <span class="case-study-nav-title">Storytelling in Disability Spaces on Reddit</span>
+        </a>
+        <a href="eduflow-case-study.html" class="case-study-nav-link next">
+          <span class="case-study-nav-direction">Next →</span>
+          <span class="case-study-nav-title">EduFlow Design System</span>
+        </a>
       </nav>
-    </main>
+    </div><!-- end case-study-wrap -->
+  </main>
 
-    <footer class="site-footer">
-      <div class="container content-container">
-        <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
-        <p>&copy; <span id="year">2026</span> Erin King. All rights reserved.</p>
-      </div>
-    </footer>
+  <footer class="site-footer">
+    <p>&copy; 2026 Erin King. All rights reserved.</p>
+  </footer>
 
-    <script>
-      const root = document.documentElement;
-      const accentPreferenceKey = "portfolio-accent";
-      const accentNamePreferenceKey = "portfolio-accent-name";
-      const themePreferenceKey = "portfolio-theme";
-      const accentOptions = {
-        red: { light: "#D40000", dark: "#FF453A" },
-        blue: { light: "#0050E0", dark: "#0A84FF" },
-        green: { light: "#008A30", dark: "#32D74B" },
-        amber: { light: "#967300", dark: "#FFD60A" }
-      };
-      const configOptions = document.querySelectorAll(".config-option");
-      const accentButtons = document.querySelectorAll("[data-accent-name]");
-      const themeToggleButton = document.querySelector("[data-theme-toggle]");
-      const progressIndicator = document.querySelector(".scroll-progress-indicator");
-      const getTheme = () => root.getAttribute("data-theme") || "light";
-      const getAccentNameFromHex = (hexValue, theme) => {
-        if (!hexValue) return null;
-        const normalizedHex = hexValue.trim().toLowerCase();
-        return Object.keys(accentOptions).find((accentName) => accentOptions[accentName][theme].toLowerCase() === normalizedHex) || null;
-      };
-      const updateAccentState = (accentName) => accentButtons.forEach((button) => button.classList.toggle("is-active", button.dataset.accentName === accentName));
-      const setAccent = (colorName) => {
-        const accentName = accentOptions[colorName] ? colorName : "red";
-        const accentHex = accentOptions[accentName][getTheme()];
-        root.setAttribute("data-accent-color", accentName);
-        root.style.setProperty("--accent", accentHex);
-        localStorage.setItem(accentPreferenceKey, accentHex);
-        localStorage.setItem(accentNamePreferenceKey, accentName);
-        updateAccentState(accentName);
-      };
-      const updateThemeToggleLabel = (theme) => { if (themeToggleButton) themeToggleButton.textContent = theme === "dark" ? "MODE // DARK" : "MODE // LIGHT"; };
-      const toggleTheme = () => { const nextTheme = getTheme() === "dark" ? "light" : "dark"; root.setAttribute("data-theme", nextTheme); localStorage.setItem(themePreferenceKey, nextTheme); updateThemeToggleLabel(nextTheme); setAccent(localStorage.getItem(accentNamePreferenceKey) || "red"); };
-      const savedTheme = localStorage.getItem(themePreferenceKey) || "light";
-      root.setAttribute("data-theme", savedTheme);
-      updateThemeToggleLabel(savedTheme);
-      const savedAccentName = localStorage.getItem(accentNamePreferenceKey) || getAccentNameFromHex(localStorage.getItem(accentPreferenceKey), savedTheme) || "red";
-      setAccent(savedAccentName);
-      configOptions.forEach((option) => {
-        if (option.dataset.themeToggle !== undefined) return option.addEventListener("click", toggleTheme);
-        option.addEventListener("click", () => option.dataset.accentName && setAccent(option.dataset.accentName));
-      });
-      const updateScrollProgress = () => { if (!progressIndicator) return; const d = document.body.scrollHeight - window.innerHeight; const p = d > 0 ? (window.scrollY / d) * 100 : 0; progressIndicator.style.width = `${Math.min(Math.max(p, 0), 100)}%`; };
-      window.addEventListener("scroll", updateScrollProgress, { passive: true });
-      window.addEventListener("resize", updateScrollProgress);
-      updateScrollProgress();
-      const year = document.getElementById("year");
-      if (year) year.textContent = new Date().getFullYear();
-    </script>
-  </body>
+  <script>
+    // Theme toggle
+    const html = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    const saved = localStorage.getItem('theme');
+    const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    html.dataset.theme = saved || system;
+    updateLabel();
+
+    toggle.addEventListener('click', () => {
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      localStorage.setItem('theme', next);
+      updateLabel();
+    });
+
+    function updateLabel() {
+      const isDark = html.dataset.theme === 'dark';
+      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  </script>
+</body>
 </html>
