@@ -43,7 +43,7 @@
         <div class="container content-container">
           <span class="case-study-label">Qualitative Research</span>
           <h1 id="ai-transparency-title">Perceived Transparency in Generative AI</h1>
-          <p class="tagline insight-box">A qualitative study examining how users evaluate ChatGPT's credibility during explanatory tasks — and why citations matter less than structure, tone, and the ability to ask a follow-up question.</p>
+          <p class="tagline insight-box">A qualitative study examining how users evaluate ChatGPT's credibility during explanatory tasks, and why structure and tone carry more weight than citations.</p>
           <div class="caveat-box">
             <strong>Note on scope:</strong> This is a small, illustrative study (n=4) using brief, low-stakes tasks and convenience sampling. The findings are not intended to be generalizable. The value is in the conceptual direction they open up, particularly in how transparency in AI is experienced through interaction rather than built into individual responses.
           </div>
@@ -87,8 +87,42 @@
             <span class="method-pill">Convenience sampling</span>
           </div>
 
-          <p>During the contextual inquiry, participants were asked to prompt ChatGPT to explain a topic of their own choosing — something they were genuinely curious about or didn't fully understand. They were encouraged to think aloud while interacting naturally. The goal was to surface what mental models and trust signals they were actually using, not what they said they would use in the abstract.</p>
+          <p>During the contextual inquiry, participants were asked to prompt ChatGPT to explain a topic of their own choosing — something they were genuinely curious about or didn't fully understand. They were encouraged to think aloud while interacting naturally. The goal was to surface the mental models and trust signals participants were actually using in the moment.</p>
           <p>Topics chosen by participants included: how to draw a dragon, how to construct a high-quality paper airplane, why the moon appears larger at certain times, and how to play Dungeons &amp; Dragons. The variety mattered — it produced different response structures from the AI and exposed how users read those structural differences.</p>
+          <figure class="case-figure">
+            <svg viewBox="0 0 600 300" role="img" aria-labelledby="trust-loop-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <title id="trust-loop-title">A four-station trust calibration loop: Prompt, Response, Read presentation cues, Follow-up question back to Prompt</title>
+              <!-- Station nodes -->
+              <rect x="40" y="110" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <rect x="240" y="40" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <rect x="440" y="110" width="120" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <rect x="240" y="220" width="130" height="40" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+              <!-- Station labels -->
+              <text x="95" y="135" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Prompt</text>
+              <text x="295" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Response</text>
+              <text x="500" y="128" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Read structure,</text>
+              <text x="500" y="143" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">tone, detail</text>
+              <text x="305" y="245" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--accent)">Follow-up question</text>
+              <!-- Arrows: Prompt → Response -->
+              <path d="M150 125 Q200 60 240 60" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+              <!-- Response → Read cues -->
+              <path d="M350 60 Q410 60 440 120" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+              <!-- Read cues → Follow-up -->
+              <path d="M460 150 Q440 210 370 230" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+              <!-- Follow-up → Prompt (accent) -->
+              <path d="M240 240 Q160 260 95 170 Q80 155 95 150" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" marker-end="url(#arr-accent)"/>
+              <!-- Arrowhead markers -->
+              <defs>
+                <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--text-secondary)" stroke-width="1.2"/>
+                </marker>
+                <marker id="arr-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+                </marker>
+              </defs>
+            </svg>
+            <figcaption>Trust was calibrated through the conversational loop itself. The follow-up question (accented) was the most consistent trust signal across participants.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -131,7 +165,7 @@
               <cite>— D&amp;D participant, explaining why they trusted the overview despite needing follow-ups for specifics</cite>
             </div>
 
-            <p style="margin-top: 0.75rem;">One participant explicitly noted that the D&amp;D response simplified things helpfully but that additional detail would require further prompting — and described already planning which follow-up questions to ask. Another said they would try the paper airplane instructions first and return to ChatGPT if the results weren't satisfactory. Both were treating the conversation as an ongoing process of verification, not a single-point lookup.</p>
+            <p style="margin-top: 0.75rem;">One participant explicitly noted that the D&amp;D response simplified things helpfully but that additional detail would require further prompting — and described already planning which follow-up questions to ask. Another said they would try the paper airplane instructions first and return to ChatGPT if the results weren't satisfactory. Both treated the conversation as an ongoing process of verification rather than a one-time lookup.</p>
             <p style="margin-top: 0.75rem;">Tone was also a factor in trust calibration. One participant critiqued the "chaos gremlins" framing in ChatGPT's D&amp;D explanation as distracting and tonally off for an instructional context — a signal that users are assessing reliability based on how things are said, not just what is said.</p>
 
             <div class="participant-quote">
@@ -177,13 +211,13 @@
           <div class="finding-card">
             <span class="theme-label">01</span>
             <h3>Audit for structural clarity, not just accuracy</h3>
-            <p>Users are making trust decisions based on presentation before they evaluate content. Response format is a UX problem, not just a content problem.</p>
+            <p>Users are making trust decisions based on presentation before they evaluate content. Response format is a UX problem in its own right.</p>
           </div>
 
           <div class="finding-card">
             <span class="theme-label">02</span>
             <h3>Design follow-up affordances as a trust feature</h3>
-            <p>The ability to ask a follow-up question was the single most consistent trust signal across participants — treat it as a core interaction, not a convenience.</p>
+            <p>The ability to ask a follow-up question was the single most consistent trust signal across participants, and it deserves treatment as a core interaction.</p>
           </div>
 
           <div class="finding-card">
@@ -202,19 +236,20 @@
         </div>
       </section>
       <nav class="case-study-nav" aria-label="Case study navigation">
-        <a href="reddit-disability-study.html" class="case-study-nav-link prev">
+        <a href="distracted-pedestrians.html" class="case-study-nav-link prev">
           <span class="case-study-nav-direction">← Previous</span>
-          <span class="case-study-nav-title">Storytelling in Disability Spaces on Reddit</span>
+          <span class="case-study-nav-title">Distracted Pedestrians</span>
         </a>
-        <a href="eduflow-case-study.html" class="case-study-nav-link next">
+        <a href="physical-therapy-interaction-study.html" class="case-study-nav-link next">
           <span class="case-study-nav-direction">Next →</span>
-          <span class="case-study-nav-title">EduFlow Design System</span>
+          <span class="case-study-nav-title">Physical Therapy Workflow</span>
         </a>
       </nav>
     </div><!-- end case-study-wrap -->
   </main>
 
   <footer class="site-footer">
+    <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
     <p>&copy; 2026 Erin King. All rights reserved.</p>
   </footer>
 

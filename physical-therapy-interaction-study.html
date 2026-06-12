@@ -45,6 +45,7 @@
           <h1 id="interaction-title">Measuring Team Efficiency at a Physical Therapy Clinic</h1>
           <p class="tagline insight-box">A systems-level field study of communication flow, cognitive load, and operational bottlenecks in a high-traffic physical therapy clinic — observed across contrasting high-stress and low-stress days using content analysis, a Rasmussen decision ladder, and the Occupational Stress Index.</p>
           <p class="tagline" style="color: var(--muted); font-size: 0.88rem; margin-top: 0.5rem;"><em>Collaborative research with Nada Elgeziry, Sage Fuentes, and Erin King — Iowa State University, IE/HCI 6810: Cognitive Engineering</em></p>
+          <p class="tagline" style="color: var(--muted); font-size: 0.88rem; margin-top: 0.5rem;"><em>My contributions: event coding, the decision ladder, and the metrics and conclusion sections of the final report.</em></p>
         </div>
       </section>
 
@@ -74,7 +75,7 @@
       <section class="section" aria-labelledby="team-title">
         <div class="container content-container">
           <h2 id="team-title">The System and Its People</h2>
-          <p>The clinic operated with three interdependent roles, each with defined responsibilities that regularly overlapped under real conditions. Flexibility was a feature, not a bug — on high-volume days, therapists picked up assistant tasks and vice versa. Patients were present throughout but were treated as external to the team system for the purposes of this study.</p>
+          <p>The clinic operated with three interdependent roles, each with defined responsibilities that regularly overlapped under real conditions. That flexibility was deliberate: on high-volume days, therapists picked up assistant tasks and vice versa. Patients were present throughout but were treated as external to the team system for the purposes of this study.</p>
 
           <div class="role-grid">
             <div class="role-card">
@@ -138,10 +139,70 @@
             <p>There were fewer total communication events on the high-stress day (34 vs. 51), but a higher proportion of them were inefficient. Inefficient communication accounted for 44.1% of exchanges on Day 1 versus 29.4% on Day 2. Under load, the team communicated less and communicated worse — a pattern consistent with cognitive overload literature.</p>
           </div>
 
+          <figure class="case-figure">
+            <svg viewBox="0 0 600 220" role="img" aria-labelledby="telephone-diagram-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <title id="telephone-diagram-title">Routing diagram: observed multi-hop relay path (Assistant to Therapist to Assistant to Receptionist) versus available direct path (Assistant to Receptionist)</title>
+              <!-- Node circles -->
+              <circle cx="100" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <circle cx="300" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <circle cx="500" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <!-- Node labels -->
+              <text x="100" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Assistant</text>
+              <text x="300" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Therapist</text>
+              <text x="500" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Receptionist</text>
+              <!-- Relay path (above) with step numbers -->
+              <path d="M132 115 Q200 55 268 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M268 115 Q200 55 132 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+              <path d="M332 115 Q420 55 468 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Step labels -->
+              <text x="200" y="48" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">1</text>
+              <text x="200" y="68" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">2</text>
+              <text x="420" y="52" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">3</text>
+              <!-- Relay label -->
+              <text x="300" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">Observed relay path</text>
+              <!-- Direct path (below, accent) -->
+              <path d="M132 148 Q300 195 468 148" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <text x="300" y="210" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">Direct route available</text>
+            </svg>
+            <figcaption>The observed relay route versus the direct route that was available. The acknowledgment step added no information.</figcaption>
+          </figure>
+
           <div class="finding-card">
             <h3>"Games of telephone" were the most visible structural inefficiency</h3>
             <p>We identified a recurring pattern where messages passed through all three team members in sequence when direct routing was available. These chains were concentrated on the high-stress day. Individually, each exchange was minor. At volume, during an already fragmented shift, they were the most consistently disruptive form of inefficiency in the dataset.</p>
           </div>
+
+          <figure class="case-figure">
+            <svg viewBox="0 0 600 260" role="img" aria-labelledby="day-compare-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <title id="day-compare-title">Two grouped bar pairs comparing high-stress and low-stress day communication data: 34 vs 51 total events, and 44.1% vs 29.4% inefficient share</title>
+              <!-- Y-axis label -->
+              <text x="20" y="45" font-family="var(--font-body)" font-size="11" fill="var(--text-secondary)">Communication events</text>
+              <text x="320" y="45" font-family="var(--font-body)" font-size="11" fill="var(--text-secondary)">Inefficient share</text>
+              <!-- Group 1: communication events (max 60) -->
+              <!-- High-stress bar: 34 -->
+              <rect x="60" y="70" width="40" height="114" rx="3" fill="var(--accent)" opacity="0.85"/>
+              <text x="80" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">34</text>
+              <!-- Low-stress bar: 51 -->
+              <rect x="110" y="41" width="40" height="143" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">51</text>
+              <!-- Group 2: inefficient share (max 50%) -->
+              <!-- High-stress: 44.1% -->
+              <rect x="360" y="92" width="40" height="92" rx="3" fill="var(--accent)" opacity="0.85"/>
+              <text x="380" y="87" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">44.1%</text>
+              <!-- Low-stress: 29.4% -->
+              <rect x="410" y="123" width="40" height="61" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+              <text x="430" y="118" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">29.4%</text>
+              <!-- Baselines -->
+              <line x1="50" y1="184" x2="165" y2="184" stroke="var(--border)" stroke-width="1"/>
+              <line x1="350" y1="184" x2="465" y2="184" stroke="var(--border)" stroke-width="1"/>
+              <!-- X labels -->
+              <text x="80" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">High-stress</text>
+              <text x="130" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-secondary)">Low-stress</text>
+              <text x="380" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">High-stress</text>
+              <text x="430" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-secondary)">Low-stress</text>
+            </svg>
+            <figcaption>Under load the team communicated less and a larger share of it was inefficient.</figcaption>
+          </figure>
 
           <div class="telephone-example" aria-label="Example games of telephone exchange">
             <p style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.75rem;">Observed exchange — high-stress day</p>
@@ -273,8 +334,9 @@
 
           <div class="finding-card">
             <h3>Design for load-variable conditions</h3>
-            <p>The team performed well under low-stress conditions. The problem was how performance degraded under high patient volume — specifically the compression of communication and the spike in inefficiency. Interventions should be designed for the hard days, not the easy ones. That might mean visual status displays visible to all three roles, asynchronous notification systems that reduce interruption-driven check-ins, or clearer partition assignment cues that don't require verbal confirmation.</p>
+            <p>The team performed well under low-stress conditions. The problem was how performance degraded under high patient volume — specifically the compression of communication and the spike in inefficiency. Interventions should be designed around the hard days. That might mean visual status displays visible to all three roles, asynchronous notification systems that reduce interruption-driven check-ins, or clearer partition assignment cues that don't require verbal confirmation.</p>
           </div>
+          <p>These findings contribute an empirically grounded model of multi-party communication breakdown in distributed clinical workflows, with direct implications for care coordination system design.</p>
         </div>
       </section>
 
@@ -300,19 +362,24 @@
         <div class="container content-container">
           <h2 id="reflection-title">Reflection</h2>
           <p class="insight-box">What I found most valuable about this study was how clearly a physical service environment reveals the same cognitive engineering dynamics you'd look for in a software system — bottlenecks, redundant handoffs, load-dependent performance degradation. The "games of telephone" pattern in particular maps cleanly onto concepts from distributed systems design: unnecessary message passing, lack of direct routing, hub dependency. The vocabulary transfers even when the medium is entirely different.</p>
-          <p>My specific contributions were coding, developing the decision ladder, and writing the metrics and conclusion sections of the final report.</p>
+          <p>We shared the findings with the clinic team at the close of the study.</p>
         </div>
       </section>
       <nav class="case-study-nav" aria-label="Case study navigation">
-        <a href="noticed-case-study.html" class="case-study-nav-link prev">
+        <a href="perceived-transparency-generative-ai.html" class="case-study-nav-link prev">
           <span class="case-study-nav-direction">← Previous</span>
-          <span class="case-study-nav-title">Noticed: Adaptive Symptom Tracking</span>
+          <span class="case-study-nav-title">AI Transparency Study</span>
+        </a>
+        <a href="reddit-disability-study.html" class="case-study-nav-link next">
+          <span class="case-study-nav-direction">Next →</span>
+          <span class="case-study-nav-title">Reddit Disability Study</span>
         </a>
       </nav>
     </div><!-- end case-study-wrap -->
   </main>
 
   <footer class="site-footer">
+    <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
     <p>&copy; 2026 Erin King. All rights reserved.</p>
   </footer>
 
