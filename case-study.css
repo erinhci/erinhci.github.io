@@ -1537,3 +1537,73 @@ ul {
     transform: none;
   }
 }
+
+/* ============================================================
+   CORRECTIONS & CONSISTENCY
+   ============================================================ */
+
+/* Course, collaborator, and contribution credit lines under the deck (T3, T9) */
+.case-study-wrap p.case-credit {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+.case-study-wrap p.case-credit + p.case-credit {
+  margin-top: 0.25rem;
+}
+
+/* AI study: theme eyebrow labels with even spacing before each theme block (T6.1) */
+.theme-block {
+  margin-top: var(--space-lg);
+}
+.theme-block .theme-label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-xs);
+}
+.theme-block .theme-label + h3 {
+  margin-top: 0;
+}
+
+/* AI study: recommendation numbers sit inline with their heading text (T6.2) */
+.finding-card h3 .theme-label {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 0.4em;
+  letter-spacing: 0.02em;
+}
+
+/* EduFlow: typography-scale two-column alignment (T7.1).
+   Grid on the stack with display:contents rows so the meta column sizes to its
+   widest item and every sample column lines up regardless of label length. */
+.eduflow-type-stack {
+  display: grid !important;
+  grid-template-columns: max-content 1fr !important;
+  column-gap: var(--space-md) !important;
+  row-gap: 10px !important;
+  align-items: center !important;
+}
+.eduflow-type-stack .eduflow-type-row {
+  display: contents !important;
+}
+.eduflow-type-stack .eduflow-type-meta {
+  min-width: 0 !important;
+}
+@media (max-width: 480px) {
+  .eduflow-type-stack {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .eduflow-type-stack .eduflow-type-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+}
