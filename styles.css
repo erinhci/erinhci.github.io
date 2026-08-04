@@ -478,6 +478,8 @@ a.project-card-link::after {
   color: var(--accent);
   display: block;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .project-card-body h3 {
@@ -496,6 +498,8 @@ a.project-card-link::after {
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 1;
 }
 
 .skill-tags {
@@ -552,6 +556,8 @@ a.project-card-link::after {
   text-decoration: none;
   margin-top: auto;
   display: inline-block;
+  position: relative;
+  z-index: 1;
 }
 
 .view-project-link:hover {
