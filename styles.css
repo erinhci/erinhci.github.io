@@ -478,6 +478,8 @@ a.project-card-link::after {
   color: var(--accent);
   display: block;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .project-card-body h3 {
