@@ -43,7 +43,7 @@
         <div class="container content-container">
           <span class="case-study-label">UX &amp; Brand Design</span>
           <h1 id="noticed-title">Noticed: Adaptive Symptom Tracking</h1>
-          <p class="tagline insight-box">A self-directed brand identity and system design project creating a guilt-free, visual-first symptom tracker for chronic illness, mental health, and neurodivergent communities, available in both app and printable form.</p>
+          <p class="tagline insight-box">A self-directed brand identity and system design project: a symptom tracker that doesn't punish you for missing a day, built for chronic illness, mental health, and neurodivergent communities, available as an app and on paper.</p>
         </div>
       </section>
 
@@ -58,7 +58,8 @@
       <section class="section" aria-labelledby="context-title">
         <div class="container content-container">
           <h2 id="context-title">Project Context</h2>
-          <p>This was a self-directed concept developed in HCI 595, covering the full arc of a brand and system: naming, visual identity, tagline, app UI, print design, and a custom icon set. The scope was intentionally broad. I wanted to test whether a single cohesive design language could hold across digital and analog touchpoints without losing warmth or accessibility.</p>
+          <p>This was a self-directed concept developed in HCI 595, covering the full arc of a brand and system: naming, visual identity, tagline, app UI, print design, and a custom icon set. The scope was intentionally broad. I wanted to test whether a single cohesive design language could hold across digital and analog touchpoints without losing accessibility.</p>
+          <p>The semester before this, I spent <a href="reddit-disability-study.html">a qualitative research project interviewing disabled people about how they use online communities for support</a>. That work shaped what I paid attention to here.</p>
           <p>Scope included: brand naming and rationale, logo design and iteration, typography system, tagline development, app UI, bus stop advertisement, tote bag, journal mockup, custom sticker icon set, and a printable journal entry template.</p>
         </div>
       </section>
@@ -68,11 +69,29 @@
           <h2 id="identity-title">Brand Identity</h2>
           <p>The name <strong>Noticed</strong> was chosen to reflect the emotional core of the project: being truly seen, without judgment or pressure. Tracking becomes a form of self-witnessing, separated from clinical obligation.</p>
           <p>The logo places the wordmark inside a loose star field. The "o" becomes the brightest star, anchoring a subtle constellation that traces an abstract "N", a nod to both the brand's first letter and the non-linear reality of managing a fluctuating condition. Typography is set in Space Grotesk, chosen for its accessibility and visual fit with the space theme.</p>
+          <p>The constellation is not only decorative. The product helps users find patterns across scattered, non-linear data points, and the constellation is that idea drawn: points that only resolve into a shape once you have enough of them and step back. The identity describes what the product does.</p>
           <p class="insight-box">The tagline <em>"Your story. Your way."</em> emerged from six iterations. It frames tracking as an act of storytelling and autonomy.</p>
+          <p>The options I set aside:</p>
+          <ul>
+            <li>"Chart your path."</li>
+            <li>"Light your way."</li>
+            <li>"Your journey, made visible."</li>
+            <li>"Your journey, charted."</li>
+            <li>"Your pattern matters."</li>
+            <li>"Map your story."</li>
+          </ul>
+          <p>The others describe what the tool does. "Your story. Your way." describes what the user keeps control of. That is why it won.</p>
+          <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/NoticedTypography.png" alt="A grid of early wordmark studies for Noticed in different typefaces and letterforms, most of them crossed out or set aside" width="4000" height="3000" loading="lazy" />
+            <figcaption>Type directions I set aside on the way to the final wordmark. Showing the weaker explorations is deliberate: the final mark only reads as a decision next to the ones it beat.</figcaption>
+          </figure>
           <figure class="noticed-figure noticed-panel">
             <img src="assets/projects/Noticed/Noticed.png" alt="Noticed logo: lowercase wordmark with glowing constellation of circles around the letter o" width="1270" height="952" loading="lazy" />
             <figcaption>Final logo with constellation mark. The "o" anchors the star field; supporting dots form an abstract N shape.</figcaption>
           </figure>
+          <h3 id="color-title">Color and contrast</h3>
+          <p>The icon colors are soft pastels, chosen so that logging never overwhelms someone with sensory sensitivities. The logo works the other way. It uses high-contrast combinations so the mark stays readable and survives translation to print.</p>
+          <!-- TODO (Erin): add measured WCAG contrast ratios for the logo color pairs and for the pastel icon set against their backgrounds. -->
         </div>
       </section>
 
@@ -84,10 +103,19 @@
             <li><strong>Hybrid analog and digital:</strong> Printed journal pages can be scanned into the app, which uses image recognition to identify icons and add them to the user's log, making the system accessible on low-energy days or without a phone.</li>
             <li><strong>Custom icon learning:</strong> Users can draw their own icons, name them in the app, and have them recognized and included in pattern summaries, accounting for the enormous variability of lived chronic experience.</li>
             <li><strong>Pattern surfacing:</strong> The app skips streak mechanics and instead generates summaries highlighting symptom frequency and correlations over time, shareable with care teams.</li>
+            <li><strong>Privacy by default:</strong> Summary data is encrypted, and the user confirms the recipient before any summary reaches a care team or family member. This population has real reasons to be cautious about who sees their health data, so sharing is opt-in and confirmed at the point of sending, never automatic.</li>
           </ul>
+          <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/NoticedStickerSheet.png" alt="The Noticed icon sticker sheet: a grid of small illustrated symbols grouped into Mood, Symptoms, and Sensory categories" width="1092" height="951" loading="lazy" />
+            <figcaption>The icon set as a system, grouped into Mood, Symptoms, and Sensory categories so one visual language covers everything a user might log.</figcaption>
+          </figure>
           <figure class="noticed-figure noticed-panel">
             <img src="assets/projects/Noticed/NoticedApp-black.png" alt="Noticed app sign-in screen on a dark iPhone mockup, showing the constellation logo and two buttons: Sign In and Register" width="924" height="1438" loading="lazy" />
             <figcaption>App concept: dark-mode sign-in screen. The constellation logo animates on load; Sign In and Register are the only two actions on screen.</figcaption>
+          </figure>
+          <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/NoticedJournalEntry.png" alt="A completed printed Noticed journal page with mood and symptom icons, handwritten notes reading 'Overwhelmed and exhausted', 'Brain fog', 'Tachycardia 120-145 bpm', and 'I feel so HOT!!', and hand-drawn arrows connecting mood icons to symptom icons" width="1429" height="1536" loading="lazy" />
+            <figcaption>A completed entry, the only artifact showing the system in actual use. The arrows are the user drawing their own connections between states, which is exactly the behavior the pattern-surfacing feature is meant to support.</figcaption>
           </figure>
         </div>
       </section>
@@ -102,17 +130,33 @@
             <figcaption>Out-of-home application. The constellation reads clearly at distance; #NoticedApp anchors the social touchpoint.</figcaption>
           </figure>
           <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/N.png" alt="The Noticed constellation mark on its own, without the wordmark: a cluster of dots and a single brighter star forming an abstract N" width="4000" height="3000" loading="lazy" />
+            <figcaption>The mark on its own. This is the test the tote bag is really running: does the constellation still say Noticed once the word is gone?</figcaption>
+          </figure>
+          <figure class="noticed-figure noticed-panel">
             <img src="assets/projects/Noticed/ToteNoticed.png" alt="Person carrying a cream canvas tote bag printed with the Noticed constellation mark and tagline" width="1270" height="1905" loading="lazy" />
             <figcaption>Tote bag using the mark without the wordmark, testing whether the constellation alone carries brand recognition.</figcaption>
           </figure>
+          <figure class="noticed-figure noticed-panel">
+            <img src="assets/projects/Noticed/JournalNoticed.png" alt="A printed Noticed journal open on a desk beside a tablet running the companion app, both carrying the constellation identity" width="4000" height="3000" loading="lazy" />
+            <figcaption>The journal mockup. The printed book and the app share one identity, so the analog and digital sides of the system read as the same product.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="risk-title">
+        <div class="container content-container">
+          <h2 id="risk-title">What I'd want to test</h2>
+          <p>Scanning a printed page into the app is the most technically ambitious part of the concept, and it is unproven. Recognizing icons across handwritten, user-invented symbols is a hard problem. I would want to test recognition reliability before committing to it as the core of the hybrid system.</p>
+          <p>Custom icon learning carries the same dependency. It only works if the recognition holds up, so the two features stand or fall together.</p>
         </div>
       </section>
 
       <section class="section" aria-labelledby="reflection-title">
         <div class="container content-container">
           <h2 id="reflection-title">Reflection</h2>
-          <p class="insight-box">Noticed taught me that the most useful design decision is often about what you remove. Every feature, every form field, every notification that a mainstream tracker adds is a potential barrier for someone managing an invisible condition. Designing around constraint, of energy and of vocabulary, produced a more empathetic system than designing for the median user ever would have.</p>
-          <p>The hybrid format was the most technically interesting challenge: building a concept where analog and digital genuinely reinforce each other, rather than the print version being an afterthought. That tension between physical and digital engagement is something I want to keep exploring.</p>
+          <p class="insight-box">The hardest part of this project was a tension I never fully resolved: flexibility against simplicity. The whole point was a system that could stretch to fit wildly variable conditions, so I kept adding ways to customize it. Custom icons, optional text labels, different logging paths. But every option I added was also a decision the user had to make, and this is a system for people whose hard days are the ones where making decisions is the difficult part.</p>
+          <p>If I came back to Noticed, that is the line I would work on. Where does a choice give someone real control, and where is it just one more thing to manage. I do not think there is a single right answer, since it probably shifts with how someone is doing on a given day, and designing for that kind of moving target is the part I want to keep learning how to do.</p>
         </div>
       </section>
       <nav class="case-study-nav" aria-label="Case study navigation">
@@ -129,6 +173,7 @@
   </main>
 
   <footer class="site-footer">
+    <p>Designed and hand-coded by Erin King. <a href="https://github.com/erinhci/erinhci.github.io">View the source</a>.</p>
     <p>&copy; 2026 Erin King. All rights reserved.</p>
   </footer>
 
