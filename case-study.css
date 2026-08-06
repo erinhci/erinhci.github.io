@@ -394,6 +394,14 @@ ul {
   text-decoration: underline;
 }
 
+/* Inline body links: persistent underline so they're distinguishable
+   without relying on color (WCAG 1.4.1) */
+.case-study-wrap p a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
 /* Note / scope callout */
 
 .case-study-note {
@@ -1517,7 +1525,7 @@ ul {
 
 /* 6. Credit Hours error — bright red readable on both light and dark */
 .ef-label-error {
-  color: #e05555 !important;
+  color: #b91c1c !important;
 }
 
 .ef-input-error {
@@ -1526,7 +1534,7 @@ ul {
 }
 
 .ef-error-msg {
-  color: #e05555 !important;
+  color: #b91c1c !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
