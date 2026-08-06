@@ -1537,6 +1537,13 @@ ul {
   color: #b91c1c !important;
 }
 
+/* Dark-mode error text needs a lighter red — #b91c1c is 4.5:1+ on the
+   light --surface but drops to ~2.6:1 on the dark --surface (#1e1e1e) */
+[data-theme="dark"] .ef-label-error,
+[data-theme="dark"] .ef-error-msg {
+  color: #ff6b6b !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   [class*="animate-"] {
