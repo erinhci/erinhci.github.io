@@ -90,41 +90,42 @@
           </div>
 
           <p>During the contextual inquiry, participants were asked to prompt ChatGPT to explain a topic of their own choosing, something they were genuinely curious about or didn't fully understand. They were encouraged to think aloud while interacting naturally. The goal was to surface the mental models and trust signals participants were actually using in the moment.</p>
-          <p>Topics chosen by participants included: how to draw a dragon, how to construct a high-quality paper airplane, why the moon appears larger at certain times, and how to play Dungeons &amp; Dragons. The variety mattered. It produced different response structures from the AI and exposed how users read those structural differences.</p>
-          <figure class="case-figure">
-            <svg viewBox="0 0 600 300" role="img" aria-labelledby="trust-loop-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <title id="trust-loop-title">A four-station trust calibration loop: Prompt, Response, Read presentation cues, Follow-up question back to Prompt</title>
-              <!-- Station nodes -->
-              <rect x="40" y="110" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="240" y="40" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="440" y="110" width="120" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <rect x="240" y="220" width="130" height="40" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
-              <!-- Station labels -->
-              <text x="95" y="135" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Prompt</text>
-              <text x="295" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Response</text>
-              <text x="500" y="128" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Read structure,</text>
-              <text x="500" y="143" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">tone, detail</text>
-              <text x="305" y="245" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--accent)">Follow-up question</text>
-              <!-- Arrows: Prompt → Response -->
-              <path d="M150 125 Q200 60 240 60" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Response → Read cues -->
-              <path d="M350 60 Q410 60 440 120" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Read cues → Follow-up -->
-              <path d="M460 150 Q440 210 370 230" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
-              <!-- Follow-up → Prompt (accent) -->
-              <path d="M240 240 Q160 260 95 170 Q80 155 95 150" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" marker-end="url(#arr-accent)"/>
-              <!-- Arrowhead markers -->
-              <defs>
-                <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--text-secondary)" stroke-width="1.2"/>
-                </marker>
-                <marker id="arr-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-                </marker>
-              </defs>
-            </svg>
-            <figcaption>Trust was calibrated through the conversational loop itself. The follow-up question (accented) was the most consistent trust signal across participants.</figcaption>
-          </figure>
+          <p>The variety mattered. It produced different response structures from the AI and exposed how users read those structural differences.</p>
+
+          <div class="table-scroll">
+            <table class="participant-table">
+              <caption>What each participant asked, what they got back, and what drove their trust judgment</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Topic chosen</th>
+                  <th scope="col">Response they received</th>
+                  <th scope="col">What drove their trust judgment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Topic chosen">How to draw a dragon</td>
+                  <td data-label="Response they received">Step-by-step instructions with fine details like wing angle and shadows</td>
+                  <td data-label="What drove their trust judgment">Detail level, including suggestions they hadn't considered, despite having no way to judge the AI's drawing knowledge</td>
+                </tr>
+                <tr>
+                  <td data-label="Topic chosen">How to build a paper airplane</td>
+                  <td data-label="Response they received">Sequential build steps, plus alternatives for different flight goals</td>
+                  <td data-label="What drove their trust judgment">Steps followed logically from one to the next</td>
+                </tr>
+                <tr>
+                  <td data-label="Topic chosen">Why the moon appears larger at times</td>
+                  <td data-label="Response they received">Long structured explanation with scientific terminology and statistics</td>
+                  <td data-label="What drove their trust judgment">Register matched the question; statistics made it sound more legitimate; the length was more than they wanted</td>
+                </tr>
+                <tr>
+                  <td data-label="Topic chosen">How to play Dungeons &amp; Dragons</td>
+                  <td data-label="Response they received">Short summary, then a sectioned overview with informal flair</td>
+                  <td data-label="What drove their trust judgment">The topic's popularity and the volume of information available elsewhere; the "chaos gremlins" framing read as distracting</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -136,7 +137,7 @@
           <div class="theme-block">
             <span class="theme-label">Theme 01</span>
             <h3>Users infer accuracy from presentation cues, not citations</h3>
-            <p>Participants consistently used stylistic and structural features (clarity, logical sequencing, level of detail, appropriate use of technical language) as proxies for accuracy. Not one participant mentioned wanting citations as a trust signal, and the absence of citations didn't measurably reduce confidence.</p>
+            <p>Participants consistently used stylistic and structural features (clarity, logical sequencing, level of detail, appropriate use of technical language) as proxies for accuracy. No participant raised citations as a trust signal, and the absence of citations didn't reduce confidence.</p>
             <p style="margin-top: 0.75rem;">This happened even when participants acknowledged they couldn't personally verify the content. The response felt credible, so it was treated as credible.</p>
 
             <div class="participant-quote">
@@ -154,13 +155,55 @@
               <cite>— Participant who asked about why the moon appears larger at certain times</cite>
             </div>
 
-            <p style="margin-top: 0.75rem;">The phrase "it just logically seemed to make sense" appeared in similar form across multiple sessions. Coherence and sequential structure were functioning as a heuristic for truth, which works adequately for low-stakes tasks, but raises real concerns for higher-stakes use cases where confident presentation could mask inaccurate content.</p>
+            <p style="margin-top: 0.75rem;">The participant building the paper airplane put it plainly:</p>
+
+            <div class="participant-quote">
+              <p>"I think it just logically seemed to make sense. The steps seemed to follow one after the other and made sense."</p>
+              <cite>— Participant building the paper airplane</cite>
+            </div>
+
+            <p style="margin-top: 0.75rem;">Coherence and sequential structure were functioning as a heuristic for truth, which works adequately for low-stakes tasks, but raises real concerns for higher-stakes use cases where confident presentation could mask inaccurate content.</p>
           </div>
 
           <div class="theme-block">
             <span class="theme-label">Theme 02</span>
             <h3>Transparency is co-constructed through interaction, not built into responses</h3>
             <p>None of the participants began with a stable, fixed mental model of how ChatGPT worked. Instead, their sense of what the system could and couldn't do, and how much to trust it, evolved through the interaction itself. Participants used follow-up questions to probe limitations, correct misalignments, and calibrate expectations.</p>
+
+            <figure class="case-figure">
+              <svg viewBox="0 0 600 300" role="img" aria-labelledby="trust-loop-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+                <title id="trust-loop-title">A four-station trust calibration loop: Prompt, Response, Read presentation cues, Follow-up question back to Prompt</title>
+                <!-- Station nodes -->
+                <rect x="40" y="110" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                <rect x="240" y="40" width="110" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                <rect x="440" y="110" width="120" height="40" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
+                <rect x="240" y="220" width="130" height="40" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <!-- Station labels -->
+                <text x="95" y="135" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Prompt</text>
+                <text x="295" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="13" fill="var(--text-primary)">Response</text>
+                <text x="500" y="128" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Read structure,</text>
+                <text x="500" y="143" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">tone, detail</text>
+                <text x="305" y="245" text-anchor="middle" font-family="var(--font-body)" font-size="12" fill="var(--accent)">Follow-up question</text>
+                <!-- Arrows: Prompt → Response -->
+                <path d="M150 125 Q200 60 240 60" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+                <!-- Response → Read cues -->
+                <path d="M350 60 Q410 60 440 120" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+                <!-- Read cues → Follow-up -->
+                <path d="M460 150 Q440 210 370 230" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr-gray)"/>
+                <!-- Follow-up → Prompt (accent) -->
+                <path d="M240 240 Q95 260 95 170 L95 150" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" marker-end="url(#arr-accent)"/>
+                <!-- Arrowhead markers -->
+                <defs>
+                  <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--text-secondary)" stroke-width="1.2"/>
+                  </marker>
+                  <marker id="arr-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+                  </marker>
+                </defs>
+              </svg>
+              <figcaption>Trust was calibrated through the conversational loop itself. The follow-up question (accented) was the most consistent trust signal across participants.</figcaption>
+            </figure>
 
             <div class="participant-quote">
               <p>"It was general enough, and the game itself is popular enough that I felt confident in its accuracy because there's so much available information about it."</p>
@@ -232,7 +275,7 @@
         <div class="container content-container">
           <h2 id="reflection-title">Reflection</h2>
           <p>Users were working to actively construct transparency for themselves rather than passively receiving it from the system. That's the part I didn't anticipate going in, and the follow-up question playing such a significant role in user trust is what reframes the design problem. Disclosure still has a job, and it's outside this study's scope to say whether that job is being done well. What it does say is that at the time of this study, the conversational loop was carrying an unexpected amount of trust weight. Making that loop more efficient and intuitive means users are better supported as they probe the system to meet their specific needs.</p>
-          <p>What this study can't tell you is whether these patterns hold at scale or in higher-stakes tasks. Those are questions for a properly powered follow-up.</p>
+          <p>What this study can't tell you is whether these patterns hold at scale or in higher-stakes tasks. Those are questions for a larger follow-up, with more participants and tasks where being wrong actually costs something.</p>
         </div>
       </section>
       <nav class="case-study-nav" aria-label="Case study navigation">
