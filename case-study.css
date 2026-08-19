@@ -391,10 +391,10 @@ ul {
 .case-study-wrap caption {
   text-align: left;
   font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: var(--space-xs);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
 }
 
 /* AI transparency study: participant response table, stacked on narrow screens.
