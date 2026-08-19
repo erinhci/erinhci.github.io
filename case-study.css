@@ -383,6 +383,64 @@ ul {
   line-height: 1.5;
 }
 
+/* Horizontal-scroll fallback for wide tables */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.case-study-wrap caption {
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+/* AI transparency study: participant response table, stacked on narrow screens.
+   Scoped to .participant-table rather than reused elsewhere — the stack technique
+   depends on data-label attributes this table's cells carry that other case study
+   tables' cells don't. */
+@media (max-width: 600px) {
+  .participant-table thead th {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .participant-table,
+  .participant-table tbody,
+  .participant-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .participant-table tbody tr {
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: var(--space-xs) var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .participant-table td {
+    display: block;
+    padding: 6px 0;
+    border-bottom: none;
+  }
+
+  .participant-table td::before {
+    content: attr(data-label) ": ";
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+}
+
 /* Links */
 
 .case-study-wrap a {
