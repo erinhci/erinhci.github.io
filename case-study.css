@@ -452,6 +452,60 @@ ul {
   color: var(--text-muted);
 }
 
+/* AI transparency study: stat row */
+
+.ai-stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+  padding: var(--space-md) 0;
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.ai-stat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ai-stat-number {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ai-stat-label {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* AI transparency study: method pill row */
+
+.method-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-md) 0;
+}
+
+.method-pill {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */
