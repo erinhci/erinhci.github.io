@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Erin King. UX research grounded in HCI and cognitive science. Bay Area, open to remote. Portfolio of selected work." />
     <title>Portfolio | Erin King</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/assets/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -56,12 +54,14 @@
 
     <main id="main">
 
-      <section id="hero" aria-labelledby="hero-title">
+      <section class="hero" id="hero" aria-labelledby="hero-title">
         <div class="section-wrap">
-          <h1 id="hero-title" class="hero-headline animate-fade-up">I study what people actually do with technology.</h1>
-          <p class="hero-subline animate-fade-up delay-1">I design from what I find.</p>
-          <p class="hero-qualifier animate-fade-up delay-2">UX research grounded in HCI and cognitive science. Bay Area, open to remote.</p>
-          <a href="#work" class="cta-button animate-fade-up delay-3">View my work</a>
+          <h1 id="hero-title" class="hero-title">I study what people actually do with technology.</h1>
+          <p class="hero-meta">
+            UX Researcher &amp; Designer<br>
+            Bay Area · Open to remote
+          </p>
+          <a href="#work" class="cta">View my work</a>
         </div>
       </section>
 
@@ -411,8 +411,8 @@
         <div class="section-wrap content-wrap">
           <h2 id="contact-title">Let's connect</h2>
           <p class="availability">
-            <span class="availability-dot"></span>
-            Open to new opportunities
+            <span class="availability-dot" aria-hidden="true"></span>
+            Available for work
           </p>
           <p>Email: <a href="mailto:erink415@gmail.com">erink415@gmail.com</a></p>
           <p>LinkedIn: <a href="https://www.linkedin.com/in/erin-n-king" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Erin King">www.linkedin.com/in/erin-n-king</a></p>
