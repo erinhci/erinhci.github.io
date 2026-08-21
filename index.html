@@ -1,430 +1,1070 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Erin King. UX research grounded in HCI and cognitive science. Bay Area, open to remote. Portfolio of selected work." />
-    <title>Portfolio | Erin King</title>
-    <link rel="preload" href="/assets/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erin King — UX Researcher &amp; Designer</title>
+<meta name="description" content="Erin King, UX Researcher and Designer. Master of Human-Computer Interaction. Bay Area, open to remote.">
+<meta name="theme-color" content="#F5F4F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<script>
+/* Runs before paint so the correct theme is on <html> from the first frame
+   (no flash). Follows the OS setting until the user clicks the toggle. */
+(function(){
+  var d = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  d.dataset.theme = mq.matches ? 'dark' : 'light';
+  var onChange = function(e){ if (!d.dataset.themeLocked) d.dataset.theme = e.matches ? 'dark' : 'light'; };
+  mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
 
-    <header class="site-header">
-      <div class="nav-inner">
-        <a href="#hero" class="brand">Erin King</a>
-        <nav aria-label="Primary navigation">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Projects</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#contact">Contact</a></li>
+  /* Remember the visitor's choice across visits. try/catch because some
+     browsers throw on storage access (private mode, disabled storage). */
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) { d.dataset.theme = saved; d.dataset.themeLocked = '1'; }
+    d.addEventListener('themechange', function(e){ localStorage.setItem('theme', e.detail); });
+  } catch (err) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --maxw:1240px;
+  --gutter:clamp(1.25rem,4vw,3.5rem);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-marker:cubic-bezier(.22,.61,.36,1);
+  --jelly:cubic-bezier(.34,1.3,.44,1);
+}
+
+/* Light. Near-black headings, pink as the brand accent. */
+:root{
+  color-scheme:light;
+  --bg:#F5F4F1; --surface:#EFEEEA; --surface-2:#DEDCD6; --card:#FFFFFF;
+  --ink:#141414; --name:var(--accent);
+  --accent:#C2195B; --accent-deep:#9E1449;
+  --body:#57565A;
+  --band:#FFFFFF;
+  --blob-a:.16;
+  --shadow:rgba(0,0,0,.16);
+}
+
+/* Dark. Black page, cards lifted just off it, grey hairline borders that go
+   pink on hover. */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#000000; --surface:#1A1A1A; --surface-2:#2E2E2E; --card:#141414;
+  --ink:#F2F2F2; --name:var(--accent);
+  --accent:#F5457E; --accent-deep:#F76E97;
+  --body:#B0B0B0;
+  --band:#000000;
+  --blob-a:.26;
+  --shadow:rgba(0,0,0,.7);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--body);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;border-radius:2px;
+  transition:none !important;
+}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--bg);padding:.75rem 1.25rem;
+  font-weight:600;border-radius:0 0 6px 0;
+}
+.skip:focus{left:0}
+
+/* ============================================================
+   TYPE
+   Archivo is variable (wdth 62–125, wght 100–900). font-stretch drives
+   the width axis; font-variation-settings is the fallback for engines
+   that ignore font-stretch on variable faces. Set both.
+   ============================================================ */
+.display{
+  font-family:Archivo,system-ui,"Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);text-transform:uppercase;letter-spacing:-.02em;margin:0;
+}
+h2.section-title{
+  font-family:Archivo,system-ui,"Helvetica Neue",Arial,sans-serif;
+  font-weight:700;font-stretch:85%;
+  font-variation-settings:"wdth" 85,"wght" 700;
+  font-size:clamp(2.1rem,5.4vw,3.75rem);
+  line-height:.95;letter-spacing:-.025em;
+  text-transform:uppercase;color:var(--ink);margin:0;
+}
+.eyebrow{
+  font-size:.75rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 1rem;
+}
+p{max-width:68ch}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:100;background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .3s var(--ease),border-color .3s var(--ease);
+}
+.nav.is-stuck{background:var(--bg);border-bottom-color:var(--surface-2)}
+.nav-inner{
+  max-width:var(--maxw);margin-inline:auto;padding:1.1rem var(--gutter);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;
+}
+.wordmark{
+  font-family:Archivo,sans-serif;font-weight:800;font-stretch:88%;
+  font-variation-settings:"wdth" 88,"wght" 800;
+  font-size:1.0625rem;letter-spacing:.01em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;justify-self:start;
+}
+/* ---- Liquid section indicator ----------------------------------------
+   A soft pill tracks the section you are in. The left and right edges use
+   different durations depending on travel direction, so the leading edge
+   arrives first and the trailing edge catches up — that asymmetry is what
+   reads as stretch. On arrival it squashes and settles. */
+.nav-inner nav{position:relative}
+.menu{display:flex;gap:.4rem;list-style:none;margin:0;padding:0;justify-self:center;position:relative;z-index:1}
+.menu a{
+  position:relative;display:block;color:var(--ink);text-decoration:none;
+  font-size:.9375rem;font-weight:500;padding:.5rem .95rem;border-radius:999px;
+}
+.menu a::after{
+  content:"";position:absolute;left:.95rem;right:.95rem;bottom:.3rem;height:1.5px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;
+  transition:transform .22s var(--ease);
+}
+.menu a:hover::after{transform:scaleX(1)}
+/* The active label sits on the blob tint, so it uses the deeper accent —
+   plain --accent only reaches 4.1:1 against that fill in light mode. */
+.menu a[aria-current="true"]{color:var(--accent-deep);font-weight:600}
+
+/* Three pills inside a gooey SVG filter. At rest they sit concentric, so the
+   union reads as one clean oval. Position is scrubbed straight off scroll:
+   the head starts toward the next item immediately, the tail does not let go
+   until the scroll is nearly halfway across. Pausing between two sections
+   therefore leaves the mass genuinely stretched between both. No CSS
+   transitions here — the rAF loop owns left/width/transform. */
+.blobs{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  filter:url(#goo);opacity:0;
+  transition:opacity .45s linear;
+}
+.blobs.is-on{opacity:var(--blob-a)}
+.blobs i{
+  position:absolute;display:block;top:50%;
+  background:var(--accent);border-radius:999px;
+  will-change:left,width,transform;
+}
+.b1{height:2.05rem}
+.b2{height:1.85rem}
+.b3{height:1.55rem}
+.nav-cta{justify-self:end}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--ink);color:var(--bg);
+  font-family:Inter,sans-serif;font-size:.875rem;font-weight:600;
+  padding:.7rem 1.25rem;border-radius:999px;text-decoration:none;border:0;
+  transition:background .2s var(--ease),transform .2s var(--ease);
+}
+.btn:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--surface-2)}
+.btn-ghost:hover{background:var(--surface);border-color:var(--ink)}
+
+.nav-end{justify-self:end;display:flex;align-items:center;gap:.6rem}
+.icon-btn{
+  display:inline-grid;place-items:center;width:38px;height:38px;
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--surface-2);border-radius:999px;cursor:pointer;
+  transition:background .2s var(--ease),border-color .2s var(--ease);
+}
+.icon-btn:hover{background:var(--surface);border-color:var(--ink)}
+.icon-btn svg{width:17px;height:17px}
+:root[data-theme="dark"] .i-moon,:root:not([data-theme="dark"]) .i-sun{display:none}
+
+body,.nav,.card,.contact,.tile,.tag,.pill{
+  transition:background-color .28s var(--ease),color .28s var(--ease),border-color .28s var(--ease);
+}
+
+.burger{display:none;background:none;border:0;padding:.5rem;cursor:pointer;color:var(--ink)}
+.burger span{display:block;width:22px;height:2px;background:currentColor;margin:4px 0}
+
+.overlay{position:fixed;inset:0;z-index:150;background:var(--bg);display:none;flex-direction:column;justify-content:center;padding:var(--gutter)}
+.overlay.is-open{display:flex}
+.overlay ul{list-style:none;margin:0;padding:0;display:grid;gap:1.25rem}
+.overlay a{
+  font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;
+  font-variation-settings:"wdth" 85,"wght" 700;
+  font-size:clamp(2rem,10vw,3rem);text-transform:uppercase;
+  color:var(--ink);text-decoration:none;line-height:1;
+}
+.overlay-close{position:absolute;top:1.1rem;right:var(--gutter);background:none;border:0;font-size:2rem;line-height:1;color:var(--ink);cursor:pointer}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(4rem,9vw,6.5rem)}
+.hero-top{display:flex;justify-content:flex-end;margin-bottom:clamp(1.5rem,4vw,2.75rem)}
+.pill{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--card);border:1px solid var(--surface-2);
+  border-radius:999px;padding:.55rem 1.1rem;
+  font-size:.875rem;font-weight:600;color:var(--ink);
+  box-shadow:0 1px 3px var(--shadow);
+}
+.dot{
+  position:relative;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);flex:none;
+}
+.dot::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:var(--accent);
+  animation:ping 2.2s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes ping{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(2.8);opacity:0}}
+
+/* Two columns at every width: name left, role and meta right. The name
+   scales down far enough that the pairing survives on a phone instead of
+   stacking. */
+.hero-grid{
+  /* Name column sized to its own content, side column takes the remainder.
+     The reverse (1fr + auto) let the long meta text squeeze the name until
+     it clipped on narrow screens. */
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  align-items:end;gap:clamp(1rem,3vw,3rem);
+}
+.hero-name{
+  color:var(--name);
+  font-weight:800;font-stretch:80%;
+  font-variation-settings:"wdth" 80,"wght" 800;
+  font-size:clamp(2.5rem,15vw,11.5rem);
+  line-height:.84;letter-spacing:-.035em;
+}
+.hero-side{text-align:right;padding-bottom:.4rem;min-width:0;justify-self:end;width:100%}
+.hero-role{
+  font-family:Archivo,sans-serif;font-weight:700;font-stretch:104%;
+  font-variation-settings:"wdth" 104,"wght" 700;
+  font-size:clamp(.95rem,3.1vw,2.6rem);
+  line-height:1.02;letter-spacing:-.015em;
+  text-transform:uppercase;color:var(--ink);margin:0;
+}
+.hero-rule{height:1px;background:var(--surface-2);border:0;margin:1.1rem 0 1rem;width:72px;margin-left:auto;margin-right:0}
+.hero-meta{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}
+.hero-meta li{font-size:clamp(.75rem,1.5vw,1rem);font-weight:500;color:var(--body);line-height:1.35}
+
+/* line-mask reveal */
+.line{display:block;overflow:hidden}
+.line > span{display:block;transform:translateY(105%)}
+.is-lit .line > span{transform:translateY(0);transition:transform .52s var(--ease)}
+.is-lit .line:nth-child(2) > span{transition-delay:.07s}
+.fade-up{opacity:0;transform:translateY(12px)}
+.is-lit .fade-up{opacity:1;transform:none;transition:opacity .48s var(--ease),transform .48s var(--ease)}
+.is-lit .d1{transition-delay:.18s}
+.is-lit .d2{transition-delay:.3s}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section{padding:clamp(3.5rem,8vw,6.5rem) 0}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:clamp(2rem,4.5vw,3rem);flex-wrap:wrap}
+.section-head .said{
+  margin:0;max-width:34ch;
+  font-size:clamp(1.0625rem,1.6vw,1.25rem);
+  line-height:1.45;color:var(--ink);font-weight:500;
+  text-align:right;text-wrap:balance;
+}
+.rule{height:1px;background:var(--surface-2);border:0;margin:0}
+
+/* ---------- Sorting ---------- */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.tag[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+
+/* ---------- Work ---------- */
+.work-grid{display:grid;gap:clamp(1.25rem,2.5vw,2rem);grid-template-columns:repeat(2,1fr)}
+.card{
+  position:relative;grid-column:span 1;
+  display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--surface-2);
+  border-radius:14px;overflow:hidden;
+  transition:border-color .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease);
+}
+.card[hidden]{display:none}
+.card:hover,.card:focus-within{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 28px -14px var(--shadow)}
+.card-art{background:var(--surface);aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--surface-2)}
+.card-art svg{width:64%;height:auto;color:var(--ink);transition:transform .3s var(--ease)}
+.card:hover .card-art svg{transform:scale(1.05)}
+.card-body{padding:1.5rem 1.5rem 1.75rem;display:flex;flex-direction:column;flex:1}
+
+/* tags are real buttons; they sit above the card's stretched link */
+.tags{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}
+.tag{
+  font-family:Inter,sans-serif;
+  font-size:.75rem;font-weight:500;
+  background:transparent;color:var(--body);
+  border:1px solid var(--surface-2);
+  padding:.3rem .7rem;border-radius:999px;cursor:pointer;
+  transition:background .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease);
+}
+.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.card h3{
+  font-family:Archivo,sans-serif;font-weight:600;font-stretch:100%;
+  font-variation-settings:"wdth" 100,"wght" 600;
+  font-size:1.3125rem;line-height:1.3;letter-spacing:-.01em;
+  color:var(--ink);margin:0 0 .5rem;
+}
+.card h3 a{color:inherit;text-decoration:none}
+/* whole card is clickable, without nesting interactive elements */
+.card h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+
+.card p{font-size:.9375rem;margin:.25rem 0 1.1rem;flex:1}
+.cat{
+  font-size:.6875rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .6rem;
+}
+.go{font-size:.875rem;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:.4rem;margin-top:auto}
+.go .arrow{transition:transform .28s var(--ease)}
+.card:hover .go .arrow,.card:focus-within .go .arrow{transform:translateX(5px)}
+
+/* ---------- Approach ---------- */
+.approach{background:var(--bg);border-top:1px solid var(--surface-2)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2.5vw,2rem)}
+.tile{background:var(--card);border:1px solid var(--surface-2);border-radius:14px;padding:1.75rem 1.5rem 2rem}
+.tile h3{
+  font-family:Archivo,sans-serif;font-weight:700;font-stretch:88%;
+  font-variation-settings:"wdth" 88,"wght" 700;
+  font-size:1.375rem;text-transform:uppercase;letter-spacing:-.01em;
+  color:var(--ink);margin:0 0 .75rem;
+}
+.tile p{font-size:.9375rem;margin:0}
+
+/* ---------- Experience ---------- */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.block + .block{margin-top:2.5rem}
+.block h3{
+  font-family:Archivo,sans-serif;font-weight:700;font-stretch:88%;
+  font-variation-settings:"wdth" 88,"wght" 700;
+  font-size:.9375rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 1.25rem;padding-bottom:.6rem;border-bottom:1px solid var(--surface-2);
+}
+.entry{margin-bottom:1.5rem}
+.entry .t{font-family:Archivo,sans-serif;font-weight:600;font-size:1.0625rem;color:var(--ink);margin:0 0 .15rem}
+.entry .m{font-size:.875rem;color:var(--body);margin:0}
+.entry ul{margin:.6rem 0 0;padding-left:1.1rem;font-size:.9375rem}
+.entry li{margin-bottom:.35rem}
+/* Static labels, deliberately NOT pills — the pill shape is reserved for the
+   project tags, which are the only clickable chips on the page. */
+/* Plain running text with middots. Deliberately not pill-shaped — the pill
+   is reserved for the project tags, which are the only clickable chips. */
+.taglist{font-size:.9375rem;color:var(--body);line-height:1.8;margin:0;max-width:none}
+.taglist .sep{color:var(--surface-2);padding:0 .15rem}
+.exp-intro{font-size:1.0625rem;line-height:1.6;max-width:62ch;margin:0 0 1.5rem}
+
+/* ---------- Contact ---------- */
+/* The band sits on its own surface (white in light, black in dark) and is
+   separated from the page by a hairline rather than by inverting. */
+.contact{background:var(--band);border-top:1px solid var(--surface-2)}
+.contact-lead{font-size:clamp(1.0625rem,1.7vw,1.25rem);line-height:1.5;max-width:52ch;margin-top:1.25rem}
+.contact-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+
+footer{padding:2rem 0;font-size:.875rem;color:var(--body)}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.is-in{opacity:1;transform:none;transition:opacity .46s var(--ease),transform .46s var(--ease)}
+.stagger > *{opacity:0;transform:translateY(16px)}
+.stagger.is-in > *{opacity:1;transform:none;transition:opacity .46s var(--ease),transform .46s var(--ease)}
+.stagger.is-in > *:nth-child(1){transition-delay:0s}
+.stagger.is-in > *:nth-child(2){transition-delay:.06s}
+.stagger.is-in > *:nth-child(3){transition-delay:.12s}
+.stagger.is-in > *:nth-child(4){transition-delay:.18s}
+.stagger.is-in > *:nth-child(5){transition-delay:.24s}
+.stagger.is-in > *:nth-child(6){transition-delay:.3s}
+.stagger.is-in > *:nth-child(7){transition-delay:.36s}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:960px){
+  /* hide the whole <nav> wrapper, not just the list — an empty grid item
+     would otherwise occupy column 2 and push the burger onto a new row */
+  .nav-inner > nav,.nav-resume{display:none}
+  .burger{display:block}
+  .nav-inner{grid-template-columns:1fr auto}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .work-grid{grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:1fr}
+}
+@media (max-width:480px){ .tiles{grid-template-columns:1fr} }
+
+/* ============================================================
+   REDUCED MOTION — content always ends visible
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal,.stagger > *,.fade-up{opacity:1 !important;transform:none !important}
+  .line > span{transform:none !important}
+  .dot::after{animation:none !important}
+  .blobs{transition:opacity .001ms !important}
+  .blobs i{animation:none !important;transition:none !important}
+}
+
+</style>
+<noscript><style>.reveal,.stagger>*,.fade-up{opacity:1;transform:none}.line>span{transform:none}</style></noscript>
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+    <feColorMatrix in="blur" mode="matrix"
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7"/>
+  </filter>
+</svg>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="#top">Erin King</a>
+    <nav aria-label="Primary">
+      <span class="blobs" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></span>
+      <ul class="menu">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-end">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+        </svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/>
+        </svg>
+      </button>
+      <a class="btn nav-resume" href="assets/ErinN.King%20Resume.pdf">Resume <span aria-hidden="true">↓</span></a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="overlay-close" id="overlay-close" aria-label="Close menu">&times;</button>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="assets/ErinN.King%20Resume.pdf">Resume ↓</a></li>
+  </ul>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero" aria-labelledby="hero-name">
+    <div class="wrap">
+      <div class="hero-top fade-up">
+        <span class="pill"><span class="dot" aria-hidden="true"></span>Available for work</span>
+      </div>
+
+      <div class="hero-grid">
+        <h1 class="display hero-name" id="hero-name">
+          <span class="line"><span>Erin</span></span>
+          <span class="line"><span>King</span></span>
+        </h1>
+        <div class="hero-side fade-up d1">
+          <p class="hero-role">UX Researcher<br>&amp; Designer</p>
+          <hr class="hero-rule">
+          <ul class="hero-meta">
+            <li>Master of Human-Computer Interaction</li>
+            <li>Bay Area, open to remote</li>
           </ul>
-        </nav>
-        <button id="theme-toggle" type="button" aria-label="Switch to dark mode">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-sun">
-            <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="9" y1="1" x2="9" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="9" y1="15" x2="9" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="1" y1="9" x2="3" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="15" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="3.22" y1="3.22" x2="4.64" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="13.36" y1="13.36" x2="14.78" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="14.78" y1="3.22" x2="13.36" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="4.64" y1="13.36" x2="3.22" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-moon">
-            <path d="M15 9.75A6.75 6.75 0 0 1 8.25 3c0-.34.026-.675.076-1A7.5 7.5 0 1 0 16 10.674 6.774 6.774 0 0 1 15 9.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <div class="mobile-nav" id="mobile-nav" hidden>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Projects</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </header>
-
-    <main id="main">
-
-      <section class="hero" id="hero" aria-labelledby="hero-title">
-        <div class="section-wrap">
-          <h1 id="hero-title" class="hero-title">I study what people actually do with technology.</h1>
-          <p class="hero-meta">
-            UX Researcher &amp; Designer<br>
-            Bay Area · Open to remote
-          </p>
-          <a href="#work" class="cta">View my work</a>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section id="about" aria-labelledby="about-title">
-        <div class="section-wrap content-wrap">
-          <h2 id="about-title">Hi, I'm Erin.</h2>
-          <p>I'm based in the Bay Area with a Master of Human-Computer Interaction and a background in cognitive science and psychology.</p>
-          <p>Technology is everywhere and getting more capable fast, and I find that genuinely exciting. It's also why I think design matters: making things worth people's time and trust, understanding what they actually need, keeping things from going sideways. That's the work I'm looking for.</p>
+  <hr class="rule">
+
+  <!-- Back-compat anchors. The old page used #projects / #about / #resume;
+       case-study pages may still link to them, so keep them resolving. -->
+  <span id="projects" tabindex="-1" aria-hidden="true"></span>
+
+  <!-- ============ WORK ============ -->
+  <section id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title" id="work-title">Recent Projects</h2>
         </div>
-      </section>
+      </div>
 
-      <section id="work" aria-labelledby="work-title">
-        <div class="section-wrap">
-          <h2 id="work-title">Selected work</h2>
-          <p id="filter-status" class="visually-hidden" role="status" aria-live="polite"></p>
-          <div class="project-grid">
+      <p class="sr-only" id="sort-status" role="status" aria-live="polite"></p>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 1: AI Transparency : conversational exchange loop -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Left message -->
-                  <rect x="40" y="30" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Right reply -->
-                  <rect x="180" y="82" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Left message 2 -->
-                  <rect x="40" y="134" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Right reply 2 -->
-                  <rect x="180" y="186" width="180" height="34" rx="5" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Down arrow left side -->
-                  <line x1="130" y1="64" x2="130" y2="82" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="270" y1="116" x2="270" y2="134" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="130" y1="168" x2="130" y2="186" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-                  <!-- Return arrow (accent) looping from bottom-right back to top-left -->
-                  <path d="M360 203 Q390 230 390 47 Q390 20 370 20 L220 20" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <polygon points="220,15 208,20 220,25" fill="var(--accent)"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Research</span>
-                <h3><a href="perceived-transparency-generative-ai.html" class="project-card-link">AI Transparency &amp; User Trust</a></h3>
-                <p>A qualitative study examining how users evaluate ChatGPT's credibility through iterative prompting and why they prioritize structure and tone over citations.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,AI,Human-Computer Interaction">
-                  <button class="skill-tag" type="button">Qualitative Research</button>
-                  <button class="skill-tag" type="button">AI</button>
-                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+      <div class="work-grid stagger" id="work-grid">
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 2: PT Clinic : routing nodes with relay and direct path -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Three nodes -->
-                  <circle cx="80" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <circle cx="200" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <circle cx="320" cy="120" r="22" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Node labels -->
-                  <text x="80" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Therapist</text>
-                  <text x="200" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Assistant</text>
-                  <text x="320" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-muted)">Receptionist</text>
-                  <!-- Multi-hop relay: A→T (arc above) -->
-                  <path d="M178 113 Q140 72 102 113" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <polygon points="104,113 96,107 99,118" fill="var(--text-secondary)"/>
-                  <!-- T→A arc back -->
-                  <path d="M102 127 Q140 168 178 127" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <polygon points="176,127 184,121 183,132" fill="var(--text-secondary)"/>
-                  <!-- A→R -->
-                  <line x1="222" y1="120" x2="296" y2="120" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <polygon points="296,115 307,120 296,125" fill="var(--text-secondary)"/>
-                  <!-- Direct path A→R (accent, below) -->
-                  <path d="M80 142 Q200 195 320 142" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 3"/>
-                  <polygon points="318,141 328,137 326,148" fill="var(--accent)"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Cognitive Engineering</span>
-                <h3><a href="physical-therapy-interaction-study.html" class="project-card-link">Team Efficiency at a Physical Therapy Clinic</a></h3>
-                <p>A cognitive engineering field study measuring communication bottlenecks and operational efficiency across contrasting high- and low-stress days at a physical therapy clinic.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Field Research,Service Design">
-                  <button class="skill-tag" type="button">Cognitive Engineering</button>
-                  <button class="skill-tag" type="button">Field Research</button>
-                  <button class="skill-tag" type="button">Service Design</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Qualitative Research|AI|Human-Computer Interaction">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <circle cx="120" cy="34" r="17"/><circle cx="206" cy="100" r="17"/>
+              <circle cx="120" cy="166" r="17"/><circle cx="34" cy="100" r="17"/>
+              <path d="M137 45 A88 88 0 0 1 195 86"/><path d="M195 114 A88 88 0 0 1 137 155"/>
+              <path d="M103 155 A88 88 0 0 1 45 114"/><path d="M45 86 A88 88 0 0 1 103 45"/>
+              <g stroke-width="2" stroke-linejoin="round">
+                <path d="M-7 -7 L0 0 L-7 7" transform="translate(195 86) rotate(35)"/>
+                <path d="M-7 -7 L0 0 L-7 7" transform="translate(137 155) rotate(145)"/>
+                <path d="M-7 -7 L0 0 L-7 7" transform="translate(45 114) rotate(215)"/>
+                <path d="M-7 -7 L0 0 L-7 7" transform="translate(103 45) rotate(-35)"/>
+              </g>
+              <circle cx="120" cy="100" r="3.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Qualitative Research</p>
+            <h3><a href="perceived-transparency-generative-ai.html">AI Transparency &amp; User Trust</a></h3>
+            <p>A qualitative study examining how users evaluate ChatGPT's credibility through iterative prompting and why they prioritize structure and tone over citations.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Qualitative Research">Qualitative Research</button>
+              <button class="tag" type="button" data-tag="AI">AI</button>
+              <button class="tag" type="button" data-tag="Human-Computer Interaction">Human-Computer Interaction</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 3: Reddit : threaded comment structure -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Top post -->
-                  <rect x="30" y="24" width="340" height="38" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="2"/>
-                  <!-- Vertical thread line -->
-                  <line x1="60" y1="62" x2="60" y2="210" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
-                  <!-- Reply 1 -->
-                  <line x1="60" y1="90" x2="82" y2="90" stroke="var(--border)" stroke-width="1.5"/>
-                  <rect x="82" y="78" width="278" height="28" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Reply 2 -->
-                  <line x1="60" y1="130" x2="82" y2="130" stroke="var(--border)" stroke-width="1.5"/>
-                  <rect x="82" y="118" width="250" height="28" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Nested thread line under reply 2 -->
-                  <line x1="104" y1="146" x2="104" y2="210" stroke="var(--border)" stroke-width="1.5"/>
-                  <!-- Nested reply -->
-                  <line x1="104" y1="170" x2="124" y2="170" stroke="var(--border)" stroke-width="1.5"/>
-                  <rect x="124" y="158" width="220" height="26" rx="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <!-- Reply 3 -->
-                  <line x1="60" y1="205" x2="82" y2="205" stroke="var(--border)" stroke-width="1.5"/>
-                  <rect x="82" y="193" width="220" height="26" rx="4" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Qualitative Research</span>
-                <h3><a href="reddit-disability-study.html" class="project-card-link">Storytelling in Disability Spaces on Reddit</a></h3>
-                <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to find connection and make sense of difficult experiences.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Qualitative Research,Accessibility,Human-Computer Interaction">
-                  <button class="skill-tag" type="button">Qualitative Research</button>
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Cognitive Engineering|Field Research|Service Design">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M60 44 L120 80 L60 116 M120 80 L180 44 M120 80 L180 116" stroke-width="1.8"/>
+              <path d="M60 44 L180 44" stroke-width="3.2"/>
+              <path d="M60 116 L180 116" stroke-width="1.4" stroke-dasharray="5 7"/>
+              <circle cx="60" cy="44" r="9" fill="var(--surface)"/><circle cx="60" cy="116" r="9" fill="var(--surface)"/>
+              <circle cx="180" cy="44" r="9" fill="var(--surface)"/><circle cx="180" cy="116" r="9" fill="var(--surface)"/>
+              <circle cx="120" cy="80" r="12" fill="var(--surface)"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Cognitive Engineering</p>
+            <h3><a href="physical-therapy-interaction-study.html">Team Efficiency at a Physical Therapy Clinic</a></h3>
+            <p>A cognitive engineering field study measuring communication bottlenecks and operational efficiency across contrasting high- and low-stress days at a physical therapy clinic.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Cognitive Engineering">Cognitive Engineering</button>
+              <button class="tag" type="button" data-tag="Field Research">Field Research</button>
+              <button class="tag" type="button" data-tag="Service Design">Service Design</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 4: EduFlow : atomic composition grid -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Bottom row: small atoms -->
-                  <rect x="50" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="96" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
-                  <rect x="142" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="188" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="234" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="280" y="166" width="36" height="36" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <!-- Mid row: composed components -->
-                  <rect x="72" y="110" width="80" height="44" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="166" y="110" width="80" height="44" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-                  <rect x="260" y="110" width="56" height="44" rx="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <!-- Top row: large component -->
-                  <rect x="100" y="38" width="200" height="60" rx="4" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
-                  <!-- Connecting lines -->
-                  <line x1="112" y1="154" x2="112" y2="166" stroke="var(--border)" stroke-width="1.5"/>
-                  <line x1="206" y1="154" x2="206" y2="166" stroke="var(--border)" stroke-width="1.5"/>
-                  <line x1="200" y1="110" x2="200" y2="98" stroke="var(--border)" stroke-width="1.5"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Design Systems</span>
-                <h3><a href="eduflow-case-study.html" class="project-card-link">EduFlow Design System</a></h3>
-                <p>A design system for university digital transformation: atomic design, AI interaction patterns, governance, and accessibility built in from the start. The real story is how the AI tooling was directed.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,AI,Design Systems">
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">AI</button>
-                  <button class="skill-tag" type="button">Design Systems</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Qualitative Research|Accessibility|Human-Computer Interaction">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <circle cx="96" cy="80" r="42"/><circle cx="144" cy="80" r="42"/><circle cx="120" cy="46" r="42"/>
+              <circle cx="120" cy="80" r="5" fill="currentColor" stroke="none"/>
+              <path d="M40 132 h50"/><path d="M104 132 h96"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Qualitative Research</p>
+            <h3><a href="reddit-disability-study.html">Storytelling in Disability Spaces on Reddit</a></h3>
+            <p>Qualitative research exploring how disabled people use personal storytelling on Reddit to find connection and make sense of difficult experiences.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Qualitative Research">Qualitative Research</button>
+              <button class="tag" type="button" data-tag="Accessibility">Accessibility</button>
+              <button class="tag" type="button" data-tag="Human-Computer Interaction">Human-Computer Interaction</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 5: Hades : rhythm strip with overload cluster -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Timeline baseline -->
-                  <line x1="30" y1="120" x2="370" y2="120" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <!-- Evenly spaced tick marks -->
-                  <line x1="60" y1="105" x2="60" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="100" y1="108" x2="100" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="140" y1="105" x2="140" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="180" y1="108" x2="180" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <!-- Overload cluster (accent) -->
-                  <line x1="220" y1="88" x2="220" y2="152" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="232" y1="92" x2="232" y2="148" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="244" y1="88" x2="244" y2="152" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="256" y1="94" x2="256" y2="146" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="268" y1="90" x2="268" y2="150" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="280" y1="86" x2="280" y2="154" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <!-- Resume normal ticks -->
-                  <line x1="320" y1="108" x2="320" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                  <line x1="360" y1="105" x2="360" y2="135" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Cognitive Engineering</span>
-                <h3><a href="hades-cognitive-engineering-study.html" class="project-card-link">Hades: Cognitive Load &amp; Expert Performance</a></h3>
-                <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Cognitive Engineering,Human-Computer Interaction,Behavior">
-                  <button class="skill-tag" type="button">Cognitive Engineering</button>
-                  <button class="skill-tag" type="button">Human-Computer Interaction</button>
-                  <button class="skill-tag" type="button">Behavior</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Accessibility|AI|Design Systems">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="54" cy="80" r="8" fill="currentColor" stroke="none"/>
+              <rect x="86" y="62" width="36" height="36" rx="6"/>
+              <rect x="138" y="46" width="68" height="68" rx="8"/>
+              <path d="M138 80 h68 M172 46 v68" stroke-width="1.4" stroke-dasharray="5 6"/>
+              <path d="M66 80 h14 M126 80 h8" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Design Systems</p>
+            <h3><a href="eduflow-case-study.html">EduFlow Design System</a></h3>
+            <p>A design system for university digital transformation: atomic design, AI interaction patterns, governance, and accessibility built in from the start. The real story is how the AI tooling was directed.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Accessibility">Accessibility</button>
+              <button class="tag" type="button" data-tag="AI">AI</button>
+              <button class="tag" type="button" data-tag="Design Systems">Design Systems</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <!-- Card 6: Noticed : constellation of dots with accent star -->
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Connecting lines -->
-                  <line x1="200" y1="120" x2="100" y2="60" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="200" y1="120" x2="310" y2="70" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="200" y1="120" x2="80" y2="165" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="200" y1="120" x2="320" y2="170" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="200" y1="120" x2="160" y2="185" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="200" y1="120" x2="270" y2="40" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="100" y1="60" x2="270" y2="40" stroke="var(--border)" stroke-width="1"/>
-                  <line x1="80" y1="165" x2="160" y2="185" stroke="var(--border)" stroke-width="1"/>
-                  <!-- Outer dots -->
-                  <circle cx="100" cy="60" r="5" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="310" cy="70" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="270" cy="40" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="80" cy="165" r="5" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="320" cy="170" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="160" cy="185" r="4" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="350" cy="120" r="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <circle cx="60" cy="100" r="3" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
-                  <!-- Accent star (center) -->
-                  <circle cx="200" cy="120" r="8" fill="var(--accent)" opacity="0.85"/>
-                  <circle cx="200" cy="120" r="14" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.35"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">UX &amp; Brand Design</span>
-                <h3><a href="noticed-case-study.html" class="project-card-link">Noticed: Adaptive Symptom Tracking</a></h3>
-                <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Accessibility,Design Systems,Visual Design">
-                  <button class="skill-tag" type="button">Accessibility</button>
-                  <button class="skill-tag" type="button">Design Systems</button>
-                  <button class="skill-tag" type="button">Visual Design</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Cognitive Engineering|Human-Computer Interaction|Behavior">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M40 130 A80 80 0 0 1 200 130"/><path d="M64 130 A56 56 0 0 1 176 130"/>
+              <path d="M88 130 A32 32 0 0 1 152 130"/><path d="M120 130 V34"/>
+              <path d="M120 130 L188 84" stroke-dasharray="6 8" stroke-width="1.6"/>
+              <circle cx="120" cy="130" r="5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Cognitive Engineering</p>
+            <h3><a href="hades-cognitive-engineering-study.html">Hades: Cognitive Load &amp; Expert Performance</a></h3>
+            <p>A cognitive engineering study measuring how attentional overload affects expert and novice player performance in the roguelite action RPG Hades.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Cognitive Engineering">Cognitive Engineering</button>
+              <button class="tag" type="button" data-tag="Human-Computer Interaction">Human-Computer Interaction</button>
+              <button class="tag" type="button" data-tag="Behavior">Behavior</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
-            <article class="project-card">
-              <div class="project-card-image" aria-hidden="true">
-                <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Crosswalk stripes (horizontal bands) -->
-                  <rect x="60" y="50" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
-                  <rect x="60" y="85" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
-                  <rect x="60" y="120" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
-                  <rect x="60" y="155" width="280" height="22" rx="2" fill="none" stroke="var(--border)" stroke-width="1"/>
-                  <!-- Vertical lane guides -->
-                  <line x1="60" y1="45" x2="60" y2="182" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
-                  <line x1="340" y1="45" x2="340" y2="182" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
-                  <!-- Wandering accent path through the grid -->
-                  <path d="M80 165 Q120 155 145 97 Q170 55 210 62 Q250 68 265 128 Q278 175 320 163" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-                  <!-- Endpoint dot -->
-                  <circle cx="320" cy="163" r="4" fill="var(--accent)"/>
-                  <!-- Start dot -->
-                  <circle cx="80" cy="165" r="4" fill="var(--text-secondary)"/>
-                </svg>
-              </div>
-              <div class="project-card-body">
-                <span class="project-tag-label">Field Research</span>
-                <h3><a href="distracted-pedestrians.html" class="project-card-link">Distracted Pedestrians: Motivations and Consequences of Phone Walking</a></h3>
-                <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
-                <div class="skill-tags" role="group" aria-label="Filter projects by tag" data-tags="Field Research,Qualitative Research,Behavior">
-                  <button class="skill-tag" type="button">Field Research</button>
-                  <button class="skill-tag" type="button">Qualitative Research</button>
-                  <button class="skill-tag" type="button">Behavior</button>
-                </div>
-                <span class="view-project-link" aria-hidden="true">View project →</span>
-              </div>
-            </article>
+        <article class="card" data-tags="Accessibility|Design Systems|Visual Design">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+              <path d="M56 116 L92 62 L142 88 L188 44"/>
+              <circle cx="56" cy="116" r="5.5" fill="currentColor" stroke="none"/>
+              <circle cx="92" cy="62" r="8" fill="currentColor" stroke="none"/>
+              <circle cx="142" cy="88" r="4.5" fill="currentColor" stroke="none"/>
+              <circle cx="188" cy="44" r="7" fill="currentColor" stroke="none"/>
+              <circle cx="74" cy="40" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="166" cy="122" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="118" cy="130" r="2" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">UX &amp; Brand Design</p>
+            <h3><a href="noticed-case-study.html">Noticed: Adaptive Symptom Tracking</a></h3>
+            <p>A visual-first, guilt-free symptom tracking system designed for chronic illness, mental health, and neurodivergent communities in both app and print form.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Accessibility">Accessibility</button>
+              <button class="tag" type="button" data-tag="Design Systems">Design Systems</button>
+              <button class="tag" type="button" data-tag="Visual Design">Visual Design</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
+        <article class="card" data-tags="Field Research|Qualitative Research|Behavior">
+          <div class="card-art" aria-hidden="true">
+            <svg viewBox="0 0 240 160" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M60 20 C 40 55, 82 78, 58 110 C 44 128, 62 138, 60 146"/>
+              <path d="M120 20 C 146 50, 100 74, 124 104 C 140 124, 112 132, 120 146"/>
+              <path d="M180 20 C 158 46, 200 70, 176 100 C 160 120, 190 134, 180 146"/>
+              <circle cx="58" cy="110" r="4.5" fill="currentColor" stroke="none"/>
+              <circle cx="124" cy="104" r="4.5" fill="currentColor" stroke="none"/>
+              <circle cx="176" cy="100" r="4.5" fill="currentColor" stroke="none"/>
+              <path d="M24 83 h192" stroke-dasharray="7 9" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <p class="cat">Field Research</p>
+            <h3><a href="distracted-pedestrians.html">Distracted Pedestrians: Motivations and Consequences of Phone Walking</a></h3>
+            <p>A three-city ethnographic field study examining why people use their phones while walking and how that behavior shapes the pedestrian environment around them.</p>
+            <div class="tags">
+              <button class="tag" type="button" data-tag="Field Research">Field Research</button>
+              <button class="tag" type="button" data-tag="Qualitative Research">Qualitative Research</button>
+              <button class="tag" type="button" data-tag="Behavior">Behavior</button>
+            </div>
+            <span class="go">View project <span class="arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <span id="about" tabindex="-1" aria-hidden="true"></span>
+
+  <!-- ============ APPROACH ============ -->
+  <section id="approach" class="approach" aria-labelledby="approach-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Approach</p>
+          <h2 class="section-title" id="approach-title">How I Work</h2>
+        </div>
+      </div>
+
+      <div class="tiles stagger">
+        <div class="tile">
+          <h3>Research</h3>
+          <p>I run interviews, thematic analysis, and design ethnography, plus structured observation and behavioral measures. I use them to find out what people actually need and what the design problem really is.</p>
+        </div>
+        <div class="tile">
+          <h3>Accessibility</h3>
+          <p>I check work against WCAG 2.2, but compliance is the bare minimum. I design for edge cases, because a page can pass every check and still be hard to use.</p>
+        </div>
+        <div class="tile">
+          <h3>Design</h3>
+          <p>I turn research findings into interfaces and interaction patterns. I care about usability and about visual design that's genuinely beautiful.</p>
+        </div>
+        <div class="tile">
+          <h3>Collaboration</h3>
+          <p>Most of my work has been on teams, and I keep things organized: clear files, decisions written down, documentation that stays current.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <span id="resume" tabindex="-1" aria-hidden="true"></span>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" aria-labelledby="exp-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Background</p>
+          <h2 class="section-title" id="exp-title">Experience at a glance</h2>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="exp-intro">UX research training from a Master of Human-Computer Interaction program, with independent web development consulting experience.</p>
+        <a class="btn btn-ghost" href="assets/ErinN.King%20Resume.pdf">Download resume (PDF)</a>
+      </div>
+
+      <div class="exp-grid reveal" style="margin-top:clamp(2rem,4vw,3rem)">
+        <div>
+          <div class="block">
+            <h3>Education</h3>
+            <div class="entry">
+              <p class="t">Master of Human-Computer Interaction</p>
+              <p class="m">Iowa State University &middot; GPA 4.0 &middot; Dec 2025</p>
+            </div>
+            <div class="entry">
+              <p class="t">B.S. Cognitive Science &amp; B.A. Psychology</p>
+              <p class="m">UC Santa Cruz &middot; Honors &middot; 2022</p>
+            </div>
+          </div>
+
+          <div class="block">
+            <h3>Research Methods</h3>
+            <p class="taglist">Qualitative Research <span class="sep">·</span> Thematic Analysis <span class="sep">·</span> Qualitative Coding (Taguette) <span class="sep">·</span> Content Analysis <span class="sep">·</span> Contextual Inquiry <span class="sep">·</span> Cognitive Engineering <span class="sep">·</span> Design Ethnography <span class="sep">·</span> Research Synthesis <span class="sep">·</span> Mixed Methods Research <span class="sep">·</span> Survey Design <span class="sep">·</span> A/B Testing <span class="sep">·</span> Field Studies <span class="sep">·</span> Semi-Structured Interviews <span class="sep">·</span> Think-Aloud Protocol <span class="sep">·</span> Usability Testing</p>
+          </div>
+
+          <div class="block">
+            <h3>Design</h3>
+            <p class="taglist">Figma <span class="sep">·</span> Miro <span class="sep">·</span> Mural <span class="sep">·</span> Design Systems <span class="sep">·</span> Prototyping <span class="sep">·</span> Wireframing <span class="sep">·</span> Inclusive Design <span class="sep">·</span> Information Architecture <span class="sep">·</span> UX Writing</p>
+          </div>
+
+          <div class="block">
+            <h3>Tools</h3>
+            <p class="taglist">HTML/CSS/JavaScript <span class="sep">·</span> Shopify (Liquid) <span class="sep">·</span> AI-Assisted Code (Lovable/Claude) <span class="sep">·</span> Qualtrics <span class="sep">·</span> axe DevTools</p>
           </div>
         </div>
-      </section>
 
-      <section id="resume" aria-labelledby="resume-title">
-        <div class="section-wrap content-wrap">
-          <h2 id="resume-title">Experience at a glance</h2>
-          <p>UX research training from a Master of Human-Computer Interaction program, with independent web development consulting experience.</p>
-          <a href="assets/ErinN.King%20Resume.pdf" class="resume-download-btn">Download resume (PDF)</a>
-
-          <div class="resume-columns">
-            <div class="resume-col-left">
-              <div class="resume-block">
-                <h3 class="resume-block-label">Education</h3>
-                <div class="resume-entry">
-                  <p class="resume-entry-title">Master of Human-Computer Interaction</p>
-                  <p class="resume-entry-meta">Iowa State University · GPA 4.0 · Dec 2025</p>
-                </div>
-                <div class="resume-entry">
-                  <p class="resume-entry-title">B.S. Cognitive Science &amp; B.A. Psychology</p>
-                  <p class="resume-entry-meta">UC Santa Cruz · Honors · 2022</p>
-                </div>
-              </div>
-
-              <div class="resume-block">
-                <h3 class="resume-block-label">Research Methods</h3>
-                <p class="resume-skills">Qualitative Research · Thematic Analysis · Qualitative Coding (Taguette) · Content Analysis · Contextual Inquiry · Cognitive Engineering · Design Ethnography · Research Synthesis · Mixed Methods Research · Survey Design · Field Studies · Semi-Structured Interviews · Think-Aloud Protocol · Usability Testing</p>
-              </div>
-
-              <div class="resume-block">
-                <h3 class="resume-block-label">Design</h3>
-                <p class="resume-skills">Figma · Miro · Mural · Design Systems · Prototyping · Wireframing · Inclusive Design · Information Architecture · UX Writing</p>
-              </div>
-
-              <div class="resume-block">
-                <h3 class="resume-block-label">Tools</h3>
-                <p class="resume-skills">HTML/CSS/JavaScript · Shopify (Liquid) · AI-Assisted Code (Lovable/Claude) · Qualtrics · axe DevTools</p>
-              </div>
+        <div>
+          <div class="block">
+            <h3>Experience</h3>
+            <div class="entry">
+              <p class="t">Web Development &amp; UX Consultant</p>
+              <p class="m">Mar 2024 – Present</p>
+              <p class="m">Independent Contractor</p>
+              <ul>
+                <li>Led Shopify theme migration for an inherited storefront, preserving custom functionality and resolving post-migration technical debt.</li>
+                <li>Built dynamic product linking with Shopify Metaobjects and trained the client team to maintain the feature independently.</li>
+                <li>Applied WCAG 2.2 standards within client constraints, including a promotional banner that pauses on hover and decluttered copy across key pages.</li>
+                <li>Designed and built an event landing site on a platform chosen so the client could self-maintain after handoff; set up SEO keeping the site at or near the top of Google results for its primary event queries; supported event cycles drawing 3,000+ sessions and 100+ ticket orders in a 30-day window.</li>
+                <li>Conducted a pro bono website accessibility audit, identified usability barriers, and presented findings with prioritized recommendations.</li>
+              </ul>
             </div>
-
-            <div class="resume-col-right">
-              <div class="resume-block">
-                <h3 class="resume-block-label">Experience</h3>
-                <div class="resume-entry">
-                  <div class="resume-entry-header">
-                    <p class="resume-entry-title">Web Development &amp; UX Consultant</p>
-                    <p class="resume-entry-date">Mar 2024 – Present</p>
-                  </div>
-                  <p class="resume-entry-meta">Independent Contractor</p>
-                  <ul class="resume-entry-list">
-                    <li>Led Shopify theme migration for an inherited storefront, preserving custom functionality and resolving post-migration technical debt.</li>
-                    <li>Built dynamic product linking with Shopify Metaobjects and trained the client team to maintain the feature independently.</li>
-                    <li>Applied WCAG 2.2 standards within client constraints, including a promotional banner that pauses on hover and decluttered copy across key pages.</li>
-                    <li>Designed and built an event landing site on a platform chosen so the client could self-maintain after handoff; set up SEO keeping the site at or near the top of Google results for its primary event queries; supported event cycles drawing 3,000+ sessions and 100+ ticket orders in a 30-day window.</li>
-                    <li>Conducted a pro bono website accessibility audit, identified usability barriers, and presented findings with prioritized recommendations.</li>
-                  </ul>
-                </div>
-                <div class="resume-entry">
-                  <div class="resume-entry-header">
-                    <p class="resume-entry-title">Accessibility &amp; Advocacy Internships</p>
-                    <p class="resume-entry-date">Jan – Jun 2022</p>
-                  </div>
-                  <p class="resume-entry-meta">Santa Cruz, CA</p>
-                  <ul class="resume-entry-list">
-                    <li>Monarch Independent Living: Produced accessible educational media, including cooking tutorial videos and custom-designed games, for adults with intellectual and developmental disabilities, prioritizing cognitive ease and comprehension.</li>
-                    <li>Laurel Street Center: Implemented person-centered care and developed virtual learning programs adapted to individual needs, supporting consumer independence and community inclusion.</li>
-                  </ul>
-                </div>
-              </div>
+            <div class="entry">
+              <p class="t">Accessibility &amp; Advocacy Internships</p>
+              <p class="m">Jan – Jun 2022</p>
+              <p class="m">Santa Cruz, CA</p>
+              <ul>
+                <li>Monarch Independent Living: Produced accessible educational media, including cooking tutorial videos and custom-designed games, for adults with intellectual and developmental disabilities, prioritizing cognitive ease and comprehension.</li>
+                <li>Laurel Street Center: Implemented person-centered care and developed virtual learning programs adapted to individual needs, supporting consumer independence and community inclusion.</li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section id="contact" aria-labelledby="contact-title">
-        <div class="section-wrap content-wrap">
-          <h2 id="contact-title">Let's connect</h2>
-          <p class="availability">
-            <span class="availability-dot" aria-hidden="true"></span>
-            Available for work
-          </p>
-          <p>Email: <a href="mailto:erink415@gmail.com">erink415@gmail.com</a></p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/erin-n-king" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Erin King">www.linkedin.com/in/erin-n-king</a></p>
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title" id="contact-title">Let's Talk</h2>
+        <p class="contact-lead">I'm looking for UX research and design roles. Bay Area, open to remote.</p>
+        <div class="contact-actions">
+          <a class="btn" href="mailto:erink415@gmail.com">erink415@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/erin-n-king">LinkedIn</a>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-    </main>
+</main>
 
-    <footer class="site-footer">
-      <p>&copy; 2026 Erin King. All rights reserved.</p>
-    </footer>
+<footer>
+  <div class="wrap"><span>&copy; 2026 Erin King</span></div>
+</footer>
 
-    <script src="main.js"></script>
-  </body>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Hero entrance */
+  requestAnimationFrame(function(){ document.getElementById('hero').classList.add('is-lit'); });
+
+  /* Sticky nav */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('is-stuck', window.scrollY > 24); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* Scroll reveal — once only */
+  var targets = document.querySelectorAll('.reveal, .stagger');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){ t.classList.add('is-in'); });
+  }
+
+  /* Active nav item + the liquid indicator */
+  var links = document.querySelectorAll('.menu a[href^="#"]');
+  var sections = [].map.call(links, function(a){ return document.querySelector(a.getAttribute('href')); });
+  var navEl = document.querySelector('.nav-inner nav');
+  var blobs = document.querySelector('.blobs');
+  /* lead  = how far into the gap this shape starts moving
+     span  = how much of the gap it needs to arrive
+     The head leaves at once and lands early; the tail waits until 45% and
+     only just makes it. That offset is what produces the stretch. */
+  var shapes = [
+    {el: blobs.querySelector('.b1'), lead: 0.00, span: 0.55, w: 1.00, off: 0.00},
+    {el: blobs.querySelector('.b2'), lead: 0.22, span: 0.56, w: 0.62, off: 0.19},
+    {el: blobs.querySelector('.b3'), lead: 0.45, span: 0.55, w: 0.32, off: 0.05}
+  ];
+
+  function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  /* Continuous position through the section list. 1.4 means "40% of the way
+     from section 1 to section 2". */
+  function sectionProgress(){
+    var centers = [], ok = true;
+    sections.forEach(function(s){
+      if (!s) { ok = false; return; }
+      centers.push(s.offsetTop + s.offsetHeight / 2);
+    });
+    if (!ok || !centers.length) return null;
+
+    /* the last section's centre can sit below max scroll, so pin at the end */
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+      return centers.length - 1;
+    }
+
+    var anchor = window.scrollY + window.innerHeight * 0.45;
+    if (anchor <= centers[0]) return 0;
+    for (var k = 0; k < centers.length - 1; k++) {
+      if (anchor <= centers[k + 1]) {
+        return k + (anchor - centers[k]) / (centers[k + 1] - centers[k]);
+      }
+    }
+    return centers.length - 1;
+  }
+
+  function metrics(link){
+    var navBox = navEl.getBoundingClientRect();
+    var box = link.getBoundingClientRect();
+    return {left: box.left - navBox.left, width: box.width};
+  }
+
+  function drawBlob(){
+    var p = sectionProgress();
+    var first = sections[0];
+    var beforeStart = first && first.getBoundingClientRect().top > window.innerHeight * 0.55;
+
+    if (p === null || beforeStart) {
+      blobs.classList.remove('is-on');
+      links.forEach(function(a){ a.removeAttribute('aria-current'); });
+      return;
+    }
+
+    var i = Math.min(Math.floor(p), links.length - 1);
+    var j = Math.min(i + 1, links.length - 1);
+    var t = p - i;
+
+    var a = metrics(links[i]);
+    var b = metrics(links[j]);
+
+    var near = t < 0.5 ? i : j;
+    links.forEach(function(l, n){
+      if (n === near) l.setAttribute('aria-current', 'true');
+      else l.removeAttribute('aria-current');
+    });
+
+    var spanL = Infinity, spanR = -Infinity;
+    shapes.forEach(function(s){
+      var st = reduce ? (t < 0.5 ? 0 : 1) : clamp((t - s.lead) / s.span, 0, 1);
+      var l = lerp(a.left, b.left, st);
+      var w = lerp(a.width, b.width, st);
+      var left = l + w * s.off;
+      var width = w * s.w;
+      s.el.style.left = left + 'px';
+      s.el.style.width = width + 'px';
+      if (left < spanL) spanL = left;
+      if (left + width > spanR) spanR = left + width;
+    });
+
+    /* Flatten in proportion to how far the mass is actually stretched, and
+       round back out once it lands. */
+    var rest = lerp(a.width, b.width, t) || 1;
+    var stretch = clamp((spanR - spanL) / rest, 1, 2.2);
+    var squash = reduce ? 1 : 1 - Math.min(0.2, (stretch - 1) * 0.34);
+    shapes.forEach(function(s){
+      s.el.style.transform = 'translateY(-50%) scaleY(' + squash + ')';
+    });
+
+    blobs.classList.add('is-on');
+  }
+
+  var blobTick = false;
+  function queueBlob(){
+    if (blobTick) return;
+    blobTick = true;
+    requestAnimationFrame(function(){ blobTick = false; drawBlob(); });
+  }
+  window.addEventListener('scroll', queueBlob, {passive:true});
+  window.addEventListener('resize', queueBlob);
+  drawBlob();
+
+  /* ---------- Project sorting ----------
+     Clicking a tag does not hide anything. Matching projects move to the
+     front of the grid and everything else stays visible below, so a tag is a
+     way of saying "show me these first" rather than "only show me these". */
+  var grid = document.getElementById('work-grid');
+  var sortStatus = document.getElementById('sort-status');
+  var cards = [].slice.call(grid.querySelectorAll('.card'));
+  var total = cards.length;
+  var active = 'all';
+
+  function sortBy(tag){
+    active = tag;
+    var matched = 0;
+    cards.forEach(function(c){
+      var hit = tag !== 'all' && (c.dataset.tags || '').split('|').indexOf(tag) > -1;
+      c.style.order = hit ? '0' : '1';
+      if (hit) matched++;
+    });
+    [].forEach.call(grid.querySelectorAll('.tag'), function(t){
+      t.setAttribute('aria-pressed', String(tag !== 'all' && t.dataset.tag === tag));
+    });
+    sortStatus.textContent = tag === 'all'
+      ? 'Showing all ' + total + ' projects in their default order.'
+      : matched + ' of ' + total + ' projects tagged ' + tag + ' moved to the top. All ' + total + ' are still listed.';
+  }
+
+  grid.addEventListener('click', function(e){
+    var t = e.target.closest('.tag'); if (!t) return;
+    e.preventDefault();
+    var next = t.dataset.tag === active ? 'all' : t.dataset.tag;
+
+    /* Scroll to the top of the cards, not the top of the section, leaving room
+       for the sticky nav — but only when we are not already there. If the page
+       has to travel, let it land before the cards move, otherwise the two
+       motions cancel each other out and the reorder is invisible. */
+    var navH = document.getElementById('nav').offsetHeight;
+    var y = grid.getBoundingClientRect().top + window.scrollY - navH - 20;
+    var needsScroll = Math.abs(window.scrollY - y) > 40;
+
+    sortBy(next);
+    if (needsScroll) window.scrollTo({top: y, behavior: reduce ? 'auto' : 'smooth'});
+  });
+
+  sortBy('all');
+
+  /* Theme toggle. Follows the OS until clicked, then stays where you put it
+     for the rest of the visit. */
+  var themeBtn = document.getElementById('theme-toggle');
+  var root = document.documentElement;
+  var labelTheme = function(){
+    themeBtn.setAttribute('aria-label',
+      root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  };
+  labelTheme();
+  themeBtn.addEventListener('click', function(){
+    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    root.dataset.themeLocked = '1';
+    labelTheme();
+    root.dispatchEvent(new CustomEvent('themechange', {detail: next}));
+  });
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger');
+  var overlay = document.getElementById('overlay');
+  var closeBtn = document.getElementById('overlay-close');
+  var lastFocus = null;
+  function openMenu(){
+    lastFocus = document.activeElement;
+    overlay.classList.add('is-open');
+    burger.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeMenu(){
+    overlay.classList.remove('is-open');
+    burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  burger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', function(e){ if (e.target.tagName === 'A') closeMenu(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeMenu();
+  });
+
+})();
+</script>
+</body>
 </html>
