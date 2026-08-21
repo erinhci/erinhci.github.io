@@ -859,12 +859,25 @@ footer{padding:2rem 0;font-size:.875rem;color:var(--body)}
   /* Scroll reveal — once only */
   var targets = document.querySelectorAll('.reveal, .stagger');
   if ('IntersectionObserver' in window && !reduce) {
+    /* threshold MUST stay 0. intersectionRatio is a fraction of the ELEMENT,
+       not of the viewport, so a tall block (the project grid is ~4300px on a
+       phone) can only ever reach ~0.19 — a 0.15 threshold meant it did not
+       reveal until it filled most of the screen, leaving a long blank gap
+       above the cards. Firing on the element's top edge instead. */
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
-    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold:0, rootMargin:'0px 0px -6% 0px'});
     targets.forEach(function(t){ io.observe(t); });
+
+    /* Safety net: anything already on screen at load reveals immediately,
+       and nothing stays hidden if the observer never fires for it. */
+    setTimeout(function(){
+      targets.forEach(function(t){
+        if (t.getBoundingClientRect().top < window.innerHeight) t.classList.add('is-in');
+      });
+    }, 1200);
   } else {
     targets.forEach(function(t){ t.classList.add('is-in'); });
   }
