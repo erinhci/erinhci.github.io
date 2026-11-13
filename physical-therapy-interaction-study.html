@@ -1,406 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study | Team Efficiency at a Physical Therapy Clinic</title>
-  <meta name="description" content="Case study: a cognitive engineering field study of team communication and efficiency at a physical therapy clinic." />
-  <link rel="preload" href="/assets/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="case-study.css" />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efficiency of Team Interactions at a Physical Therapy Clinic | Erin King</title>
+<meta name="description" content="A cognitive engineering field study of how a physical therapy clinic’s therapist, assistant, and reception roles communicated, and how stress and efficiency changed with patient volume.">
+<meta name="theme-color" content="#F5F4F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<script>
+/* Runs before paint so the correct theme is on <html> from the first frame.
+   Same logic as the homepage: follows the OS until the visitor picks one. */
+(function(){
+  var d = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  d.dataset.theme = mq.matches ? 'dark' : 'light';
+  var onChange = function(e){ if (!d.dataset.themeLocked) d.dataset.theme = e.matches ? 'dark' : 'light'; };
+  mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) { d.dataset.theme = saved; d.dataset.themeLocked = '1'; }
+    d.addEventListener('themechange', function(e){ localStorage.setItem('theme', e.detail); });
+  } catch (err) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens match the homepage (index.html). */
+:root{
+  color-scheme:light;
+  --bg:#F5F4F1; --surface:#EFEEEA; --card:#FFFFFF;
+  --line:#DEDCD6; --line-strong:#878580;
+  --ink:#141414; --body:#57565A;
+  --accent:#C2195B; --accent-deep:#9E1449; --on-accent:#FFFFFF;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#000000; --surface:#1A1A1A; --card:#141414;
+  --line:#2E2E2E; --line-strong:#707070;
+  --ink:#F2F2F2; --body:#B0B0B0;
+  --accent:#F5457E; --accent-deep:#F76E97; --on-accent:#000000;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:5rem}
+body{
+  margin:0;background:var(--bg);color:var(--body);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink);color:var(--bg);padding:.75rem 1.5rem;font-weight:600;border-radius:0 0 8px 0;text-decoration:none}
+.skip:focus{left:0}
+.pf-link{text-decoration:none;transition:color .2s cubic-bezier(.16,1,.3,1)}
+.pf-link:hover{color:var(--accent)}
+.pf-ghost{transition:border-color .2s,background-color .2s}
+.pf-ghost:hover{border-color:var(--ink) !important;background:var(--surface) !important}
+:root[data-theme="dark"] .i-moon,:root:not([data-theme="dark"]) .i-sun{display:none}
+:root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
+.nowrap{white-space:nowrap}
+#case-title{overflow-wrap:break-word}
+@media (max-width:480px){
+  .nav-resume{display:none !important}
+  #case-title{font-size:11.5vw !important}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+</style>
 </head>
-  <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
+<body>
+<a href="#main" class="skip">Skip to content</a>
 
-  <header class="site-header">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">Erin King</a>
-      <a href="index.html#work" class="back-link">&#8592; Back to portfolio</a>
-      <button id="theme-toggle" type="button" aria-label="Switch to dark mode">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-sun">
-          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="9" y1="1" x2="9" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="9" y1="15" x2="9" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="1" y1="9" x2="3" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="15" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="3.22" y1="3.22" x2="4.64" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="13.36" y1="13.36" x2="14.78" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14.78" y1="3.22" x2="13.36" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4.64" y1="13.36" x2="3.22" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-moon">
-          <path d="M15 9.75A6.75 6.75 0 0 1 8.25 3c0-.34.026-.675.076-1A7.5 7.5 0 1 0 16 10.674 6.774 6.774 0 0 1 15 9.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-  </header>
+<header style="position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 12px clamp(24px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+<a href="index.html" class="pf-link nowrap" style="font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 88%; font-size: 16px; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink);">Erin King</a>
+<div style="display: flex; align-items: center; gap: 8px;">
+<a href="index.html#work" class="pf-link nowrap" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; font-size: 16px; font-weight: 500; color: var(--ink);"><span aria-hidden="true">←</span> All work</a>
+<button type="button" id="theme-toggle" class="pf-ghost" aria-label="Switch to dark mode" style="display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; background: transparent; color: var(--ink); border: 1.5px solid var(--line-strong); border-radius: 999px; cursor: pointer;">
+<svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+<svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/></svg>
+</button>
+<a href="assets/ErinN.King%20Resume.pdf" class="pf-ghost nav-resume" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 1.5px solid var(--line-strong); border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;">Resume <span aria-hidden="true">↓</span></a>
+</div>
+</div>
+</header>
 
-  <main id="main">
-    <div class="case-study-wrap">
+<main id="main">
 
-      <section class="hero section" aria-labelledby="interaction-title">
-        <div class="container content-container">
-          <span class="case-study-label">Cognitive Engineering</span>
-          <h1 id="interaction-title">Team Efficiency at a Physical Therapy Clinic</h1>
-          <p class="tagline insight-box">A systems-level field study of communication flow, cognitive load, and operational bottlenecks in a high-traffic physical therapy clinic, observed across contrasting high-stress and low-stress days using content analysis, a Rasmussen decision ladder, and the Occupational Stress Index.</p>
-          <p class="case-credit"><em>IE/HCI 6810: Cognitive Engineering</em></p>
-          <p class="case-credit"><em>Collaborative research with Nada Elgeziry, Sage Fuentes, and Erin King.</em></p>
-          <p class="case-credit"><em>I contributed across all phases of the project and led the event coding, the decision ladder, and the metrics and conclusion sections.</em></p>
-        </div>
-      </section>
+<!-- HEADER -->
+<section aria-labelledby="case-title" style="padding: clamp(48px, 6vw, 96px) 0 clamp(32px, 4vw, 48px);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px);">
+<p style="margin: 0 0 16px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body);">Cognitive Engineering</p>
+<h1 id="case-title" style="margin: 0; max-width: 18ch; font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 82%; font-size: clamp(44px, 6.2vw, 92px); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; color: var(--ink); text-wrap: balance;">Efficiency of Team Interactions at a Physical Therapy Clinic</h1>
+<p style="margin: 24px 0 0; max-width: 44ch; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 96%; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.18; letter-spacing: -0.015em; color: var(--ink); text-wrap: pretty;">On the busier of two observed days, communication between the clinic’s therapist, assistant, and reception roles dropped overall, with fewer efficient exchanges and the same number of inefficient ones. High-stress events, marked by frustration, persistent demands, or conflict, rose from 3 to 57.</p>
+<dl style="margin: clamp(32px, 4vw, 48px) 0 0; padding-top: 24px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px 32px;"><div><dt style="margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Role</dt><dd style="margin: 0; font-size: 16px;">Event coding and the decision ladder; wrote and presented the metrics and decision ladder sections; wrote the conclusion</dd></div><div><dt style="margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Team</dt><dd style="margin: 0; font-size: 16px;">3 researchers</dd></div><div><dt style="margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Scale</dt><dd style="margin: 0; font-size: 16px;">219 coded events over 2 sessions (6h 41m)</dd></div><div><dt style="margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Course</dt><dd style="margin: 0; font-size: 16px;">Cognitive Engineering, Fall 2024</dd></div></dl>
+</div>
+</section>
 
-      <section class="section" aria-labelledby="overview-title">
-        <div class="container content-container">
-          <h2 id="overview-title">Overview</h2>
-          <p>This project moved deliberately beyond digital screens. The UX challenge here was a human-service system: a three-person clinical team (therapist, assistant, and receptionist) coordinating patient care in real time while juggling scheduling, equipment, space allocation, and constant communication interruptions. The unit of analysis was the team itself: how information moved through it and what each breakdown cost under pressure.</p>
-          <p>One member of our team conducted the on-site observations at a physical therapy practice in Egypt across two full clinic sessions, one on a high-patient-volume day and one on a slower day. The rest of us coded and analyzed the recorded data, logging 219 discrete events across three custom metrics: stress, clinic vibe, and communication efficiency.</p>
+<!-- HERO IMAGE -->
+<figure style="margin: 0 auto; max-width: 1240px; padding: 0 clamp(24px, 4vw, 48px);">
+<div style="aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: var(--surface); border: 1px solid var(--line);">
+<img src="assets/projects/PT-Clinic/pt-clinic-rooms.jpg" width="1094" height="728" alt="Two treatment areas at the clinic: a small room with a treatment table and an electrotherapy cart, and a curtained corridor of treatment bays with an exercise ball, chairs, and resistance bands." style="width: 100%; height: 100%; object-fit: cover; display: block;">
+</div>
+<figcaption style="margin-top: 12px; font-size: 14px;">Treatment areas where the team was observed.</figcaption>
+</figure>
 
-          <div class="pt-stat-grid" aria-label="Study at a glance">
-            <div class="pt-stat-box">
-              <span class="pt-stat-number">219</span>
-              <span class="pt-stat-label">total coded events</span>
-            </div>
-            <div class="pt-stat-box">
-              <span class="pt-stat-number">6h 41m</span>
-              <span class="pt-stat-label">observation time across 2 sessions</span>
-            </div>
-            <div class="pt-stat-box">
-              <span class="pt-stat-number">3</span>
-              <span class="pt-stat-label">custom metrics developed</span>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section" aria-labelledby="team-title">
-        <div class="container content-container">
-          <h2 id="team-title">The System and Its People</h2>
-          <p>The clinic operated with three interdependent roles, each with defined responsibilities that regularly overlapped under real conditions. That flexibility was deliberate: on high-volume days, therapists picked up assistant tasks and vice versa. Patients were present throughout but were treated as external to the team system for the purposes of this study.</p>
+<section aria-labelledby="s-overview" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-overview" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Overview</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">At a physical therapy clinic in Egypt, this study focused on how three roles worked together: the therapist, the assistant, and the receptionist. Staff in these roles coordinated patient care as patients came and went, moving them between treatment partitions, sharing equipment, managing the schedule, and passing messages between rooms. We looked at how information moved between the roles, and how their communication changed with patient volume.</p>
+<p style="margin: 0;">One teammate conducted the on-site observations across two evening sessions, one on a high-volume day and one on a lower-volume day, and took photos to document the environment staff worked in. Another teammate and I coded and analyzed the event logs, recording 219 events across three metrics we developed after the first session: stress, clinic vibe, and communication efficiency.</p>
+</div>
+</div>
+</section>
 
-          <div class="role-grid">
-            <div class="role-card">
-              <h3>Therapist</h3>
-              <p>Develops and delivers treatment plans; oversees patient exercises. Absorbs assistant duties on busy days.</p>
-            </div>
-            <div class="role-card">
-              <h3>Assistant</h3>
-              <p>Prepares equipment, manages patient transitions, monitors the scheduling system, and serves as the hub between roles.</p>
-            </div>
-            <div class="role-card">
-              <h3>Receptionist</h3>
-              <p>Handles scheduling, relays patient information, and coordinates patient flow, primarily through verbal and phone communication.</p>
-            </div>
-          </div>
+<section aria-labelledby="s-system" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-system" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">The system and its people</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Several people worked in each role, and the therapist and assistant observed most closely also took the stress survey. Each role had defined responsibilities, but they overlapped, and that flexibility was essential because patient flow was unpredictable: on busy days therapists took on assistant tasks, and assistants supported both therapists and reception. Patients were present throughout but weren’t treated as part of the team, since they didn’t contribute to carrying out its work.</p>
+<div style="border-top: 1px solid var(--line);">
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Therapist</h3><p style="margin: 0;">Develops and delivers treatment plans and oversees patient exercises. Takes on assistant duties on busy days.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Assistant</h3><p style="margin: 0;">Prepares equipment, moves patients between partitions, monitors the scheduling system, and relays information between the therapist and reception.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Receptionist</h3><p style="margin: 0;">Handles scheduling, relays patient information, and coordinates patient flow, mostly by speaking in person or by phone.</p></div>
+</div>
+<p style="margin: 0;">Team members knew each other’s roles well, and professionalism toward patients stayed positive on both days, with 78 of 80 professional vibe events coded positive. Against that baseline, the inefficiencies pointed to how information was routed between roles.</p>
+</div>
+</div>
+</section>
 
-          <p>The team worked together regularly, knew each other's roles well, and maintained a positive professional dynamic even under strain. That baseline competence made the inefficiencies we identified more notable. They came from structural gaps in how information was routed rather than from poor teamwork.</p>
-        </div>
-      </section>
+<section aria-labelledby="s-methods" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-methods" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Methods</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Research on physical therapy teams was sparse, and most of it focused on individual skills and patient outcomes, so we took an exploratory approach that combined qualitative content analysis of the observations with counts of coded events and a short stress survey.</p>
+<ul aria-label="Methods used" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px;"><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; font-size: 14px; color: var(--ink);">Content analysis</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; font-size: 14px; color: var(--ink);">Direct observation</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; font-size: 14px; color: var(--ink);">Timestamped event logging</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; font-size: 14px; color: var(--ink);">Decision ladder</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; font-size: 14px; color: var(--ink);">Occupational Stress Index (modified)</li></ul>
+<p style="margin: 0;">Observations covered two evening shifts: a high-volume day with more patients and more urgency (3 hours 15 minutes), and a lower-volume day with a more relaxed pace (3 hours 26 minutes). Interactions were logged with timestamps as they happened.</p>
+<p style="margin: 0;">Two of the staff members we observed most often, a therapist and an assistant, also answered seven items adapted from the Occupational Stress Index (Srivastava &amp; Singh, 1981), drawn from the subscales for role overload, strenuous working conditions, and responsibility for persons.</p>
+<p style="margin: 0;">I built a decision ladder (Rasmussen, 1974) to map the patient-arrival procedure we observed and show where staff took shortcuts.</p>
+</div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); margin-top: clamp(48px, 6vw, 72px);">
+<div style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding-bottom: 32px; border-bottom: 1px solid var(--line);">
+<h3 style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(26px, 2.4vw, 32px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink);">Metrics</h3>
+<p style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; margin: 0; font-size: 18px;">We worked bottom up. Through observation, we found patterns in how staff communicated with each other, patients, and the clinic environment. After the first day, we chose three metrics based on those patterns, what we could assess in the data, and their potential impact on team efficiency, then refined each metric’s codes over repeated rounds of coding. We kept a code only when every coder agreed on it.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: 32px 0; border-bottom: 1px solid var(--line);"><h4 style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink);">Stress</h4><div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;"><p style="margin: 0;">Counted as high- or low-stress events, marked when staff showed stress through what they said, their body language, or the surrounding context. High stress was marked by expressed frustration, persistent demands, or conflict, and low stress by staff relaxing, resting, or joking.</p><div role="group" aria-label="Stress examples from the event log" style="display: flex; flex-wrap: wrap; gap: 16px;"><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">High stress</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">A patient and her daughter called the assistant at the same time, which made her sigh and get upset. Then she put on a smile and jokingly went into the partition.</p><figcaption style="margin-top: 12px; font-size: 14px;">High-volume day, 9:34 PM</figcaption></figure><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Low stress</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">The assistant sits down. It’s quiet.</p><figcaption style="margin-top: 12px; font-size: 14px;">Lower-volume day, 9:18 PM</figcaption></figure></div></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: 32px 0; border-bottom: 1px solid var(--line);"><h4 style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink);">Clinic vibe</h4><div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;"><p style="margin: 0;">Events coded as positive or negative for the clinic’s atmosphere, and as space (physical elements such as cleanliness, sound, and privacy) or professional (the therapist’s attentiveness and friendliness toward patients). Each one either involved a patient or was something a patient could reasonably notice, as it happened or afterward, such as whether a space had been cleaned.</p><div role="group" aria-label="Clinic vibe examples from the event log" style="display: flex; flex-wrap: wrap; gap: 16px;"><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Positive, professional</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">The therapist encourages an elderly patient: “You’re doing a very good job!”</p><figcaption style="margin-top: 12px; font-size: 14px;">Lower-volume day, 6:33 PM</figcaption></figure><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Negative, space</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">A patient can be heard screaming during an exercise, “The electricity is painful.”</p><figcaption style="margin-top: 12px; font-size: 14px;">High-volume day, 7:27 PM</figcaption></figure></div></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: 32px 0; border-bottom: 1px solid var(--line);"><h4 style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink);">Communication efficiency</h4><div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;"><p style="margin: 0;">Exchanges between staff, coded as efficient (relevant, clear, logical, and helping toward a goal) or inefficient (unclear, inaccurate, or not helping toward one), and as informational or logistical.</p><div role="group" aria-label="Communication efficiency examples from the event log" style="display: flex; flex-wrap: wrap; gap: 16px;"><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Efficient, informational</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">Assistant to therapist: “I finished working on [patient’s] neck. Now what?” Therapist: “Now work on his shoulders, but each shoulder at a time, because you can’t do both at once.” The assistant leaves to do this.</p><figcaption style="margin-top: 12px; font-size: 14px;">Lower-volume day, 6:29 PM</figcaption></figure><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px;"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Inefficient, logistical</p><p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink);">The therapist keeps talking, not realizing the assistant has left the room: “4 minutes or so, and then the patient can enter.”</p><figcaption style="margin-top: 12px; font-size: 14px;">Lower-volume day, 7:27 PM</figcaption></figure></div></div></div>
+</div>
+</section>
 
-      <section class="section" aria-labelledby="methods-title">
-        <div class="container content-container">
-          <h2 id="methods-title">Methods</h2>
-          <p>We used a multi-method approach grounded in exploratory qualitative research, chosen because existing literature on physical therapy teams was sparse and largely focused on patient outcomes rather than team dynamics.</p>
+<!-- FINDINGS -->
+<section aria-labelledby="s-found" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px);">
+<h2 id="s-found" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Key findings</h2>
+<article aria-labelledby="f1" style="margin-top: 48px; padding: clamp(24px, 4vw, 48px); background: var(--card); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px 48px;">
+<div style="flex: 1 1 240px; min-width: 0;">
+<p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Finding 01</p>
+<h3 id="f1" style="margin: 0; max-width: 24ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">High-stress events rose from 3 to 57 on the high-volume day</h3>
+</div>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Of the 57 high-stress events on the high-volume day, 35 came from two routine event types: patient check-ins, meaning any time the therapist or assistant checked on one of their patients (27), and buzzer calls from patients asking for attention (8). Both were coded as stressful only on the high-volume day, because only then did staff respond to them with visible frustration or discomfort. With more patients in care at once, check-ins came more often, 27 against 6. The buzzer rang 8 times on each day, yet only drew that response when the clinic was busy. This suggests patient volume may moderate how stressful otherwise routine events become, though the study couldn’t test it.</p>
+</div>
+</article>
+<article aria-labelledby="f2" style="margin-top: 24px; padding: clamp(24px, 4vw, 48px); background: var(--card); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px 48px;">
+<div style="flex: 1 1 240px; min-width: 0;">
+<p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Finding 02</p>
+<h3 id="f2" style="margin: 0; max-width: 24ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">Efficient exchanges dropped on the busier day, while inefficient ones stayed the same</h3>
+</div>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">There was less communication overall on the high-volume day, 34 events against 51 on the lower-volume day. Inefficient exchanges stayed at 15 on each day, while efficient ones fell from 36 to 19, so the percentage of interactions that were inefficient rose from 29.4% to 44.1%.</p>
+<figure style="margin: 8px 0; padding: 24px; background: var(--bg); border-radius: 14px;"><ul aria-hidden="true" style="list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--ink);"><li style="display: inline-flex; align-items: center; gap: 8px;"><i style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: var(--ink);"></i>Efficient</li><li style="display: inline-flex; align-items: center; gap: 8px;"><i style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: var(--accent);"></i>Inefficient</li></ul><ul style="list-style: none; margin: 0; padding: 0;"><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>High-volume day</span><span>34</span></div><div role="img" aria-label="High-volume day: 19 efficient, 15 inefficient" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 37.25%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 29.41%; background: var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">19 efficient, 15 inefficient</p></li><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>Lower-volume day</span><span>51</span></div><div role="img" aria-label="Lower-volume day: 36 efficient, 15 inefficient" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 70.59%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 29.41%; background: var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">36 efficient, 15 inefficient</p></li></ul><figcaption style="margin-top: 12px; font-size: 14px; margin-top: 4px;">Inefficient exchanges stayed at 15 on both days; efficient ones fell from 36 to 19.</figcaption></figure>
+</div>
+</article>
+<article aria-labelledby="f3" style="margin-top: 24px; padding: clamp(24px, 4vw, 48px); background: var(--card); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px 48px;">
+<div style="flex: 1 1 240px; min-width: 0;">
+<p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Finding 03</p>
+<h3 id="f3" style="margin: 0; max-width: 24ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">“Games of telephone” made up nearly half of the busy day’s inefficient exchanges</h3>
+</div>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">A game of telephone was any chain where a message passed through all three team members when a direct route was available. Seven of the 15 inefficient exchanges on the high-volume day were telephone chains, against 2 of 15 on the lower-volume day. Each one was minor on its own, but alongside check-ins that kept pulling staff between patients, they added to the interruptions on the day the team was busiest.</p>
+<figure style="margin: 8px 0; padding: 24px; background: var(--bg); border-radius: 14px;"><p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Observed relay path</p><ol aria-label="Observed relay path: receptionist, assistant, therapist, receptionist" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong);">Receptionist</li><li aria-hidden="true" style="color: var(--body);">→</li><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong);">Assistant</li><li aria-hidden="true" style="color: var(--body);">→</li><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong);">Therapist</li><li aria-hidden="true" style="color: var(--body);">→</li><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong);">Receptionist</li></ol><p style="margin: 24px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Direct route, used in the end</p><ol aria-label="Direct route, used in the end: therapist, receptionist" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1.5px solid var(--accent);">Therapist</li><li aria-hidden="true" style="color: var(--body);">→</li><li style="padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--ink); background: var(--card); border: 1.5px solid var(--accent);">Receptionist</li></ol><figcaption style="margin-top: 12px; font-size: 14px; margin-top: 16px;">The route the message took, and the direct route the therapist ended up using.</figcaption></figure>
+<figure style="margin: 8px 0; padding: 24px; background: var(--bg); border-radius: 14px;"><p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Example exchange, high-volume day, 8:08 PM</p><ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;"><li style="margin: 0; padding: 12px 16px; border-radius: 12px; background: var(--card); color: var(--ink); font-size: 16px; line-height: 1.45; margin-right: 15%;"><span style="display: block; margin-bottom: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body);">Assistant, answering a call from reception</span>“Then let her in.”</li><li style="margin: 0; padding: 12px 16px; border-radius: 12px; background: var(--card); color: var(--ink); font-size: 16px; line-height: 1.45; margin-right: 15%;"><span style="display: block; margin-bottom: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body);">Assistant to therapist</span>“We’re letting [patient] in.”</li><li style="margin: 0; padding: 2px 16px; font-size: 15px; font-style: italic; color: var(--body); text-align: center;">The therapist says that patient still hasn’t come in, then calls reception herself.</li><li style="margin: 0; padding: 12px 16px; border-radius: 12px; background: var(--card); color: var(--ink); font-size: 16px; line-height: 1.45; margin-left: 15%;"><span style="display: block; margin-bottom: 2px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body);">Therapist to receptionist</span>“Let [patient] in. Okay, then let [another patient] in instead.”</li></ul><figcaption style="margin-top: 12px; font-size: 14px; margin-top: 16px;">The message passed from reception through the assistant to the therapist, and the therapist ended up calling reception herself.</figcaption></figure>
+</div>
+</article>
+<article aria-labelledby="f-day" style="margin-top: 24px; padding: clamp(24px, 4vw, 48px); background: var(--card); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px 48px;">
+<div style="flex: 1 1 240px; min-width: 0;">
+<p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Breakdown</p>
+<h3 id="f-day" style="margin: 0; max-width: 24ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">Communication by day</h3>
+</div>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Efficient, inefficient, and telephone exchanges by day and type.</p>
+<figure style="margin: 8px 0; padding: 24px; background: var(--bg); border-radius: 14px;"><ul aria-hidden="true" style="list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--ink);"><li style="display: inline-flex; align-items: center; gap: 8px;"><i style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: var(--ink);"></i>Efficient</li><li style="display: inline-flex; align-items: center; gap: 8px;"><i style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: var(--accent);"></i>Inefficient</li><li style="display: inline-flex; align-items: center; gap: 8px;"><i style="display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 7px); box-shadow: inset 0 0 0 1.5px var(--accent);"></i>Telephone chain (inefficient)</li></ul><p style="margin: 8px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">High-volume day</p><ul style="list-style: none; margin: 0; padding: 0;"><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>Informational</span><span>13</span></div><div role="img" aria-label="Informational: 10 efficient, 3 inefficient" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 34.48%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 10.34%; background: var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">10 efficient, 3 inefficient</p></li><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>Logistical</span><span>21</span></div><div role="img" aria-label="Logistical: 9 efficient, 5 inefficient, 7 telephone chains" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 31.03%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 17.24%; background: var(--accent);"></span><span style="display: block; height: 100%; width: 24.14%; background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 7px); box-shadow: inset 0 0 0 1.5px var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">9 efficient, 5 inefficient, 7 telephone chains</p></li></ul><p style="margin: 16px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Lower-volume day</p><ul style="list-style: none; margin: 0; padding: 0;"><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>Informational</span><span>22</span></div><div role="img" aria-label="Informational: 17 efficient, 5 inefficient" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 58.62%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 17.24%; background: var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">17 efficient, 5 inefficient</p></li><li style="margin: 0 0 18px;"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink);"><span>Logistical</span><span>29</span></div><div role="img" aria-label="Logistical: 19 efficient, 8 inefficient, 2 telephone chains" style="margin-top: 6px; display: flex; gap: 2px; height: 22px; border-radius: 4px; overflow: hidden; background: var(--surface);"><span style="display: block; height: 100%; width: 65.52%; background: var(--ink);"></span><span style="display: block; height: 100%; width: 27.59%; background: var(--accent);"></span><span style="display: block; height: 100%; width: 6.90%; background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 7px); box-shadow: inset 0 0 0 1.5px var(--accent);"></span></div><p aria-hidden="true" style="margin: 6px 0 0; font-size: 14px;">19 efficient, 8 inefficient, 2 telephone chains</p></li></ul><figcaption style="margin-top: 12px; font-size: 14px; margin-top: 4px;">Every telephone chain was a logistical exchange.</figcaption></figure>
+</div>
+</article>
+<article aria-labelledby="f4" style="margin-top: 24px; padding: clamp(24px, 4vw, 48px); background: var(--card); border: 1px solid var(--line); border-radius: 18px; display: flex; flex-wrap: wrap; gap: 24px 48px;">
+<div style="flex: 1 1 240px; min-width: 0;">
+<p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);">Finding 04</p>
+<h3 id="f4" style="margin: 0; max-width: 24ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.12; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">OSI scores were consistent with moderate stress</h3>
+</div>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Against the modified norms, both the therapist and the assistant scored as moderately stressed. Both rated responsibility for persons highest, at 4 of 5. The therapist’s scores ran higher overall, averaging 3.29 to the assistant’s 2.29, with role overload at 3.67. With two respondents and a shortened scale, the scores lend some support to the observations without confirming them.</p>
+<figure style="margin: 8px 0; padding: 24px; background: var(--bg); border-radius: 14px;"><p style="margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Assistant</p><ul style="list-style: none; margin: 0; padding: 0;"><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Role overload</span><span style="font-variant-numeric: tabular-nums;">2.33</span></div><span role="img" aria-label="Role overload: 2.33 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 33.25%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Strenuous work</span><span style="font-variant-numeric: tabular-nums;">1.67</span></div><span role="img" aria-label="Strenuous work: 1.67 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 16.75%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Responsibility</span><span style="font-variant-numeric: tabular-nums;">4.00</span></div><span role="img" aria-label="Responsibility: 4.00 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 75.00%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 700;"><span>Average</span><span style="font-variant-numeric: tabular-nums;">2.29</span></div><span role="img" aria-label="Average: 2.29 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 32.25%; border-radius: 3px; background: var(--accent);"></span></span></li></ul><p style="margin: 20px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);">Therapist</p><ul style="list-style: none; margin: 0; padding: 0;"><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Role overload</span><span style="font-variant-numeric: tabular-nums;">3.67</span></div><span role="img" aria-label="Role overload: 3.67 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 66.75%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Strenuous work</span><span style="font-variant-numeric: tabular-nums;">2.67</span></div><span role="img" aria-label="Strenuous work: 2.67 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 41.75%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 500;"><span>Responsibility</span><span style="font-variant-numeric: tabular-nums;">4.00</span></div><span role="img" aria-label="Responsibility: 4.00 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 75.00%; border-radius: 3px; background: var(--ink);"></span></span></li><li style="margin: 0 0 12px; font-size: 15px;"><div style="display: flex; justify-content: space-between; gap: 12px; color: var(--ink); font-weight: 700;"><span>Average</span><span style="font-variant-numeric: tabular-nums;">3.29</span></div><span role="img" aria-label="Average: 3.29 of 5" style="display: block; margin-top: 4px; height: 12px; border-radius: 3px; background: var(--surface);"><span style="display: block; height: 100%; width: 57.25%; border-radius: 3px; background: var(--accent);"></span></span></li></ul><figcaption style="margin-top: 12px; font-size: 14px; margin-top: 8px;">Scale: 1 (strongly disagree) to 5 (strongly agree). Bars start at 1. Averages are across all seven items.</figcaption></figure>
+</div>
+</article>
+</div>
+</section>
 
-          <ul class="methods-list" aria-label="Methods used">
-            <li>Direct observation</li>
-            <li>Event logging with timestamps</li>
-            <li>Content analysis</li>
-            <li>Rasmussen decision ladder</li>
-            <li>OSI survey (modified)</li>
-            <li>Clinic photography</li>
-          </ul>
+<section aria-labelledby="s-ladder" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-ladder" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Decision ladder: where shortcuts appeared</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">The decision ladder maps the steps staff take when a patient arrives: being notified of the arrival, reviewing the treatment plan, assessing the patient’s current status, deciding whether to adjust the plan, preparing the space and equipment, and guiding the patient through therapy. Two shortcuts emerged, likely as a result of stress or inefficiency.</p>
+<p style="margin: 0;"><strong style="color: var(--ink); font-weight: 600;">Skipping equipment planning.</strong> Failing to plan the use of equipment caused delays when the machine a patient needed was already in use.</p>
+<p style="margin: 0;"><strong style="color: var(--ink); font-weight: 600;">Skipping file review.</strong> Staff frequently skipped reviewing the patient’s file and moved straight into the treatment plan, which could result in them missing something relevant to the patient’s care. We were unaware of any mistakes resulting from it, which suggests the shortcut may instead reflect the staff’s expertise.</p>
+</div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); margin-top: 40px;">
+<figure style="margin: 0;">
+<div role="region" aria-label="Decision ladder diagram" tabindex="0" style="overflow-x: auto; padding: clamp(16px, 2vw, 24px); background: var(--card); border: 1px solid var(--line); border-radius: 18px;">
+<svg viewBox="60 10 1030 590" role="img" aria-labelledby="ladder-t ladder-d" style="display: block; width: 100%; min-width: 820px; height: auto; font-family: Inter, system-ui, sans-serif;">
+<title id="ladder-t">Decision ladder (Rasmussen, 1974) for a patient appointment</title>
+<desc id="ladder-d">The left side rises from detecting the need for action, through an alert when the assistant notifies the therapist, reviewing the patient file, and evaluating the patient’s current state, to interpreting consequences and selecting a goal. The right side descends through determining the task, planning space and equipment, and executing the therapy. A leap from the alert past the patient file is marked as potential stress. A leap from knowing the patient’s state to knowing the target state, and a leap from knowing the task straight to executing it, are each marked as potential inefficiency.</desc>
+<defs><marker id="ld-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--ink);"></path></marker><marker id="ld-l" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--accent);"></path></marker></defs>
+<g style="font-size: 11px; fill: var(--body);"><rect x="66" y="18" width="212" height="122" rx="6" style="fill: none; stroke: var(--line-strong); stroke-width: 1;"></rect><text x="80" y="38" style="font-weight: 700; fill: var(--ink);">Key</text><rect x="80" y="50" width="40" height="14" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect><text x="130" y="61">Data-processing activities</text><ellipse cx="100" cy="80" rx="20" ry="9" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse><text x="130" y="84">States of knowledge</text><line x1="80" y1="102" x2="118" y2="102" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line><text x="130" y="106">Shunt</text><line x1="80" y1="124" x2="118" y2="124" marker-end="url(#ld-l)" style="stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 3 3;"></line><text x="130" y="128">Leap (shortcut)</text></g>
+<line x1="420" y1="557" x2="434" y2="530" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="446" y1="486" x2="451" y2="458" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="461" y1="426" x2="469" y2="400" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="483" y1="354" x2="486" y2="329" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="493" y1="295" x2="497" y2="268" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="524" y1="232" x2="550" y2="208" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="550" y1="174" x2="546" y2="152" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="542" y1="102" x2="542" y2="79" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="624" y1="79" x2="624" y2="102" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="624" y1="152" x2="624" y2="174" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="620" y1="208" x2="646" y2="230" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="668" y1="268" x2="672" y2="296" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="680" y1="328" x2="684" y2="357" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="698" y1="396" x2="706" y2="426" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="717" y1="458" x2="725" y2="484" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<line x1="740" y1="531" x2="752" y2="557" marker-end="url(#ld-a)" style="stroke: var(--ink); stroke-width: 1.5;"></line>
+<path d="M542,248 L621,248" marker-end="url(#ld-l)" style="fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 3 3;"></path>
+<text x="582" y="266" text-anchor="middle" style="font-size: 10.5px; font-weight: 700; fill: var(--accent);"><tspan x="582">Potential</tspan><tspan x="582" dy="12">inefficiency</tspan></text>
+<path d="M476,505 C 560,478 572,400 522,379" marker-end="url(#ld-l)" style="fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 3 3;"></path>
+<text x="562" y="470" text-anchor="start" style="font-size: 10.5px; font-weight: 700; fill: var(--accent);"><tspan x="562">Potential</tspan><tspan x="562" dy="12">stress</tspan></text>
+<path d="M650,388 C 612,452 628,548 702,571" marker-end="url(#ld-l)" style="fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 3 3;"></path>
+<text x="612" y="520" text-anchor="end" style="font-size: 10.5px; font-weight: 700; fill: var(--accent);"><tspan x="612">Potential</tspan><tspan x="612" dy="12">inefficiency</tspan></text>
+<rect x="350.0" y="557.0" width="128" height="32" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="414" y="577.0">Detect Need for Action</tspan></text>
+<ellipse cx="441" cy="508" rx="35.0" ry="22.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="441" y="512.0">Alert</tspan></text>
+<rect x="399.0" y="426.0" width="112" height="32" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="455" y="446.0">Observe Information</tspan></text>
+<ellipse cx="478" cy="377" rx="42.0" ry="23.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="478" y="374.5">Have</tspan><tspan x="478" y="387.5">Information</tspan></text>
+<rect x="433.0" y="295.0" width="112" height="34" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="489" y="309.5">Identify Situation</tspan><tspan x="489" y="322.5">State</tspan></text>
+<ellipse cx="500" cy="248" rx="42.0" ry="20.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="500" y="252.0">Know State</tspan></text>
+<rect x="528.0" y="174.0" width="112" height="34" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="584" y="188.5">Interpret State</tspan><tspan x="584" y="201.5">Consequences</tspan></text>
+<ellipse cx="542" cy="127" rx="42.0" ry="25.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="542" y="124.5">Ambiguity &amp;</tspan><tspan x="542" y="137.5">Options?</tspan></text>
+<ellipse cx="624" cy="127" rx="38.0" ry="25.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="624" y="124.5">Selected</tspan><tspan x="624" y="137.5">Goal</tspan></text>
+<rect x="528.0" y="45.0" width="112" height="34" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="584" y="59.5">Evaluate</tspan><tspan x="584" y="72.5">Options/Goals</tspan></text>
+<ellipse cx="665" cy="248" rx="42.0" ry="20.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="665" y="245.5">Know Target</tspan><tspan x="665" y="258.5">State</tspan></text>
+<rect x="620.0" y="296.0" width="112" height="32" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="676" y="316.0">Determine Task</tspan></text>
+<ellipse cx="687" cy="377" rx="42.0" ry="20.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="687" y="381.0">Know Task</tspan></text>
+<rect x="651.0" y="426.0" width="118" height="32" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="710" y="446.0">Determine Procedure</tspan></text>
+<ellipse cx="730" cy="508" rx="40.0" ry="24.0" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></ellipse>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="730" y="505.5">Know</tspan><tspan x="730" y="518.5">Procedure</tspan></text>
+<rect x="704.0" y="557.0" width="112" height="32" style="fill: var(--card); stroke: var(--ink); stroke-width: 1.5;"></rect>
+<text text-anchor="middle" style="font-size: 10.5px; font-weight: 600; fill: var(--ink);"><tspan x="760" y="577.0">Execute Actions</tspan></text>
+<g style="font-size: 10.5px; fill: var(--body);">
+<text x="340" y="577" text-anchor="end">Patient is scheduled for an appointment</text>
+<text x="396" y="512" text-anchor="end">Assistant notifies therapist of patient arrival</text>
+<text x="389" y="446" text-anchor="end">Review patient file</text>
+<text x="426" y="381" text-anchor="end">Awareness of patient plan</text>
+<text x="423" y="316" text-anchor="end">Evaluate patient’s current status</text>
+<text x="448" y="252" text-anchor="end">Understanding patient’s current state</text>
+<text x="518" y="195" text-anchor="end">Does patient’s current state align with the treatment plan?</text>
+<text x="490" y="131" text-anchor="end">Understand possible adjustments</text>
+<text x="584" y="34" text-anchor="middle">Decide to continue or adjust treatment plan</text>
+<text x="672" y="131" text-anchor="start">Finalized plan for the appointment</text>
+<text x="650" y="195" text-anchor="start">How will the appointment plan affect the overall treatment plan?</text>
+<text x="717" y="252" text-anchor="start">Knowing the desired outcome for the appointment</text>
+<text x="742" y="316" text-anchor="start">Determine use of exercises and equipment</text>
+<text x="739" y="381" text-anchor="start">Understand steps of appointment treatment</text>
+<text x="779" y="446" text-anchor="start">Plan use of space and equipment</text>
+<text x="780" y="512" text-anchor="start">Complete understanding of treatment plan goals and steps</text>
+<text x="826" y="577" text-anchor="start">Therapist guides patients through therapies</text>
+</g></svg>
+</div>
+<figcaption style="margin-top: 12px; font-size: 14px;">The decision ladder I built for the patient-arrival workflow. Shortcuts are drawn as leaps. Skipping file review jumps from the alert past the patient file and is marked as potential stress; skipping equipment planning jumps from knowing the task straight to executing it and is marked as potential inefficiency.</figcaption>
+</figure>
+</div>
+</section>
 
-          <p><strong>Two observation sessions:</strong> Day 1 was a high-stress (HS) day with elevated patient volume and increased urgency. Day 2 was a low-stress (LS) day with fewer patients and a more relaxed pace. Sessions ran 3 hours 15 minutes and 3 hours 26 minutes respectively. All interactions were timestamped in real time.</p>
+<!-- DESIGN IMPLICATIONS -->
+<section aria-labelledby="s-impl" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px);">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-impl" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Design implications</h2>
+<p style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; margin: 0; font-size: 18px;">Here are two directions for design.</p>
+</div>
+<div style="margin-top: 40px;">
+<div style="margin-top: 8px; border-top: 1px solid var(--line);">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 48px; padding: 24px 0; border-bottom: 1px solid var(--line);"><h3 style="flex: 1 1 340px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink);">Restructure communication routing</h3><p style="flex: 2 1 420px; margin: 0; max-width: 60ch;">The telephone chains suggest messages often ran through the assistant, even when a direct route to reception was available. Direct routing for patient-flow messages, or a shared view of who is waiting and which partition is free, may cut relay steps. Any change would need to start with the scheduling software the team coordinated through, which deserves its own assessment.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 48px; padding: 24px 0; border-bottom: 1px solid var(--line);"><h3 style="flex: 1 1 340px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink);">Design for the busy days</h3><p style="flex: 2 1 420px; margin: 0; max-width: 60ch;">The team worked smoothly at lower volume. The trouble came at high volume, when routine events turned stressful and efficient exchanges declined. Status displays every role can see, notifications that don’t need a verbal check-in, or clearer cues for partition assignments might reduce interruptions when the clinic is busiest.</p></div>
+</div>
+</div>
+</div>
+</section>
 
-          <p><strong>Three custom metrics</strong> were developed after Day 1 observations, based on themes that emerged in the data:</p>
-          <ul>
-            <li><strong>Stress:</strong> discrete count of high- and low-stress events, triggered by verbal expression, body language, or environmental context</li>
-            <li><strong>Clinic vibe:</strong> positive/negative events categorized as space-related or professional, limited to patient-observable moments</li>
-            <li><strong>Communication efficiency:</strong> efficient vs. inefficient exchanges between staff, further coded as logistical or informational</li>
-          </ul>
+<section aria-labelledby="s-limits" style="padding: clamp(64px, 8vw, 96px) 0 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-limits" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Limitations</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">These findings describe one team, in one clinic, on two evenings.</p>
+<div style="border-top: 1px solid var(--line);">
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">One observer</h3><p style="margin: 0;">Only one researcher could be on-site, which limited what could be tracked at once. The number of patients the therapist was treating at any moment, for example, couldn’t be captured reliably.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Language and culture</h3><p style="margin: 0;">Sessions were logged by a teammate familiar with the local culture and translated between Arabic and English, which leaves room for meaning to shift. The two of us who did most of the initial coding weren’t familiar with the culture, and fewer than 5% of codes changed through our reconciliation sessions.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Shift coverage</h3><p style="margin: 0;">Both sessions were late-evening shifts (6 or 7 to 10 pm), so how the team works at other times is unknown.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Staff access</h3><p style="margin: 0;">The receptionist was unavailable beyond their working role, so we couldn’t administer the OSI to them or collect any information beyond the observation sessions.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Rapport</h3><p style="margin: 0;">It varied across the staff. With limited time, it likely wasn’t fully established with the assistant, and after the OSI, the teammate who administered it raised a concern that the assistant’s answers may have leaned artificially positive.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">No patient outcome data</h3><p style="margin: 0;">Several of the related studies we reviewed measured clinic team success with patient outcome data. We didn’t have access to that data, and the sessions weren’t long enough to connect our measures to outcomes.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Instrument fit</h3><p style="margin: 0;">We used the OSI because it was available to us. The revised version (OSI-R) would likely have fit better, but our university library didn’t have access to it, and we couldn’t hear back from its authors in time. We also kept only the items from three subscales that seemed relevant to physical therapy work, which may have skewed some scores against the modified norms.</p></div>
+<div style="padding: 20px 0; border-bottom: 1px solid var(--line);"><h3 style="margin: 0 0 6px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 22px; line-height: 1.2; color: var(--ink);">Clinic vibe</h3><p style="margin: 0;">The metric wasn’t robust enough to add insight, since both days showed similar proportions of positive and negative events.</p></div>
+</div>
+</div>
+</div>
+</section>
 
-          <p><strong>Occupational Stress Index (OSI):</strong> A modified 7-item version of the Srivastava &amp; Singh (1981) OSI was verbally administered to the therapist and assistant, drawing from subscales for role overload, strenuous working conditions, and responsibility for persons.</p>
+<section aria-labelledby="s-reflect" style="padding: clamp(64px, 8vw, 96px) 0;">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 16px 48px;">
+<h2 id="s-reflect" style="flex: 1 1 280px; margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 85%; font-size: clamp(32px, 3.4vw, 48px); line-height: 0.95; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink);">Reflection</h2>
+<div style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+<p style="margin: 0;">Despite its limitations, the approach worked better than we anticipated. Applying the metrics surfaced several areas in the team’s interactions that, if addressed, would likely reduce inefficiency.</p>
+<p style="margin: 0;">Looking at whether the metrics would transfer, stress and communication efficiency could help assess team interactions at other clinics, or in medical settings where a doctor works with supporting staff, though the specific events, like buzzers and check-ins, would need adapting. Clinic vibe would need more factors to be useful. The metrics were also designed around an experienced team, so applying them to novices, especially communication efficiency, would take adjustment.</p>
+<p style="margin: 0;">With more time and resources, I would want to pinpoint more specific sources of inefficiency and suggest more concrete solutions, ones that could ease the strain on staff and potentially improve outcomes for patients. That would require observing across more days and shifts, adding patient outcome data, interviewing every role, including reception, and bringing in a second on-site observer. A deeper study would also give future work a stronger basis for extending the metrics to new settings and testing whether proposed changes help.</p>
+</div>
+</div>
+</section>
 
-          <p><strong>Decision ladder:</strong> Following Rasmussen (1974), we modeled the full patient-arrival workflow (from scheduling detection through therapy execution) to map where stress and inefficiency were structurally embedded in the process.</p>
-        </div>
-      </section>
+<!-- PREV / NEXT -->
+<nav aria-label="Case studies" style="border-top: 1px solid var(--line);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));">
+<a href="perceived-transparency-generative-ai.html" class="pf-link" style="display: flex; flex-direction: column; gap: 8px; padding: 32px 0; color: var(--ink); text-decoration: none;"><span style="font-size: 14px; font-weight: 600; color: var(--body);"><span aria-hidden="true">←</span> Previous</span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15;">AI Transparency &amp; User Trust</span></a>
+<a href="reddit-disability-study.html" class="pf-link" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 8px; padding: 32px 0; color: var(--ink); text-decoration: none;"><span style="font-size: 14px; font-weight: 600; color: var(--body);">Next <span aria-hidden="true">→</span></span><span style="font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15;">Storytelling in Disability Spaces on Reddit</span></a>
+</div>
+</nav>
+</main>
 
-      <section class="section" aria-labelledby="findings-title">
-        <div class="container content-container">
-          <h2 id="findings-title">Key Findings</h2>
+<footer style="border-top: 1px solid var(--line);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px;">
+<span>© 2026 Erin King</span>
+<a href="#main" class="pf-link" style="color: var(--body); text-decoration: none;">Back to top <span aria-hidden="true">↑</span></a>
+</div>
+</footer>
 
-          <div class="finding-card">
-            <h3>Stress spiked 19x on the high-volume day</h3>
-            <p>Day 1 produced 19 times as many high-stress events as Day 2. Two event types (patient check-ins and buzzer calls) drove a disproportionate share of this: they were entirely neutral on the low-stress day, but became sources of frustration and visible strain on the high-stress day. The same sounds, same interactions, same workflow, but under load, they became stressors. This suggests patient volume may function as a moderating variable on otherwise manageable events.</p>
-          </div>
-
-          <div class="finding-card">
-            <h3>High stress compressed communication and raised inefficiency rates</h3>
-            <p>There were fewer total communication events on the high-stress day (34 vs. 51), but a higher proportion of them were inefficient. Inefficient communication accounted for 44.1% of exchanges on Day 1 versus 29.4% on Day 2. Under load, the team communicated less and communicated worse, a pattern consistent with cognitive overload literature.</p>
-          </div>
-
-          <figure class="case-figure">
-            <svg viewBox="0 0 600 220" role="img" aria-labelledby="telephone-diagram-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <title id="telephone-diagram-title">Routing diagram: observed multi-hop relay path (Assistant to Therapist to Assistant to Receptionist) versus available direct path (Assistant to Receptionist)</title>
-              <!-- Node circles -->
-              <circle cx="100" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <circle cx="300" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <circle cx="500" cy="130" r="32" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <!-- Node labels -->
-              <text x="100" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Assistant</text>
-              <text x="300" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Therapist</text>
-              <text x="500" y="127" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Receptionist</text>
-              <!-- Relay path (above) with step numbers -->
-              <path d="M132 115 Q200 55 268 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M268 115 Q200 55 132 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
-              <path d="M332 115 Q420 55 468 115" fill="none" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Step labels -->
-              <text x="200" y="48" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">1</text>
-              <text x="200" y="68" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">2</text>
-              <text x="420" y="52" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">3</text>
-              <!-- Relay label -->
-              <text x="300" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-muted)">Observed relay path</text>
-              <!-- Direct path (below, accent) -->
-              <path d="M132 148 Q300 195 468 148" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-              <text x="300" y="210" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">Direct route available</text>
-            </svg>
-            <figcaption>The observed relay route versus the direct route that was available. The acknowledgment step added no information.</figcaption>
-          </figure>
-
-          <div class="finding-card">
-            <h3>"Games of telephone" were the most visible structural inefficiency</h3>
-            <p>We identified a recurring pattern where messages passed through all three team members in sequence when direct routing was available. These chains were concentrated on the high-stress day. Individually, each exchange was minor. At volume, during an already fragmented shift, they were the most consistently disruptive form of inefficiency in the dataset.</p>
-          </div>
-
-          <figure class="case-figure">
-            <svg viewBox="0 0 600 260" role="img" aria-labelledby="day-compare-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <title id="day-compare-title">Two grouped bar pairs comparing high-stress and low-stress day communication data: 34 vs 51 total events, and 44.1% vs 29.4% inefficient share</title>
-              <!-- Y-axis label -->
-              <text x="20" y="20" font-family="var(--font-body)" font-size="11" fill="var(--text-secondary)">Communication events</text>
-              <text x="320" y="20" font-family="var(--font-body)" font-size="11" fill="var(--text-secondary)">Inefficient share</text>
-              <!-- Group 1: communication events (max 60) -->
-              <!-- High-stress bar: 34 -->
-              <rect x="60" y="70" width="40" height="114" rx="3" fill="var(--accent)" opacity="0.85"/>
-              <text x="80" y="65" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">34</text>
-              <!-- Low-stress bar: 51 -->
-              <rect x="110" y="41" width="40" height="143" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <text x="130" y="36" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">51</text>
-              <!-- Group 2: inefficient share (max 50%) -->
-              <!-- High-stress: 44.1% -->
-              <rect x="360" y="92" width="40" height="92" rx="3" fill="var(--accent)" opacity="0.85"/>
-              <text x="380" y="87" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">44.1%</text>
-              <!-- Low-stress: 29.4% -->
-              <rect x="410" y="123" width="40" height="61" rx="3" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <text x="430" y="118" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">29.4%</text>
-              <!-- Baselines -->
-              <line x1="50" y1="184" x2="165" y2="184" stroke="var(--border)" stroke-width="1"/>
-              <line x1="350" y1="184" x2="465" y2="184" stroke="var(--border)" stroke-width="1"/>
-              <!-- X labels -->
-              <text x="80" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">High-stress</text>
-              <text x="130" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-secondary)">Low-stress</text>
-              <text x="380" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">High-stress</text>
-              <text x="430" y="200" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--text-secondary)">Low-stress</text>
-            </svg>
-            <figcaption>Under load the team communicated less and a larger share of it was inefficient.</figcaption>
-          </figure>
-
-          <div class="telephone-example" aria-label="Example games of telephone exchange">
-            <p style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.75rem;">Observed exchange: high-stress day</p>
-            <div class="exchange">
-              <span class="speaker">Assistant → Therapist:</span>
-              <span class="message">"I will let [patient] in."</span>
-            </div>
-            <div class="exchange">
-              <span class="speaker">Therapist:</span>
-              <span class="message">"Okay."</span>
-            </div>
-            <div class="exchange">
-              <span class="speaker">Assistant → Receptionist:</span>
-              <span class="message">"Yes, let [patient] in."</span>
-            </div>
-            <p style="margin: 0.75rem 0 0; font-size: 0.82rem; color: var(--muted);">The therapist's acknowledgment added no information and introduced an unnecessary relay step that interrupted both parties.</p>
-          </div>
-
-          <h3 style="margin-top: 2rem;">Communication by day</h3>
-          <p style="font-size: 0.88rem; color: var(--muted);">Breakdown of efficient, inefficient, and "games of telephone" events by day and communication type.</p>
-
-          <div class="comm-legend" aria-hidden="true">
-            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-03-green, #008a30);"></span> Efficient</span>
-            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-01-red, #d40000);"></span> Inefficient</span>
-            <span class="comm-legend-item"><span class="comm-legend-dot" style="background: var(--theme-04-amber, #967300);"></span> Games of telephone</span>
-          </div>
-
-          <div class="comm-bar-wrap" role="img" aria-label="Communication efficiency chart by day and type">
-            <div class="comm-bar-row">
-              <span class="comm-bar-label">Day 1 HS: Informational</span>
-              <div class="comm-bar-track">
-                <div class="comm-bar-efficient" style="width: calc(10/34*100%)"></div>
-                <div class="comm-bar-inefficient" style="width: calc(3/34*100%)"></div>
-                <div class="comm-bar-telephone" style="width: calc(13/34*100%)"></div>
-              </div>
-              <span class="comm-bar-value">26 events</span>
-            </div>
-            <div class="comm-bar-row">
-              <span class="comm-bar-label">Day 1 HS: Logistical</span>
-              <div class="comm-bar-track">
-                <div class="comm-bar-efficient" style="width: calc(9/34*100%)"></div>
-                <div class="comm-bar-inefficient" style="width: calc(5/34*100%)"></div>
-                <div class="comm-bar-telephone" style="width: calc(7/34*100%)"></div>
-              </div>
-              <span class="comm-bar-value">21 events</span>
-            </div>
-            <div class="comm-bar-row">
-              <span class="comm-bar-label">Day 2 LS: Informational</span>
-              <div class="comm-bar-track">
-                <div class="comm-bar-efficient" style="width: calc(17/51*100%)"></div>
-                <div class="comm-bar-inefficient" style="width: calc(5/51*100%)"></div>
-              </div>
-              <span class="comm-bar-value">22 events</span>
-            </div>
-            <div class="comm-bar-row">
-              <span class="comm-bar-label">Day 2 LS: Logistical</span>
-              <div class="comm-bar-track">
-                <div class="comm-bar-efficient" style="width: calc(19/51*100%)"></div>
-                <div class="comm-bar-inefficient" style="width: calc(8/51*100%)"></div>
-                <div class="comm-bar-telephone" style="width: calc(2/51*100%)"></div>
-              </div>
-              <span class="comm-bar-value">29 events</span>
-            </div>
-          </div>
-
-          <h3 style="margin-top: 2rem;">OSI scores confirmed moderate occupational stress</h3>
-          <p>Both the therapist and assistant scored as moderately stressed on the modified OSI. The assistant scored highest on responsibility for persons (4.0); the doctor scored highest on role overload (3.67). These scores provided quantitative support that aligned with the qualitative observation data. The team wasn't in crisis, but it was operating under real and sustained pressure.</p>
-
-          <div class="osi-bar-wrap" role="img" aria-label="OSI scores for assistant and doctor across three subscales">
-            <p style="font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem;">Scale: 1 (strongly disagree) → 5 (strongly agree)</p>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Assistant: Role Overload</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(2.34/5*100%)"></div></div>
-              <span class="osi-bar-value">2.34</span>
-            </div>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Assistant: Strenuous Work</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(1.67/5*100%)"></div></div>
-              <span class="osi-bar-value">1.67</span>
-            </div>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Assistant: Responsibility</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(4.0/5*100%)"></div></div>
-              <span class="osi-bar-value">4.00</span>
-            </div>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Doctor: Role Overload</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(3.67/5*100%)"></div></div>
-              <span class="osi-bar-value">3.67</span>
-            </div>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Doctor: Strenuous Work</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(2.67/5*100%)"></div></div>
-              <span class="osi-bar-value">2.67</span>
-            </div>
-            <div class="osi-bar-row">
-              <span class="osi-bar-label">Doctor: Responsibility</span>
-              <div class="osi-bar-track"><div class="osi-bar-fill" style="width: calc(4.0/5*100%)"></div></div>
-              <span class="osi-bar-value">4.00</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="decision-ladder-title">
-        <div class="container content-container">
-          <h2 id="decision-ladder-title">Decision Ladder: Where Shortcuts Appeared</h2>
-          <p>Using a Rasmussen (1974) decision ladder, we mapped the full sequence of steps staff take when a patient arrives, from scheduling notification through therapy execution. The model made it possible to identify two recurring shortcuts:</p>
-          <ul>
-            <li><strong>Skipping equipment planning:</strong> Staff frequently moved directly into patient care without confirming equipment availability, which caused delays when a machine a patient needed was already in use by another patient.</li>
-            <li><strong>Skipping file review:</strong> Staff routinely bypassed chart review and moved straight to treatment plan execution. No errors attributable to this were observed, suggesting this may reflect genuine clinical expertise rather than negligence, but it represents a latent risk that would be harder to manage on less experienced shifts.</li>
-          </ul>
-          <div class="case-study-image">
-            <img src="assets/projects/PT-Clinic/Partition3.png" alt="Physical therapy clinic workspace showing treatment partition environment where interactions were observed" width="1280" height="720" loading="lazy" />
-            <figcaption>Treatment partition environment where team interactions were observed. Partitions, equipment placement, and scheduling visibility all influenced how information moved through the team.</figcaption>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="implications-title">
-        <div class="container content-container">
-          <h2 id="implications-title">Design Implications</h2>
-          <p>The findings point toward two concrete directions for intervention:</p>
-
-          <div class="finding-card">
-            <h3>Restructure communication routing</h3>
-            <p>The "games of telephone" pattern is a direct indicator that the current communication architecture is too hub-dependent. The assistant is being used as a relay rather than a direct channel in many cases where direct communication would be faster and less disruptive. Structured handoff protocols or direct-to-receptionist routing for patient-flow notifications could reduce this significantly. Any change would need to account for the scheduling software, which appears to be a key coordination artifact worth a dedicated assessment.</p>
-          </div>
-
-          <div class="finding-card">
-            <h3>Design for load-variable conditions</h3>
-            <p>The team performed well under low-stress conditions. The problem was how performance degraded under high patient volume, specifically the compression of communication and the spike in inefficiency. Interventions should be designed around the hard days. That might mean visual status displays visible to all three roles, asynchronous notification systems that reduce interruption-driven check-ins, or clearer partition assignment cues that don't require verbal confirmation.</p>
-          </div>
-          <p>These findings contribute an empirically grounded model of multi-party communication breakdown in distributed clinical workflows, with direct implications for care coordination system design.</p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="limitations-title">
-        <div class="container content-container">
-          <h2 id="limitations-title">Limitations</h2>
-          <p>Several constraints limit how far these findings travel. They describe one team, in one clinic, observed on two days.</p>
-
-          <ul class="limitation-list">
-            <li><strong>Single observer data collection:</strong> Only one researcher could be on-site, limiting what could be tracked simultaneously. The full patient count at any given moment wasn't reliably capturable.</li>
-            <li><strong>Cross-cultural and translation factors:</strong> The clinic was in Egypt; two of three researchers were not familiar with the cultural context. Translation between Arabic and English introduced potential for interpretation shifts, though fewer than 5% of coded events changed through the collaborative reconciliation process.</li>
-            <li><strong>Limited shift coverage:</strong> All sessions were conducted during late-evening shifts (6–10 pm). How the team operates at other times of day is unknown.</li>
-            <li><strong>No patient outcome data:</strong> Existing literature in this domain typically anchors team efficiency to patient outcomes. We didn't have access to that data, which limits how our findings connect to the broader research base.</li>
-            <li><strong>OSI instrument fit:</strong> The full OSI-R would have been a better fit than the modified OSI we used, but it wasn't accessible through the university library in time.</li>
-            <li><strong>Rapport and prior relationship:</strong> The on-site researcher had a prior familial relationship with the therapist, which may have influenced how team members behaved during observation.</li>
-          </ul>
-
-          <p>What would be needed to strengthen this study: longitudinal observation across multiple days and shifts, patient outcome data, more interview time with all three roles including the receptionist, and ideally a second on-site observer.</p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="reflection-title">
-        <div class="container content-container">
-          <h2 id="reflection-title">Reflection</h2>
-          <p class="insight-box">What I found most valuable about this study was how clearly a physical service environment reveals the same cognitive engineering dynamics you'd look for in a software system: bottlenecks, redundant handoffs, load-dependent performance degradation. The "games of telephone" pattern in particular maps cleanly onto concepts from distributed systems design: unnecessary message passing, lack of direct routing, hub dependency. The vocabulary transfers even when the medium is entirely different.</p>
-          <p>We shared the findings with the clinic team at the close of the study.</p>
-        </div>
-      </section>
-      <nav class="case-study-nav" aria-label="Case study navigation">
-        <a href="perceived-transparency-generative-ai.html" class="case-study-nav-link prev">
-          <span class="case-study-nav-direction">← Previous</span>
-          <span class="case-study-nav-title">AI Transparency &amp; User Trust</span>
-        </a>
-        <a href="reddit-disability-study.html" class="case-study-nav-link next">
-          <span class="case-study-nav-direction">Next →</span>
-          <span class="case-study-nav-title">Storytelling in Disability Spaces on Reddit</span>
-        </a>
-      </nav>
-    </div><!-- end case-study-wrap -->
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; 2026 Erin King. All rights reserved.</p>
-  </footer>
-
-  <script>
-    // Theme toggle
-    const html = document.documentElement;
-    const toggle = document.getElementById('theme-toggle');
-    const saved = localStorage.getItem('theme');
-    const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    html.dataset.theme = saved || system;
-    updateLabel();
-
-    toggle.addEventListener('click', () => {
-      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = next;
-      localStorage.setItem('theme', next);
-      updateLabel();
-    });
-
-    function updateLabel() {
-      const isDark = html.dataset.theme === 'dark';
-      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-  </script>
+<script>
+/* Theme toggle. Follows the OS until clicked, then stays where you put it. */
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var root = document.documentElement;
+  var label = function(){
+    btn.setAttribute('aria-label', root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  };
+  label();
+  btn.addEventListener('click', function(){
+    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    root.dataset.themeLocked = '1';
+    label();
+    root.dispatchEvent(new CustomEvent('themechange', {detail: next}));
+  });
+})();
+</script>
 </body>
 </html>
