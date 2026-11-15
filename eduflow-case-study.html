@@ -155,7 +155,7 @@ a{color:inherit}
 
 <div class="cs-wrap" style="margin-top: clamp(48px, 6vw, 64px);">
 <aside class="cs-note" aria-label="Note on process" style="max-width: 760px; margin-left: auto;">
-<p><strong style="color: var(--ink); font-weight: 600;">Note on process:</strong> The documentation site was built using Lovable, an AI development tool, directed by detailed prompt engineering. The design decisions (atomic methodology, token architecture, XAI principles, governance model, accessibility-first stance) were all defined before a single line was generated. This project was about learning to use AI as an execution layer, not a replacement for design thinking.</p>
+<p><strong style="color: var(--ink); font-weight: 600;">Note on process:</strong> The documentation site was built using Lovable, an AI development tool, directed by detailed prompt engineering. The design decisions (atomic methodology, token architecture, XAI principles, governance model, and accessibility-first stance) were all defined before a single line was generated.</p>
 </aside>
 </div>
 
@@ -163,8 +163,8 @@ a{color:inherit}
 <div class="cs-wrap cs-split">
 <h2 id="s-what" class="cs-h2">What is EduFlow</h2>
 <div class="cs-body">
-<p>University registration platforms serve students on phones between classes, advisors on tablets during office hours, and registrars managing batch workflows on desktop. All at once, all with different needs.</p>
-<p>EduFlow gives teams a shared visual language, accessible-by-default components, and a governance model that scales across departments without falling apart. Pick it up and build faster without reinventing the wheel every time.</p>
+<p>University registration platforms serve students on phones between classes, advisors on tablets during office hours, and registrars managing batch workflows on desktop, all at once and all with different needs.</p>
+<p>EduFlow gives teams a shared visual language, accessible-by-default components, and a governance model that scales across departments without falling apart.</p>
 </div>
 </div>
 </section>
@@ -174,7 +174,7 @@ a{color:inherit}
 <h2 id="s-tokens" class="cs-h2">Design tokens</h2>
 <div class="cs-body">
 <p>Design tokens are where the system starts. Instead of hardcoding values, tokens give decisions a name and push them everywhere automatically. Update one token and every button, badge, and header that references it updates too.</p>
-<p>The biggest problem in large organizations isn’t bad design decisions. It’s different teams solving the same problem differently. Tokens make the right choice the easy choice.</p>
+<p>In a large organization, different teams often solve the same problem differently. Tokens give each of those decisions a single definition.</p>
 </div>
 </div>
 </section>
@@ -183,10 +183,10 @@ a{color:inherit}
 <div class="cs-wrap">
 <h2 id="s-atomic" class="cs-h2">Atomic design</h2>
 <div class="cs-grid rule" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));">
-<div><h3 class="cs-h4">Atoms</h3><p>The smallest building blocks: buttons, inputs, icons, badges. When atoms are accessible by default, everything built on top of them inherits those qualities automatically.</p></div>
-<div><h3 class="cs-h4">Molecules</h3><p>Atoms combined into single-purpose units. A search bar, a course card, a labeled input with an error state. One job each, reusable anywhere.</p></div>
-<div><h3 class="cs-h4">Organisms</h3><p>Substantial enough to accomplish something meaningful, modular enough for multiple teams to share across different products. Navigation sidebars, content grids, form sections.</p></div>
-<div><h3 class="cs-h4">Templates</h3><p>Layout blueprints that define structure without prescribing content. Teams start from a template and spend their energy on the actual product problem instead of rebuilding the same page layout from scratch.</p></div>
+<div><h3 class="cs-h4">Atoms</h3><p>The smallest building blocks: buttons, inputs, icons, and badges. Building accessibility into the atoms means larger components start from accessible parts, though each combination still needs its own checks.</p></div>
+<div><h3 class="cs-h4">Molecules</h3><p>Atoms combined into single-purpose units. A search bar, a course card, and a labeled input with an error state. One job each, reusable anywhere.</p></div>
+<div><h3 class="cs-h4">Organisms</h3><p>Substantial enough to accomplish something meaningful, modular enough for multiple teams to share across different products. Navigation sidebars, content grids, and form sections.</p></div>
+<div><h3 class="cs-h4">Templates</h3><p>Layout blueprints that define structure without prescribing content. Teams start from a template and spend their energy on the product problem.</p></div>
 </div>
 </div>
 </section>
@@ -259,13 +259,13 @@ a{color:inherit}
 <div class="cs-split">
 <h2 id="s-ai" class="cs-h2">AI-powered components</h2>
 <div class="cs-body">
-<p>These components explore what registration looks like when AI is actually useful. AI serves as a layer that supports students in decision-making and helps advisors focus their efforts.</p>
+<p>These components explore what registration looks like when AI is useful. AI serves as a layer that supports students in decision-making and helps advisors focus their efforts.</p>
 <ul>
-<li><strong>Course Recommendations:</strong> Surfaces suggestions based on academic history, major requirements, and peer patterns. An explainability layer tells you why each course was recommended and lets you dismiss or give feedback.</li>
+<li><strong>Course Recommendations:</strong> Suggests courses based on academic history, major requirements, and peer patterns. An explainability layer tells you why each course was recommended and lets you dismiss or give feedback.</li>
 <li><strong>Dynamic Schedule Planner:</strong> Designed for wearable haptic reminders, estimated walk times between buildings, and conflict detection before problems come up.</li>
-<li><strong>Advisor Analytics Dashboard:</strong> Surfaces at-risk signals like a declining GPA, missed appointments, or no contact in 30 days so advisors can triage their caseload and take action without jumping between tools.</li>
+<li><strong>Advisor Analytics Dashboard:</strong> Flags at-risk signals like a declining GPA, missed appointments, or no contact in 30 days, so advisors can prioritize their caseload without jumping between tools.</li>
 </ul>
-<p>Two of the three are shown below as static mockups. Each surfaces a different dimension of the design challenge: making AI assistance feel trustworthy and legible in a high-stakes academic context.</p>
+<p>Two of the three are shown below as static mockups with sample data.</p>
 </div>
 </div>
 
@@ -315,8 +315,8 @@ a{color:inherit}
 <div class="cs-wrap">
 <div class="cs-rows" style="margin-top: 0;">
 <div class="cs-row"><h2 id="s-access">Accessibility</h2><div><p style="margin: 0 0 12px;">Accessibility is built into every layer of EduFlow. Tokens enforce color contrast. Components ship with keyboard navigation and ARIA support. I checked the documentation site with WAVE as I built it and fixed what it flagged.</p><p style="margin: 0;">WCAG 2.2 AA is the minimum. Every student has to register for classes, so an inaccessible step in registration may keep someone from enrolling.</p></div></div>
-<div class="cs-row"><h2>AI patterns</h2><div><p style="margin: 0 0 12px;">Every AI feature had to clear one bar: would users actually trust it? Four principles drove every decision: transparency (users always know when AI is involved), control (AI suggests, users decide), explainability (recommendations come with reasons), and clear boundaries (users can tell what they did from what the system did).</p><p style="margin: 0;">When the AI can’t help, the system says so and hands control back.</p></div></div>
-<div class="cs-row"><h2>Governance</h2><div><p style="margin: 0 0 12px;">A design system without governance is just a Figma file that gets ignored. EduFlow defines four groups: core team, platform teams, delivery squads, and external contributors. Each has a clear lane. Changes flow from proposal to stable release through a defined process, and token updates propagate automatically to every product that consumes them.</p><p style="margin: 0;">Nothing ships without documentation. Breaking changes require 90 days’ notice and a migration guide.</p></div></div>
+<div class="cs-row"><h2>AI patterns</h2><div><p style="margin: 0 0 12px;">Every AI feature had to clear one bar: would users trust it? Four principles drove every decision: transparency (users always know when AI is involved), control (AI suggests, users decide), explainability (recommendations come with reasons), and clear boundaries (users can tell what they did from what the system did).</p><p style="margin: 0;">When the AI can’t help, the system says so and hands control back.</p></div></div>
+<div class="cs-row"><h2>Governance</h2><div><p style="margin: 0 0 12px;">EduFlow defines four groups: the core team, platform teams, delivery squads, and external contributors. Changes flow from proposal to stable release through a defined process, and the system specifies that a token update reaches every product using it.</p><p style="margin: 0;">Nothing ships without documentation. Breaking changes require 90 days’ notice and a migration guide.</p></div></div>
 </div>
 </div>
 </section>
@@ -325,10 +325,9 @@ a{color:inherit}
 <div class="cs-wrap cs-split">
 <h2 id="s-about" class="cs-h2">About this project</h2>
 <div class="cs-body">
-<p>EduFlow was developed for a Managing UX Teams graduate course. The brief called for a complete design system: not just components, but foundations, governance, AI patterns, accessibility guidelines, and a contribution model for a university navigating digital transformation.</p>
-<p>The initial idea came from a teammate. I led the system from there: the atomic design hierarchy, token specifications, XAI principles, and governance model, all defined before anything was generated. I then built the documentation site. Rather than treating Lovable as a tool that generates design systems, I treated it as an execution layer and engineered the prompts to bring those decisions to life. The difference between AI-assisted and AI-directed is what this project is really about.</p>
+<p>EduFlow was developed for a Managing UX Teams graduate course. The brief called for a complete design system: components, foundations, governance, AI patterns, accessibility guidelines, and a contribution model for a university navigating digital transformation.</p>
+<p>The initial idea came from a teammate. I led the system from there: the atomic design hierarchy, token specifications, XAI principles, and governance model, all defined before anything was generated. I then built the documentation site, writing the prompts that turned those decisions into the site.</p>
 <p><a href="https://eduflow-design-map.lovable.app/" class="cs-link pf-link">Explore the live EduFlow documentation site</a></p>
-<p>The system was the course-long project for the seminar.</p>
 </div>
 </div>
 </section>
