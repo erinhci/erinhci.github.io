@@ -1,238 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study | Storytelling in Disability Spaces on Reddit</title>
-  <meta name="description" content="Case study: Reddit Disability Study research project by Erin King." />
-  <link rel="preload" href="/assets/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="case-study.css" />
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study | Storytelling in Disability Spaces on Reddit</title>
+<meta name="description" content="Case study: Reddit Disability Study research project by Erin King.">
+<meta name="theme-color" content="#F5F4F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<script>
+/* Runs before paint so the correct theme is on <html> from the first frame.
+   Same logic as the homepage: follows the OS until the visitor picks one. */
+(function(){
+  var d = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  d.dataset.theme = mq.matches ? 'dark' : 'light';
+  var onChange = function(e){ if (!d.dataset.themeLocked) d.dataset.theme = e.matches ? 'dark' : 'light'; };
+  mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) { d.dataset.theme = saved; d.dataset.themeLocked = '1'; }
+    d.addEventListener('themechange', function(e){ localStorage.setItem('theme', e.detail); });
+  } catch (err) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens match the homepage (index.html). */
+:root{
+  color-scheme:light;
+  --bg:#F5F4F1; --surface:#EFEEEA; --card:#FFFFFF;
+  --line:#DEDCD6; --line-strong:#878580;
+  --ink:#141414; --body:#57565A;
+  --accent:#C2195B; --accent-deep:#9E1449; --on-accent:#FFFFFF;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#000000; --surface:#1A1A1A; --card:#141414;
+  --line:#2E2E2E; --line-strong:#707070;
+  --ink:#F2F2F2; --body:#B0B0B0;
+  --accent:#F5457E; --accent-deep:#F76E97; --on-accent:#000000;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:5rem}
+body{
+  margin:0;background:var(--bg);color:var(--body);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink);color:var(--bg);padding:.75rem 1.5rem;font-weight:600;border-radius:0 0 8px 0;text-decoration:none}
+.skip:focus{left:0}
+.pf-link{text-decoration:none;transition:color .2s cubic-bezier(.16,1,.3,1)}
+.pf-link:hover{color:var(--accent)}
+.pf-ghost{transition:border-color .2s,background-color .2s}
+.pf-ghost:hover{border-color:var(--ink) !important;background:var(--surface) !important}
+:root[data-theme="dark"] .i-moon,:root:not([data-theme="dark"]) .i-sun{display:none}
+:root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
+.nowrap{white-space:nowrap}
+#case-title{overflow-wrap:break-word}
+@media (max-width:480px){
+  .nav-resume{display:none !important}
+  #case-title{font-size:11.5vw !important}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+/* Case study layout roles, shared with the Portfolio Redesign canvas. */
+.cs-wrap{max-width:1240px;margin:0 auto;padding:0 clamp(24px,4vw,48px)}
+.cs-head{padding:clamp(48px,6vw,96px) 0 clamp(32px,4vw,48px)}
+.cs-label{margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--body)}
+.cs-h1{margin:16px 0 0;max-width:16ch;font-family:Archivo,sans-serif;font-weight:800;font-stretch:82%;font-size:clamp(48px,7vw,104px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);text-wrap:balance}
+.cs-lead{margin:24px 0 0;max-width:40ch;font-family:Archivo,sans-serif;font-weight:600;font-stretch:96%;font-size:clamp(24px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.cs-facts{margin:clamp(32px,4vw,48px) 0 0;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px 32px}
+.cs-facts dt{margin:0 0 4px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.cs-facts dd{margin:0;font-size:16px}
+.cs-hero{margin:0 auto}
+.cs-media{border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.cs-media img{width:100%;height:100%;object-fit:cover;display:block}
+.cs-media.contain img{object-fit:contain}
+.cs-cap{margin-top:12px;font-size:14px;color:var(--body);text-align:right}
+.cs-split > p.cs-body{align-self:flex-end}
+.cs-sec{padding:clamp(64px,8vw,96px) 0 0}
+.cs-sec.last{padding-bottom:clamp(64px,8vw,96px)}
+.cs-split{display:flex;flex-wrap:wrap;gap:16px 48px}
+.cs-h2{flex:1 1 280px;margin:0;font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;font-size:clamp(32px,3.4vw,48px);line-height:.95;letter-spacing:-.025em;text-transform:uppercase;color:var(--ink)}
+.cs-body{flex:2.4 1 520px;min-width:0;max-width:68ch;display:flex;flex-direction:column;gap:16px;font-size:18px}
+.cs-body p,.cs-body ul{margin:0}
+.cs-body ul{padding-left:24px;display:flex;flex-direction:column;gap:8px}
+.cs-body strong{color:var(--ink);font-weight:600}
+.cs-h4{margin:0 0 8px;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15;color:var(--ink)}
+.cs-grid{margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
+.cs-grid.rule{border-top:1px solid var(--line);padding-top:32px;gap:32px}
+.cs-grid p{margin:0}
+.cs-note{padding:24px;border:1px solid var(--line-strong);border-radius:14px;background:var(--card);font-size:16px}
+.cs-note p{margin:0}
+.cs-rows{margin-top:40px;border-top:1px solid var(--line)}
+.cs-row{display:flex;flex-wrap:wrap;gap:8px 48px;padding:24px 0;border-bottom:1px solid var(--line)}
+.cs-row>:first-child{flex:1 1 340px;margin:0;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15;color:var(--ink)}
+.cs-row>:last-child{flex:2 1 420px;margin:0;max-width:60ch}
+.cs-link{color:var(--accent);font-weight:600;text-decoration-thickness:from-font;text-underline-offset:.18em}
+.cs-pn{border-top:1px solid var(--line)}
+.cs-pn-in{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.cs-pn a{display:flex;flex-direction:column;gap:8px;padding:32px 0;color:var(--ink);text-decoration:none}
+.cs-pn a.next{align-items:flex-end;text-align:right}
+.cs-pn .dir{font-size:14px;font-weight:600;color:var(--body)}
+.cs-pn .ttl{font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15}
+.cs-pn a:hover .ttl{color:var(--accent)}
+
+/* shared case study components, matching the canvas */
+.cs-h3{margin:0;max-width:28ch;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.cs-panel{margin-top:24px;padding:clamp(24px,4vw,48px);background:var(--card);border:1px solid var(--line);border-radius:18px}
+.cs-quote{margin:0;padding:24px;background:var(--bg);border-radius:14px}
+.cs-quote.onbg{background:var(--card);border:1px solid var(--line)}
+.cs-quote blockquote{margin:0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:24px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
+.cs-quote figcaption{margin-top:12px;font-size:14px}
+.cs-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.cs-chips li{border:0;border-radius:6px;background:var(--surface);padding:4px 10px;font-size:14px}
+.cs-body ul.cs-chips{flex-direction:row;padding-left:0}
+.cs-tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.cs-table{width:100%;min-width:640px;border-collapse:collapse;font-size:16px;line-height:1.5}
+.cs-table caption{caption-side:top;text-align:left;padding:16px 24px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line)}
+.cs-table th,.cs-table td{text-align:left;vertical-align:top;padding:12px 24px;border-bottom:1px solid var(--line)}
+.cs-table thead th{font-size:14px;font-weight:600;color:var(--ink)}
+.cs-table tbody th{font-weight:600;color:var(--ink)}
+.cs-table tr:last-child>*{border-bottom:0}
+.cs-flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.cs-flow .step{padding:12px 20px;border:1.5px solid var(--line-strong);border-radius:10px;font-size:16px;font-weight:500;color:var(--ink)}
+.cs-flow .step.hot{border:2px solid var(--accent);color:var(--accent-deep);font-weight:600}
+.cs-flow .arrow{font-size:18px;color:var(--body)}
+/* a short lead beside a section heading sits on the heading's last line */
+.cs-split>p.cs-body{align-self:flex-end}
+/* a caption runs the width of its figure and closes it on the right */
+.cs-cap{max-width:none;text-align:right;margin-top:16px}
+:root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
+</style>
 </head>
-  <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
+<body>
+<a href="#main" class="skip">Skip to content</a>
 
-  <header class="site-header">
-    <div class="nav-inner">
-      <a href="index.html" class="brand">Erin King</a>
-      <a href="index.html#work" class="back-link">&#8592; Back to portfolio</a>
-      <button id="theme-toggle" type="button" aria-label="Switch to dark mode">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-sun">
-          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="9" y1="1" x2="9" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="9" y1="15" x2="9" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="1" y1="9" x2="3" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="15" y1="9" x2="17" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="3.22" y1="3.22" x2="4.64" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="13.36" y1="13.36" x2="14.78" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14.78" y1="3.22" x2="13.36" y2="4.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4.64" y1="13.36" x2="3.22" y2="14.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="icon-moon">
-          <path d="M15 9.75A6.75 6.75 0 0 1 8.25 3c0-.34.026-.675.076-1A7.5 7.5 0 1 0 16 10.674 6.774 6.774 0 0 1 15 9.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-  </header>
+<header style="position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 12px clamp(24px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+<a href="index.html" class="pf-link nowrap" style="font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 88%; font-size: 16px; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink);">Erin King</a>
+<div style="display: flex; align-items: center; gap: 8px;">
+<a href="index.html#work" class="pf-link nowrap" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; font-size: 16px; font-weight: 500; color: var(--ink);"><span aria-hidden="true">←</span> All work</a>
+<button type="button" id="theme-toggle" class="pf-ghost" aria-label="Switch to dark mode" style="display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; background: transparent; color: var(--ink); border: 1.5px solid var(--line-strong); border-radius: 999px; cursor: pointer;">
+<svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+<svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/></svg>
+</button>
+<a href="assets/ErinN.King%20Resume.pdf" class="pf-ghost nav-resume" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border: 1.5px solid var(--line-strong); border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;">Resume <span aria-hidden="true">↓</span></a>
+</div>
+</div>
+</header>
 
-  <main id="main">
-    <div class="case-study-wrap">
-      <section class="hero section" aria-labelledby="case-study-title">
-        <div class="container content-container">
-          <span class="case-study-label">Qualitative Research</span>
-          <h1 id="case-study-title">Storytelling in Disability Spaces on Reddit</h1>
-          <p class="subtitle">
-            Qualitative research exploring how disabled people and their communities use personal storytelling to connect, cope, and find belonging online.
-          </p>
-        </div>
-      </section>
+<main id="main">
 
-      <section class="section" aria-labelledby="project-overview-title">
-        <div class="container content-container">
-          <h2 id="project-overview-title">Overview</h2>
-          <p>
-            This study grew out of a simple question: what actually happens when someone shares a vulnerable story in a disability subreddit? Not what the platform was designed to do, but what people were actually getting out of it.
-          </p>
-          <p>
-            Conducted as part of my Master of Human-Computer Interaction program at Iowa State, this was a solo qualitative research project from start to finish. I designed the study, wrote the interview guide, recruited participants, conducted five semi-structured interviews, and analyzed the data using inductive thematic analysis. The findings pointed clearly toward two things: the power of community when it works, and the real cost when it doesn't.
-          </p>
-        </div>
-      </section>
+<section class="cs-head" aria-labelledby="case-title">
+<div class="cs-wrap">
+<p class="cs-label">Qualitative Research</p>
+<h1 id="case-title" class="cs-h1">Storytelling in Disability Spaces on Reddit</h1>
+<p class="cs-lead">Participants described disability subreddits as places where they felt less isolated and more understood. The one participant with a rare condition found their subreddit too inactive for either.</p>
+<dl class="cs-facts">
+<div><dt>Role</dt><dd>Solo, from study design through analysis</dd></div>
+<div><dt>Participants</dt><dd>5 semi-structured interviews, 45 to 60 minutes</dd></div>
+<div><dt>Method</dt><dd>Inductive thematic analysis with member checking</dd></div>
+<div><dt>Course</dt><dd>Qualitative Research Methods in HCI, Spring 2025</dd></div>
+</dl>
+</div>
+</section>
 
-      <section class="section" aria-labelledby="insights-title">
-        <div class="container content-container">
-          <h2 id="insights-title">The question</h2>
-          <p>
-            How does storytelling in disability-related subreddits emotionally and socially impact both those who share their stories and those who engage with them?
-          </p>
-        </div>
-      </section>
+<figure class="cs-wrap cs-hero" style="margin: 0 auto;">
+<div style="padding: clamp(40px, 7vw, 96px); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; color: var(--ink);">
+<span aria-hidden="true" style="display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(72px, 10vw, 140px); line-height: 0.7; color: #FF4500;">“</span>
+<blockquote style="margin: 16px 0 0; max-width: 22ch; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 88%; font-size: clamp(36px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;">It was near impossible to find community.</blockquote>
+<figcaption style="margin-top: 24px; font-size: 16px; font-weight: 600; color: var(--body);">Participant 5</figcaption>
+</div>
+</figure>
 
-      <section class="section" aria-labelledby="approach-title">
-        <div class="container content-container">
-          <h2 id="approach-title">My approach</h2>
-          <p>
-            I recruited five participants through convenience sampling, each of whom either identified as disabled or had a close relationship with someone who did, and had engaged with storytelling content in a disability subreddit within the past month. Interviews ran 45 to 60 minutes and were conducted in person or over video.
-          </p>
-          <p>
-            I transcribed and coded the interviews using a bottom-up, inductive approach, letting themes emerge from participants' own words rather than fitting responses into a predetermined framework. I also did member checking during theme development, sharing findings back with participants to make sure I had captured their experiences accurately. That step mattered to me. These were people sharing real, personal things, and getting it right felt like the least I could do.
-          </p>
-          <figure class="case-figure">
-            <svg viewBox="0 0 700 280" role="img" aria-labelledby="reddit-analysis-title" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <title id="reddit-analysis-title">From transcripts to themes: inductive coding with member checking producing two themes: Community and social connection, and Empathy and emotional support</title>
-              <!-- Step 1 -->
-              <rect x="20" y="110" width="130" height="44" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <text x="85" y="130" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">5 semi-structured</text>
-              <text x="85" y="146" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">interviews</text>
-              <!-- Arrow 1→2 -->
-              <line x1="150" y1="132" x2="178" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr2)"/>
-              <!-- Step 2 -->
-              <rect x="180" y="110" width="110" height="44" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <text x="235" y="130" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Inductive</text>
-              <text x="235" y="146" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">coding</text>
-              <!-- Arrow 2→3 -->
-              <line x1="290" y1="132" x2="318" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#arr2)"/>
-              <!-- Step 3 -->
-              <rect x="320" y="110" width="110" height="44" rx="6" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <text x="375" y="130" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">Member</text>
-              <text x="375" y="146" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-primary)">checking</text>
-              <!-- Arrow 3→themes (splits) -->
-              <line x1="430" y1="132" x2="458" y2="132" stroke="var(--text-secondary)" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="458" y1="132" x2="458" y2="90" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <line x1="458" y1="90" x2="475" y2="90" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arr2)"/>
-              <line x1="458" y1="132" x2="458" y2="190" stroke="var(--text-secondary)" stroke-width="1.5"/>
-              <line x1="458" y1="190" x2="475" y2="190" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arr2)"/>
-              <!-- Theme 1 -->
-              <rect x="477" y="68" width="200" height="44" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
-              <text x="577" y="86" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">Community and</text>
-              <text x="577" y="101" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">social connection</text>
-              <!-- Nuance branch off Theme 1 -->
-              <line x1="577" y1="112" x2="577" y2="130" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="3 2"/>
-              <text x="577" y="142" text-anchor="middle" font-family="var(--font-body)" font-size="9" fill="var(--text-muted)">rare conditions, inactive</text>
-              <text x="577" y="154" text-anchor="middle" font-family="var(--font-body)" font-size="9" fill="var(--text-muted)">subreddits: isolation</text>
-              <!-- Theme 2 -->
-              <rect x="477" y="168" width="200" height="44" rx="6" fill="none" stroke="var(--accent)" stroke-width="2"/>
-              <text x="577" y="186" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">Empathy and</text>
-              <text x="577" y="201" text-anchor="middle" font-family="var(--font-body)" font-size="10" fill="var(--accent)">emotional support</text>
-              <!-- Arrowhead marker -->
-              <defs>
-                <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="var(--text-secondary)" stroke-width="1.2"/>
-                </marker>
-              </defs>
-            </svg>
-            <figcaption>From transcripts to themes: inductive coding with member checking, and the counter-case that complicated the first theme.</figcaption>
-          </figure>
-          <blockquote class="pull-quote">
-            <p>
-              “I don't have a lot of energy, a lot of the time, to go out there and make commitments. Having a social place I could go to when I'm not feeling like getting up is nice to have.”
-            </p>
-            <cite>— Participant 3</cite>
-          </blockquote>
-        </div>
-      </section>
 
-      <section class="section" aria-labelledby="findings-title">
-        <div class="container content-container">
-          <h2 id="findings-title">What I found</h2>
-          <p class="section-intro">Two themes emerged clearly from the data.</p>
-          <article class="theme-card" aria-label="Theme one">
-            <h3>Storytelling fosters community and social connection</h3>
-            <p>
-              Participants described disability subreddits as spaces where they felt less alone, particularly those whose disabilities made in-person social engagement harder. For some, Reddit filled a social gap that their disability had created offline. One important nuance: participants with rarer conditions often found their subreddits inactive, which produced the opposite effect. The sense of community that helped others actually highlighted their isolation.
-            </p>
-            <blockquote class="pull-quote">
-              <p>
-                “There's just more of us out there. I'm not really alone with this.”
-              </p>
-              <cite>— Participant 2</cite>
-            </blockquote>
-          </article>
 
-          <article class="theme-card" aria-label="Theme two">
-            <h3>Storytelling serves as a vehicle for empathy and emotional support</h3>
-            <p>
-              Participants described using Reddit to process difficult experiences, seek validation, and understand conditions affecting people they loved. The emotional range was wide, from venting about awkward public moments to working through internalized ableism with the help of strangers who understood.
-            </p>
-          </article>
-        </div>
-      </section>
+<section class="cs-sec" aria-labelledby="s-overview">
+<div class="cs-wrap cs-split">
+<h2 id="s-overview" class="cs-h2">Overview</h2>
+<div class="cs-body">
+<p>This study asked what motivates people to share a personal story in a disability subreddit, what draws other people to engage with those stories, and what the social and emotional effects are on both.</p>
+<p>Reddit takes a decentralized approach to content moderation: each subreddit sets its own rules and enforces them through volunteer moderators, and votes are meant to uplift what contributes to the community. Anonymity lowers the perceived social risk of posting, which can make people more uninhibited with sensitive topics, and it affords supportive and toxic behavior alike.</p>
+<p>Disability subreddits draw disabled people, the people close to them, and people who are curious about a condition or a community without a close connection to it. Conversations there cover lived experience, accessibility, critiques of the medical system, and what to expect, among much else. Some cover disability broadly, others are dedicated to a single condition. Research has looked at anonymity in mental health communities and at storytelling as advocacy in organized campaigns, and less at how individual, user-driven, and often anonymous storytelling works inside a subreddit.</p>
+<p>It was a solo project: I designed the study, wrote the interview guide, recruited participants, ran five semi-structured interviews, and analyzed the transcripts.</p>
+</div>
+</div>
+</section>
 
-      <section class="section" aria-labelledby="opportunities-title">
-        <div class="container content-container">
-          <h2 id="opportunities-title">Design implications</h2>
-          <p>Based on the findings, I identified two design directions worth exploring.</p>
-          <ul class="opportunity-list">
-            <li>
-              <strong>Active moderation in smaller communities:</strong> Active moderation in smaller communities could help sustain engagement for people with rarer disabilities. Things like pinned weekly threads or structured Q&amp;A sessions can create participation even when the community is small.
-            </li>
-            <li>
-              <strong>Richer reaction options:</strong> Richer reaction options could better serve the emotional needs of people sharing vulnerable content. Participants noted that Reddit's upvote system doesn't communicate much. Being able to express support or empathy specifically, not just approval, would better reflect why people are actually in those spaces.
-            </li>
-          </ul>
-        </div>
-      </section>
+<section class="cs-sec" aria-labelledby="s-question">
+<div class="cs-wrap cs-split" style="align-items: flex-start;">
+<h2 id="s-question" class="cs-h2">The question</h2>
+<div class="cs-body">
+<p style="margin: -2px 0 0; font-family: Archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; color: var(--ink);">How does storytelling in disability-related subreddits emotionally and socially impact both those who share their stories and those who engage with them?</p>
+</div>
+</div>
+</section>
 
-      <section class="section" aria-labelledby="reflection-title">
-        <div class="container content-container">
-          <h2 id="reflection-title">What I'd do differently</h2>
-          <p>
-            This study had real limitations and I want to be honest about them. Five participants recruited through convenience sampling means the findings aren't generalizable. I had planned to include content analysis of subreddit posts as a secondary method, but cut it rather than rush it. I'd rather acknowledge the gap than paper over it.
-          </p>
-          <p>
-            If I could do this again with more time and resources, I'd recruit a larger and more diverse sample, run content analysis alongside interviews, and follow the research through to actually testing design features with disabled users. The question of what these communities need to work better feels like a project worth doing properly.
-          </p>
-          <p>
-            In a separate course the following semester, I designed <a href="noticed-case-study.html">Noticed</a>, a brand and system concept for a symptom tracker aimed at some of the same communities. The two projects weren't connected, but this research shaped what I paid attention to there.
-          </p>
-        </div>
-      </section>
+<section class="cs-sec" aria-labelledby="s-approach">
+<div class="cs-wrap">
+<div class="cs-split">
+<h2 id="s-approach" class="cs-h2">Methods</h2>
+<div class="cs-body">
+<ul class="cs-chips" aria-label="Methods used" style="margin-bottom: 8px;"><li>Semi-structured interviews</li><li>Pilot interview</li><li>Inductive thematic analysis</li><li>Member checking</li><li>Reflexivity</li></ul>
+<p>I recruited five participants through convenience sampling. Participants were adults living in the United States who either identified as disabled or had a close personal relationship with someone who is, and who had engaged with storytelling in a disability subreddit, actively or passively, at least once in the past month. Interviews ran 45 to 60 minutes, in person or over video, and were recorded with consent.</p>
+<p>I was interviewing a vulnerable population, so I relied on convenience sampling rather than recruiting acquaintances or strangers. I wanted participants comfortable enough with me to say what they meant, and I designed the questions so that nobody had to reveal personal medical details to answer one. It costs the study its range, which the limitations cover. I reviewed the guide against the research question and pilot tested it with a peer, which is where I caught the questions that wanted a number rather than an experience.</p>
+</div>
+</div>
 
-      <section class="section" aria-labelledby="study-pdf-title">
-        <div class="container content-container">
-          <h2 id="study-pdf-title">Full study</h2>
-          <p>I presented this work in class at Iowa State.</p>
-          <p>
-            Read the full research paper: <a href="assets/projects/reddit-disability-study/reddit-disability-study.pdf">Storytelling in Disability Spaces on Reddit (PDF)</a>.
-          </p>
-        </div>
-      </section>
-      <nav class="case-study-nav" aria-label="Case study navigation">
-        <a href="physical-therapy-interaction-study.html" class="case-study-nav-link prev">
-          <span class="case-study-nav-direction">← Previous</span>
-          <span class="case-study-nav-title">Efficiency of Team Interactions at a Physical Therapy Clinic</span>
-        </a>
-        <a href="eduflow-case-study.html" class="case-study-nav-link next">
-          <span class="case-study-nav-direction">Next →</span>
-          <span class="case-study-nav-title">EduFlow Design System</span>
-        </a>
-      </nav>
-    </div><!-- end case-study-wrap -->
-  </main>
+<figure style="margin: 56px 0 0;">
+<ol aria-label="How the analysis ran" style="list-style: none; margin: 0 !important; padding: 0;">
+<li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
+<span style="flex: 1 1 280px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 20px; line-height: 1.25; color: var(--ink);">Transcripts</span>
+<span style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; box-sizing: border-box; font-size: 18px; position: relative; display: block; padding: 0 0 30px 28px;">
+<span aria-hidden="true" style="position: absolute; left: 0; top: 8px; width: 11px; height: 11px; border-radius: 999px; background: var(--accent);"></span>
+<span aria-hidden="true" style="position: absolute; left: 5px; top: 25px; bottom: 0; width: 1.5px; background: var(--line);"></span>
+I ran the interviews myself, then edited the automated transcripts for accuracy, which is also how I got familiar with the data.
+</span>
+</li>
+<li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
+<span style="flex: 1 1 280px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 20px; line-height: 1.25; color: var(--ink);">First pass</span>
+<span style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; box-sizing: border-box; font-size: 18px; position: relative; display: block; padding: 0 0 30px 28px;">
+<span aria-hidden="true" style="position: absolute; left: 0; top: 8px; width: 11px; height: 11px; border-radius: 999px; background: var(--accent);"></span>
+<span aria-hidden="true" style="position: absolute; left: 5px; top: 25px; bottom: 0; width: 1.5px; background: var(--line);"></span>
+Identified the data units that carried meaning, whether a word, a phrase, or a full response. Some responses took a single code, others several.
+</span>
+</li>
+<li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
+<span style="flex: 1 1 280px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 20px; line-height: 1.25; color: var(--ink);">Second pass</span>
+<span style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; box-sizing: border-box; font-size: 18px; position: relative; display: block; padding: 0 0 30px 28px;">
+<span aria-hidden="true" style="position: absolute; left: 0; top: 8px; width: 11px; height: 11px; border-radius: 999px; background: var(--accent);"></span>
+<span aria-hidden="true" style="position: absolute; left: 5px; top: 25px; bottom: 0; width: 1.5px; background: var(--line);"></span>
+Refined and consolidated those into 22 codes, each with a definition and examples, then clustered the codes into subthemes.
+</span>
+</li>
+<li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
+<span style="flex: 1 1 280px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 20px; line-height: 1.25; color: var(--ink);">Themes</span>
+<span style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; box-sizing: border-box; font-size: 18px; position: relative; display: block; padding: 0 0 30px 28px;">
+<span aria-hidden="true" style="position: absolute; left: 0; top: 8px; width: 11px; height: 11px; border-radius: 999px; background: var(--accent);"></span>
+<span aria-hidden="true" style="position: absolute; left: 5px; top: 25px; bottom: 0; width: 1.5px; background: var(--line);"></span>
+Grouped the subthemes into broader themes, then reviewed, revised, and named them, choosing an exemplar quote for each.
+</span>
+</li>
+<li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
+<span style="flex: 1 1 280px; font-family: Archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 20px; line-height: 1.25; color: var(--ink);">Member checking</span>
+<span style="flex: 2.4 1 520px; min-width: 0; max-width: 68ch; box-sizing: border-box; font-size: 18px; position: relative; display: block; padding: 0 0 0 28px;">
+<span aria-hidden="true" style="position: absolute; left: 0; top: 8px; width: 11px; height: 11px; border-radius: 999px; background: var(--accent);"></span>
+Took the themes back to participants to confirm they matched what they had meant.
+</span>
+</li>
+</ol>
+<figcaption class="cs-cap">How the analysis ran, from recordings to themes.</figcaption>
+</figure>
 
-  <footer class="site-footer">
-    <p>&copy; 2026 Erin King. All rights reserved.</p>
-  </footer>
+<figure style="margin: 56px 0 0;">
+<div class="cs-tablebox" role="region" aria-labelledby="cb-cap" tabindex="0">
+<table class="cs-table">
+<caption id="cb-cap">Codebook excerpt</caption>
+<thead><tr><th scope="col" style="width: 22%;">Code</th><th scope="col" style="width: 34%;">Definition</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><th scope="row">Passive engagement</th><td>Lurking, or engaging in a way that is primarily observational, as opposed to posting or making comments</td><td>“I might just scroll through and just kind of give it a cursory glance.”</td></tr>
+<tr><th scope="row">Advice seeking</th><td>Engagement with content for advice on specific situations</td><td>“I post every once in a while if I really want to get a question answered.”</td></tr>
+<tr><th scope="row">Storytelling</th><td>A user posting their experience on Reddit</td><td>“Even if they’re going to ask a specific question about something, a lot of times they will kind of give their backstory.”</td></tr>
+<tr><th scope="row">Anonymity</th><td>The role that anonymity plays in interactions on Reddit</td><td>“It’s not too difficult to connect my personal identity with my Reddit account so it definitely influences a little bit of what I put on there.”</td></tr>
+</tbody>
+</table>
+</div>
+<figcaption class="cs-cap">Four of the 22 codes from the second pass.</figcaption>
+</figure>
 
-  <script>
-    // Theme toggle
-    const html = document.documentElement;
-    const toggle = document.getElementById('theme-toggle');
-    const saved = localStorage.getItem('theme');
-    const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    html.dataset.theme = saved || system;
-    updateLabel();
+<div class="cs-split" style="margin-top: 56px;">
+<div aria-hidden="true" style="flex: 1 1 280px;"></div>
+<div class="cs-body">
+<p>I’m disabled, and I’ve taken part in these communities myself, posting my own experiences and replying to other people’s. That gave me familiarity with community expectations, rules, and culture, though preferred terminology varies from person to person. My own experience on Reddit has been positive, so I went in trying to understand what other people get out of it, positive or negative. The disabled experience intersects with race, gender, socioeconomic status, and more, and my own identities could shape how I read someone else’s. I wrote a positionality statement before recruiting to make myself aware of all that, and kept it in mind through the analysis.</p>
+</div>
+</div>
+</div>
+</section>
 
-    toggle.addEventListener('click', () => {
-      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = next;
-      localStorage.setItem('theme', next);
-      updateLabel();
-    });
+<section class="cs-sec" aria-labelledby="s-found">
+<div class="cs-wrap">
+<div class="cs-split" style="align-items: flex-end;">
+<h2 id="s-found" class="cs-h2">What I found</h2>
+<p class="cs-body" style="margin: 0;">Two themes came out of the interviews.</p>
+</div>
 
-    function updateLabel() {
-      const isDark = html.dataset.theme === 'dark';
-      toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-  </script>
+<div class="cs-split" style="margin-top: clamp(32px, 4vw, 40px);">
+<div aria-hidden="true" style="flex: 1 1 280px;"></div>
+<div class="cs-body">
+<h3 class="cs-h3" style="margin: 0 0 16px;">Storytelling made participants feel less alone</h3>
+<p>Participants described these subreddits as places where they felt less isolated and more understood.</p>
+<figure class="cs-quote onbg" style="margin: 24px 0;">
+<blockquote><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>My thoughts are that there’s just more of us out there. I’m not really alone with this [disability]. There is a community out there, and I can always go online and talk to them, get their insight into different things, discuss scenarios, and have somebody to talk to who understands.<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 2</figcaption>
+</figure>
+<p>For some, engaging with storytelling there helped meet social needs that their disability disrupted.</p>
+<figure class="cs-quote onbg" style="margin: 24px 0;">
+<blockquote><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>I don’t have a lot of energy, a lot of the time, because I’m a disabled person, to like, go out there. And like, make commitments to like, go see friends or be outside. And so having like, a social place that I could go to, when I’m not feeling like getting up, is nice to have.<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 3</figcaption>
+</figure>
+<h3 class="cs-h3" style="margin: 40px 0 16px;">For the one participant with a rare condition, the same space did the opposite</h3>
+<p>One participant has a rare condition, and the subreddit for it was inactive. They found useful information there and almost no conversation, so a space that gave other participants company mostly reminded them how few people were around. These differences show how the availability of active storytelling can decide whether one of these communities feels like a supportive space.</p>
+<figure class="cs-quote onbg" style="margin: 24px 0;">
+<blockquote><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>And when I tried to find community on Reddit for [their disability], I found it wildly lacking; it was not active. I found a lot of useful things about people talking about similar struggles … It was really helpful from a resource perspective. But it was near impossible to find community…<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 5</figcaption>
+</figure>
+<h3 class="cs-h3" style="margin: 40px 0 16px;">Storytelling carried empathy and emotional support</h3>
+<p>Participants used these subreddits to validate their own experiences, gain advice and support, and better understand people they love. One participant read a thread asking whether it was time to get a mobility aid, and used the replies to work through the internalized ableism behind their own resistance to using one. Reading how other people had navigated that choice left them more confident in their own decision. The same participant posted about a time a stranger complained in public about something their disability caused, partly because it was funny, partly to vent, and partly to see whether other people had had that happen too. For a participant whose partner is disabled, the same kind of post did something different: it was a way to understand a condition they don’t have.</p>
+<figure class="cs-quote onbg" style="margin: 24px 0;">
+<blockquote><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>I can relate to so many of these things, and they were asking, like, is it time to get a mobility aid? … It’s nice to also then read the comments and see, like, what people’s suggestions were, and everyone was being very supportive and informational.<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 3</figcaption>
+</figure>
+<figure class="cs-quote onbg" style="margin: 24px 0;">
+<blockquote><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>It’s kind of hard to get people’s experiences just looking things up online. So I think being able to … post my questions about the disability and have people who are way more informed than I am, or have more experience than me, able to give me that kind of sense of relief and give me advice is super nice.<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 4</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cs-sec" aria-labelledby="s-impl">
+<div class="cs-wrap">
+<div class="cs-split" style="align-items: flex-end;">
+<h2 id="s-impl" class="cs-h2">Design implications</h2>
+<p class="cs-body" style="margin: 0;">Here are two directions for design.</p>
+</div>
+<div class="cs-rows">
+<div class="cs-row"><h3>Active moderation in small communities</h3><p>For subreddits built around rare conditions, active and intentional moderation may help keep people engaged. Pinned weekly threads or scheduled Q&amp;A sessions give people something to reply to when traffic is low.</p></div>
+<div class="cs-row"><h3>Reactions that carry meaning</h3><div>
+<p style="margin: 0;">One participant’s critique of Reddit’s upvote and downvote system was that it allows no emotional nuance: unlike a comment, a vote doesn’t always make a user’s intentions clear. Reactions that name a response, such as support or sympathy, may fit what people are looking for when they post something personal.</p>
+<figure class="cs-quote onbg" style="margin: 20px 0 0;">
+<blockquote style="font-size: 18px; line-height: 1.35;"><span class="m" aria-hidden="true" style="color: #FF4500;">“</span>For me, people upvoting me is not necessarily saying I agree with you, per se, just that they acknowledged the information, so it’s hard to tell without a comment whether they were like, ‘hey, that’s really good,’ or they’re just going through.<span class="m" aria-hidden="true" style="color: #FF4500;">”</span></blockquote>
+<figcaption>Participant 1</figcaption>
+</figure>
+</div></div>
+</div>
+</div>
+</section>
+
+<section class="cs-sec" aria-labelledby="s-limits">
+<div class="cs-wrap">
+<div class="cs-split" style="align-items: flex-end;">
+<h2 id="s-limits" class="cs-h2">Limitations</h2>
+<p class="cs-body" style="margin: 0;">These findings describe five people, and three choices shaped what they could show.</p>
+</div>
+<div class="cs-rows">
+<div class="cs-row"><h3>Sample</h3><p>Five participants, recruited through convenience sampling, so the findings describe these five people rather than disability subreddits in general.</p></div>
+<div class="cs-row"><h3>One rare-condition perspective</h3><p>Only one participant had a rare condition, and their experience diverged significantly from the primarily positive experience of the others, so that view is likely underrepresented here.</p></div>
+<div class="cs-row"><h3>No content analysis</h3><p>A content analysis of subreddit posts was planned as a second method. Time ran short, and rather than rush it I left it out, so triangulating the findings was out of scope for this study.</p></div>
+</div>
+</div>
+</section>
+
+<section class="cs-sec" aria-labelledby="s-reflect">
+<div class="cs-wrap cs-split">
+<h2 id="s-reflect" class="cs-h2">Reflection</h2>
+<div class="cs-body">
+<p>The counter-case is what stayed with me. Most participants described these subreddits as somewhere to go when they couldn’t go anywhere else. One found the same kind of space with nobody in it, and what separated the two was whether anyone else was there to answer. If I ran this again I’d pick one of those two situations and study it on its own, because one interview can’t carry an experience that different from the rest, at least in a study this size.</p>
+<p>Interviewing is a skill I built over the semester. Listening back to the first interview, I heard myself filling pauses to show I was listening, which cut people off part way through a thought. Follow-up questions took practice too: a few came out double-barreled or leading, and repeating something back to check I had understood it could shade into leading the participant somewhere they had not gone. Writing reminders on the guide for how to phrase a follow-up, and getting more interviews behind me, improved both.</p>
+<p>Anonymity came up in nearly every interview, in what people were willing to post and in how connected they felt to other users. It ended up as a code rather than a theme, and it’s the question I’d add next time.</p>
+<p>With more time and money I’d recruit through an agency instead of my own circle, pay participants, run the content analysis alongside the interviews, and go further than describing what people get from these spaces: work with disabled users to build and test whether moderation prompts or richer reactions change what a small community gives back.</p>
+</div>
+</div>
+</section>
+
+<section class="cs-sec last" aria-labelledby="s-full">
+<div class="cs-wrap cs-split">
+<h2 id="s-full" class="cs-h2">Full study</h2>
+<div class="cs-body">
+<p>Read the full research paper: <a href="assets/projects/reddit-disability-study/reddit-disability-study.pdf" class="cs-link">Storytelling in Disability Spaces on Reddit (PDF)</a>. Its appendix has the interview guide.</p>
+</div>
+</div>
+</section>
+
+<nav class="cs-pn" aria-label="Case studies">
+<div class="cs-wrap cs-pn-in">
+<a href="eduflow-case-study.html" class="prev"><span class="dir"><span aria-hidden="true">←</span> Previous</span><span class="ttl">EduFlow Design System</span></a>
+<a href="hades-cognitive-engineering-study.html" class="next"><span class="dir">Next <span aria-hidden="true">→</span></span><span class="ttl">Hades: Cognitive Load &amp; Expert Performance</span></a>
+</div>
+</nav>
+</main>
+
+<footer style="border-top: 1px solid var(--line);">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px;">
+<span>© 2026 Erin King</span>
+<a href="#main" class="pf-link" style="color: var(--body); text-decoration: none;">Back to top <span aria-hidden="true">↑</span></a>
+</div>
+</footer>
+
+<script>
+/* Theme toggle. Follows the OS until clicked, then stays where you put it. */
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var root = document.documentElement;
+  var label = function(){
+    btn.setAttribute('aria-label', root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  };
+  label();
+  btn.addEventListener('click', function(){
+    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    root.dataset.themeLocked = '1';
+    label();
+    root.dispatchEvent(new CustomEvent('themechange', {detail: next}));
+  });
+})();
+</script>
 </body>
 </html>

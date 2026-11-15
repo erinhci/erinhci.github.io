@@ -85,7 +85,8 @@ a{color:inherit}
 .cs-media{border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .cs-media img{width:100%;height:100%;object-fit:cover;display:block}
 .cs-media.contain img{object-fit:contain}
-.cs-cap{margin-top:12px;font-size:14px;color:var(--body);max-width:68ch}
+.cs-cap{margin-top:12px;font-size:14px;color:var(--body);text-align:right}
+.cs-split > p.cs-body{align-self:flex-end}
 .cs-sec{padding:clamp(64px,8vw,96px) 0 0}
 .cs-sec.last{padding-bottom:clamp(64px,8vw,96px)}
 .cs-split{display:flex;flex-wrap:wrap;gap:16px 48px}
@@ -198,7 +199,8 @@ a{color:inherit}
 <p class="cs-body" style="margin: 0;">Below is a sample of the foundational atoms that underpin the EduFlow component library (color, typography, interactive controls, and status indicators), all accessible by default and built to compose.</p>
 </div>
 
-<div style="margin-top: 40px; padding: clamp(24px, 4vw, 48px); background: #FFFFFF; color: #25344F; border: 1px solid var(--line); border-radius: 18px; font-family: Inter, sans-serif; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px;">
+<div style="margin-top: 40px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px;">
+<div style="padding: clamp(24px, 4vw, 48px); background: #FFFFFF; color: #25344F; border-radius: 12px; font-family: Inter, sans-serif; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px;">
 <div>
 <p style="margin: 0 0 16px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5568;">Color tokens</p>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
@@ -252,6 +254,7 @@ a{color:inherit}
 </div>
 </div>
 </div>
+</div>
 </section>
 
 <section class="cs-sec" aria-labelledby="s-ai">
@@ -272,7 +275,8 @@ a{color:inherit}
 <div class="cs-grid" style="margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));">
 
 <figure style="margin: 0;">
-<div style="padding: 24px; background: #FFFFFF; color: #25344F; border: 1px solid var(--line); border-radius: 18px; font-family: Inter, sans-serif;">
+<div style="padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px;">
+<div style="padding: 24px; background: #FFFFFF; color: #25344F; border-radius: 12px; font-family: Inter, sans-serif;">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px;"><p style="margin: 0; font-size: 18px; font-weight: 700;">AI Course Recommendations</p><span style="padding: 4px 10px; border-radius: 999px; background: #E7ECF2; font-size: 12px; font-weight: 600;">AI-Powered</span></div>
 <div style="padding: 16px; border: 1px solid #E5E5E5; border-radius: 12px;">
 <div style="display: flex; justify-content: space-between; gap: 12px;"><div><p style="margin: 0; font-size: 12px; font-weight: 600; color: #4A5568;">BIOL 301 · 4 credits</p><p style="margin: 0; font-size: 18px; font-weight: 700;">Molecular Biology</p></div><p style="margin: 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums;">94%<span style="display: block; font-size: 12px; font-weight: 500; color: #4A5568; text-align: right;">match</span></p></div>
@@ -287,11 +291,13 @@ a{color:inherit}
 <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;"><span style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 8px; background: #25344F; color: #FFFFFF; font-size: 14px; font-weight: 600;">Join Waitlist</span><span style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid #617891; font-size: 14px; font-weight: 600;">Not interested</span></div>
 </div>
 </div>
+</div>
 <figcaption class="cs-cap">Course recommendations with an explainability layer that shows why each course was suggested. Static mockup with sample data.</figcaption>
 </figure>
 
 <figure style="margin: 0;">
-<div style="padding: 24px; background: #FFFFFF; color: #25344F; border: 1px solid var(--line); border-radius: 18px; font-family: Inter, sans-serif;">
+<div style="padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px;">
+<div style="padding: 24px; background: #FFFFFF; color: #25344F; border-radius: 12px; font-family: Inter, sans-serif;">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px;"><p style="margin: 0; font-size: 18px; font-weight: 700;">Advisor Analytics Dashboard</p><span style="padding: 4px 10px; border-radius: 999px; background: #E7ECF2; font-size: 12px; font-weight: 600;">AI Insights</span></div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
 <div style="padding: 12px; border: 1px solid #E5E5E5; border-radius: 10px;"><p style="margin: 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums;">47</p><p style="margin: 0; font-size: 12px; color: #4A5568;">Active advisees · +3%</p></div>
@@ -304,6 +310,7 @@ a{color:inherit}
 <li style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px; border: 1px solid #E5E5E5; border-radius: 10px;"><span><strong style="display: block; font-size: 14px;">Amara B.</strong><span style="font-size: 12px; color: #4A5568;">Psychology · 3.1 GPA</span></span><span style="padding: 4px 10px; border-radius: 999px; background: #FFF3D6; color: #6B4A00; font-size: 12px; font-weight: 600;">Medium</span></li>
 <li style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px; border: 1px solid #E5E5E5; border-radius: 10px;"><span><strong style="display: block; font-size: 14px;">Marcus K.</strong><span style="font-size: 12px; color: #4A5568;">Chemistry · 3.8 GPA</span></span><span style="padding: 4px 10px; border-radius: 999px; background: #E3F1E8; color: #1D5B33; font-size: 12px; font-weight: 600;">On track</span></li>
 </ul>
+</div>
 </div>
 <figcaption class="cs-cap">At-risk signals so advisors can triage their caseload without jumping between tools. Static mockup with fictional students.</figcaption>
 </figure>
