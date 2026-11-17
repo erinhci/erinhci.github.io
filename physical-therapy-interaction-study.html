@@ -61,7 +61,6 @@ a{color:inherit}
 .pf-ghost{transition:border-color .2s,background-color .2s}
 .pf-ghost:hover{border-color:var(--ink) !important;background:var(--surface) !important}
 :root[data-theme="dark"] .i-moon,:root:not([data-theme="dark"]) .i-sun{display:none}
-:root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
 .nowrap{white-space:nowrap}
 #case-title{overflow-wrap:break-word}
 @media (max-width:480px){
@@ -85,7 +84,7 @@ a{color:inherit}
 .cs-media{border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .cs-media img{width:100%;height:100%;object-fit:cover;display:block}
 .cs-media.contain img{object-fit:contain}
-.cs-cap{margin-top:12px;font-size:14px;color:var(--body);text-align:right}
+.cs-cap{margin-top:12px;font-size:14px;color:var(--body)}
 .cs-split > p.cs-body{align-self:flex-end}
 .cs-sec{padding:clamp(64px,8vw,96px) 0 0}
 .cs-sec.last{padding-bottom:clamp(64px,8vw,96px)}
@@ -113,7 +112,6 @@ a{color:inherit}
 .cs-pn .dir{font-size:14px;font-weight:600;color:var(--body)}
 .cs-pn .ttl{font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15}
 .cs-pn a:hover .ttl{color:var(--accent)}
-
 /* shared case study components, matching the canvas */
 .cs-h3{margin:0;max-width:28ch;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
 .cs-panel{margin-top:24px;padding:clamp(24px,4vw,48px);background:var(--card);border:1px solid var(--line);border-radius:18px}
@@ -138,13 +136,27 @@ a{color:inherit}
 /* a short lead beside a section heading sits on the heading's last line */
 .cs-split>p.cs-body{align-self:flex-end}
 /* a caption runs the width of its figure and closes it on the right */
-.cs-cap{max-width:none;text-align:right;margin-top:16px}
+.cs-cap{max-width:none;margin-top:16px}
 :root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
+/* figures in a data table read as a column, and a value over a threshold is marked in words as well as weight */
+.cs-table td.num,.cs-table thead th.num{text-align:right;font-variant-numeric:tabular-nums}
+.cs-table .over{color:var(--accent);font-weight:600}
+/* evidence a reader can open: a native disclosure, so it works by keyboard and is announced */
+.cs-more{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-top:32px}
+.cs-more>summary{cursor:pointer;padding:16px 24px;font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:10px;list-style:none}
+.cs-more>summary::-webkit-details-marker{display:none}
+.cs-more>summary::before{content:"+";color:var(--accent);font-size:17px;font-weight:400;line-height:1}
+.cs-more[open]>summary::before{content:"\2212"}
+.cs-more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px}
+.cs-more-body{padding:0 24px 24px}
+.cs-more-body>*+*{margin-top:20px}
+.cs-more .cs-tablebox{border:0;border-radius:0}
+.cs-more .cs-table caption,.cs-more .cs-table :is(th,td):first-child{padding-left:0}
+.cs-more .cs-table :is(th,td):last-child{padding-right:0}
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
-
 <header style="position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line);">
 <div style="max-width: 1240px; margin: 0 auto; padding: 12px clamp(24px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
 <a href="index.html" class="pf-link nowrap" style="font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 88%; font-size: 16px; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink);">Erin King</a>
@@ -158,9 +170,7 @@ a{color:inherit}
 </div>
 </div>
 </header>
-
 <main id="main">
-
 <!-- HEADER -->
 <section aria-labelledby="case-title" style="padding: clamp(48px, 6vw, 96px) 0 clamp(32px, 4vw, 48px)">
 <div class="cs-wrap">
@@ -170,7 +180,6 @@ a{color:inherit}
 <dl class="cs-facts"><div><dt>Role</dt><dd>Event coding and the decision ladder; wrote and presented the metrics and decision ladder sections; wrote the conclusion</dd></div><div><dt>Team</dt><dd>3 researchers</dd></div><div><dt>Scale</dt><dd>219 coded events over 2 sessions (6h 41m)</dd></div><div><dt>Course</dt><dd>Cognitive Engineering, Fall 2024</dd></div></dl>
 </div>
 </section>
-
 <!-- HERO IMAGE -->
 <figure class="cs-wrap">
 <div class="cs-media" style="aspect-ratio: 16 / 9">
@@ -178,8 +187,6 @@ a{color:inherit}
 </div>
 <figcaption class="cs-cap">Treatment areas where the team was observed.</figcaption>
 </figure>
-
-
 <section aria-labelledby="s-overview" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap cs-split">
 <h2 class="cs-h2" id="s-overview">Overview</h2>
@@ -189,7 +196,6 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section aria-labelledby="s-system" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap cs-split">
 <h2 class="cs-h2" id="s-system">The system and its people</h2>
@@ -204,10 +210,9 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section aria-labelledby="s-methods" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap cs-split">
-<h2 class="cs-h2" id="s-methods">Methods</h2>
+<h2 class="cs-h2" id="s-methods">Method</h2>
 <div class="cs-body">
 <p>Research on physical therapy teams was sparse, and most of it focused on individual skills and patient outcomes, so we took an exploratory approach that combined qualitative content analysis of the observations with counts of coded events and a short stress survey.</p>
 <ul class="cs-chips" aria-label="Methods used"><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; color: var(--ink)">Content analysis</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; color: var(--ink)">Direct observation</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; color: var(--ink)">Timestamped event logging</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; color: var(--ink)">Decision ladder</li><li style="padding: 4px 10px; background: var(--surface); border-radius: 4px; color: var(--ink)">Occupational Stress Index (modified)</li></ul>
@@ -226,7 +231,6 @@ a{color:inherit}
 <div style="display: flex; flex-wrap: wrap; gap: 12px 48px; padding: 32px 0; border-bottom: 1px solid var(--line)"><h4 style="flex: 1 1 280px; margin: 0; font-family: archivo, sans-serif; font-weight: 700; font-stretch: 92%; font-size: 24px; line-height: 1.15; color: var(--ink)">Communication efficiency</h4><div class="cs-body"><p>Exchanges between staff, coded as efficient (relevant, clear, logical, and helping toward a goal) or inefficient (unclear, inaccurate, or not helping toward one), and as informational or logistical.</p><div role="group" aria-label="Communication efficiency examples from the event log" style="display: flex; flex-wrap: wrap; gap: 16px"><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent)">Efficient, informational</p><p style="font-family: archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink)">Assistant to therapist: “I finished working on [patient’s] neck. Now what?” Therapist: “Now work on his shoulders, but each shoulder at a time, because you can’t do both at once.” The assistant leaves to do this.</p><figcaption class="cs-cap">Lower-volume day, 6:29 PM</figcaption></figure><figure style="flex: 1 1 240px; min-width: 0; margin: 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px"><p style="margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent)">Inefficient, logistical</p><p style="font-family: archivo, sans-serif; font-weight: 600; font-stretch: 94%; font-size: 19px; line-height: 1.3; letter-spacing: -.01em; color: var(--ink)">The therapist keeps talking, not realizing the assistant has left the room: “4 minutes or so, and then the patient can enter.”</p><figcaption class="cs-cap">Lower-volume day, 7:27 PM</figcaption></figure></div></div></div>
 </div>
 </section>
-
 <!-- FINDINGS -->
 <section aria-labelledby="s-found" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap">
@@ -278,7 +282,6 @@ a{color:inherit}
 </article>
 </div>
 </section>
-
 <section aria-labelledby="s-ladder" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap cs-split">
 <h2 class="cs-h2" id="s-ladder">Decision ladder: where shortcuts appeared</h2>
@@ -374,7 +377,6 @@ a{color:inherit}
 </figure>
 </div>
 </section>
-
 <!-- DESIGN IMPLICATIONS -->
 <section aria-labelledby="s-impl" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap">
@@ -390,7 +392,6 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section aria-labelledby="s-limits" style="padding: clamp(64px, 8vw, 96px) 0 0">
 <div class="cs-wrap cs-split">
 <h2 class="cs-h2" id="s-limits">Limitations</h2>
@@ -409,7 +410,6 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section aria-labelledby="s-reflect" style="padding: clamp(64px, 8vw, 96px) 0">
 <div class="cs-wrap cs-split">
 <h2 class="cs-h2" id="s-reflect">Reflection</h2>
@@ -420,7 +420,6 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <!-- PREV / NEXT -->
 <nav aria-label="Case studies" style="border-top: 1px solid var(--line)">
 <div class="cs-wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr))">
@@ -429,14 +428,12 @@ a{color:inherit}
 </div>
 </nav>
 </main>
-
 <footer style="border-top: 1px solid var(--line);">
 <div style="max-width: 1240px; margin: 0 auto; padding: 32px clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px;">
 <span>© 2026 Erin King</span>
 <a href="#main" class="pf-link" style="color: var(--body); text-decoration: none;">Back to top <span aria-hidden="true">↑</span></a>
 </div>
 </footer>
-
 <script>
 /* Theme toggle. Follows the OS until clicked, then stays where you put it. */
 (function(){

@@ -85,7 +85,7 @@ a{color:inherit}
 .cs-media{border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .cs-media img{width:100%;height:100%;object-fit:cover;display:block}
 .cs-media.contain img{object-fit:contain}
-.cs-cap{margin-top:12px;font-size:14px;color:var(--body);text-align:right}
+.cs-cap{margin-top:12px;font-size:14px;color:var(--body)}
 .cs-split > p.cs-body{align-self:flex-end}
 .cs-sec{padding:clamp(64px,8vw,96px) 0 0}
 .cs-sec.last{padding-bottom:clamp(64px,8vw,96px)}
@@ -113,6 +113,21 @@ a{color:inherit}
 .cs-pn .dir{font-size:14px;font-weight:600;color:var(--body)}
 .cs-pn .ttl{font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15}
 .cs-pn a:hover .ttl{color:var(--accent)}
+/* figures in a data table read as a column, and a value over a threshold is marked in words as well as weight */
+.cs-table td.num,.cs-table thead th.num{text-align:right;font-variant-numeric:tabular-nums}
+.cs-table .over{color:var(--accent);font-weight:600}
+/* evidence a reader can open: a native disclosure, so it works by keyboard and is announced */
+.cs-more{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-top:32px}
+.cs-more>summary{cursor:pointer;padding:16px 24px;font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:10px;list-style:none}
+.cs-more>summary::-webkit-details-marker{display:none}
+.cs-more>summary::before{content:"+";color:var(--accent);font-size:17px;font-weight:400;line-height:1}
+.cs-more[open]>summary::before{content:"\2212"}
+.cs-more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px}
+.cs-more-body{padding:0 24px 24px}
+.cs-more-body>*+*{margin-top:20px}
+.cs-more .cs-tablebox{border:0;border-radius:0}
+.cs-more .cs-table caption,.cs-more .cs-table :is(th,td):first-child{padding-left:0}
+.cs-more .cs-table :is(th,td):last-child{padding-right:0}
 </style>
 </head>
 <body>

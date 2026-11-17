@@ -61,7 +61,6 @@ a{color:inherit}
 .pf-ghost{transition:border-color .2s,background-color .2s}
 .pf-ghost:hover{border-color:var(--ink) !important;background:var(--surface) !important}
 :root[data-theme="dark"] .i-moon,:root:not([data-theme="dark"]) .i-sun{display:none}
-:root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
 .nowrap{white-space:nowrap}
 #case-title{overflow-wrap:break-word}
 @media (max-width:480px){
@@ -85,7 +84,7 @@ a{color:inherit}
 .cs-media{border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .cs-media img{width:100%;height:100%;object-fit:cover;display:block}
 .cs-media.contain img{object-fit:contain}
-.cs-cap{margin-top:12px;font-size:14px;color:var(--body);text-align:right}
+.cs-cap{margin-top:12px;font-size:14px;color:var(--body)}
 .cs-split > p.cs-body{align-self:flex-end}
 .cs-sec{padding:clamp(64px,8vw,96px) 0 0}
 .cs-sec.last{padding-bottom:clamp(64px,8vw,96px)}
@@ -113,7 +112,6 @@ a{color:inherit}
 .cs-pn .dir{font-size:14px;font-weight:600;color:var(--body)}
 .cs-pn .ttl{font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15}
 .cs-pn a:hover .ttl{color:var(--accent)}
-
 /* shared case study components, matching the canvas */
 .cs-h3{margin:0;max-width:28ch;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
 .cs-panel{margin-top:24px;padding:clamp(24px,4vw,48px);background:var(--card);border:1px solid var(--line);border-radius:18px}
@@ -138,13 +136,27 @@ a{color:inherit}
 /* a short lead beside a section heading sits on the heading's last line */
 .cs-split>p.cs-body{align-self:flex-end}
 /* a caption runs the width of its figure and closes it on the right */
-.cs-cap{max-width:none;text-align:right;margin-top:16px}
+.cs-cap{max-width:none;margin-top:16px}
 :root[data-theme="dark"] .img-light,:root:not([data-theme="dark"]) .img-dark{display:none !important}
+/* figures in a data table read as a column, and a value over a threshold is marked in words as well as weight */
+.cs-table td.num,.cs-table thead th.num{text-align:right;font-variant-numeric:tabular-nums}
+.cs-table .over{color:var(--accent);font-weight:600}
+/* evidence a reader can open: a native disclosure, so it works by keyboard and is announced */
+.cs-more{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-top:32px}
+.cs-more>summary{cursor:pointer;padding:16px 24px;font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:10px;list-style:none}
+.cs-more>summary::-webkit-details-marker{display:none}
+.cs-more>summary::before{content:"+";color:var(--accent);font-size:17px;font-weight:400;line-height:1}
+.cs-more[open]>summary::before{content:"\2212"}
+.cs-more>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px}
+.cs-more-body{padding:0 24px 24px}
+.cs-more-body>*+*{margin-top:20px}
+.cs-more .cs-tablebox{border:0;border-radius:0}
+.cs-more .cs-table caption,.cs-more .cs-table :is(th,td):first-child{padding-left:0}
+.cs-more .cs-table :is(th,td):last-child{padding-right:0}
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
-
 <header style="position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line);">
 <div style="max-width: 1240px; margin: 0 auto; padding: 12px clamp(24px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px;">
 <a href="index.html" class="pf-link nowrap" style="font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 88%; font-size: 16px; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink);">Erin King</a>
@@ -158,9 +170,7 @@ a{color:inherit}
 </div>
 </div>
 </header>
-
 <main id="main">
-
 <section class="cs-head" aria-labelledby="case-title">
 <div class="cs-wrap">
 <p class="cs-label">Qualitative Research</p>
@@ -174,7 +184,6 @@ a{color:inherit}
 </dl>
 </div>
 </section>
-
 <figure class="cs-wrap cs-hero" style="margin: 0 auto;">
 <div style="padding: clamp(40px, 7vw, 96px); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; color: var(--ink);">
 <span aria-hidden="true" style="display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(72px, 10vw, 140px); line-height: 0.7; color: #FF4500;">“</span>
@@ -182,9 +191,6 @@ a{color:inherit}
 <figcaption style="margin-top: 24px; font-size: 16px; font-weight: 600; color: var(--body);">Participant 5</figcaption>
 </div>
 </figure>
-
-
-
 <section class="cs-sec" aria-labelledby="s-overview">
 <div class="cs-wrap cs-split">
 <h2 id="s-overview" class="cs-h2">Overview</h2>
@@ -196,7 +202,6 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-question">
 <div class="cs-wrap cs-split" style="align-items: flex-start;">
 <h2 id="s-question" class="cs-h2">The question</h2>
@@ -205,18 +210,16 @@ a{color:inherit}
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-approach">
 <div class="cs-wrap">
 <div class="cs-split">
-<h2 id="s-approach" class="cs-h2">Methods</h2>
+<h2 id="s-approach" class="cs-h2">Method</h2>
 <div class="cs-body">
 <ul class="cs-chips" aria-label="Methods used" style="margin-bottom: 8px;"><li>Semi-structured interviews</li><li>Pilot interview</li><li>Inductive thematic analysis</li><li>Member checking</li><li>Reflexivity</li></ul>
 <p>I recruited five participants through convenience sampling. Participants were adults living in the United States who either identified as disabled or had a close personal relationship with someone who is, and who had engaged with storytelling in a disability subreddit, actively or passively, at least once in the past month. Interviews ran 45 to 60 minutes, in person or over video, and were recorded with consent.</p>
 <p>I was interviewing a vulnerable population, so I relied on convenience sampling rather than recruiting acquaintances or strangers. I wanted participants comfortable enough with me to say what they meant, and I designed the questions so that nobody had to reveal personal medical details to answer one. It costs the study its range, which the limitations cover. I reviewed the guide against the research question and pilot tested it with a peer, which is where I caught the questions that wanted a number rather than an experience.</p>
 </div>
 </div>
-
 <figure style="margin: 56px 0 0;">
 <ol aria-label="How the analysis ran" style="list-style: none; margin: 0 !important; padding: 0;">
 <li class="cs-split" style="gap: 6px 48px; align-items: flex-start;">
@@ -261,7 +264,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </ol>
 <figcaption class="cs-cap">How the analysis ran, from recordings to themes.</figcaption>
 </figure>
-
 <figure style="margin: 56px 0 0;">
 <div class="cs-tablebox" role="region" aria-labelledby="cb-cap" tabindex="0">
 <table class="cs-table">
@@ -277,7 +279,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 <figcaption class="cs-cap">Four of the 22 codes from the second pass.</figcaption>
 </figure>
-
 <div class="cs-split" style="margin-top: 56px;">
 <div aria-hidden="true" style="flex: 1 1 280px;"></div>
 <div class="cs-body">
@@ -286,14 +287,12 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-found">
 <div class="cs-wrap">
 <div class="cs-split" style="align-items: flex-end;">
-<h2 id="s-found" class="cs-h2">What I found</h2>
+<h2 id="s-found" class="cs-h2">Key findings</h2>
 <p class="cs-body" style="margin: 0;">Two themes came out of the interviews.</p>
 </div>
-
 <div class="cs-split" style="margin-top: clamp(32px, 4vw, 40px);">
 <div aria-hidden="true" style="flex: 1 1 280px;"></div>
 <div class="cs-body">
@@ -328,7 +327,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-impl">
 <div class="cs-wrap">
 <div class="cs-split" style="align-items: flex-end;">
@@ -347,7 +345,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-limits">
 <div class="cs-wrap">
 <div class="cs-split" style="align-items: flex-end;">
@@ -361,7 +358,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <section class="cs-sec" aria-labelledby="s-reflect">
 <div class="cs-wrap cs-split">
 <h2 id="s-reflect" class="cs-h2">Reflection</h2>
@@ -373,7 +369,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <section class="cs-sec last" aria-labelledby="s-full">
 <div class="cs-wrap cs-split">
 <h2 id="s-full" class="cs-h2">Full study</h2>
@@ -382,7 +377,6 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </div>
 </section>
-
 <nav class="cs-pn" aria-label="Case studies">
 <div class="cs-wrap cs-pn-in">
 <a href="eduflow-case-study.html" class="prev"><span class="dir"><span aria-hidden="true">←</span> Previous</span><span class="ttl">EduFlow Design System</span></a>
@@ -390,14 +384,12 @@ Took the themes back to participants to confirm they matched what they had meant
 </div>
 </nav>
 </main>
-
 <footer style="border-top: 1px solid var(--line);">
 <div style="max-width: 1240px; margin: 0 auto; padding: 32px clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px;">
 <span>© 2026 Erin King</span>
 <a href="#main" class="pf-link" style="color: var(--body); text-decoration: none;">Back to top <span aria-hidden="true">↑</span></a>
 </div>
 </footer>
-
 <script>
 /* Theme toggle. Follows the OS until clicked, then stays where you put it. */
 (function(){
