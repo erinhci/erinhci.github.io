@@ -113,6 +113,31 @@ a{color:inherit}
 .cs-pn .dir{font-size:14px;font-weight:600;color:var(--body)}
 .cs-pn .ttl{font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:24px;line-height:1.15}
 .cs-pn a:hover .ttl{color:var(--accent)}
+/* shared case study components, matching the canvas */
+.cs-h3{margin:0;max-width:28ch;font-family:Archivo,sans-serif;font-weight:700;font-stretch:92%;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.cs-panel{margin-top:24px;padding:clamp(24px,4vw,48px);background:var(--card);border:1px solid var(--line);border-radius:18px}
+.cs-quote{margin:0;padding:24px;background:var(--bg);border-radius:14px}
+.cs-quote.onbg{background:var(--card);border:1px solid var(--line)}
+.cs-quote blockquote{margin:0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:24px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
+.cs-quote figcaption{margin-top:12px;font-size:14px}
+.cs-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.cs-chips li{border:0;border-radius:6px;background:var(--surface);padding:4px 10px;font-size:14px}
+.cs-body ul.cs-chips{flex-direction:row;padding-left:0}
+.cs-tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.cs-table{width:100%;min-width:640px;border-collapse:collapse;font-size:16px;line-height:1.5}
+.cs-table caption{caption-side:top;text-align:left;padding:16px 24px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line)}
+.cs-table th,.cs-table td{text-align:left;vertical-align:top;padding:12px 24px;border-bottom:1px solid var(--line)}
+.cs-table thead th{font-size:14px;font-weight:600;color:var(--ink)}
+.cs-table tbody th{font-weight:600;color:var(--ink)}
+.cs-table tr:last-child>*{border-bottom:0}
+.cs-flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.cs-flow .step{padding:12px 20px;border:1.5px solid var(--line-strong);border-radius:10px;font-size:16px;font-weight:500;color:var(--ink)}
+.cs-flow .step.hot{border:2px solid var(--accent);color:var(--accent-deep);font-weight:600}
+.cs-flow .arrow{font-size:18px;color:var(--body)}
+/* a short lead beside a section heading sits on the heading's last line */
+.cs-split>p.cs-body{align-self:flex-end}
+/* a caption runs the width of its figure and closes it on the right */
+.cs-cap{max-width:none;margin-top:16px}
 /* figures in a data table read as a column, and a value over a threshold is marked in words as well as weight */
 .cs-table td.num,.cs-table thead th.num{text-align:right;font-variant-numeric:tabular-nums}
 .cs-table .over{color:var(--accent);font-weight:600}
