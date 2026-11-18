@@ -342,6 +342,8 @@ section{padding:clamp(4rem,8vw,6rem) 0}
 .card:has(h3 a:focus-visible){outline:2px solid var(--accent);outline-offset:8px;border-radius:16px}
 .meta{margin:0;font-size:.875rem;font-weight:500;line-height:1.4;color:var(--body);font-variant-numeric:tabular-nums}
 .desc{margin:0;font-size:1rem;line-height:1.55;text-wrap:pretty}
+/* card text sits above the stretched link so it can be selected and copied; the title, image and arrow still open the project */
+.card :is(.cat,.meta,.desc,.q-text,.q-by){position:relative;z-index:2;cursor:text;-webkit-user-select:text;user-select:text}
 
 /* tags are real buttons; they sit above the card's stretched link */
 .tags{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:.5rem}
