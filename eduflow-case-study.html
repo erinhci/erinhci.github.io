@@ -120,6 +120,11 @@ a{color:inherit}
 .cs-quote.onbg{background:var(--card);border:1px solid var(--line)}
 .cs-quote blockquote{margin:0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:24px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
 .cs-quote figcaption{margin-top:12px;font-size:14px}
+.cs-quote .m{color:var(--accent)}
+/* a quote set beside a row of text runs smaller, so it does not outweigh the row's heading */
+.cs-row .cs-quote blockquote{font-size:20px;line-height:1.35}
+/* the research question, set on the page background under its heading */
+.cs-body .cs-question{margin:-2px 0 0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:clamp(22px,2.2vw,28px);line-height:1.3;color:var(--ink)}
 .cs-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .cs-chips li{border:0;border-radius:6px;background:var(--surface);padding:4px 10px;font-size:14px}
 .cs-body ul.cs-chips{flex-direction:row;padding-left:0}

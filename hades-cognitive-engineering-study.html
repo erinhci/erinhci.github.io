@@ -119,6 +119,11 @@ a{color:inherit}
 .cs-quote.onbg{background:var(--card);border:1px solid var(--line)}
 .cs-quote blockquote{margin:0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:24px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
 .cs-quote figcaption{margin-top:12px;font-size:14px}
+.cs-quote .m{color:var(--accent)}
+/* a quote set beside a row of text runs smaller, so it does not outweigh the row's heading */
+.cs-row .cs-quote blockquote{font-size:20px;line-height:1.35}
+/* the research question, set on the page background under its heading */
+.cs-body .cs-question{margin:-2px 0 0;font-family:Archivo,sans-serif;font-weight:600;font-stretch:94%;font-size:clamp(22px,2.2vw,28px);line-height:1.3;color:var(--ink)}
 .cs-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .cs-chips li{border:0;border-radius:6px;background:var(--surface);padding:4px 10px;font-size:14px}
 .cs-body ul.cs-chips{flex-direction:row;padding-left:0}
@@ -329,7 +334,7 @@ a{color:inherit}
 <figcaption class="cs-cap">Novice 3 in chamber two of their demand run, counting down from 50 by threes while fighting, which is the same run the chart above plots and the recording the quote refers to. The first five answers arrive about two and a half seconds apart. The counting then stops for five and a half, the longest pause in the recording, and the second hit lands inside it. The answer after 26 is 22, which is wrong by one, and four seconds later they say the task is hard.</figcaption>
 </figure>
 <div class="cs-split" style="margin-top: 48px;">
-<h3 class="cs-h2" style="font-size: clamp(24px, 2.6vw, 32px);">Experts replaced calculation with patterns</h3>
+<h3 class="cs-h3">Experts replaced calculation with patterns</h3>
 <div class="cs-body">
 <p>Expert 1 started with actual calculations, working aloud through things like 148 minus 3, then shifted to coming up with a pattern for subtracting by 3 and memorizing it as the task became more complex, and that transition highlights their ability to optimize their cognitive effort, moving from actively calculating to relying on their memory. Expert 2 went another way entirely and adopted a rhythmic strategy, focusing on a pattern of movements, dodge, attack, attack, dodge, rather than responding to specific enemy tells, which reflects a high level of comfort and automation.</p>
 </div>
